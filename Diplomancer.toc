@@ -1,0 +1,11 @@
+## Interface: 20400
+## Title: Diplomancer
+## Notes: Automatic zone-based faction watch
+## Version: 1.0
+## Author: Phanx
+## X-Credits: Based on Charnow's SmartFactionWatch
+## X-Website: http://phanx.net/addons/diplomancer
+## SavedVariablesPerCharacter: DiplomancerSettings
+
+Core.lua
+Data.lua
