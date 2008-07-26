@@ -12,7 +12,6 @@ local data = {
 		["Dire Maul"]				= "Shen'dralar",
 		["Eastern Plaguelands"]		= "Argent Dawn",
 		["Gates of Ahn'Qiraj"]		= "Cenarion Circle",
-		["Ghostlands"]				= "Tranquillien",
 		["Hyjal Summit"]			= "The Scale of the Sands",
 		["Isle of Quel'Danas"]		= "Shattered Sun Offensive",
 		["Karazhan"]				= "The Violet Eye",
@@ -67,7 +66,7 @@ local data = {
 			["Vortex Pinnacle"]		= "Ogri'la",
 		},
 		["Durotar"] = {
-			["Sen'jin Village"]		= "Darkspear Trolls",
+			-- Horde-only, filled in later
 		},
 		["Felwood"] = {
 			["Deadwood Village"]	= "Timbermaw Hold",
@@ -75,9 +74,6 @@ local data = {
 		},
 		["Hellfire Peninsula"] = {
 			["Cenarion Post"]		= "Cenarion Circle",
-			["Mag'har Grounds"]		= "The Mag'har",
-			["Mag'har Post"]		= "The Mag'har",
-			["Temple of Telhamat"]	= "Kurenai",
 			["Throne of Kil'jaeden"]	= "Shattered Sun Offensive",
 		},
 		["Nagrand"] = {
@@ -142,11 +138,11 @@ local data = {
 			["Funggor Cavern"]		= "Sporeggar",
 			["Quagg Ridge"]		= "Sporeggar",
 			["Sporeggar"]			= "Sporeggar",
-			["Swamprat Post"]		= "Darkspear Trolls",
 			["The Spawning Glen"]	= "Sporeggar",
 		}
 	},
 	races = {
+		-- Faction-specific, filled in later
 	}
 }
 
@@ -155,12 +151,13 @@ local race = select(2, UnitRace("player")) -- arg2 is "Scourge" for Undead playe
 if race == "Blood Elf" or race == "Orc" or race == "Tauren" or race == "Troll" or race == "Scourge" then
 	data.races["Blood Elf"]	= "Silvermoon City"
 	data.races["Orc"]		= "Orgrimmar"
-	data.races["Tauren"]		= "Thunder Bluff"
+	data.races["Tauren"]	= "Thunder Bluff"
 	data.races["Troll"]		= "Darkspear Trolls"
-	data.races["Undead"]		= "Undercity"
+	data.races["Undead"]	= "Undercity"
 
 	data.zones["Alterac Valley"]		= "Frostwolf Clan"
 	data.zones["Arathi Basin"]		= "The Defilers"
+	data.zones["Ghostlands"]			= "Tranquillien"
 	data.zones["Hellfire Peninsula"]	= "Thrallmar"
 	data.zones["Hellfire Ramparts"]	= "Thrallmar"
 	data.zones["Magtheridon's Lair"]	= "Thrallmar"
@@ -174,7 +171,11 @@ if race == "Blood Elf" or race == "Orc" or race == "Tauren" or race == "Troll" o
 	data.zones["Undercity"]			= "Undercity"
 	data.zones["Warsong Gulch"]		= "Warsong Outriders"
 
-	data.subzones["Zangarmarsh"]["Zabra'jin"]	= "Darkspear Trolls"
+	data.subzones["Durotar"]["Sen'jin Village"]		= "Darkspear Trolls"
+	data.subzones["Hellfire Peninsula"]["Mag'har Grounds"]		= "The Mag'har"
+	data.subzones["Hellfire Peninsula"]["Mag'har Post"]		= "The Mag'har"
+	data.subzones["Zangarmarsh"]["Swamprat Post"]	= "Darkspear Trolls"
+	data.subzones["Zangarmarsh"]["Zabra'jin"]		= "Darkspear Trolls"
 else
 	data.races["Draenei"]	= "Exodar"
 	data.races["Dwarf"]		= "Ironforge"
@@ -185,7 +186,7 @@ else
 	data.zones["Alterac Valley"]		= "Stormpike Guard"
 	data.zones["Arathi Basin"]		= "The League of Arathor"
 	data.zones["Darnassus"]			= "Darnassus"
-	data.zones["Exodar"]				= "Exodar"
+	data.zones["Exodar"]			= "Exodar"
 	data.zones["Hellfire Peninsula"]	= "Honor Hold"
 	data.zones["Hellfire Ramparts"]	= "Honor Hold"
 	data.zones["Ironforge"]			= "Ironforge"
@@ -196,10 +197,46 @@ else
 	data.zones["The Shattered Halls"]	= "Honor Hold"
 	data.zones["Warsong Gulch"]		= "Silverwing Sentinels"
 
+	data.subzones["Hellfire Peninsula"]["Temple of Telhamat"]	= "Kurenai"
 	data.subzones["Winterspring"]["Frostsaber Rock"]	= "Wintersaber Trainers"
-	data.subzones["Zangarmarsh"]["Telredor"]			= "Exodar"
+	data.subzones["Zangarmarsh"]["Telredor"]		= "Exodar"
 end
 
 function Diplomancer:GetData()
-	return data.zones, data.subzones, data.races
+	local locale = GetLocale()
+	if locale == "enUS" or locale == "enGB" then
+		return data.zones, data.subzones, data.races
+	end
+
+	local BF = LibStub and LibStub("LibBabble-Factions-3.0", true) and LibStub("LibBabble-Factions-3.0"):GetLookupTable()
+	local BR = LibStub and LibStub("LibBabble-Race-3.0", true) and LibStub("LibBabble-Race-3.0"):GetLookupTable()
+	local BZ = LibStub and LibStub("LibBabble-Zone-3.0", true) and LibStub("LibBabble-Zone-3.0"):GetLookupTable()
+	local SZ = DiplomancerSubzones
+
+	if SZ then
+		return DEFAULT_CHAT_FRAME:AddMessage("|cff33ff99Diplomancer|r is not yet compatible with your language. For information on how you can help, see the README.TXT file in the addon folder.")
+	elseif not BF and BR and BZ then
+		return DEFAULT_CHAT_FRAME:AddMessage("|cff33ff99Diplomancer|r requires the LibBabble-Faction-3.0, LibBabble-Race-3.0, and LibBabble-Zone-3.0 libraries to work in your language. For information on how to get these files, see the README.TXT file in the addon folder.")
+	end
+
+	local tz = {}
+	for zone, faction in pairs(data.zones) do
+		tz[BZ[zone]] = BF[faction]
+	end
+	local ts = {}
+	local z
+	for zone, subzones in pairs(data.subzones) do
+		z = BZ[zone]
+		ts[z] = {}
+		for subzone, faction in pairs(data.subzones) do
+			if SZ[subzone] then
+				ts[z][SZ[subzone]] = BF[faction]
+			end
+		end
+	end
+	local tr = {}
+	for race, faction in pairs(data.races) do
+		tr[BR[race]] = BF[faction]
+	end
+	return tz, ts, tr
 end
