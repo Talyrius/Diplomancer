@@ -243,7 +243,7 @@ function Diplomancer:SetDefaultFaction(str)
 			end
 		end
 	else
-		Print(string.format(L["Default faction currently set to \"%s\"."], db.default or racial)
+		Print(string.format(L["Default faction currently set to \"%s\"."], db.default or racial))
 	end
 end
 
