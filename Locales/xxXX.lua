@@ -27,8 +27,6 @@ L["reset"] = ""
 L["verbose"] = ""
 L["print a message when changing factions"] = ""
 
-DiplomancerLocals = L
-
 --[[-- Subzone translations ---------------------------------]]
 
 local Z = {}
@@ -138,5 +136,6 @@ for k, v in pairs(Z) do
 	end
 end
 if okay then
+	DiplomancerLocals = L
 	DiplomancerSubzones = Z
 end
