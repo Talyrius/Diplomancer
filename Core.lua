@@ -107,6 +107,7 @@ function Diplomancer:Update()
 	local zone, subzone = GetRealZoneText(), GetSubZoneText()
 	-- Debug("zone = "..zone.."; subzone = "..subzone)
 
+	local faction = racial
 	if subzones[zone] and subzones[zone][subzone] then
 		faction = subzones[zone][subzone]
 		-- Debug("Setting watch on "..faction.." (subzone)")
@@ -117,7 +118,6 @@ function Diplomancer:Update()
 		faction = db.default
 		-- Debug("Setting watch on "..faction.." (default)")
 	else
-		faction = racial
 		-- Debug("Setting watch on "..faction.." (racial)")
 	end
 
