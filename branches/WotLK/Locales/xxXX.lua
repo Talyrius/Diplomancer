@@ -44,8 +44,31 @@ Z["Ogri'la"] = ""
 Z["Shartuul's Transporter"] = ""
 Z["Vortex Pinnacle"] = ""
 
+-- Borean Tundra
+Z["Amber Ledge"] = ""
+Z["D.E.H.T.A. Encampment"] = ""
+Z["Tauna'le Village"] = ""
+Z["Transitus Shield"] = ""
+Z["Unu'pe"] = ""
+Z["Valiance Keep"] = ""
+
+-- Crystalsong Forest
+Z["Dalaran"] = ""
+
+-- Dalaran
+Z["Sunreaver's Sanctuary"] = ""
+Z["The Silver Enclave"] = ""
+
+-- Dragonblight
+Z["Agmar's Hammer"] = ""
+Z["Moa'ki Harbor"] = ""
+Z["Venomspite"] = ""
+
 -- Durotar
 Z["Sen'jin Village"] = ""
+
+-- Eastern Plaguelands
+Z["Acherus: The Ebon Hold"] = ""
 
 -- Felwood
 Z["Deadwood Village"] = ""
@@ -57,6 +80,10 @@ Z["Mag'har Grounds"] = ""
 Z["Mag'har Post"] = ""
 Z["Temple of Telhamat"]	= ""
 Z["Throne of Kil'jaeden"] = ""
+
+-- Howling Fjord
+Z["Camp Winterhoof"] = ""
+Z["Kamagua"] = ""
 
 -- Nagrand
 Z["Aeris Landing"] = ""

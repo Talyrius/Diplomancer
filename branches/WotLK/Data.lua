@@ -73,6 +73,9 @@ local data = {
 			["Transitus Shield"]	= "Kirin Tor",
 			["Unu'pe"]			= "The Kalu'ak",
 		},
+		["Crystalsong Forest"] = {
+			["Dalaran"]			= "Kirin Tor",
+		},
 		["Dalaran"] = {
 			["Sunreaver's Sanctuary"]= "Sunreavers",
 			["The Silver Enclave"]	= "Silver Covenant",
@@ -93,9 +96,6 @@ local data = {
 		},
 		["Howling Fjord"] = {
 			["Kamagua"]			= "The Kalu'ak",
-		},
-		["Crystalsong Forest"] = {
-			["Dalaran"]			= "Kirin Tor",
 		},
 		["Nagrand"] = {
 			["Aeris Landing"]		= "The Consortium",
