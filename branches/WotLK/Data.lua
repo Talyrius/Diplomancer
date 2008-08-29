@@ -8,6 +8,7 @@ local data = {
 		["Black Temple"]			= "Ashtongue Deathsworn",
 		["Blackrock Depths"]		= "Thorium Brotherhood",
 		["Coilfang Reservoir"]		= "Cenarion Expedition",
+		["Dalaran"]				= "Kirin Tor",
 		["Deadwind Pass"]			= "The Violet Eye",
 		["Dire Maul"]				= "Shen'dralar",
 		["Eastern Plaguelands"]		= "Argent Dawn",
@@ -46,6 +47,7 @@ local data = {
 		["The Slave Pens"]			= "Cenarion Expedition",
 		["The Steamvault"]			= "Cenarion Expedition",
 		["The Underbog"]			= "Cenarion Expedition",
+		["Vengeance Landing Inn"]	= "The Hand of Vengeance",
 		["Western Plaguelands"]		= "Argent Dawn",
 		["Winterspring"]			= "Everlook",
 		["Zangarmarsh"]			= "Cenarion Expedition",
@@ -65,8 +67,21 @@ local data = {
 			["Shartuul's Transporter"]	= "Ogri'la",
 			["Vortex Pinnacle"]		= "Ogri'la",
 		},
-		["Durotar"] = {
-			-- Horde-only, filled in later
+		["Borean Tundra"] = {
+			["Amber Ledge"]		= "Kirin Tor",
+			["D.E.H.T.A. Encampment"]= "Cenarion Expedition",
+			["Transitus Shield"]	= "Kirin Tor",
+			["Unu'pe"]			= "The Kalu'ak",
+		},
+		["Dalaran"] = {
+			["Sunreaver's Sanctuary"]= "Sunreavers",
+			["The Silver Enclave"]	= "Silver Covenant",
+		},
+		["Dragonblight"] = {
+			["Moa'ki Harbor"]	= "The Kalu'ak",
+		},
+		["Eastern Plaguelands"] = {
+			["Acherus: The Ebon Hold"]	= "Knights of the Ebon Hand",
 		},
 		["Felwood"] = {
 			["Deadwood Village"]	= "Timbermaw Hold",
@@ -75,6 +90,12 @@ local data = {
 		["Hellfire Peninsula"] = {
 			["Cenarion Post"]		= "Cenarion Circle",
 			["Throne of Kil'jaeden"]	= "Shattered Sun Offensive",
+		},
+		["Howling Fjord"] = {
+			["Kamagua"]			= "The Kalu'ak",
+		},
+		["Crystalsong Forest"] = {
+			["Dalaran"]			= "Kirin Tor",
 		},
 		["Nagrand"] = {
 			["Aeris Landing"]		= "The Consortium",
@@ -157,9 +178,11 @@ if race == "Blood Elf" or race == "Orc" or race == "Tauren" or race == "Troll" o
 
 	data.zones["Alterac Valley"]		= "Frostwolf Clan"
 	data.zones["Arathi Basin"]		= "The Defilers"
+	data.zones["Borean Tundra"]		= "Warsong Offensive"
 	data.zones["Ghostlands"]			= "Tranquillien"
 	data.zones["Hellfire Peninsula"]	= "Thrallmar"
 	data.zones["Hellfire Ramparts"]	= "Thrallmar"
+	data.zones["Howling Fjord"]		= "The Hand of Vengeance"
 	data.zones["Magtheridon's Lair"]	= "Thrallmar"
 	data.zones["Nagrand"]			= "The Mag'har"
 	data.zones["Orgrimmar"]			= "Orgrimmar"
@@ -171,11 +194,15 @@ if race == "Blood Elf" or race == "Orc" or race == "Tauren" or race == "Troll" o
 	data.zones["Undercity"]			= "Undercity"
 	data.zones["Warsong Gulch"]		= "Warsong Outriders"
 
-	data.subzones["Durotar"]["Sen'jin Village"]		= "Darkspear Trolls"
-	data.subzones["Hellfire Peninsula"]["Mag'har Grounds"]		= "The Mag'har"
-	data.subzones["Hellfire Peninsula"]["Mag'har Post"]		= "The Mag'har"
-	data.subzones["Zangarmarsh"]["Swamprat Post"]	= "Darkspear Trolls"
-	data.subzones["Zangarmarsh"]["Zabra'jin"]		= "Darkspear Trolls"
+	data.subzones["Borean Tundra"]["Tauna'le Village"]	= "The Taunka"
+	data.subzones["Dragonblight"]["Agmar's Hammer"]		= "The Hand of Vengeance"
+	data.subzones["Dragonblight"]["Venomspite"]			= "Warsong Offensive"
+	data.subzones["Durotar"]["Sen'jin Village"]			= "Darkspear Trolls"
+	data.subzones["Hellfire Peninsula"]["Mag'har Grounds"]	= "The Mag'har"
+	data.subzones["Hellfire Peninsula"]["Mag'har Post"]	= "The Mag'har"
+	data.subzones["Howling Fjord"]["Camp Winterhoof"]		= "The Taunka"
+	data.subzones["Zangarmarsh"]["Swamprat Post"]		= "Darkspear Trolls"
+	data.subzones["Zangarmarsh"]["Zabra'jin"]			= "Darkspear Trolls"
 else
 	data.races["Draenei"]	= "Exodar"
 	data.races["Dwarf"]		= "Ironforge"
@@ -189,6 +216,7 @@ else
 	data.zones["Exodar"]			= "Exodar"
 	data.zones["Hellfire Peninsula"]	= "Honor Hold"
 	data.zones["Hellfire Ramparts"]	= "Honor Hold"
+	data.zones["Howling Fjord"]		= "Valiance Expedition" -- #TODO: verify
 	data.zones["Ironforge"]			= "Ironforge"
 	data.zones["Magtheridon's Lair"]	= "Honor Hold"
 	data.zones["Nagrand"]			= "Kurenai"
@@ -197,6 +225,7 @@ else
 	data.zones["The Shattered Halls"]	= "Honor Hold"
 	data.zones["Warsong Gulch"]		= "Silverwing Sentinels"
 
+	data.subzones["Borean Tundra"]["Valiance Keep"]	= "Valiance Expedition",
 	data.subzones["Hellfire Peninsula"]["Temple of Telhamat"]	= "Kurenai"
 	data.subzones["Winterspring"]["Frostsaber Rock"]	= "Wintersaber Trainers"
 	data.subzones["Zangarmarsh"]["Telredor"]		= "Exodar"
@@ -213,7 +242,7 @@ function Diplomancer:GetData()
 	local BZ = LibStub and LibStub("LibBabble-Zone-3.0", true) and LibStub("LibBabble-Zone-3.0"):GetLookupTable()
 	local SZ = DiplomancerSubzones
 
-	if SZ then
+	if not SZ then
 		return DEFAULT_CHAT_FRAME:AddMessage("|cff33ff99Diplomancer|r is not yet compatible with your language. For information on how you can help, see the README.TXT file in the addon folder.")
 	elseif not BF and BR and BZ then
 		return DEFAULT_CHAT_FRAME:AddMessage("|cff33ff99Diplomancer|r requires the LibBabble-Faction-3.0, LibBabble-Race-3.0, and LibBabble-Zone-3.0 libraries to work in your language. For information on how to get these files, see the README.TXT file in the addon folder.")
