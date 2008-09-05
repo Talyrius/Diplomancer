@@ -148,7 +148,7 @@ local data = {
 
 local race = select(2, UnitRace("player")) -- arg2 is "Scourge" for Undead players
 
-if race == "Blood Elf" or race == "Orc" or race == "Tauren" or race == "Troll" or race == "Scourge" then
+if race == "BloodElf" or race == "Orc" or race == "Tauren" or race == "Troll" or race == "Scourge" then
 	data.races["Blood Elf"]	= "Silvermoon City"
 	data.races["Orc"]		= "Orgrimmar"
 	data.races["Tauren"]	= "Thunder Bluff"
@@ -213,7 +213,7 @@ function Diplomancer:GetData()
 	local BZ = LibStub and LibStub("LibBabble-Zone-3.0", true) and LibStub("LibBabble-Zone-3.0"):GetLookupTable()
 	local SZ = DiplomancerSubzones
 
-	if SZ then
+	if not SZ then
 		return DEFAULT_CHAT_FRAME:AddMessage("|cff33ff99Diplomancer|r is not yet compatible with your language. For information on how you can help, see the README.TXT file in the addon folder.")
 	elseif not BF and BR and BZ then
 		return DEFAULT_CHAT_FRAME:AddMessage("|cff33ff99Diplomancer|r requires the LibBabble-Faction-3.0, LibBabble-Race-3.0, and LibBabble-Zone-3.0 libraries to work in your language. For information on how to get these files, see the README.TXT file in the addon folder.")
