@@ -64,7 +64,9 @@ local data = {
 			["Forge Camp: Terror"]	= "Ogri'la",
 			["Forge Camp: Wrath"]	= "Ogri'la",
 			["Ogri'la"]			= "Ogri'la",
+			["Ruuan Weald"]		= "Cenarion Expedition", -- #TODO: verify
 			["Shartuul's Transporter"]	= "Ogri'la",
+			["Skyguard Outpost"]	= "Sha'tari Skyguard",
 			["Vortex Pinnacle"]		= "Ogri'la",
 		},
 		["Borean Tundra"] = {
@@ -81,10 +83,16 @@ local data = {
 			["The Silver Enclave"]	= "Silver Covenant",
 		},
 		["Dragonblight"] = {
-			["Moa'ki Harbor"]	= "The Kalu'ak",
+			["Moa'ki Harbor"]		= "The Kalu'ak",
+		},
+		["Durotar"] = {
+			-- Faction specific; filled in later
 		},
 		["Eastern Plaguelands"] = {
 			["Acherus: The Ebon Hold"]	= "Knights of the Ebon Hand",
+		},
+		["Elwynn Forest"] = {
+			-- Faction specific; filled in later
 		},
 		["Felwood"] = {
 			["Deadwood Village"]	= "Timbermaw Hold",
@@ -163,13 +171,13 @@ local data = {
 		}
 	},
 	races = {
-		-- Faction-specific, filled in later
+		-- Faction specific; filled in later
 	}
 }
 
-local race = select(2, UnitRace("player")) -- arg2 is "Scourge" for Undead players
+local race = select(2, UnitRace("player")) -- "Scourge" for Undead players
 
-if race == "Blood Elf" or race == "Orc" or race == "Tauren" or race == "Troll" or race == "Scourge" then
+if race == "BloodElf" or race == "Orc" or race == "Tauren" or race == "Troll" or race == "Scourge" then
 	data.races["Blood Elf"]	= "Silvermoon City"
 	data.races["Orc"]		= "Orgrimmar"
 	data.races["Tauren"]	= "Thunder Bluff"
@@ -179,6 +187,7 @@ if race == "Blood Elf" or race == "Orc" or race == "Tauren" or race == "Troll" o
 	data.zones["Alterac Valley"]		= "Frostwolf Clan"
 	data.zones["Arathi Basin"]		= "The Defilers"
 	data.zones["Borean Tundra"]		= "Warsong Offensive"
+	data.zones["Durotar"]			= "Orgrimmar"
 	data.zones["Ghostlands"]			= "Tranquillien"
 	data.zones["Hellfire Peninsula"]	= "Thrallmar"
 	data.zones["Hellfire Ramparts"]	= "Thrallmar"
@@ -188,7 +197,7 @@ if race == "Blood Elf" or race == "Orc" or race == "Tauren" or race == "Troll" o
 	data.zones["Orgrimmar"]			= "Orgrimmar"
 	data.zones["Silvermoon City"]		= "Silvermoon City"
 	data.zones["The Blood Furnace"]	= "Thrallmar"
-	data.zones["The Hinterlands"]		= "Revantusk Trolls"
+--	data.zones["The Hinterlands"]		= "Revantusk Trolls" -- #TODO: faction removed; reassign zone?
 	data.zones["The Shattered Halls"]	= "Thrallmar"
 	data.zones["Thunder Bluff"]		= "Thunder Bluff"
 	data.zones["Undercity"]			= "Undercity"
@@ -196,7 +205,10 @@ if race == "Blood Elf" or race == "Orc" or race == "Tauren" or race == "Troll" o
 
 	data.subzones["Borean Tundra"]["Tauna'le Village"]	= "The Taunka"
 	data.subzones["Dragonblight"]["Agmar's Hammer"]		= "The Hand of Vengeance"
+	data.subzones["Dragonblight"]["Dragon's Fall"]		= "Warsong Offensive" -- #TODO: assign entire zone?
 	data.subzones["Dragonblight"]["Venomspite"]			= "Warsong Offensive"
+	data.subzones["Dragonblight"]["Westwind Refugee Camp"]	= "The Taunka"
+	data.subzones["Durotar"]["Darkspear Strand"]			= "Darkspear Trolls"
 	data.subzones["Durotar"]["Sen'jin Village"]			= "Darkspear Trolls"
 	data.subzones["Hellfire Peninsula"]["Mag'har Grounds"]	= "The Mag'har"
 	data.subzones["Hellfire Peninsula"]["Mag'har Post"]	= "The Mag'har"
@@ -212,6 +224,7 @@ else
 
 	data.zones["Alterac Valley"]		= "Stormpike Guard"
 	data.zones["Arathi Basin"]		= "The League of Arathor"
+	data.zones["Borean Tundra"]		= "Valiance Expedition"
 	data.zones["Darnassus"]			= "Darnassus"
 	data.zones["Exodar"]			= "Exodar"
 	data.zones["Hellfire Peninsula"]	= "Honor Hold"
@@ -225,10 +238,10 @@ else
 	data.zones["The Shattered Halls"]	= "Honor Hold"
 	data.zones["Warsong Gulch"]		= "Silverwing Sentinels"
 
-	data.subzones["Borean Tundra"]["Valiance Keep"]	= "Valiance Expedition",
 	data.subzones["Hellfire Peninsula"]["Temple of Telhamat"]	= "Kurenai"
-	data.subzones["Winterspring"]["Frostsaber Rock"]	= "Wintersaber Trainers"
-	data.subzones["Zangarmarsh"]["Telredor"]		= "Exodar"
+	data.subzones["Winterspring"]["Frostsaber Rock"]		= "Wintersaber Trainers"
+	data.subzones["Zangarmarsh"]["Orebor Harborage"]		= "Kurenai"
+	data.subzones["Zangarmarsh"]["Telredor"]			= "Exodar"
 end
 
 function Diplomancer:GetData()
@@ -237,14 +250,15 @@ function Diplomancer:GetData()
 		return data.zones, data.subzones, data.races
 	end
 
+	local SZ = DiplomancerSubzones
+	if not SZ then
+		return DEFAULT_CHAT_FRAME:AddMessage("|cff33ff99Diplomancer|r is not yet compatible with your language. For information on how you can help, see the README.TXT file in the addon folder.")
+	end
+
 	local BF = LibStub and LibStub("LibBabble-Factions-3.0", true) and LibStub("LibBabble-Factions-3.0"):GetLookupTable()
 	local BR = LibStub and LibStub("LibBabble-Race-3.0", true) and LibStub("LibBabble-Race-3.0"):GetLookupTable()
 	local BZ = LibStub and LibStub("LibBabble-Zone-3.0", true) and LibStub("LibBabble-Zone-3.0"):GetLookupTable()
-	local SZ = DiplomancerSubzones
-
-	if not SZ then
-		return DEFAULT_CHAT_FRAME:AddMessage("|cff33ff99Diplomancer|r is not yet compatible with your language. For information on how you can help, see the README.TXT file in the addon folder.")
-	elseif not BF and BR and BZ then
+	if not BF and BR and BZ then
 		return DEFAULT_CHAT_FRAME:AddMessage("|cff33ff99Diplomancer|r requires the LibBabble-Faction-3.0, LibBabble-Race-3.0, and LibBabble-Zone-3.0 libraries to work in your language. For information on how to get these files, see the README.TXT file in the addon folder.")
 	end
 

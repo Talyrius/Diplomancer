@@ -69,17 +69,17 @@ end
 	Check taxi status
 --------------------------------------------------------------]]
 function Diplomancer:PLAYER_CONTROL_LOST()
-	-- Debug("Control lost")
+	Debug("Control lost")
 	if UnitOnTaxi("player") then
-		-- Debug("Taxi ride started")
+		Debug("Taxi ride started")
 		onTaxi = true
 	end
 end
 
 function Diplomancer:PLAYER_CONTROL_GAINED()
-	-- Debug("Control gained")
+	Debug("Control gained")
 	if onTaxi then
-		-- Debug("Taxi ride ended")
+		Debug("Taxi ride ended")
 		onTaxi = false
 		self:Update()
 	end
@@ -89,70 +89,69 @@ end
 	Update watched faction for the current zone
 --------------------------------------------------------------]]
 function Diplomancer:ZONE_CHANGED()
-	-- Debug("Subzone changed")
+	Debug("Subzone changed")
 	self:Update()
 end
 
 function Diplomancer:ZONE_CHANGED_NEW_AREA()
-	-- Debug("Zone changed")
+	Debug("Zone changed")
 	self:Update()
 end
 
 function Diplomancer:Update()
 	if onTaxi then
-		-- Debug("On taxi; skipping update")
+		Debug("On taxi; skipping update")
 		return
 	end
 
 	local zone, subzone = GetRealZoneText(), GetSubZoneText()
-	-- Debug("zone = "..zone.."; subzone = "..subzone)
+	Debug("zone = "..zone.."; subzone = "..subzone)
 
 	if subzones[zone] and subzones[zone][subzone] then
 		faction = subzones[zone][subzone]
-		-- Debug("Setting watch on "..faction.." (subzone)")
+		Debug("Setting watch on "..faction.." (subzone)")
 	elseif zones[zone] then
 		faction = zones[zone]
-		-- Debug("Setting watch on "..faction.." (zone)")
+		Debug("Setting watch on "..faction.." (zone)")
 	elseif db.default then
 		faction = db.default
-		-- Debug("Setting watch on "..faction.." (default)")
+		Debug("Setting watch on "..faction.." (default)")
 	else
 		faction = racial
-		-- Debug("Setting watch on "..faction.." (racial)")
+		Debug("Setting watch on "..faction.." (racial)")
 	end
 
 	if faction ~= tostring(GetWatchedFactionInfo()) then
 		self:SetWatchedFactionByName(faction)
-		if not db.verbose then
-			Print("Now watching "..faction..".")
-		end
 	end
 end
 
 --[[------------------------------------------------------------
 	Set watched faction by name
 	Arguments:
-		faction	- exact faction name to set (not case sensitive)
+		faction	- exact faction name to set (case sensitive)
 	Returns:
 		set		- whether or not faction was found and set
 		faction	- name of faction set (nil if none)
 --------------------------------------------------------------]]
 function Diplomancer:SetWatchedFactionByName(name)
 	if name == nil or type(name) ~= "string" or name == "" then return end
-	name = name:lower()
-
-	local set, faction = false
 
 	self:ExpandFactionHeaders()
 
+	local faction, _, standing
 	for i = 1, GetNumFactions() do
-		if GetFactionInfo(i):lower() == name then
+		faction, _, standing = GetFactionInfo(i)
+		if faction == name and (standing < 8 or not db.ignoreExalted) then
 			SetWatchedFactionIndex(i)
-			set, faction = true, name
+			if not db.verbose then
+				Print("Now watching "..faction..".")
+			end
+			return true, name
 		end
 	end
 
-	return set, faction
+	return false
 end
 
 --[[------------------------------------------------------------
@@ -210,11 +209,12 @@ end
 
 local options = {
 	[L["default"]] = "SetDefaultFaction",
-	[L["verbose"]] = "ToggleVerboseMode",
+	[L["exalted"]] = "ToggleIgnoreExalted",
+	[L["verbose"]] = "ToggleVerbose",
 }
 
 SLASH_DIPLOMANCER1 = "/diplomancer"
-SLASH_DIPLOMANCER2 = "/dm"
+SLASH_DIPLOMANCER2 = L["/dm"]
 SlashCmdList.DIPLOMANCER = function(input)
 	local cmd, etc = string.match(input, "^%s*(%S+)%s*(.*)$")
 	local func = cmd and options[cmd]
@@ -222,7 +222,8 @@ SlashCmdList.DIPLOMANCER = function(input)
 	Print(L["Automatic location-based faction watching"])
 	DEFAULT_CHAT_FRAME:AddMessage(L["Use /diplomancer or /dm with the following commands:"])
 	DEFAULT_CHAT_FRAME:AddMessage("   "..L["default"].." - "..L["set your default faction"])
-	DEFAULT_CHAT_FRAME:AddMessage("   "..L["verbose"].." - "..L["print a message when changing factions"])
+	DEFAULT_CHAT_FRAME:AddMessage("   "..L["exalted"].." - "..L["ignore factions you're already Exalted with"])
+	DEFAULT_CHAT_FRAME:AddMessage("   "..L["verbose"].." - "..L["print a message when changing watched factions"])
 end
 
 function Diplomancer:SetDefaultFaction(str)
@@ -247,11 +248,22 @@ function Diplomancer:SetDefaultFaction(str)
 	end
 end
 
-function Diplomancer:ToggleVerboseMode()
-	db.verbose = not db.verbose
-	if db.verbose then
-		Print(L["Verbose mode enabled."])
+function Diplomancer:ToggleIgnoreExalted()
+	if not db.ignoreExalted then
+		db.ignoreExalted = true
+		Print(L["Now ignoring factions you're already Exalted with."])
 	else
-		Print(L["Verbose mode disabled."])
+		db.ignoreExalted = false
+		Print(L["No longer ignoring factions you're already Exalted with."])
+	end
+end
+
+function Diplomancer:ToggleVerbose()
+	if not db.verbose then
+		db.verbose = true
+		Print(L["Now printing messages when changing watched factions."])
+	else
+		db.verbose = false
+		Print(L["No longer printing messages when changing watched factions."])
 	end
 end
