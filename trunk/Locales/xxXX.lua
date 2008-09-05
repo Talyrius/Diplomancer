@@ -126,16 +126,12 @@ Z["Telredor"] = ""
 Z["The Spawning Glen"] = ""
 Z["Zabra'jin"] = ""
 
---[[-- Completeness checking ---------------------------------]]
+--[[-- Account for missing translations --------------------------------]]
 
-local okay = true
 for k, v in pairs(Z) do
 	if v == "" then
-		okay = false
-		break
+		Z[k] = k
 	end
 end
-if okay then
-	DiplomancerLocals = L
-	DiplomancerSubzones = Z
-end
+DiplomancerLocals = L
+DiplomancerSubzones = Z

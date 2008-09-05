@@ -4,7 +4,7 @@
 ## Version: 1.0
 ## Author: Phanx
 ## X-Credits: Based on Charnow's SmartFactionWatch
-## X-Website: http://www.wowinterface.com/downloads/info9643-Diplomancer
+## X-Website: http://www.wowinterface.com/downloads/info9643-Diplomancer.html
 ## SavedVariablesPerCharacter: DiplomancerSettings
 
 Core.lua
