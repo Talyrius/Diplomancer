@@ -32,8 +32,9 @@ function Diplomancer:PLAYER_ENTERING_WORLD()
 	racial = racial[UnitRace("player")]
 
 	local defaults = {
-		default = nil,
-		verbose = nil,
+		default = nil, -- custom faction to fallback to; default = racial
+		exalted = nil, -- ignore factions already at Exalted; default = no
+		verbose = nil, -- print messages when changing factions; default = no
 		version = self.version,
 	}
 	if not DiplomancerSettings then
@@ -140,13 +141,16 @@ function Diplomancer:SetWatchedFactionByName(name)
 
 	self:ExpandFactionHeaders()
 	
-	local faction, _, standing = GetFactionInfo(i)
-	if faction == name and (standing < 8 or not db.ignoreExalted) then
-		SetWatchedFactionIndex(i)
-		if not db.verbose then
-			Print("Now watching "..faction..".")
+	local faction, _, standing
+	for i = 1, GetNumFactions() do
+		faction, _, standing = GetFactionInfo(i)
+		if faction == name and (standing < 8 or not db.ignoreExalted) then
+			SetWatchedFactionIndex(i)
+			if db.verbose then
+				Print("Now watching "..faction..".")
+			end
+			return true, name
 		end
-		return true, name
 	end
 
 	return false
