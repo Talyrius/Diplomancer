@@ -107,7 +107,7 @@ function Diplomancer:Update()
 	local zone, subzone = GetRealZoneText(), GetSubZoneText()
 	-- Debug("zone = "..zone.."; subzone = "..subzone)
 
-	local faction = racial
+	local faction
 	if subzones[zone] and subzones[zone][subzone] then
 		faction = subzones[zone][subzone]
 		-- Debug("Setting watch on "..faction.." (subzone)")
@@ -118,41 +118,38 @@ function Diplomancer:Update()
 		faction = db.default
 		-- Debug("Setting watch on "..faction.." (default)")
 	else
+		faction = racial
 		-- Debug("Setting watch on "..faction.." (racial)")
 	end
 
 	if faction ~= tostring(GetWatchedFactionInfo()) then
 		self:SetWatchedFactionByName(faction)
-		if not db.verbose then
-			Print("Now watching "..faction..".")
-		end
 	end
 end
 
 --[[------------------------------------------------------------
 	Set watched faction by name
 	Arguments:
-		faction	- exact faction name to set (not case sensitive)
+		faction	- exact faction name to set (case sensitive)
 	Returns:
 		set		- whether or not faction was found and set
 		faction	- name of faction set (nil if none)
 --------------------------------------------------------------]]
 function Diplomancer:SetWatchedFactionByName(name)
 	if name == nil or type(name) ~= "string" or name == "" then return end
-	name = name:lower()
-
-	local set, faction = false
 
 	self:ExpandFactionHeaders()
-
-	for i = 1, GetNumFactions() do
-		if GetFactionInfo(i):lower() == name then
-			SetWatchedFactionIndex(i)
-			set, faction = true, name
+	
+	local faction, _, standing = GetFactionInfo(i)
+	if faction == name and (standing < 8 or not db.ignoreExalted) then
+		SetWatchedFactionIndex(i)
+		if not db.verbose then
+			Print("Now watching "..faction..".")
 		end
+		return true, name
 	end
 
-	return set, faction
+	return false
 end
 
 --[[------------------------------------------------------------
@@ -167,23 +164,21 @@ function Diplomancer:FindFactionName(search)
 	if not search or not type(search) == "string" or search == "" then return end
 	search = search:lower()
 
-	local found, faction = false
-
 	self:ExpandFactionHeaders()
 
 	local name
 	for i = 1, GetNumFactions() do
 		name = GetFactionInfo(i)
 		if name:lower():find(search) then
-			found, faction = true, name
+			return true, name
 		end
 	end
 
-	return found, faction
+	return false
 end
 
 --[[------------------------------------------------------------
-	Expand active faction headers and collapse Inactive header
+	Expand active faction headers
 --------------------------------------------------------------]]
 function Diplomancer:ExpandFactionHeaders()
 	local name, isHeader, isCollapsed
@@ -209,8 +204,9 @@ end
 --------------------------------------------------------------]]
 
 local options = {
-	[L["default"]] = "SetDefaultFaction",
-	[L["verbose"]] = "ToggleVerboseMode",
+	[L["default"]] = "SetDefault",
+	[L["exalted"]] = "ToggleExalted",
+	[L["verbose"]] = "ToggleVerbose",
 }
 
 SLASH_DIPLOMANCER1 = "/diplomancer"
@@ -221,11 +217,12 @@ SlashCmdList.DIPLOMANCER = function(input)
 	if Diplomancer[func] then return Diplomancer[func](Diplomancer, etc) end
 	Print(L["Automatic location-based faction watching"])
 	DEFAULT_CHAT_FRAME:AddMessage(L["Use /diplomancer or /dm with the following commands:"])
-	DEFAULT_CHAT_FRAME:AddMessage("   "..L["default"].." - "..L["set your default faction"])
-	DEFAULT_CHAT_FRAME:AddMessage("   "..L["verbose"].." - "..L["print a message when changing factions"])
+	DEFAULT_CHAT_FRAME:AddMessage("   "..L["default"].." - "..L["set a default faction"])
+	DEFAULT_CHAT_FRAME:AddMessage("   "..L["exalted"].." - "..L["ignore factions you're already Exalted with"])
+	DEFAULT_CHAT_FRAME:AddMessage("   "..L["verbose"].." - "..L["print a message when changing watched factions"])
 end
 
-function Diplomancer:SetDefaultFaction(str)
+function Diplomancer:SetDefault(str)
 	if str and str:len() > 0 then
 		str = string.lower(str)
 		if str == L["none"] or str == L["reset"] then
@@ -247,11 +244,22 @@ function Diplomancer:SetDefaultFaction(str)
 	end
 end
 
-function Diplomancer:ToggleVerboseMode()
-	db.verbose = not db.verbose
-	if db.verbose then
-		Print(L["Verbose mode enabled."])
+function Diplomancer:ToggleIgnoreExalted()
+	if not db.ignoreExalted then
+		db.ignoreExalted = true
+		Print(L["Now ignoring factions you're already Exalted with."])
 	else
-		Print(L["Verbose mode disabled."])
+		db.ignoreExalted = false
+		Print(L["No longer ignoring factions you're already Exalted with."])
+	end
+end
+
+function Diplomancer:ToggleVerbose()
+	if not db.verbose then
+		db.verbose = true
+		Print(L["Now printing messages when changing watched factions."])
+	else
+		db.verbose = false
+		Print(L["No longer printing messages when changing watched factions."])
 	end
 end

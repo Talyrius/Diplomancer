@@ -10,22 +10,30 @@ if GetLocale() ~= "xxXX" then return end
 
 local L = {}
 
-L["Now watching %s."] = ""
 L["Automatic zone-based faction watch"] = ""
+L["Now watching %s."] = ""
+
+L["/dm"] = ""
+L["Use /diplomancer or /dm with the following commands:"] = ""
+
+L["default"] = ""
+L["reset"] = ""
+L["none"] = ""
+L["set your default faction"] = ""
 L["Default faction reset to racial faction"] = ""
 L["Default faction set to \"%s\"."] = ""
 L["Could not find a faction matching \"%s\"."] = ""
 L["Default faction currently set to \"%s\"."] = ""
-L["Verbose mode enabled."] = ""
-L["Verbose mode disabled."] = ""
 
-L["Use /diplomancer or /dm with the following commands:"] = ""
-L["default"] = ""
-L["set your default faction"] = ""
-L["none"] = ""
-L["reset"] = ""
+L["exalted"] = ""
+L["ignore factions you're already Exalted with"] = ""
+L["Now ignoring factions you're already Exalted with."] = ""
+L["No longer ignoring factions you're already Exalted with."] = ""
+
 L["verbose"] = ""
-L["print a message when changing factions"] = ""
+L["print a message when changing watched factions"] = ""
+L["Now printing messages when changing watched factions."] = ""
+L["No longer printing messages when changing watched factions."] = ""
 
 --[[-- Subzone translations ---------------------------------]]
 
