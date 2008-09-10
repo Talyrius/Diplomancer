@@ -248,7 +248,7 @@ function Diplomancer:SetDefault(str)
 	end
 end
 
-function Diplomancer:ToggleIgnoreExalted()
+function Diplomancer:ToggleExalted()
 	if not db.ignoreExalted then
 		db.ignoreExalted = true
 		Print(L["Now ignoring factions you're already Exalted with."])
