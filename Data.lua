@@ -3,13 +3,15 @@
 --------------------------------------------------------------]]
 local data = {
 	zones = {
-		["Ahn'Qiraj"]				= "Brood of Nozdormu",
 		["Auchenai Crypts"]			= "Lower City",
+		["Ahn'Qiraj"]				= "Brood of Nozdormu",
 		["Black Temple"]			= "Ashtongue Deathsworn",
 		["Blackrock Depths"]		= "Thorium Brotherhood",
 		["Coilfang Reservoir"]		= "Cenarion Expedition",
+		["Dalaran"]				= "Kirin Tor",
 		["Deadwind Pass"]			= "The Violet Eye",
 		["Dire Maul"]				= "Shen'dralar",
+		["Dragonblight"]			= "The Wyrmrest Accord",
 		["Eastern Plaguelands"]		= "Argent Dawn",
 		["Gates of Ahn'Qiraj"]		= "Cenarion Circle",
 		["Hyjal Summit"]			= "The Scale of the Sands",
@@ -65,16 +67,44 @@ local data = {
 			["Shartuul's Transporter"]	= "Ogri'la",
 			["Vortex Pinnacle"]		= "Ogri'la",
 		},
+		["Borean Tundra"] = {
+			["Amber Ledge"]		= "Kirin Tor",
+			["D.E.H.T.A. Encampment"]	= "Cenarion Expedition",
+			["Transitus Shield"]	= "Kirin Tor",
+			["Unu'pe"]			= "The Kalu'ak",
+		},
+		["Crystalsong Forest"] = {
+			["Dalaran"]			= "Kirin Tor",
+		},
+		["Dalaran"] = {
+			-- Faction-specific, filled in later
+		},
+		["Dragonblight"] = {
+			["Light's Trust"]		= "Argent Crusade",
+			["Moa'ki Harbor"]		= "The Kalu'ak",
+		},
 		["Durotar"] = {
-			-- Horde-only, filled in later
+			-- Faction-specific, filled in later
+		},
+		["Eastern Plaguelands"] = {
+			["Acherus: The Ebon Hold"]	= "Knights of the Ebon Blade",
 		},
 		["Felwood"] = {
 			["Deadwood Village"]	= "Timbermaw Hold",
 			["Felpaw Village"]		= "Timbermaw Hold",
 		},
+		["Grizzly Hills"] = {
+			-- Faction-specific, filled in later
+		},
 		["Hellfire Peninsula"] = {
 			["Cenarion Post"]		= "Cenarion Circle",
 			["Throne of Kil'jaeden"]	= "Shattered Sun Offensive",
+		},
+		["Howling Fjord"] = {
+			["Kamagua"]			= "The Kalu'ak",
+		},
+		["Icecrown"] = {
+			["The Argent Vanguard"]	= "Argent Crusade",
 		},
 		["Nagrand"] = {
 			["Aeris Landing"]		= "The Consortium",
@@ -101,11 +131,20 @@ local data = {
 			["Shrine of Unending Light"]	= "The Aldor",
 			["The Seer's Library"]	= "The Scryers",
 		},
+		["Sholazar Basin"] = {
+			["Frenzyheart Hill"]	= "Frenzyheart Tribe",
+			["Kartak's Hold"]		= "Frenzyheart Tribe",
+			["Rainspeaker Canopy"]	= "The Oracles",
+			["Sparktouched Haven"]	= "The Oracles",
+		},
 		["Stranglethorn Vale"] = {
 			["Booty Bay"]			= "Booty Bay",
 			["Salty Sailor Tavern"]	= "Booty Bay",
 			["Yojamaba Isle"]		= "Zandalar Tribe",
 			["Zul'Gurub"]			= "Zandalar Tribe",
+		},
+		["Storm Peaks"] = {
+			-- Faction-specific, filled in later
 		},
 		["Tanaris"] = {
 			["Caverns of Time"]		= "Keepers of Time",
@@ -139,7 +178,13 @@ local data = {
 			["Quagg Ridge"]		= "Sporeggar",
 			["Sporeggar"]			= "Sporeggar",
 			["The Spawning Glen"]	= "Sporeggar",
-		}
+		},
+		["Zul'Drak"] = {
+			["Crusader Forward Camp"]= "Argent Crusade",
+			["Ebon Watch"]			= "Knights of the Ebon Blade",
+			["Light's Breach"]		= "Argent Crusade",
+			["The Argent Stand"]	= "Argent Crusade",
+		},
 	},
 	races = {
 		-- Faction-specific, filled in later
@@ -157,9 +202,11 @@ if race == "BloodElf" or race == "Orc" or race == "Tauren" or race == "Troll" or
 
 	data.zones["Alterac Valley"]		= "Frostwolf Clan"
 	data.zones["Arathi Basin"]		= "The Defilers"
+	data.zones["Borean Tundra"]		= "Warsong Offensive"
 	data.zones["Ghostlands"]			= "Tranquillien"
 	data.zones["Hellfire Peninsula"]	= "Thrallmar"
 	data.zones["Hellfire Ramparts"]	= "Thrallmar"
+	data.zones["Howling Fjord"]		= "The Hand of Vengeance"
 	data.zones["Magtheridon's Lair"]	= "Thrallmar"
 	data.zones["Nagrand"]			= "The Mag'har"
 	data.zones["Orgrimmar"]			= "Orgrimmar"
@@ -171,11 +218,23 @@ if race == "BloodElf" or race == "Orc" or race == "Tauren" or race == "Troll" or
 	data.zones["Undercity"]			= "Undercity"
 	data.zones["Warsong Gulch"]		= "Warsong Outriders"
 
-	data.subzones["Durotar"]["Sen'jin Village"]		= "Darkspear Trolls"
+	data.subzones["Borean Tundra"]["Taunka'le Village"]		= "The Taunka"
+	data.subzones["Crystalsong Forest"]["Sunreaver's Command"]	= "The Sunreavers"
+	data.subzones["Dalaran"]["Sunreaver's Sanctuary"]			= "The Sunreavers"
+	data.subzones["Dragonblight"]["Agmar's Hammer"]			= "Warsong Offensive"
+	data.subzones["Dragonblight"]["Dragon's Fall"]			= "Warsong Offensive"
+	data.subzones["Dragonblight"]["Venomspite"]				= "The Hand of Vengeance"
+	data.subzones["Dragonblight"]["Westwind Refugee Camp"]		= "The Taunka"
+	data.subzones["Durotar"]["Sen'jin Village"]				= "Darkspear Trolls"
+	data.subzones["Grizzly Hills"]["Camp Oneqwah"]			= "The Taunka"
+	data.subzones["Grizzly Hills"]["Conquest Hold"]			= "Warsong Offensive"
 	data.subzones["Hellfire Peninsula"]["Mag'har Grounds"]		= "The Mag'har"
 	data.subzones["Hellfire Peninsula"]["Mag'har Post"]		= "The Mag'har"
-	data.subzones["Zangarmarsh"]["Swamprat Post"]	= "Darkspear Trolls"
-	data.subzones["Zangarmarsh"]["Zabra'jin"]		= "Darkspear Trolls"
+	data.subzones["Howling Fjord"]["Camp Winterhoof"]			= "The Taunka"
+	data.subzones["Icecrown"]["Orgrim's Hammer"]				= "Warsong Offensive"
+	data.subzones["Storm Peaks"]["Camp Tunka'lo"]			= "The Taunka"
+	data.subzones["Zangarmarsh"]["Swamprat Post"]			= "Darkspear Trolls"
+	data.subzones["Zangarmarsh"]["Zabra'jin"]				= "Darkspear Trolls"
 else
 	data.races["Draenei"]	= "Exodar"
 	data.races["Dwarf"]		= "Ironforge"
@@ -185,10 +244,12 @@ else
 
 	data.zones["Alterac Valley"]		= "Stormpike Guard"
 	data.zones["Arathi Basin"]		= "The League of Arathor"
+	data.zones["Borean Tundra"]		= "Valiance Expedition"
 	data.zones["Darnassus"]			= "Darnassus"
 	data.zones["Exodar"]			= "Exodar"
 	data.zones["Hellfire Peninsula"]	= "Honor Hold"
 	data.zones["Hellfire Ramparts"]	= "Honor Hold"
+	data.zones["Howling Fjord"]		= "Valiance Expedition"
 	data.zones["Ironforge"]			= "Ironforge"
 	data.zones["Magtheridon's Lair"]	= "Honor Hold"
 	data.zones["Nagrand"]			= "Kurenai"
@@ -197,9 +258,18 @@ else
 	data.zones["The Shattered Halls"]	= "Honor Hold"
 	data.zones["Warsong Gulch"]		= "Silverwing Sentinels"
 
+	data.subzones["Crystalsong Forest"]["Windrunner Overlook"]	= "The Silver Covenant"
+	data.subzones["Dalaran"]["The Silver Enclave"]			= "The Silver Covenant"
+	data.subzones["Dragonblight"]["Stars' Rest"]				= "Valiance Expedition"
+	data.subzones["Dragonblight"]["Wintergarde Keep"]			= "Valiance Expedition"
+	data.subzones["Grizzly Hills"]["Amberpine Lodge"]			= "Valiance Expedition"
+	data.subzones["Grizzly Hills"]["Prospector's Point"]		= "Valiance Expedition"
+	data.subzones["Grizzly Hills"]["Westfall Brigade Encampment"]= "Valiance Expedition"
 	data.subzones["Hellfire Peninsula"]["Temple of Telhamat"]	= "Kurenai"
-	data.subzones["Winterspring"]["Frostsaber Rock"]	= "Wintersaber Trainers"
-	data.subzones["Zangarmarsh"]["Telredor"]		= "Exodar"
+	data.subzones["Icecrown"]["The Skybreaker"]				= "Valiance Expedition"
+	data.subzones["Storm Peaks"]["Frosthold"]				= "Explorers' League"
+	data.subzones["Winterspring"]["Frostsaber Rock"]			= "Wintersaber Trainers"
+	data.subzones["Zangarmarsh"]["Telredor"]				= "Exodar"
 end
 
 function Diplomancer:GetData()
