@@ -3,6 +3,12 @@ Diplomancer is a World of Warcraft user interface addon to automatically
 change your watched faction based on your current location.
 
 ------------------------------------------------------------------------
+Download:
+
+http://www.wowinterface.com/downloads/info9643-Diplomancer.html
+http://wow.curse.com/downloads/wow-addons/details/diplomancer.aspx
+
+------------------------------------------------------------------------
 Usage:
 
 Type "/diplomancer" or "/dm" in-game for a listing of available options.
@@ -18,7 +24,8 @@ If you would like to assist with translation for any locale, please
 contact me using the contact information below.
 
 If you are playing in a locale other than enUS or enGB with which this
-addon is compatible, you must install the following libraries:
+addon is compatible, you must install the following libraries to provide
+translations for faction, race, and zone names:
 
 LibBabble-Faction-3.0
 http://wow.curse.com/downloads/wow-addons/details/libbabble-zone-3-0.aspx
@@ -28,11 +35,6 @@ http://wow.curse.com/downloads/wow-addons/details/libbabble-zone-3-0.aspx
 
 LibBabble-Zone-3.0
 http://wow.curse.com/downloads/wow-addons/details/libbabble-zone-3-0.aspx
-
-------------------------------------------------------------------------
-Download:
-
-- http://www.wowinterface.com/downloads/info9643-Diplomancer.html
 
 ------------------------------------------------------------------------
 Feedback:
@@ -55,22 +57,17 @@ Charnow, whose addon SmartFactionWatch inspired me to write Diplomancer.
 ------------------------------------------------------------------------
 License:
 
-Copyright© 2007-2008 Alyssa Kinley, aka Phanx
+Copyright © 2007-2008 Alyssa S. Kinley, a.k.a. Phanx
 
-This addon is copyrighted, with all rights reserved, to its author under
-United States and international copyright law.
+The code in this addon is copyrighted to its author, with all rights reserved,
+under United States and international copyright law. The author of this addon
+hereby grants you the following rights:
 
-The author hereby grants you the following rights:
+You MAY download, install, and run this addon for your own personal use.
 
-You MAY download, install, and run this addon for personal use.
+You MAY NOT redistribute this addon, modified or unmodified, including as part
+of a compilation, without the express prior consent of its author.
 
-You MAY NOT distribute or redistribute this addon in any form, including
-as part of a compilation, without the express prior consent of its
-author.
-
-You MAY distribute modified or derivitave versions of this addon,
-provided that the name of your version does not include the name of this
-addon or its author, and that all references to the name of this addon
-and its author are removed from the source code of your version. As long
-as this condition is met in full, it is not required that you obtain the
-consent this addon's author in order to distribute your version.
+You MAY use the code from this addon, in whole or in part, in your own addon,
+provided that the name and code of your addon contain no references to the name
+of this addon or its author.

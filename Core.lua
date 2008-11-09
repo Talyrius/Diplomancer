@@ -1,8 +1,9 @@
 --[[--------------------------------------------------------------------
-	Diplomancer: automatic location-based faction watch
-	by Phanx < addons AT phanx net >
-	Based upon Smart Faction Watch by Charnow
-	See included README.TXT for license and additional information.
+	Diplomancer
+	Automatically watches the faction associated with your current location.
+	by Phanx < addons@phanx.net >
+	Copyright © 2007-2008 Alyssa S. Kinley, a.k.a. Phanx
+	See included README for license terms and additional information.
 ----------------------------------------------------------------------]]
 
 Diplomancer = CreateFrame("Frame")
