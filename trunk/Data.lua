@@ -91,6 +91,9 @@ local data = {
 			["Transitus Shield"]	= "Kirin Tor",
 			["Unu'pe"]			= "The Kalu'ak",
 		},
+		["Crystalsong Forest"] = {
+			-- Faction-specific, filled in later
+		},
 		["Dalaran"] = {
 			-- Faction-specific, filled in later
 		},
@@ -260,7 +263,7 @@ else
 	data.zones["Alterac Valley"]		= "Stormpike Guard"
 	data.zones["Arathi Basin"]		= "The League of Arathor"
 	data.zones["Darnassus"]			= "Darnassus"
-	data.zones["Dun Morogh"]			= "Ironforge",
+	data.zones["Dun Morogh"]			= "Ironforge"
 	data.zones["Ironforge"]			= "Ironforge"
 	data.zones["Stormwind City"]		= "Stormwind"
 	data.zones["Warsong Gulch"]		= "Silverwing Sentinels"
