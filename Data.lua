@@ -97,6 +97,10 @@ local data = {
 		["Dalaran"] = {
 			-- Faction-specific, filled in later
 		},
+		["Desolace"] = {
+			["Gelkis Village"]		= "Magram Clan Centaur",
+			["Magram Village"]		= "Gelkis Clan Centaur",
+		},
 		["Dragonblight"] = {
 			["Light's Trust"]		= "Argent Crusade",
 			["Moa'ki Harbor"]		= "The Kalu'ak",
