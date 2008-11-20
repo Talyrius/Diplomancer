@@ -82,6 +82,7 @@ local data = {
 			["Forge Camp: Terror"]	= "Ogri'la",
 			["Forge Camp: Wrath"]	= "Ogri'la",
 			["Ogri'la"]			= "Ogri'la",
+			["Ruuan Weald"]		= "Cenarion Expedition",
 			["Shartuul's Transporter"]	= "Ogri'la",
 			["Vortex Pinnacle"]		= "Ogri'la",
 		},
@@ -126,7 +127,7 @@ local data = {
 			["Kamagua"]			= "The Kalu'ak",
 		},
 		["Icecrown"] = {
-			-- Faction-specific, filled in later
+			["The Argent Vanguard"]	= "Argent Crusade",
 		},
 		["Nagrand"] = {
 			["Aeris Landing"]		= "The Consortium",
@@ -142,7 +143,6 @@ local data = {
 		},
 		["Shadowmoon Valley"] = {
 			["Altar of Sha'tar"]	= "The Aldor",
-			["Netherwing Field"]	= "Netherwing",
 			["Sanctum of the Stars"]	= "The Scryers",
 			["Warden's Cage"]		= "Ashtongue Deathsworn",
 		},
@@ -236,6 +236,7 @@ if race == "BloodElf" or race == "Orc" or race == "Tauren" or race == "Troll" or
 	data.zones["The Shattered Halls"]	= "Thrallmar"
 
 	data.zones["Borean Tundra"]		= "Warsong Offensive"
+	data.zones["Grizzly Hills"]		= "Warsong Offensive"
 	data.zones["Howling Fjord"]		= "The Hand of Vengeance"
 
 	data.subzones["Durotar"]["Sen'jin Village"]				= "Darkspear Trolls"
@@ -253,7 +254,6 @@ if race == "BloodElf" or race == "Orc" or race == "Tauren" or race == "Troll" or
 	data.subzones["Dragonblight"]["Venomspite"]				= "The Hand of Vengeance"
 	data.subzones["Dragonblight"]["Westwind Refugee Camp"]		= "The Taunka"
 	data.subzones["Grizzly Hills"]["Camp Oneqwah"]			= "The Taunka"
-	data.subzones["Grizzly Hills"]["Conquest Hold"]			= "Warsong Offensive"
 	data.subzones["Howling Fjord"]["Camp Winterhoof"]			= "The Taunka"
 	data.subzones["Icecrown"]["Orgrim's Hammer"]				= "Warsong Offensive"
 	data.subzones["Storm Peaks"]["Camp Tunka'lo"]			= "The Taunka"
@@ -272,7 +272,8 @@ else
 	data.zones["Stormwind City"]		= "Stormwind"
 	data.zones["Warsong Gulch"]		= "Silverwing Sentinels"
 
-	data.zones["Exodar"]			= "Exodar"
+	data.zones["Azuremyst Isle"]		= "Exodar"
+	data.zones["The Exodar"]			= "Exodar"
 	data.zones["Hellfire Peninsula"]	= "Honor Hold"
 	data.zones["Hellfire Ramparts"]	= "Honor Hold"
 	data.zones["Magtheridon's Lair"]	= "Honor Hold"
@@ -281,6 +282,7 @@ else
 	data.zones["The Shattered Halls"]	= "Honor Hold"
 
 	data.zones["Borean Tundra"]		= "Valiance Expedition"
+	data.zones["Grizzly Hills"]		= "Valiance Expedition"
 	data.zones["Howling Fjord"]		= "Valiance Expedition"
 
 	data.subzones["Winterspring"]["Frostsaber Rock"]			= "Wintersaber Trainers"
@@ -292,9 +294,6 @@ else
 	data.subzones["Dalaran"]["The Silver Enclave"]			= "The Silver Covenant"
 	data.subzones["Dragonblight"]["Stars' Rest"]				= "Valiance Expedition"
 	data.subzones["Dragonblight"]["Wintergarde Keep"]			= "Valiance Expedition"
-	data.subzones["Grizzly Hills"]["Amberpine Lodge"]			= "Valiance Expedition"
-	data.subzones["Grizzly Hills"]["Prospector's Point"]		= "Valiance Expedition"
-	data.subzones["Grizzly Hills"]["Westfall Brigade Encampment"]= "Valiance Expedition"
 	data.subzones["Icecrown"]["The Skybreaker"]				= "Valiance Expedition"
 	data.subzones["Storm Peaks"]["Frosthold"]				= "Explorers' League"
 end
