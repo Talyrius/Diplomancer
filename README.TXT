@@ -16,21 +16,18 @@ Type "/diplomancer" or "/dm" in-game for a listing of available options.
 ------------------------------------------------------------------------
 Localizaton:
 
-Compatible with: enUS
+Compatible with: enUS, enGB
 
-Translated into: enUS
+Translated into: enUS, enGB
 
-If you would like to assist with translation for any locale, please
-contact me using the contact information below.
+If you would like to assist with translation for any locale, please see:
+http://www.wowinterface.com/portal.php?&id=224&pageid=160
 
-If you are playing in a locale other than enUS or enGB with which this
-addon is compatible, you must install the following libraries to provide
-translations for faction, race, and zone names:
+If you are playing in a non-English locale listed in the "Compatible"
+list above, you must install the following libraries separately to
+provide faction and zone name translations:
 
 LibBabble-Faction-3.0
-http://wow.curse.com/downloads/wow-addons/details/libbabble-zone-3-0.aspx
-
-LibBabble-Race-3.0
 http://wow.curse.com/downloads/wow-addons/details/libbabble-zone-3-0.aspx
 
 LibBabble-Zone-3.0
