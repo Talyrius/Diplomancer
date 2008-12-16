@@ -191,7 +191,7 @@ end
 	Expand active faction headers
 --------------------------------------------------------------]]
 function Diplomancer:ExpandFactionHeaders()
-	local name, isHeader, isCollapsed
+	local name, isHeader, isCollapsed, _
 	local n = GetNumFactions()
 	for i = 1, n do
 		name, _, _, _, _, _, _, _, isHeader, isCollapsed = GetFactionInfo(i)
