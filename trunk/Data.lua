@@ -209,9 +209,15 @@ local data = {
 			["Ebon Watch"]			= "Knights of the Ebon Blade",
 		},
 	},
+	champions = {
+		[GetSpellInfo(57819)]		= "Argent Crusade",
+		[GetSpellInfo(57821)]		= "Kirin Tor",
+		[GetSpellInfo(57820)]		= "Knights of the Ebon Blade",
+		[GetSpellInfo(57822)]		= "Wyrmrest Accord",
+	},
 	races = {
 		-- Faction-specific, filled in later
-	}
+	},
 }
 
 local race = select(2, UnitRace("player")) -- arg2 is "Scourge" for Undead players
@@ -318,7 +324,7 @@ end
 function Diplomancer:GetData()
 	local locale = GetLocale()
 	if locale == "enUS" or locale == "enGB" then
-		return data.zones, data.subzones, data.races[race]
+		return data.zones, data.subzones, data.champions, data.races[race]
 	end
 
 	local BF = LibStub and LibStub("LibBabble-Factions-3.0", true) and LibStub("LibBabble-Factions-3.0"):GetLookupTable()
@@ -335,6 +341,7 @@ function Diplomancer:GetData()
 	for zone, faction in pairs(data.zones) do
 		tz[BZ[zone]] = BF[faction]
 	end
+
 	local ts = {}
 	local z
 	for zone, subzones in pairs(data.subzones) do
@@ -346,5 +353,11 @@ function Diplomancer:GetData()
 			end
 		end
 	end
-	return tz, ts, BF[data.races[race]]
+	
+	local tc = {}
+	for buff, faction in pairs(data.champions) do
+		tc[buff] = BF[faction]
+	end
+
+	return tz, ts, tc, BF[data.races[race]]
 end

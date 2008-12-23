@@ -12,7 +12,7 @@ Diplomancer:SetScript("OnEvent", function(self, event, ...) if self[event] then 
 Diplomancer:RegisterEvent("PLAYER_ENTERING_WORLD")
 
 local Diplomancer = Diplomancer
-local db, zones, subzones, racial, onTaxi
+local db, zones, subzones, champions, racial, onTaxi
 
 local L = setmetatable(DIPLOMANCER_STRINGS or {}, { __index = function(t, k) rawset(t, k, k) return k end })
 if DIPLOMANCER_STRINGS then DIPLOMANCER_STRINGS = nil end
@@ -29,7 +29,7 @@ end
 	Initialize
 --------------------------------------------------------------]]
 function Diplomancer:PLAYER_ENTERING_WORLD()
-	zones, subzones, racial = self:GetData()
+	zones, subzones, champions, racial = self:GetData()
 
 	local defaults = {
 		default = nil, -- custom faction to fallback to; default = racial
@@ -127,6 +127,18 @@ function Diplomancer:Update()
 	else
 		faction = racial
 	--	Debug("Setting watch on "..faction.." (racial)")
+	end
+
+	if UnitLevel("player") == 80 then
+		local inInstance, instanceType = IsInInstance()
+		if inInstance and instanceType == "party" then
+			for k, v in pairs(champions) do
+				if UnitAura("player", k) then
+					faction = v
+					break
+				end
+			end
+		end
 	end
 
 	if faction ~= tostring(GetWatchedFactionInfo()) then
