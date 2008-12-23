@@ -67,7 +67,7 @@ local data = {
 	--	["Howling Fjord"]			= "",
 		["Icecrown"]				= "Knights of the Ebon Blade",
 	--	["Sholazar Basin"]			= "",
-	--	["The Storm Peaks"]			= "",
+		["The Storm Peaks"]			= "Sons of Hodir",
 	--	["Wintergasp"]				= "",
 		["Zul'Drak"]				= "Argent Crusade",
 	},
@@ -167,9 +167,10 @@ local data = {
 			["Yojamaba Isle"]		= "Zandalar Tribe",
 			["Zul'Gurub"]			= "Zandalar Tribe",
 		},
-		["Storm Peaks"] = {
-			["Temple of Storms"]	= "Sons of Hodir",
-			["Ulduar"]			= "Sons of Hodir",
+		["The Storm Peaks"] = {
+			-- Faction-specific, filled in later
+--			["Temple of Storms"]	= "Sons of Hodir",
+--			["Ulduar"]			= "Sons of Hodir",
 		},
 		["Tanaris"] = {
 			["Caverns of Time"]		= "Keepers of Time",
@@ -244,7 +245,7 @@ if race == "BloodElf" or race == "Orc" or race == "Tauren" or race == "Troll" or
 	data.zones["Borean Tundra"]		= "Warsong Offensive"
 	data.zones["Grizzly Hills"]		= "Warsong Offensive"
 	data.zones["Howling Fjord"]		= "The Hand of Vengeance"
-	data.zones["Storm Peaks"]		= "Warsong Offensive"
+--	data.zones["The Storm Peaks"]		= "Warsong Offensive"
 
 	data.subzones["Durotar"]["Sen'jin Village"]				= "Darkspear Trolls"
 
@@ -264,6 +265,14 @@ if race == "BloodElf" or race == "Orc" or race == "Tauren" or race == "Troll" or
 	data.subzones["Grizzly Hills"]["Camp Oneqwah"]			= "The Taunka"
 	data.subzones["Howling Fjord"]["Camp Winterhoof"]			= "The Taunka"
 	data.subzones["Icecrown"]["Orgrim's Hammer"]				= "Warsong Offensive"
+
+	data.subzones["The Storm Peaks"]["Camp Tunka'lo"]			= "Warsong Offensive"
+	data.subzones["The Storm Peaks"]["Frostfloe Deep"]		= "Warsong Offensive"
+	data.subzones["The Storm Peaks"]["Frosthowl Cavern"]		= "Warsong Offensive"
+	data.subzones["The Storm Peaks"]["Gimorak's Den"]			= "Warsong Offensive"
+	data.subzones["The Storm Peaks"]["Grom'arsh Crash-site"]	= "Warsong Offensive"
+	data.subzones["The Storm Peaks"]["Howling Hollow"]		= "Warsong Offensive"
+	data.subzones["The Storm Peaks"]["Temple of Life"]		= "Warsong Offensive"
 else
 	data.races["Draenei"]	= "Exodar"
 	data.races["Dwarf"]		= "Ironforge"
@@ -292,7 +301,7 @@ else
 	data.zones["Borean Tundra"]		= "Valiance Expedition"
 	data.zones["Grizzly Hills"]		= "Valiance Expedition"
 	data.zones["Howling Fjord"]		= "Valiance Expedition"
-	data.zones["Storm Peaks"]		= "The Frostborn"
+	data.zones["The Storm Peaks"]		= "The Frostborn"
 
 	data.subzones["Winterspring"]["Frostsaber Rock"]			= "Wintersaber Trainers"
 
