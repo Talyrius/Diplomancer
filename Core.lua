@@ -1,17 +1,16 @@
 --[[--------------------------------------------------------------------
 	Diplomancer
-	Automatically watches the faction associated with your current location.
+	Automatically sets your watched faction based on your location.
 	by Phanx < addons@phanx.net >
 	Copyright © 2007-2008 Alyssa S. Kinley, a.k.a. Phanx
 	See included README for license terms and additional information.
 ----------------------------------------------------------------------]]
 
-Diplomancer = CreateFrame("Frame")
+local Diplomancer = CreateFrame("Frame", "Diplomancer")
 Diplomancer.version = tonumber(GetAddOnMetadata("Diplomancer", "Version"))
 Diplomancer:SetScript("OnEvent", function(self, event, ...) if self[event] then return self[event](self, ...)	end end)
 Diplomancer:RegisterEvent("PLAYER_ENTERING_WORLD")
 
-local Diplomancer = Diplomancer
 local db, zones, subzones, champions, racial, onTaxi
 
 local L = setmetatable(DIPLOMANCER_STRINGS or {}, { __index = function(t, k) rawset(t, k, k) return k end })
@@ -71,17 +70,17 @@ end
 	Check taxi status
 --------------------------------------------------------------]]
 function Diplomancer:PLAYER_CONTROL_LOST()
---	Debug("Control lost")
+	--Debug("Control lost")
 	if UnitOnTaxi("player") then
-	--	Debug("Taxi ride started")
+		--Debug("Taxi ride started")
 		onTaxi = true
 	end
 end
 
 function Diplomancer:PLAYER_CONTROL_GAINED()
---	Debug("Control gained")
+	--Debug("Control gained")
 	if onTaxi then
-	--	Debug("Taxi ride ended")
+		--Debug("Taxi ride ended")
 		onTaxi = false
 		self:Update()
 	end
@@ -91,50 +90,52 @@ end
 	Update watched faction for the current zone
 --------------------------------------------------------------]]
 function Diplomancer:ZONE_CHANGED()
---	Debug("Subzone changed")
+	--Debug("Subzone changed")
 	self:Update()
 end
 
 function Diplomancer:ZONE_CHANGED_INDOORS()
---	Debug("Zone changed (indoors)")
+	--Debug("Zone changed (indoors)")
 	self:Update()
 end
 
 function Diplomancer:ZONE_CHANGED_NEW_AREA()
---	Debug("Zone changed")
+	--Debug("Zone changed")
 	self:Update()
 end
 
 function Diplomancer:Update()
 	if onTaxi then
-	--	Debug("On taxi; skipping update")
+		--Debug("On taxi; skipping update")
 		return
 	end
 
 	local zone, subzone = GetRealZoneText(), GetSubZoneText()
---	Debug("zone = "..zone.."; subzone = "..subzone)
+	--Debug("zone = "..zone.."; subzone = "..subzone)
 
 	local faction
 	if subzones[zone] and subzones[zone][subzone] then
 		faction = subzones[zone][subzone]
-	--	Debug("Setting watch on "..faction.." (subzone)")
+		--Debug("Setting watch on "..faction.." (subzone)")
 	elseif zones[zone] then
 		faction = zones[zone]
-	--	Debug("Setting watch on "..faction.." (zone)")
+		--Debug("Setting watch on "..faction.." (zone)")
 	elseif db.default then
 		faction = db.default
-	--	Debug("Setting watch on "..faction.." (default)")
+		--Debug("Setting watch on "..faction.." (default)")
 	else
 		faction = racial
-	--	Debug("Setting watch on "..faction.." (racial)")
+		--Debug("Setting watch on "..faction.." (racial)")
 	end
 
 	if UnitLevel("player") == 80 then
-		local inInstance, instanceType = IsInInstance()
-		if inInstance and instanceType == "party" then
-			for k, v in pairs(champions) do
-				if UnitAura("player", k) then
-					faction = v
+		local _, instance = IsInInstance()
+		--Debug("UnitLevel 80, IsInInstance " .. instance)
+		if instance and instance == "party" then
+			for aura, champion in pairs(champions) do
+				if UnitAura("player", aura) then
+					--Debug("Setting watch on " .. champion .. " (champion)")
+					faction = champion
 					break
 				end
 			end
@@ -259,7 +260,7 @@ f:SetScript("OnShow", function()
 
 	local defaultlabel = f:CreateFontString(nil, "ARTWORK", "GameFontHighlight")
 	defaultlabel:SetPoint("TOPLEFT", subtitle, "BOTTOMLEFT", 0, -8)
-	defaultlabel:SetText(L["Default Faction"])
+	defaultlabel:SetText(L["Default faction"])
 
 	local default = CreateFrame("Frame", "DiplomancerDropdown", f)
 	default.tiptext = L["Select a faction to watch when your current location doesn't have an associated faction."]
@@ -357,6 +358,7 @@ f:SetScript("OnShow", function()
 
 	reset = CreateFrame("Button", nil, f)
 	reset.tiptext = L["Reset your default faction preference to your race's faction"]
+	reset:SetText(L["Reset"])
 	reset:SetPoint("LEFT", button, "RIGHT", 8, 0)
 	reset:SetWidth(80)
 	reset:SetHeight(22)
@@ -374,8 +376,6 @@ f:SetScript("OnShow", function()
 	reset:GetHighlightTexture():SetTexCoord(0, 0.625, 0, 0.6875)
 	reset:GetDisabledTexture():SetTexCoord(0, 0.625, 0, 0.6875)
 	reset:GetHighlightTexture():SetBlendMode("ADD")
-
-	reset:SetText(L["Reset"])
 
 	reset:SetScript("OnEnter", OnEnter)
 	reset:SetScript("OnLeave", OnLeave)
@@ -407,8 +407,8 @@ f:SetScript("OnShow", function()
 		return check, label
 	end
 
-	local exalted = CreateCheckbox(f, L["Ignore Exalted Factions"])
-	exalted.tiptext = L["Choose whether to ignore factions you're already Exalted with."]
+	local exalted = CreateCheckbox(f, L["Ignore exalted factions"])
+	exalted.tiptext = L["Don't watch factions you've already acheived Exalted standing with."]
 	exalted:SetPoint("TOPLEFT", default, "BOTTOMLEFT", 2, -8)
 	exalted:SetScript("OnClick", function(self)
 		PlaySound(self:GetChecked() and "igMainMenuOptionCheckBoxOn" or "igMainMenuOptionCheckBoxOff")
@@ -417,8 +417,8 @@ f:SetScript("OnShow", function()
 	end)
 	exalted:SetChecked(db.ignoreExalted)
 
-	local verbose = CreateCheckbox(f, L["Enable Notifications"])
-	verbose.tiptext = L["Choose whether to see a message in your chat frame when a new watched faction is set."]
+	local verbose = CreateCheckbox(f, L["Enable notifications"])
+	verbose.tiptext = L["Print messages to the chat frame when setting a new watched faction."]
 	verbose:SetPoint("TOPLEFT", exalted, "BOTTOMLEFT", 2, -8)
 	verbose:SetScript("OnClick", function(self)
 		PlaySound(self:GetChecked() and "igMainMenuOptionCheckBoxOn" or "igMainMenuOptionCheckBoxOff")
