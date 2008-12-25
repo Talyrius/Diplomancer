@@ -70,17 +70,17 @@ end
 	Check taxi status
 --------------------------------------------------------------]]
 function Diplomancer:PLAYER_CONTROL_LOST()
-	Debug("Control lost")
+	--Debug("Control lost")
 	if UnitOnTaxi("player") then
-		Debug("Taxi ride started")
+		--Debug("Taxi ride started")
 		onTaxi = true
 	end
 end
 
 function Diplomancer:PLAYER_CONTROL_GAINED()
-	Debug("Control gained")
+	--Debug("Control gained")
 	if onTaxi then
-		Debug("Taxi ride ended")
+		--Debug("Taxi ride ended")
 		onTaxi = false
 		self:Update()
 	end
@@ -90,51 +90,51 @@ end
 	Update watched faction for the current zone
 --------------------------------------------------------------]]
 function Diplomancer:ZONE_CHANGED()
-	Debug("Subzone changed")
+	--Debug("Subzone changed")
 	self:Update()
 end
 
 function Diplomancer:ZONE_CHANGED_INDOORS()
-	Debug("Zone changed (indoors)")
+	--Debug("Zone changed (indoors)")
 	self:Update()
 end
 
 function Diplomancer:ZONE_CHANGED_NEW_AREA()
-	Debug("Zone changed")
+	--Debug("Zone changed")
 	self:Update()
 end
 
 function Diplomancer:Update()
 	if onTaxi then
-		Debug("On taxi; skipping update")
+		--Debug("On taxi; skipping update")
 		return
 	end
 
 	local zone, subzone = GetRealZoneText(), GetSubZoneText()
-	Debug("zone = "..zone.."; subzone = "..subzone)
+	--Debug("zone = "..zone.."; subzone = "..subzone)
 
 	local faction
 	if subzones[zone] and subzones[zone][subzone] then
 		faction = subzones[zone][subzone]
-		Debug("Setting watch on "..faction.." (subzone)")
+		--Debug("Setting watch on "..faction.." (subzone)")
 	elseif zones[zone] then
 		faction = zones[zone]
-		Debug("Setting watch on "..faction.." (zone)")
+		--Debug("Setting watch on "..faction.." (zone)")
 	elseif db.default then
 		faction = db.default
-		Debug("Setting watch on "..faction.." (default)")
+		--Debug("Setting watch on "..faction.." (default)")
 	else
 		faction = racial
-		Debug("Setting watch on "..faction.." (racial)")
+		--Debug("Setting watch on "..faction.." (racial)")
 	end
 
 	if UnitLevel("player") == 80 then
 		local _, instance = IsInInstance()
-		Debug("UnitLevel 80, IsInInstance " .. instance)
+		--Debug("UnitLevel 80, IsInInstance " .. instance)
 		if instance and instance == "party" then
 			for aura, champion in pairs(champions) do
 				if UnitAura("player", aura) then
-					Debug("Setting watch on " .. champion .. " (champion)")
+					--Debug("Setting watch on " .. champion .. " (champion)")
 					faction = champion
 					break
 				end
