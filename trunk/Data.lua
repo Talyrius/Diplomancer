@@ -213,7 +213,7 @@ local data = {
 		[GetSpellInfo(57819)]		= "Argent Crusade",
 		[GetSpellInfo(57821)]		= "Kirin Tor",
 		[GetSpellInfo(57820)]		= "Knights of the Ebon Blade",
-		[GetSpellInfo(57822)]		= "Wyrmrest Accord",
+		[GetSpellInfo(57822)]		= "The Wyrmrest Accord",
 	},
 	races = {
 		-- Faction-specific, filled in later
