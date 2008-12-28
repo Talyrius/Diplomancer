@@ -13,6 +13,7 @@
 ## X-Email: addons@phanx.net
 
 ## SavedVariablesPerCharacter: DiplomancerSettings
+## OptionalDependencies: LibBabble-Faction-3.0, LibBabble-Zone-3.0
 
 Core.lua
 Data.lua
