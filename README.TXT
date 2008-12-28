@@ -16,9 +16,9 @@ Type "/diplomancer" or "/dm" in-game for a listing of available options.
 ------------------------------------------------------------------------
 Localizaton:
 
-Compatible with: enUS, enGB
+Compatible with: enUS, enGB, zhCN
 
-Translated into: enUS, enGB
+Translated into: enUS, enGB, zhCN
 
 If you would like to assist with translation for any locale, please see:
 http://www.wowinterface.com/portal.php?&id=224&pageid=160

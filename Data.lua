@@ -59,16 +59,11 @@ local data = {
 		["The Underbog"]			= "Cenarion Expedition",
 		["Zangarmarsh"]			= "Cenarion Expedition",
 
-	--	["Borean Tundra"]			= "",
 		["Crystalsong Forest"]		= "Kirin Tor",
 		["Dalaran"]				= "Kirin Tor",
 		["Dragonblight"]			= "The Wyrmrest Accord",
-	--	["Grizzly Hills"]			= "",
-	--	["Howling Fjord"]			= "",
 		["Icecrown"]				= "Knights of the Ebon Blade",
-	--	["Sholazar Basin"]			= "",
 		["The Storm Peaks"]			= "Sons of Hodir",
-	--	["Wintergasp"]				= "",
 		["Zul'Drak"]				= "Argent Crusade",
 	},
 	subzones = {
@@ -164,13 +159,11 @@ local data = {
 		["Stranglethorn Vale"] = {
 			["Booty Bay"]			= "Booty Bay",
 			["Salty Sailor Tavern"]	= "Booty Bay",
-			["Yojamaba Isle"]		= "Zandalar Tribe",
+			["Yojamba Isle"]		= "Zandalar Tribe",
 			["Zul'Gurub"]			= "Zandalar Tribe",
 		},
 		["The Storm Peaks"] = {
 			-- Faction-specific, filled in later
---			["Temple of Storms"]	= "Sons of Hodir",
---			["Ulduar"]			= "Sons of Hodir",
 		},
 		["Tanaris"] = {
 			["Caverns of Time"]		= "Keepers of Time",
@@ -182,7 +175,7 @@ local data = {
 			["Blackwind Lake"]		= "Sha'tari Skyguard",
 			["Blackwind Landing"]	= "Sha'tari Skyguard",
 			["Blackwind Valley"]	= "Sha'tari Skyguard",
-			["Lake Ere'nom"]		= "Sha'tari Skyguard",
+			["Lake Ere'noru"]		= "Sha'tari Skyguard",
 			["Lower Veil Shil'ak"]	= "Sha'tari Skyguard",
 			["Mana Tombs"]			= "The Consortium",
 			["Skettis"]			= "Sha'tari Skyguard",
@@ -220,8 +213,7 @@ local data = {
 	},
 }
 
-local race = select(2, UnitRace("player")) -- arg2 is "Scourge" for Undead players
-
+local _, race = UnitRace("player") -- arg2 is "Scourge" for Undead players
 if race == "BloodElf" or race == "Orc" or race == "Tauren" or race == "Troll" or race == "Scourge" then
 	data.races["BloodElf"]	= "Silvermoon City"
 	data.races["Orc"]		= "Orgrimmar"
@@ -271,7 +263,6 @@ if race == "BloodElf" or race == "Orc" or race == "Tauren" or race == "Troll" or
 	data.subzones["Grizzly Hills"]["Camp Oneqwah"]			= "The Taunka"
 	data.subzones["Howling Fjord"]["Camp Winterhoof"]			= "The Taunka"
 	data.subzones["Icecrown"]["Orgrim's Hammer"]				= "Warsong Offensive"
-
 	data.subzones["The Storm Peaks"]["Camp Tunka'lo"]			= "Warsong Offensive"
 	data.subzones["The Storm Peaks"]["Frostfloe Deep"]		= "Warsong Offensive"
 	data.subzones["The Storm Peaks"]["Frosthowl Cavern"]		= "Warsong Offensive"
@@ -279,6 +270,7 @@ if race == "BloodElf" or race == "Orc" or race == "Tauren" or race == "Troll" or
 	data.subzones["The Storm Peaks"]["Grom'arsh Crash-site"]	= "Warsong Offensive"
 	data.subzones["The Storm Peaks"]["Howling Hollow"]		= "Warsong Offensive"
 	data.subzones["The Storm Peaks"]["Temple of Life"]		= "Warsong Offensive"
+	data.subzones["The Storm Peaks"]["The Plain of Echoes"]	= "Warsong Offensive"
 else
 	data.races["Draenei"]	= "Exodar"
 	data.races["Dwarf"]		= "Ironforge"
@@ -307,7 +299,6 @@ else
 	data.zones["Borean Tundra"]		= "Valiance Expedition"
 	data.zones["Grizzly Hills"]		= "Valiance Expedition"
 	data.zones["Howling Fjord"]		= "Valiance Expedition"
-	data.zones["The Storm Peaks"]		= "The Frostborn"
 
 	data.subzones["Winterspring"]["Frostsaber Rock"]			= "Wintersaber Trainers"
 
@@ -319,6 +310,18 @@ else
 	data.subzones["Dragonblight"]["Stars' Rest"]				= "Valiance Expedition"
 	data.subzones["Dragonblight"]["Wintergarde Keep"]			= "Valiance Expedition"
 	data.subzones["Icecrown"]["The Skybreaker"]				= "Valiance Expedition"
+	data.subzones["The Storm Peaks"]["Frosthold"]			= "The Frostborn"
+	data.subzones["The Storm Peaks"]["Inventor's Library"]		= "The Frostborn"
+	data.subzones["The Storm Peaks"]["Loken's Bargain"]		= "The Frostborn"
+	data.subzones["The Storm Peaks"]["Mimir's Workshop"]		= "The Frostborn"
+	data.subzones["The Storm Peaks"]["Narvir's Cradle"]		= "The Frostborn"
+	data.subzones["The Storm Peaks"]["Nidavelir"]			= "The Frostborn"
+	data.subzones["The Storm Peaks"]["Temple of Invention"]	= "The Frostborn"
+	data.subzones["The Storm Peaks"]["Temple of Life"]		= "The Frostborn"
+	data.subzones["The Storm Peaks"]["Temple of Order"]		= "The Frostborn"
+	data.subzones["The Storm Peaks"]["Temple of Winter"]		= "The Frostborn"
+	data.subzones["The Storm Peaks"]["The Foot Steppes"]		= "The Frostborn"
+	data.subzones["The Storm Peaks"]["The Plain of Echoes"]	= "The Frostborn"
 end
 
 function Diplomancer:GetData()
@@ -329,7 +332,7 @@ function Diplomancer:GetData()
 
 	local BF = LibStub and LibStub("LibBabble-Factions-3.0", true) and LibStub("LibBabble-Factions-3.0"):GetLookupTable()
 	local BZ = LibStub and LibStub("LibBabble-Zone-3.0", true) and LibStub("LibBabble-Zone-3.0"):GetLookupTable()
-	local SZ = DiplomancerSubzones
+	local SZ = DIPLOMANCER_SUBZONES
 
 	if not SZ then
 		return print("|cff33ff99Diplomancer|r is not yet compatible with your locale, because it is missing the translated names of subzones. To find out how you can help fix this, please see the addon's download page!")
