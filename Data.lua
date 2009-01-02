@@ -63,7 +63,7 @@ local data = {
 		["Dalaran"]				= "Kirin Tor",
 		["Dragonblight"]			= "The Wyrmrest Accord",
 		["Icecrown"]				= "Knights of the Ebon Blade",
-		["The Storm Peaks"]			= "Sons of Hodir",
+		["The Storm Peaks"]			= "The Sons of Hodir",
 		["Zul'Drak"]				= "Argent Crusade",
 	},
 	subzones = {
@@ -83,7 +83,7 @@ local data = {
 		},
 		["Borean Tundra"] = {
 			["Amber Ledge"]		= "Kirin Tor",
-			["D.E.H.T.A. Encampment"]	= "Cenarion Expedition",
+			["D.E.H.T.A. Encampment"]= "Cenarion Expedition",
 			["Transitus Shield"]	= "Kirin Tor",
 			["Unu'pe"]			= "The Kalu'ak",
 		},
@@ -243,7 +243,6 @@ if race == "BloodElf" or race == "Orc" or race == "Tauren" or race == "Troll" or
 	data.zones["Borean Tundra"]		= "Warsong Offensive"
 	data.zones["Grizzly Hills"]		= "Warsong Offensive"
 	data.zones["Howling Fjord"]		= "The Hand of Vengeance"
---	data.zones["The Storm Peaks"]		= "Warsong Offensive"
 
 	data.subzones["Durotar"]["Sen'jin Village"]				= "Darkspear Trolls"
 
