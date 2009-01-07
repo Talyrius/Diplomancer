@@ -21,10 +21,10 @@ L["Reset"] = "重置"
 L["Reset your default faction preference to your race's faction"] = "将你的缺省声望重置为种族声望"
 
 L["Ignore Exalted Factions"] = "忽略已崇拜的声望"
-L["Choose whether to ignore factions you're already Exalted with."] = "选择是否忽略监视已经崇拜的声望"
+L["Don't watch factions you've already acheived Exalted standing with."] = "选择是否忽略监视已经崇拜的声望"
 
 L["Enable Notifications"] = "开启提示"
-L["Choose whether to see a message in your chat frame when a new watched faction is set."] = "选择是否显示声望监视状态变动"
+L["Show a message in the chat frame when your watched faction changes."] = "选择是否显示声望监视状态变动"
 
 -------------------
 -- Subzone names --
@@ -146,7 +146,7 @@ Z["Frostfloe Deep"] = ""
 Z["Frosthold"] = "冰霜堡"
 Z["Frosthowl Cavern"] = ""
 Z["Gimorak's Den"] = ""
-Z["Grom'arsh Crash-site"] ""
+Z["Grom'arsh Crash-site"] = ""
 Z["Howling Hollow"] = ""
 Z["Inventor's Library"] = ""
 Z["Loken's Bargain"] = ""

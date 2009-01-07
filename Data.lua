@@ -3,7 +3,7 @@
 	Automatically watches the current area's faction.
 	by Phanx < addons@phanx.net >
 	http://www.wowinterface.com/downloads/info9643-Diplomancer.html
-	Copyright © 2007–2008 Alyssa S. Kinley, a.k.a Phanx
+	Copyright © 2007–2009 Alyssa S. Kinley, a.k.a Phanx
 	See included README for license terms and additional information.
 
 	This file provides area-faction mapping data.
@@ -329,14 +329,14 @@ function Diplomancer:GetData()
 		return data.zones, data.subzones, data.champions, data.races[race]
 	end
 
-	local BF = LibStub and LibStub("LibBabble-Factions-3.0", true) and LibStub("LibBabble-Factions-3.0"):GetLookupTable()
+	local BF = LibStub and LibStub("LibBabble-Faction-3.0", true) and LibStub("LibBabble-Faction-3.0"):GetLookupTable()
 	local BZ = LibStub and LibStub("LibBabble-Zone-3.0", true) and LibStub("LibBabble-Zone-3.0"):GetLookupTable()
 	local SZ = DIPLOMANCER_SUBZONES
 
 	if not SZ then
 		return print("|cff33ff99Diplomancer|r is not yet compatible with your locale, because it is missing the translated names of subzones. To find out how you can help fix this, please see the addon's download page!")
-	elseif not BF and BR and BZ then
-		return print("|cff33ff99Diplomancer|r requires the LibBabble-Faction-3.0 and LibBabble-Zone-3.0 libraries to work in your locale. For information on how to get these files, see the README file in the addon folder.")
+	elseif not BF or not BR or not BZ then
+		return print("|cff33ff99Diplomancer|r requires the LibBabble-Faction-3.0 and LibBabble-Zone-3.0 libraries in order to work in your locale. For information on how to get these files, see the README file in the addon folder.")
 	end
 
 	local tz = {}
