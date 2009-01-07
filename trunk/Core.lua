@@ -260,7 +260,7 @@ f:SetScript("OnShow", function()
 
 	local defaultlabel = f:CreateFontString(nil, "ARTWORK", "GameFontHighlight")
 	defaultlabel:SetPoint("TOPLEFT", subtitle, "BOTTOMLEFT", 0, -8)
-	defaultlabel:SetText(L["Default faction"])
+	defaultlabel:SetText(L["Default Faction"])
 
 	local default = CreateFrame("Frame", "DiplomancerDropdown", f)
 	default.tiptext = L["Select a faction to watch when your current location doesn't have an associated faction."]
@@ -398,8 +398,6 @@ f:SetScript("OnShow", function()
 		check:SetScript("OnEnter", OnEnter)
 		check:SetScript("OnLeave", OnLeave)
 
-		check:SetScript("OnClick", Checkbox_OnClick)
-
 		local label = check:CreateFontString(nil, "ARTWORK", "GameFontHighlight")
 		label:SetPoint("LEFT", check, "RIGHT", 0, 1)
 		label:SetText(text)
@@ -407,7 +405,7 @@ f:SetScript("OnShow", function()
 		return check, label
 	end
 
-	local exalted = CreateCheckbox(f, L["Ignore exalted factions"])
+	local exalted = CreateCheckbox(f, L["Ignore Exalted Factions"])
 	exalted.tiptext = L["Don't watch factions you've already acheived Exalted standing with."]
 	exalted:SetPoint("TOPLEFT", default, "BOTTOMLEFT", 2, -8)
 	exalted:SetScript("OnClick", function(self)
@@ -417,8 +415,8 @@ f:SetScript("OnShow", function()
 	end)
 	exalted:SetChecked(db.ignoreExalted)
 
-	local verbose = CreateCheckbox(f, L["Enable notifications"])
-	verbose.tiptext = L["Print messages to the chat frame when setting a new watched faction."]
+	local verbose = CreateCheckbox(f, L["Enable Notifications"])
+	verbose.tiptext = L["Show a message in the chat frame when your watched faction changes."]
 	verbose:SetPoint("TOPLEFT", exalted, "BOTTOMLEFT", 2, -8)
 	verbose:SetScript("OnClick", function(self)
 		PlaySound(self:GetChecked() and "igMainMenuOptionCheckBoxOn" or "igMainMenuOptionCheckBoxOff")
