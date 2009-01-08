@@ -355,7 +355,7 @@ function Diplomancer:GetData()
 			end
 		end
 	end
-	
+
 	local tc = {}
 	for buff, faction in pairs(data.champions) do
 		tc[buff] = BF[faction]
