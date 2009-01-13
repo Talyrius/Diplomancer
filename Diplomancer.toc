@@ -3,6 +3,8 @@
 
 ## Title: Diplomancer
 ## Notes: Automatically watch your current location's faction.
+## X-CompatibleLocales: enUS, enGB, deDE, zhCN
+## X-Localizations: enUS, enGB, deDE, zhCN
 ## X-Copyright: Copyright © 2007–2009 Alyssa S. Kinley, a.k.a. Phanx
 ## X-License: Do not redistribute. See README for full license terms.
 ## X-Website: http://www.wowinterface.com/downloads/info9643-Diplomancer.html
@@ -14,6 +16,7 @@
 ## SavedVariablesPerCharacter: DiplomancerSettings
 ## OptionalDependencies: LibBabble-Faction-3.0, LibBabble-Zone-3.0
 
+Locale-deDE.lua
 Locale-zhCN.lua
 
 Core.lua

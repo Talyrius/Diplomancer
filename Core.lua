@@ -228,7 +228,7 @@ end
 	Widget creation adapted from Tekkub's tekKonfig libraries
 --------------------------------------------------------------]]
 
-local f = CreateFrame("Frame", nil, UIOptionsContainer)
+local f = CreateFrame("Frame", nil, InterfaceOptionsFramePanelContainer)
 f.name = "Diplomancer"
 f:Hide()
 f:SetScript("OnShow", function()
@@ -258,13 +258,13 @@ f:SetScript("OnShow", function()
 
 	local reset
 
-	local defaultlabel = f:CreateFontString(nil, "ARTWORK", "GameFontHighlight")
+	local defaultlabel = f:CreateFontString(nil, "ARTWORK", "GameFontNormal")
 	defaultlabel:SetPoint("TOPLEFT", subtitle, "BOTTOMLEFT", 0, -8)
 	defaultlabel:SetText(L["Default Faction"])
 
 	local default = CreateFrame("Frame", "DiplomancerDropdown", f)
 	default.tiptext = L["Select a faction to watch when your current location doesn't have an associated faction."]
-	default:SetPoint("TOPLEFT", defaultlabel, "BOTTOMLEFT", -12, -2)
+	default:SetPoint("TOPLEFT", defaultlabel, "BOTTOMLEFT", -20, -2)
 	default:SetWidth(199)
 	default:SetHeight(32)
 	default:EnableMouse(true)
@@ -304,6 +304,8 @@ f:SetScript("OnShow", function()
 	button:SetWidth(24)
 	button:SetHeight(24)
 	button:SetPoint("TOPRIGHT", rtex, -16, -18)
+	button:SetScript("OnEnter", OnEnter)
+	button:SetScript("OnLeave", OnLeave)
 	button:SetScript("OnClick", function(self)
 		ToggleDropDownMenu(nil, nil, default)
 		PlaySound("igMainMenuOptionCheckBoxOn")
@@ -363,9 +365,9 @@ f:SetScript("OnShow", function()
 	reset:SetWidth(80)
 	reset:SetHeight(22)
 
+	reset:SetNormalFontObject(GameFontNormalSmall)
 	reset:SetDisabledFontObject(GameFontDisable)
 	reset:SetHighlightFontObject(GameFontHighlightSmall)
-	if IS_WRATH_BUILD then reset:SetNormalFontObject(GameFontNormalSmall) else reset:SetTextFontObject(GameFontNormalSmall) end
 
 	reset:SetNormalTexture("Interface\\Buttons\\UI-Panel-Button-Up")
 	reset:SetPushedTexture("Interface\\Buttons\\UI-Panel-Button-Down")
@@ -407,7 +409,7 @@ f:SetScript("OnShow", function()
 
 	local exalted = CreateCheckbox(f, L["Ignore Exalted Factions"])
 	exalted.tiptext = L["Don't watch factions you've already acheived Exalted standing with."]
-	exalted:SetPoint("TOPLEFT", default, "BOTTOMLEFT", 2, -8)
+	exalted:SetPoint("TOPLEFT", default, "BOTTOMLEFT", 16, -8)
 	exalted:SetScript("OnClick", function(self)
 		PlaySound(self:GetChecked() and "igMainMenuOptionCheckBoxOn" or "igMainMenuOptionCheckBoxOff")
 		db.ignoreExalted = self:GetChecked() and true or false
@@ -417,7 +419,7 @@ f:SetScript("OnShow", function()
 
 	local verbose = CreateCheckbox(f, L["Enable Notifications"])
 	verbose.tiptext = L["Show a message in the chat frame when your watched faction changes."]
-	verbose:SetPoint("TOPLEFT", exalted, "BOTTOMLEFT", 2, -8)
+	verbose:SetPoint("TOPLEFT", exalted, "BOTTOMLEFT", 0, -8)
 	verbose:SetScript("OnClick", function(self)
 		PlaySound(self:GetChecked() and "igMainMenuOptionCheckBoxOn" or "igMainMenuOptionCheckBoxOff")
 		db.verbose = self:GetChecked() and true or false
