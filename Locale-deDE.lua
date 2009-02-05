@@ -58,6 +58,7 @@ Z["Windrunner Overlook"] = "Windläufers Warte"
 
 -- Dalaran
 Z["Sunreaver's Sanctuary"] = "Sonnenhäschers Zuflucht"
+Z["The Filthy Animal"] = ""
 Z["The Silver Enclave"] = "Die Silberne Enklave"
 
 -- Desolace
@@ -99,9 +100,12 @@ Z["Camp Winterhoof"] = "Lager der Winterhufe"
 Z["Kamagua"] = "Kamagua"
 
 -- Icecrown
+Z["Crusaders' Pinnacle"] = ""
 Z["Orgrim's Hammer"] = "Orgrims Hammer"
+Z["Scourgeholme"] = ""
 Z["The Argent Vanguard"] = "Die Argentumvorhut"
 Z["The Skybreaker"] = "Die Himmelsbrecher"
+Z["Valley of Echoes"] = ""
 
 -- Nagrand
 Z["Aeris Landing"] = "Aerissteg"

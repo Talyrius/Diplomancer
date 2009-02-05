@@ -30,7 +30,7 @@ list above, you must install the following libraries separately to
 provide faction and zone name translations:
 
 LibBabble-Faction-3.0
-http://wow.curse.com/downloads/wow-addons/details/libbabble-zone-3-0.aspx
+http://wow.curse.com/downloads/wow-addons/details/libbabble-faction-3-0.aspx
 
 LibBabble-Zone-3.0
 http://wow.curse.com/downloads/wow-addons/details/libbabble-zone-3-0.aspx

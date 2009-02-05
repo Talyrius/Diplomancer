@@ -21,13 +21,14 @@ local function Print(text)
 end
 
 local function Debug(text)
-	print("|cffff3399[DEBUG] Diplomancer:|r "..text)
+	ChatFrame7:AddMessage("|cffff3399[DEBUG] Diplomancer:|r "..text)
 end
 
 --[[------------------------------------------------------------
 	Initialize
 --------------------------------------------------------------]]
 function Diplomancer:PLAYER_ENTERING_WORLD()
+	-- Debug("PLAYER_ENTERING_WORLD")
 	zones, subzones, champions, racial = self:GetData()
 
 	local defaults = {
@@ -70,17 +71,17 @@ end
 	Check taxi status
 --------------------------------------------------------------]]
 function Diplomancer:PLAYER_CONTROL_LOST()
-	--Debug("Control lost")
+	-- Debug("PLAYER_CONTROL_LOST")
 	if UnitOnTaxi("player") then
-		--Debug("Taxi ride started")
+		-- Debug("Now on taxi")
 		onTaxi = true
 	end
 end
 
 function Diplomancer:PLAYER_CONTROL_GAINED()
-	--Debug("Control gained")
+	-- Debug("PLAYER_CONTROL_GAINED")
 	if onTaxi then
-		--Debug("Taxi ride ended")
+		-- Debug("No longer on taxi")
 		onTaxi = false
 		self:Update()
 	end
@@ -90,51 +91,51 @@ end
 	Update watched faction for the current zone
 --------------------------------------------------------------]]
 function Diplomancer:ZONE_CHANGED()
-	--Debug("Subzone changed")
+	-- Debug("ZONE_CHANGED")
 	self:Update()
 end
 
 function Diplomancer:ZONE_CHANGED_INDOORS()
-	--Debug("Zone changed (indoors)")
+	-- Debug("ZONE_CHANGED_INDOORS")
 	self:Update()
 end
 
 function Diplomancer:ZONE_CHANGED_NEW_AREA()
-	--Debug("Zone changed")
+	-- Debug("ZONE_CHANGED_NEW_AREA")
 	self:Update()
 end
 
 function Diplomancer:Update()
 	if onTaxi then
-		--Debug("On taxi; skipping update")
+		-- Debug("On taxi; skipping update")
 		return
 	end
 
 	local zone, subzone = GetRealZoneText(), GetSubZoneText()
-	--Debug("zone = "..zone.."; subzone = "..subzone)
+	-- Debug("zone = "..zone.."; subzone = "..subzone)
 
 	local faction
 	if subzones[zone] and subzones[zone][subzone] then
 		faction = subzones[zone][subzone]
-		--Debug("Setting watch on "..faction.." (subzone)")
+		-- Debug("Setting watch on "..faction.." (subzone)")
 	elseif zones[zone] then
 		faction = zones[zone]
-		--Debug("Setting watch on "..faction.." (zone)")
+		-- Debug("Setting watch on "..faction.." (zone)")
 	elseif db.default then
 		faction = db.default
-		--Debug("Setting watch on "..faction.." (default)")
+		-- Debug("Setting watch on "..faction.." (default)")
 	else
 		faction = racial
-		--Debug("Setting watch on "..faction.." (racial)")
+		-- Debug("Setting watch on "..faction.." (racial)")
 	end
 
 	if UnitLevel("player") == 80 then
 		local _, instance = IsInInstance()
-		--Debug("UnitLevel 80, IsInInstance " .. instance)
+		-- Debug("UnitLevel 80, IsInInstance " .. instance)
 		if instance and instance == "party" then
 			for aura, champion in pairs(champions) do
 				if UnitAura("player", aura) then
-					--Debug("Setting watch on " .. champion .. " (champion)")
+					-- Debug("Setting watch on " .. champion .. " (champion)")
 					faction = champion
 					break
 				end
