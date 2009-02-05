@@ -57,6 +57,7 @@ Z["Windrunner Overlook"] = "风行者观察站"
 
 -- Dalaran
 Z["Sunreaver's Sanctuary"] = "夺日者圣殿"
+Z["The Filthy Animal"] = ""
 Z["The Silver Enclave"] = "银色领地"
 
 -- Desolace
@@ -98,9 +99,12 @@ Z["Camp Winterhoof"] = "冬蹄营地"
 Z["Kamagua"] = "卡玛古"
 
 -- Icecrown
+Z["Crusaders' Pinnacle"] = ""
 Z["Orgrim's Hammer"] = ""
+Z["Scourgeholme"] = ""
 Z["The Argent Vanguard"] = ""
 Z["The Skybreaker"] = ""
+Z["Valley of Echoes"] = ""
 
 -- Nagrand
 Z["Aeris Landing"] = "埃瑞斯码头"
