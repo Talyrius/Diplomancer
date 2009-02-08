@@ -1,7 +1,7 @@
 --[[------------------------------------------------------------
 	deDE translations for Diplomancer
 	Contributed by paterbrown
-	Last updated 2009-01-12
+	Last updated 2009-02-07
 --------------------------------------------------------------]]
 
 if GetLocale() ~= "deDE" then return end
@@ -58,7 +58,7 @@ Z["Windrunner Overlook"] = "Windläufers Warte"
 
 -- Dalaran
 Z["Sunreaver's Sanctuary"] = "Sonnenhäschers Zuflucht"
-Z["The Filthy Animal"] = ""
+Z["The Filthy Animal"] = "Das Rattenloch"
 Z["The Silver Enclave"] = "Die Silberne Enklave"
 
 -- Desolace
@@ -69,7 +69,7 @@ Z["Magram Village"] = "Magram"
 Z["Agmar's Hammer"] = "Agmars Hammer"
 Z["Dragon's Fall"] = "Drachensturz"
 Z["Light's Trust"] = "Die Lichtwarte"
-Z["Moa'ki Harbor"] = "Hafen von Moa'ki"
+Z["Moa'ki Harbor"] = "Hafen Moa'ki"
 Z["Stars' Rest"] = "Sternenruh"
 Z["Venomspite"] = "Gallgrimm"
 Z["Westwind Refugee Camp"] = "Flüchtlingslager von Westwind"
@@ -100,12 +100,12 @@ Z["Camp Winterhoof"] = "Lager der Winterhufe"
 Z["Kamagua"] = "Kamagua"
 
 -- Icecrown
-Z["Crusaders' Pinnacle"] = ""
+Z["Crusaders' Pinnacle"] = "Kreuzfahrerturm"
 Z["Orgrim's Hammer"] = "Orgrims Hammer"
-Z["Scourgeholme"] = ""
+Z["Scourgeholme"] = "Geißelholme"
 Z["The Argent Vanguard"] = "Die Argentumvorhut"
 Z["The Skybreaker"] = "Die Himmelsbrecher"
-Z["Valley of Echoes"] = ""
+Z["Valley of Echoes"] = "Tal der Echos"
 
 -- Nagrand
 Z["Aeris Landing"] = "Aerissteg"
