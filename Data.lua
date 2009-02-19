@@ -6,7 +6,7 @@
 	Copyright © 2007–2009 Alyssa S. Kinley, a.k.a Phanx
 	See included README for license terms and additional information.
 
-	This file provides area-faction mapping 
+	This file provides mapping of zones and subzones to factions.
 --------------------------------------------------------------]]
 local zones = {
 	["Ahn'Qiraj"]				= "Brood of Nozdormu",
@@ -16,7 +16,6 @@ local zones = {
 	["Gates of Ahn'Qiraj"]		= "Cenarion Circle",
 	["Molten Core"]			= "Hydraxian Waterlords",
 	["Moonglade"]				= "Cenarion Circle",
-	["Naxxramas"]				= "Argent Dawn",
 	["Ruins of Ahn'Qiraj"]		= "Cenarion Circle",
 	["Scholomance"]			= "Argent Dawn",
 	["Silithus"]				= "Cenarion Circle",
@@ -231,6 +230,7 @@ if race == "BloodElf" or race == "Orc" or race == "Tauren" or race == "Troll" or
 	zones["Undercity"]			= "Undercity"
 	zones["Warsong Gulch"]		= "Warsong Outriders"
 
+	zones["Eversong Woods"]		= "Silvermoon City"
 	zones["Ghostlands"]			= "Tranquillien"
 	zones["Hellfire Peninsula"]	= "Thrallmar"
 	zones["Hellfire Ramparts"]	= "Thrallmar"
