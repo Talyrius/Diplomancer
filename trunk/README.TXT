@@ -1,6 +1,7 @@
+------------------------------------------------------------------------
 
-Diplomancer is a World of Warcraft user interface addon to automatically
-change your watched faction based on your current location.
+Diplomancer automatically changes which faction you're watching based on
+your current zone, subzone, or (inside instances) tabard.
 
 ------------------------------------------------------------------------
 Download:
@@ -11,15 +12,14 @@ http://wow.curse.com/downloads/wow-addons/details/diplomancer.aspx
 ------------------------------------------------------------------------
 Usage:
 
-Type "/diplomancer" or "/dm" in-game for a listing of available options,
-or open the Interface Options window, select the AddOns tab, and select
-the Diplomancer entry.
+Options are available in the standard Interface Options window. As a
+shortcut, you can type "/diplomancer" or "/dm" to open the window and
+jump directly to the Diplomancer panel.
 
 ------------------------------------------------------------------------
 Localizaton:
 
 Compatible with: enUS, enGB, zhCN
-
 Translated into: enUS, enGB, zhCN
 
 If you would like to assist with translation for any locale, please see:
@@ -56,19 +56,25 @@ Charnow, whose addon SmartFactionWatch inspired me to write Diplomancer.
 ------------------------------------------------------------------------
 License:
 
-Copyright © 2007-2009 Alyssa S. Kinley, a.k.a. Phanx
+Copyright ©2007–2009 Alyssa "Phanx" Kinley
 
 The contents of this addon, excluding third-party resources, are copyrighted
-to its author with all rights reserved under United States and international 
-copyright law. You are hereby granted the following permissions, and agree
-to be bound by the following terms:
+to its author with all rights reserved under United States copyright law and
+international treaty. Copyright law specifies these rights and restrictions:
 
-You MAY download, install, run, and make modifications to this addon for your
-own personal use.
+You may download, install, and run this addon for private use.
 
-You MAY NOT redistribute this addon, modified or unmodified, including as part
-of a compilation, without the express prior consent of its author.
+You may NOT redistribute this addon, with or without modification, including
+as part of a compilation, without the written prior consent of its author.
 
-You MAY use code from this addon, in whole or in part, in your own addon,
-provided that the name and code of your addon contain no references to the name
-of this addon or its author.
+The author of this addon hereby grants you the following additional rights:
+
+You may make modifications to a local copy of this addon for private use.
+
+You may use source code from this addon, in whole or in part, in your own
+addon or for any other purpose, provided that no references to the name of
+this addon or its author appear in the title, source code, or file names of
+your project, and that the names of this addon and its author are not used
+to promote your project.
+
+------------------------------------------------------------------------

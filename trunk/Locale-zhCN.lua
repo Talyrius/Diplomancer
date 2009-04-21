@@ -215,5 +215,5 @@ for k, v in pairs(Z) do
 	end
 end
 
-DIPLOMANCER_STRINGS = L
-DIPLOMANCER_SUBZONES = Z
+DiplomancerStrings = L
+DiplomancerSubzoneNames = Z

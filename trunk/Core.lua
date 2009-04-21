@@ -2,19 +2,19 @@
 	Diplomancer
 	Automatically sets your watched faction based on your location.
 	by Phanx < addons@phanx.net >
-	Copyright © 2007-2008 Alyssa S. Kinley, a.k.a. Phanx
+	Copyright ©2007–2009 Alyssa "Phanx" Kinley
 	See included README for license terms and additional information.
 ----------------------------------------------------------------------]]
 
 local Diplomancer = CreateFrame("Frame", "Diplomancer")
 Diplomancer.version = tonumber(GetAddOnMetadata("Diplomancer", "Version"))
 Diplomancer:SetScript("OnEvent", function(self, event, ...) if self[event] then return self[event](self, ...)	end end)
-Diplomancer:RegisterEvent("PLAYER_ENTERING_WORLD")
+Diplomancer:RegisterEvent("ADDON_LOADED")
 
 local db, zones, subzones, champions, racial, onTaxi
 
-local L = setmetatable(DIPLOMANCER_STRINGS or {}, { __index = function(t, k) rawset(t, k, k) return k end })
-if DIPLOMANCER_STRINGS then DIPLOMANCER_STRINGS = nil end
+local L = setmetatable(DiplomancerStrings or { }, { __index = function(t, k) rawset(t, k, k) return k end })
+if DiplomancerStrings then DiplomancerStrings = nil end
 
 local function Print(text)
 	print("|cff33ff99Diplomancer:|r "..text)
@@ -27,8 +27,10 @@ end
 --[[------------------------------------------------------------
 	Initialize
 --------------------------------------------------------------]]
-function Diplomancer:PLAYER_ENTERING_WORLD()
-	-- Debug("PLAYER_ENTERING_WORLD")
+function Diplomancer:ADDON_LOADED(addon)
+	if addon ~= "Diplomancer" then return end
+	-- Debug("ADDON_LOADED")
+
 	zones, subzones, champions, racial = self:GetData()
 
 	local defaults = {
@@ -51,6 +53,17 @@ function Diplomancer:PLAYER_ENTERING_WORLD()
 	end
 	db = DiplomancerSettings
 
+	self:UnregisterEvent("ADDON_LOADED")
+	self.ADDON_LOADED = nil
+	
+	if IsLoggedIn() then
+		self:PLAYER_LOGIN()
+	else
+		self:RegisterEvent("PLAYER_LOGIN")
+	end
+end
+
+function Diplomancer:PLAYER_LOGIN()
 	if UnitOnTaxi("player") then
 		onTaxi = true
 	else
@@ -63,8 +76,8 @@ function Diplomancer:PLAYER_ENTERING_WORLD()
 	self:RegisterEvent("ZONE_CHANGED_INDOORS")
 	self:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 
-	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
-	self.PLAYER_ENTERING_WORLD = nil
+	self:UnregisterEvent("PLAYER_LOGIN")
+	self.PLAYER_LOGIN = nil
 end
 
 --[[------------------------------------------------------------

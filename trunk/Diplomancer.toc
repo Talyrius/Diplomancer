@@ -1,5 +1,5 @@
-## Interface: 30000
-## Version: 3.0.8.wowi:revision
+## Interface: 30100
+## Version: 3.1.0.wowi:revision
 
 ## Title: Diplomancer
 ## Notes: Automatically watch your current location's faction.
@@ -13,8 +13,11 @@
 ## X-Email: addons@phanx.net
 ## X-Credits: Inspired by Charnow's SmartFactionWatch
 
-## SavedVariablesPerCharacter: DiplomancerSettings
+## LoadManagers: AddonLoader
+## X-LoadOn-Always: delayed
+
 ## OptionalDependencies: LibBabble-Faction-3.0, LibBabble-Zone-3.0
+## SavedVariablesPerCharacter: DiplomancerSettings
 
 Locale-deDE.lua
 Locale-zhCN.lua
