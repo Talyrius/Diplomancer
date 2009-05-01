@@ -440,9 +440,7 @@ f:SetScript("OnShow", function()
 	end)
 	verbose:SetChecked(db.verbose)
 
-	if LibStub and LibStub("tekKonfig-AboutPanel", true) then
-		LibStub("tekKonfig-AboutPanel").new("Diplomancer", f.name)
-	end
+	LibStub("LibAboutPanel").new(f.name, "Diplomancer")
 
 	f:SetScript("OnShow", nil)
 end)
