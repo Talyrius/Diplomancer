@@ -3,7 +3,7 @@
 	Automatically sets your watched faction based on your location.
 	by Phanx < addons@phanx.net >
 	Copyright ©2007–2009 Alyssa "Phanx" Kinley
-	See included README for license terms and additional information.
+	See accompanying README for license terms and other information.
 ----------------------------------------------------------------------]]
 
 local Diplomancer = CreateFrame("Frame", "Diplomancer")
