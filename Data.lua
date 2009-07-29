@@ -243,6 +243,7 @@ if race == "BloodElf" or race == "Orc" or race == "Tauren" or race == "Troll" or
 	zones["Borean Tundra"]		= "Warsong Offensive"
 	zones["Grizzly Hills"]		= "Warsong Offensive"
 	zones["Howling Fjord"]		= "The Hand of Vengeance"
+	zones["Trial of the Crusader"]= "The Sunreavers"
 
 	subzones["Durotar"]["Sen'jin Village"]				= "Darkspear Trolls"
 
@@ -307,6 +308,7 @@ else
 	zones["Borean Tundra"]		= "Valiance Expedition"
 	zones["Grizzly Hills"]		= "Valiance Expedition"
 	zones["Howling Fjord"]		= "Valiance Expedition"
+	zones["Trial of the Crusader"]="The Silver Covenant"
 
 	subzones["Winterspring"]["Frostsaber Rock"]			= "Wintersaber Trainers"
 

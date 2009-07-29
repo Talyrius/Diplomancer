@@ -7,11 +7,10 @@
 ----------------------------------------------------------------------]]
 
 local Diplomancer = CreateFrame("Frame", "Diplomancer")
-Diplomancer.version = tonumber(GetAddOnMetadata("Diplomancer", "Version"))
 Diplomancer:SetScript("OnEvent", function(self, event, ...) if self[event] then return self[event](self, ...)	end end)
 Diplomancer:RegisterEvent("ADDON_LOADED")
 
-local db, zones, subzones, champions, racial, onTaxi
+local db, zones, subzones, champions, racial, playerLevel, onTaxi, taxiEnded
 
 local L = setmetatable(DiplomancerStrings or { }, { __index = function(t, k) rawset(t, k, k) return k end })
 if DiplomancerStrings then DiplomancerStrings = nil end
@@ -21,7 +20,7 @@ local function Print(text)
 end
 
 local function Debug(text)
-	ChatFrame7:AddMessage("|cffff3399[DEBUG] Diplomancer:|r "..text)
+	print("|cffff3399[DEBUG] Diplomancer:|r "..text)
 end
 
 --[[------------------------------------------------------------
@@ -32,26 +31,24 @@ function Diplomancer:ADDON_LOADED(addon)
 	-- Debug("ADDON_LOADED")
 
 	zones, subzones, champions, racial = self:GetData()
+	self.GetData = nil
 
 	local defaults = {
 		default = nil, -- custom faction to fallback to; default = racial
 		exalted = nil, -- ignore factions already at Exalted; default = no
 		verbose = nil, -- print messages when changing factions; default = no
-		version = self.version,
 	}
 	if not DiplomancerSettings then
 		DiplomancerSettings = defaults
-	elseif DiplomancerSettings.version ~= self.version then
-		local temp = defaults
-		for k, v in pairs(DiplomancerSettings) do
-			if defaults[k] then
-				temp[k] = v
+		db = DiplomancerSettings
+	else
+		db = DiplomancerSettings
+		for k, v in pairs(defaults) do
+			if type(db[k]) ~= type(v) then
+				db[k] = v
 			end
 		end
-		temp.version = self.version
-		DiplomancerSettings = temp
 	end
-	db = DiplomancerSettings
 
 	self:UnregisterEvent("ADDON_LOADED")
 	self.ADDON_LOADED = nil
@@ -64,13 +61,14 @@ function Diplomancer:ADDON_LOADED(addon)
 end
 
 function Diplomancer:PLAYER_LOGIN()
+	playerLevel = UnitLevel("player")
+
 	if UnitOnTaxi("player") then
 		onTaxi = true
 	else
 		self:Update()
 	end
 
-	self:RegisterEvent("PLAYER_CONTROL_LOST")
 	self:RegisterEvent("PLAYER_CONTROL_GAINED")
 	self:RegisterEvent("ZONE_CHANGED")
 	self:RegisterEvent("ZONE_CHANGED_INDOORS")
@@ -83,21 +81,23 @@ end
 --[[------------------------------------------------------------
 	Check taxi status
 --------------------------------------------------------------]]
-function Diplomancer:PLAYER_CONTROL_LOST()
-	-- Debug("PLAYER_CONTROL_LOST")
-	if UnitOnTaxi("player") then
-		-- Debug("Now on taxi")
-		onTaxi = true
-	end
-end
-
 function Diplomancer:PLAYER_CONTROL_GAINED()
 	-- Debug("PLAYER_CONTROL_GAINED")
 	if onTaxi then
 		-- Debug("No longer on taxi")
 		onTaxi = false
+		taxiEnded = true
 		self:Update()
 	end
+end
+
+--[[------------------------------------------------------------
+	Check taxi status
+--------------------------------------------------------------]]
+function Diplomancer:PLAYER_LEVEL_UP(level)
+	-- Debug("PLAYER_LEVEL_UP")
+	playerLevel = level or UnitLevel("player")
+	self:Update()
 end
 
 --[[------------------------------------------------------------
@@ -119,8 +119,11 @@ function Diplomancer:ZONE_CHANGED_NEW_AREA()
 end
 
 function Diplomancer:Update()
-	if onTaxi then
+	if taxiEnded then
+		taxiEnded = false
+	elseif UnitOnTaxi("player") then
 		-- Debug("On taxi; skipping update")
+		onTaxi = true
 		return
 	end
 
@@ -128,24 +131,11 @@ function Diplomancer:Update()
 	-- Debug("zone = "..zone.."; subzone = "..subzone)
 
 	local faction
-	if subzones[zone] and subzones[zone][subzone] then
-		faction = subzones[zone][subzone]
-		-- Debug("Setting watch on "..faction.." (subzone)")
-	elseif zones[zone] then
-		faction = zones[zone]
-		-- Debug("Setting watch on "..faction.." (zone)")
-	elseif db.default then
-		faction = db.default
-		-- Debug("Setting watch on "..faction.." (default)")
-	else
-		faction = racial
-		-- Debug("Setting watch on "..faction.." (racial)")
-	end
 
-	if UnitLevel("player") == 80 then
-		local _, instance = IsInInstance()
-		-- Debug("UnitLevel 80, IsInInstance " .. instance)
-		if instance and instance == "party" then
+	if playerLevel == 80 then
+		local _, instanceType = IsInInstance()
+		-- Debug("UnitLevel 80, IsInInstance " .. instanceType)
+		if instanceType and instanceType == "party" then
 			for aura, champion in pairs(champions) do
 				if UnitAura("player", aura) then
 					-- Debug("Setting watch on " .. champion .. " (champion)")
@@ -153,6 +143,22 @@ function Diplomancer:Update()
 					break
 				end
 			end
+		end
+	end
+	
+	if not faction then
+		if subzones[zone] and subzones[zone][subzone] then
+			faction = subzones[zone][subzone]
+			-- Debug("Setting watch on "..faction.." (subzone)")
+		elseif zones[zone] then
+			faction = zones[zone]
+			-- Debug("Setting watch on "..faction.." (zone)")
+		elseif db.default then
+			faction = db.default
+			-- Debug("Setting watch on "..faction.." (default)")
+		else
+			faction = racial
+			-- Debug("Setting watch on "..faction.." (racial)")
 		end
 	end
 
