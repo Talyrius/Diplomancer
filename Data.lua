@@ -81,6 +81,8 @@ local subzones = {
 	["Borean Tundra"] = {
 		["Amber Ledge"]		= "Kirin Tor",
 		["D.E.H.T.A. Encampment"]= "Cenarion Expedition",
+		["Kaskala"]			= "The Kalu'ak",
+		["Njord's Breath Bay"]	= "The Kalu'ak",
 		["Transitus Shield"]	= "Kirin Tor",
 		["Unu'pe"]			= "The Kalu'ak",
 	},
