@@ -47,6 +47,8 @@ Z["Vortex Pinnacle"] = "漩涡峰"
 -- Borean Tundra
 Z["Amber Ledge"] = "琥珀崖"
 Z["D.E.H.T.A. Encampment"] = "仁德会营地"
+Z["Kaskala"] = ""
+Z["Njord's Breath Bay"] = ""
 Z["Taunka'le Village"] = "牦牛村"
 Z["Transitus Shield"] = "永生之盾"
 Z["Unu'pe"] = "乌努比"

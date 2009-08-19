@@ -48,6 +48,8 @@ Z["Vortex Pinnacle"] = "Vortexgipfel"
 -- Borean Tundra
 Z["Amber Ledge"] = "Bernsteinflöz"
 Z["D.E.H.T.A. Encampment"] = "Lager der D.E.H.T.A."
+Z["Kaskala"] = ""
+Z["Njord's Breath Bay"] = ""
 Z["Taunka'le Village"] = "Taunka'le"
 Z["Transitus Shield"] = "Transitusschild"
 Z["Unu'pe"] = "Unu'pe"
