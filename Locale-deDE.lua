@@ -86,6 +86,7 @@ Z["Acherus: The Ebon Hold"] = "Acherus: Die Schwarze Festung"
 -- Felwood
 Z["Deadwood Village"] = "Lager der Totenwaldfelle"
 Z["Felpaw Village"] = "Revier der Teufelspfoten"
+Z["Timbermaw Hold"] = ""
 
 -- Grizzly Hills
 Z["Camp Oneqwah"] = "Camp Oneqwah"

@@ -109,6 +109,7 @@ local subzones = {
 	["Felwood"] = {
 		["Deadwood Village"]	= "Timbermaw Hold",
 		["Felpaw Village"]		= "Timbermaw Hold",
+		["Timbermaw Hold"]		= "Timbermaw Hold",
 	},
 	["Grizzly Hills"] = {
 		-- Faction-specific, filled in later
