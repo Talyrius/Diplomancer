@@ -85,6 +85,7 @@ Z["Acherus: The Ebon Hold"] = "黑风要塞阿彻鲁斯"
 -- Felwood
 Z["Deadwood Village"] = "死木村"
 Z["Felpaw Village"] = "魔爪村"
+Z["Timbermaw Hold"] = ""
 
 -- Grizzly Hills
 Z["Camp Oneqwah"] = "欧尼瓦营地"
