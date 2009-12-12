@@ -1,5 +1,5 @@
-## Interface: 30200
-## Version: 3.2.0.wowi:revision
+## Interface: 30300
+## Version: 3.3.0.wowi:revision
 
 ## Title: Diplomancer
 ## Notes: Automatically watch your current location's faction.
