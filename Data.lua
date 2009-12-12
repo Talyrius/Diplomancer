@@ -2,9 +2,9 @@
 	Diplomancer
 	Automatically watches the current area's faction.
 	by Phanx < addons@phanx.net >
-	http://www.wowinterface.com/downloads/info9643-Diplomancer.html
 	Copyright ©2007–2009 Alyssa "Phanx" Kinley
-	See included README for license terms and additional information.
+	http://www.wowinterface.com/downloads/info9643-Diplomancer.html
+	http://wow.curse.com/downloads/wow-addons/details/diplomancer.aspx
 
 	This file provides mapping of zones and subzones to factions.
 --------------------------------------------------------------]]
@@ -14,13 +14,13 @@ local zones = {
 	["Dire Maul"]				= "Shen'dralar",
 	["Eastern Plaguelands"]		= "Argent Dawn",
 	["Gates of Ahn'Qiraj"]		= "Cenarion Circle",
-	["Molten Core"]			= "Hydraxian Waterlords",
+	["Molten Core"]				= "Hydraxian Waterlords",
 	["Moonglade"]				= "Cenarion Circle",
 	["Ruins of Ahn'Qiraj"]		= "Cenarion Circle",
-	["Scholomance"]			= "Argent Dawn",
+	["Scholomance"]				= "Argent Dawn",
 	["Silithus"]				= "Cenarion Circle",
 	["Stratholme"]				= "Argent Dawn",
-	["Tanaris"]				= "Gadgetzan",
+	["Tanaris"]					= "Gadgetzan",
 	["Western Plaguelands"]		= "Argent Dawn",
 	["Winterspring"]			= "Everlook",
 	["Zul'Gurub"]				= "Zandalar Tribe",
@@ -35,9 +35,9 @@ local zones = {
 	["Karazhan"]				= "The Violet Eye",
 	["Magisters' Terrace"]		= "Shattered Sun Offensive",
 	["Mana-Tombs"]				= "The Consortium",
-	["Netherstorm"]			= "The Consortium",
+	["Netherstorm"]				= "The Consortium",
 	["Old Hillsbrad Foothills"]	= "Keepers of Time",
-	["Serpentshrine Cavern"]		= "Cenarion Expedition",
+	["Serpentshrine Cavern"]	= "Cenarion Expedition",
 	["Sethekk Halls"]			= "Lower City",
 	["Shadow Labyrinth"]		= "Lower City",
 	["Shadowmoon Valley"]		= "Netherwing",
@@ -48,15 +48,15 @@ local zones = {
 	["The Arcatraz"]			= "The Sha'tar",
 	["The Black Morass"]		= "Keepers of Time",
 	["The Botanica"]			= "The Sha'tar",
-	["The Eye"]				= "The Sha'tar",
+	["The Eye"]					= "The Sha'tar",
 	["The Mechanar"]			= "The Sha'tar",
 	["The Slave Pens"]			= "Cenarion Expedition",
 	["The Steamvault"]			= "Cenarion Expedition",
 	["The Underbog"]			= "Cenarion Expedition",
-	["Zangarmarsh"]			= "Cenarion Expedition",
+	["Zangarmarsh"]				= "Cenarion Expedition",
 
 	["Crystalsong Forest"]		= "Kirin Tor",
-	["Dalaran"]				= "Kirin Tor",
+	["Dalaran"]					= "Kirin Tor",
 	["Dragonblight"]			= "The Wyrmrest Accord",
 	["Icecrown"]				= "Knights of the Ebon Blade",
 	["The Storm Peaks"]			= "The Sons of Hodir",
@@ -67,24 +67,24 @@ local subzones = {
 	["Azshara"] = {
 		["Bay of Storms"]		= "Hydraxian Waterlords",
 		["Timbermaw Hold"]		= "Timbermaw Hold",
-		["Ursolan"]			= "Timbermaw Hold",
+		["Ursolan"]				= "Timbermaw Hold",
 	},
 	["Blade's Edge Mountains"] = {
 		["Evergrove"]			= "Cenarion Expedition",
 		["Forge Camp: Terror"]	= "Ogri'la",
 		["Forge Camp: Wrath"]	= "Ogri'la",
-		["Ogri'la"]			= "Ogri'la",
-		["Ruuan Weald"]		= "Cenarion Expedition",
+		["Ogri'la"]				= "Ogri'la",
+		["Ruuan Weald"]			= "Cenarion Expedition",
 		["Shartuul's Transporter"]	= "Ogri'la",
 		["Vortex Pinnacle"]		= "Ogri'la",
 	},
 	["Borean Tundra"] = {
-		["Amber Ledge"]		= "Kirin Tor",
+		["Amber Ledge"]			= "Kirin Tor",
 		["D.E.H.T.A. Encampment"]= "Cenarion Expedition",
-		["Kaskala"]			= "The Kalu'ak",
+		["Kaskala"]				= "The Kalu'ak",
 		["Njord's Breath Bay"]	= "The Kalu'ak",
 		["Transitus Shield"]	= "Kirin Tor",
-		["Unu'pe"]			= "The Kalu'ak",
+		["Unu'pe"]				= "The Kalu'ak",
 	},
 	["Crystalsong Forest"] = {
 		-- Faction-specific, filled in later
@@ -116,10 +116,10 @@ local subzones = {
 	},
 	["Hellfire Peninsula"] = {
 		["Cenarion Post"]		= "Cenarion Circle",
-		["Throne of Kil'jaeden"]	= "Shattered Sun Offensive",
+		["Throne of Kil'jaeden"]= "Shattered Sun Offensive",
 	},
 	["Howling Fjord"] = {
-		["Kamagua"]			= "The Kalu'ak",
+		["Kamagua"]				= "The Kalu'ak",
 	},
 	["Icecrown"] = {
 		["The Argent Vanguard"]	= "Argent Crusade",
@@ -139,7 +139,7 @@ local subzones = {
 	},
 	["Shadowmoon Valley"] = {
 		["Altar of Sha'tar"]	= "The Aldor",
-		["Sanctum of the Stars"]	= "The Scryers",
+		["Sanctum of the Stars"]= "The Scryers",
 		["Warden's Cage"]		= "Ashtongue Deathsworn",
 	},
 	["Shattrath City"] = {
@@ -155,7 +155,7 @@ local subzones = {
 		["Mistwhisper Refuge"]	= "The Oracles",
 		["Rainspeaker Canopy"]	= "The Oracles",
 		["Sparktouched Haven"]	= "The Oracles",
-		["Spearborn Encampment"]	= "Frenzyheart Tribe",
+		["Spearborn Encampment"]= "Frenzyheart Tribe",
 	},
 	["Stranglethorn Vale"] = {
 		["Booty Bay"]			= "Booty Bay",
@@ -170,7 +170,7 @@ local subzones = {
 		["Caverns of Time"]		= "Keepers of Time",
 	},
 	["The Barrens"] = {
-		["Ratchet"]			= "Ratchet",
+		["Ratchet"]				= "Ratchet",
 	},
 	["Terokkar Forest"] = {
 		["Blackwind Lake"]		= "Sha'tari Skyguard",
@@ -179,14 +179,14 @@ local subzones = {
 		["Lake Ere'noru"]		= "Sha'tari Skyguard",
 		["Lower Veil Shil'ak"]	= "Sha'tari Skyguard",
 		["Mana Tombs"]			= "The Consortium",
-		["Skettis"]			= "Sha'tari Skyguard",
+		["Skettis"]				= "Sha'tari Skyguard",
 		["Terokk's Rest"]		= "Sha'tari Skyguard",
 		["Upper Veil Shil'ak"]	= "Sha'tari Skyguard",
 		["Veil Ala'rak"]		= "Sha'tari Skyguard",
 		["Veil Harr'ik"]		= "Sha'tari Skyguard",
 	},
 	["Tirisfal Glades"] = {
-		["The Bulwark"]		= "Argent Dawn",
+		["The Bulwark"]			= "Argent Dawn",
 	},
 	["Winterspring"] = {
 		["Frostfire Hot Springs"]= "Timbermaw Hold",
@@ -195,7 +195,7 @@ local subzones = {
 	},
 	["Zangarmarsh"] = {
 		["Funggor Cavern"]		= "Sporeggar",
-		["Quagg Ridge"]		= "Sporeggar",
+		["Quagg Ridge"]			= "Sporeggar",
 		["Sporeggar"]			= "Sporeggar",
 		["The Spawning Glen"]	= "Sporeggar",
 	},
@@ -219,7 +219,7 @@ local _, race = UnitRace("player") -- arg2 is "Scourge" for Undead players
 if race == "BloodElf" or race == "Orc" or race == "Tauren" or race == "Troll" or race == "Scourge" then
 	races["BloodElf"]	= "Silvermoon City"
 	races["Orc"]		= "Orgrimmar"
-	races["Tauren"]	= "Thunder Bluff"
+	races["Tauren"]		= "Thunder Bluff"
 	races["Troll"]		= "Darkspear Trolls"
 	races["Scourge"]	= "Undercity"
 
@@ -239,9 +239,9 @@ if race == "BloodElf" or race == "Orc" or race == "Tauren" or race == "Troll" or
 	zones["Hellfire Ramparts"]	= "Thrallmar"
 	zones["Magtheridon's Lair"]	= "Thrallmar"
 	zones["Nagrand"]			= "The Mag'har"
-	zones["Silvermoon City"]		= "Silvermoon City"
+	zones["Silvermoon City"]	= "Silvermoon City"
 	zones["The Blood Furnace"]	= "Thrallmar"
-	zones["The Shattered Halls"]	= "Thrallmar"
+	zones["The Shattered Halls"]= "Thrallmar"
 
 	zones["Borean Tundra"]		= "Warsong Offensive"
 	zones["Grizzly Hills"]		= "Warsong Offensive"
@@ -250,35 +250,35 @@ if race == "BloodElf" or race == "Orc" or race == "Tauren" or race == "Troll" or
 
 	subzones["Durotar"]["Sen'jin Village"]				= "Darkspear Trolls"
 
-	subzones["Hellfire Peninsula"]["Mag'har Grounds"]		= "The Mag'har"
+	subzones["Hellfire Peninsula"]["Mag'har Grounds"]	= "The Mag'har"
 	subzones["Hellfire Peninsula"]["Mag'har Post"]		= "The Mag'har"
 	subzones["Zangarmarsh"]["Swamprat Post"]			= "Darkspear Trolls"
 	subzones["Zangarmarsh"]["Zabra'jin"]				= "Darkspear Trolls"
 
 	subzones["Borean Tundra"]["Taunka'le Village"]		= "The Taunka"
 	subzones["Crystalsong Forest"]["Sunreaver's Command"]	= "The Sunreavers"
-	subzones["Dalaran"]["Sunreaver's Sanctuary"]			= "The Sunreavers"
+	subzones["Dalaran"]["Sunreaver's Sanctuary"]		= "The Sunreavers"
 	subzones["Dalaran"]["The Filthy Animal"]			= "The Sunreavers"
 	subzones["Dragonblight"]["Agmar's Hammer"]			= "Warsong Offensive"
 	subzones["Dragonblight"]["Dragon's Fall"]			= "Warsong Offensive"
 	subzones["Dragonblight"]["Venomspite"]				= "The Hand of Vengeance"
-	subzones["Dragonblight"]["Westwind Refugee Camp"]		= "The Taunka"
+	subzones["Dragonblight"]["Westwind Refugee Camp"]	= "The Taunka"
 	subzones["Grizzly Hills"]["Camp Oneqwah"]			= "The Taunka"
-	subzones["Howling Fjord"]["Camp Winterhoof"]			= "The Taunka"
+	subzones["Howling Fjord"]["Camp Winterhoof"]		= "The Taunka"
 	subzones["Icecrown"]["Argent Pavilion"]				= "The Sunreavers"
-	subzones["Icecrown"]["Argent Tournament Grounds"]		= "The Sunreavers"
+	subzones["Icecrown"]["Argent Tournament Grounds"]	= "The Sunreavers"
 	subzones["Icecrown"]["Orgrim's Hammer"]				= "Warsong Offensive"
-	subzones["Icecrown"]["Silver Covenant Pavilion"]		= "The Sunreavers"
+	subzones["Icecrown"]["Silver Covenant Pavilion"]	= "The Sunreavers"
 	subzones["Icecrown"]["Sunreaver Pavilion"]			= "The Sunreavers"
 	subzones["Icecrown"]["The Alliance Valiants' Ring"]	= "The Sunreavers"
-	subzones["Icecrown"]["The Argent Valiants' Ring"]		= "The Sunreavers"
+	subzones["Icecrown"]["The Argent Valiants' Ring"]	= "The Sunreavers"
 	subzones["Icecrown"]["The Aspirants' Ring"]			= "The Sunreavers"
-	subzones["Icecrown"]["The Horde Valiants' Ring"]		= "The Sunreavers"
+	subzones["Icecrown"]["The Horde Valiants' Ring"]	= "The Sunreavers"
 	subzones["Icecrown"]["The Ring of Champions"]		= "The Sunreavers"
-	subzones["The Storm Peaks"]["Camp Tunka'lo"]			= "Warsong Offensive"
+	subzones["The Storm Peaks"]["Camp Tunka'lo"]		= "Warsong Offensive"
 	subzones["The Storm Peaks"]["Frostfloe Deep"]		= "Warsong Offensive"
 	subzones["The Storm Peaks"]["Frosthowl Cavern"]		= "Warsong Offensive"
-	subzones["The Storm Peaks"]["Gimorak's Den"]			= "Warsong Offensive"
+	subzones["The Storm Peaks"]["Gimorak's Den"]		= "Warsong Offensive"
 	subzones["The Storm Peaks"]["Grom'arsh Crash-site"]	= "Warsong Offensive"
 	subzones["The Storm Peaks"]["Howling Hollow"]		= "Warsong Offensive"
 	subzones["The Storm Peaks"]["Temple of Life"]		= "Warsong Offensive"
@@ -306,7 +306,7 @@ else
 	zones["Magtheridon's Lair"]	= "Honor Hold"
 	zones["Nagrand"]			= "Kurenai"
 	zones["The Blood Furnace"]	= "Honor Hold"
-	zones["The Shattered Halls"]	= "Honor Hold"
+	zones["The Shattered Halls"]= "Honor Hold"
 
 	zones["Borean Tundra"]		= "Valiance Expedition"
 	zones["Grizzly Hills"]		= "Valiance Expedition"
@@ -315,25 +315,25 @@ else
 
 	subzones["Winterspring"]["Frostsaber Rock"]			= "Wintersaber Trainers"
 
-	subzones["Hellfire Peninsula"]["Temple of Telhamat"]	= "Kurenai"
-	subzones["Zangarmarsh"]["Telredor"]				= "Exodar"
+	subzones["Hellfire Peninsula"]["Temple of Telhamat"]= "Kurenai"
+	subzones["Zangarmarsh"]["Telredor"]					= "Exodar"
 
 	subzones["Crystalsong Forest"]["Windrunner Overlook"]	= "The Silver Covenant"
 	subzones["Dalaran"]["The Silver Enclave"]			= "The Silver Covenant"
 	subzones["Dragonblight"]["Stars' Rest"]				= "Valiance Expedition"
-	subzones["Dragonblight"]["Wintergarde Keep"]			= "Valiance Expedition"
+	subzones["Dragonblight"]["Wintergarde Keep"]		= "Valiance Expedition"
 	subzones["Icecrown"]["Argent Pavilion"]				= "The Silver Covenant"
-	subzones["Icecrown"]["Argent Tournament Grounds"]		= "The Silver Covenant"
-	subzones["Icecrown"]["Silver Covenant Pavilion"]		= "The Silver Covenant"
+	subzones["Icecrown"]["Argent Tournament Grounds"]	= "The Silver Covenant"
+	subzones["Icecrown"]["Silver Covenant Pavilion"]	= "The Silver Covenant"
 	subzones["Icecrown"]["Sunreaver Pavilion"]			= "The Silver Covenant"
 	subzones["Icecrown"]["The Alliance Valiants' Ring"]	= "The Silver Covenant"
-	subzones["Icecrown"]["The Argent Valiants' Ring"]		= "The Silver Covenant"
+	subzones["Icecrown"]["The Argent Valiants' Ring"]	= "The Silver Covenant"
 	subzones["Icecrown"]["The Aspirants' Ring"]			= "The Silver Covenant"
-	subzones["Icecrown"]["The Horde Valiants' Ring"]		= "The Silver Covenant"
+	subzones["Icecrown"]["The Horde Valiants' Ring"]	= "The Silver Covenant"
 	subzones["Icecrown"]["The Ring of Champions"]		= "The Silver Covenant"
 	subzones["Icecrown"]["The Skybreaker"]				= "Valiance Expedition"
 	subzones["The Storm Peaks"]["Frosthold"]			= "The Frostborn"
-	subzones["The Storm Peaks"]["Inventor's Library"]		= "The Frostborn"
+	subzones["The Storm Peaks"]["Inventor's Library"]	= "The Frostborn"
 	subzones["The Storm Peaks"]["Loken's Bargain"]		= "The Frostborn"
 	subzones["The Storm Peaks"]["Mimir's Workshop"]		= "The Frostborn"
 	subzones["The Storm Peaks"]["Narvir's Cradle"]		= "The Frostborn"
@@ -359,7 +359,7 @@ function Diplomancer:GetData()
 	if not SZ then
 		return print("|cff33ff99Diplomancer|r is not yet compatible with your locale, because it is missing the translated names of subzones. To find out how you can help fix this, please see the addon's download page!")
 	elseif not BF or not BZ then
-		return print("|cff33ff99Diplomancer|r requires the LibBabble-Faction-3.0 and LibBabble-Zone-3.0 libraries in order to work in your locale. For information on how to get these files, see the README file in the addon folder.")
+		return print("|cff33ff99Diplomancer|r requires the LibBabble-Faction-3.0 and LibBabble-Zone-3.0 libraries in order to work in your locale. For information on how to get these files, see the README file in the addon's folder.")
 	end
 
 	local missingSZ = {}
