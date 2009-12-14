@@ -1,19 +1,19 @@
---[[------------------------------------------------------------
+--[[--------------------------------------------------------------------
 	deDE translations for Diplomancer
 	Contributed by paterbrown
 	Last updated 2009-02-07
---------------------------------------------------------------]]
+----------------------------------------------------------------------]]
 
 if GetLocale() ~= "deDE" then return end
 local L = {}
 local Z = {}
 
------------------------
--- Interface strings --
------------------------
+------------------------------------------------------------------------
+--	Interface strings
+------------------------------------------------------------------------
 
 L["Inactive"] = "Inaktiv"
--- Important: this must match the in-game name of the Inactive faction group heading in your locale!
+-- This must match the in-game name of the Inactive faction group heading in your locale!
 
 L["Default Faction"] = "Standardfraktion"
 L["Select a faction to watch when your current location doesn't have an associated faction."] = "Wähle eine Standardfraktion, welche angezeigt wird wenn dein Aufenthaltsort nicht mit einer Fraktion verknüpft ist."
@@ -27,9 +27,9 @@ L["Don't watch factions you've already acheived Exalted standing with."] = "Zeig
 L["Enable Notifications"] = "Schalte Benachrichtigungen ein"
 L["Show a message in the chat frame when your watched faction changes."] = "Zeigt eine Meldung im Chatfenster wenn sich die angezeigte Fraktion ändert."
 
--------------------
--- Subzone names --
--------------------
+------------------------------------------------------------------------
+--	Subzone names
+------------------------------------------------------------------------
 
 -- Azshara
 Z["Bay of Storms"] = "Die Bucht der Stürme"
@@ -218,9 +218,9 @@ Z["Zabra'jin"] = "Zabra'Jin"
 -- Zul'Drak
 Z["Ebon Watch"] = "Die Schwarze Wacht"
 
--------------------------------
--- Cleanup and globalization --
--------------------------------
+------------------------------------------------------------------------
+--	Don't touch this.
+------------------------------------------------------------------------
 
 for k, v in pairs(Z) do
 	if v == "" then
@@ -228,5 +228,6 @@ for k, v in pairs(Z) do
 	end
 end
 
-DiplomancerStrings = L
-DiplomancerSubzoneNames = Z
+local _, Diplomancer = ...
+Diplomancer.L = L
+Diplomancer.SubzoneNames = Z

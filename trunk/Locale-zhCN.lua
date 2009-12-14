@@ -1,16 +1,16 @@
---[[------------------------------------------------------------
+--[[--------------------------------------------------------------------
 	zhCN translations for Diplomancer
 	Contributed by VENSTER
 	Last updated 2008-12-26
---------------------------------------------------------------]]
+----------------------------------------------------------------------]]
 
 if GetLocale() ~= "zhCN" then return end
 local L = {}
 local Z = {}
 
------------------------
--- Interface strings --
------------------------
+------------------------------------------------------------------------
+--	Interface strings
+------------------------------------------------------------------------
 
 L["Inactive"] = "未激活"
 
@@ -26,9 +26,9 @@ L["Don't watch factions you've already acheived Exalted standing with."] = "选�
 L["Enable Notifications"] = "开启提示"
 L["Show a message in the chat frame when your watched faction changes."] = "选择是否显示声望监视状态变动"
 
--------------------
--- Subzone names --
--------------------
+------------------------------------------------------------------------
+--	Subzone names
+------------------------------------------------------------------------
 
 -- Azshara
 Z["Bay of Storms"] = "风暴海湾"
@@ -217,9 +217,9 @@ Z["Zabra'jin"] = "萨布拉金"
 -- Zul'Drak
 Z["Ebon Watch"] = "黑锋哨站"
 
--------------------------------
--- Cleanup and globalization --
--------------------------------
+------------------------------------------------------------------------
+--	Don't touch this.
+------------------------------------------------------------------------
 
 for k, v in pairs(Z) do
 	if v == "" then
@@ -227,5 +227,6 @@ for k, v in pairs(Z) do
 	end
 end
 
-DiplomancerStrings = L
-DiplomancerSubzoneNames = Z
+local _, Diplomancer = ...
+Diplomancer.L = L
+Diplomancer.SubzoneNames = Z
