@@ -1,193 +1,167 @@
---[[--------------------------------------------------------------------
-	Diplomancer
-	Automatically watches the current area's faction.
-	by Phanx < addons@phanx.net >
-	Copyright ©2007–2009 Alyssa "Phanx" Kinley
-	http://www.wowinterface.com/downloads/info9643-Diplomancer.html
-	http://wow.curse.com/downloads/wow-addons/details/diplomancer.aspx
-----------------------------------------------------------------------]]
+------------------------------------------------------------------------
 
-local Diplomancer = CreateFrame("Frame", "Diplomancer")
-Diplomancer:SetScript("OnEvent", function(self, event, ...) if self[event] then return self[event](self, ...)	end end)
-Diplomancer:RegisterEvent("ADDON_LOADED")
+local ADDON_NAME, Diplomancer = ...
+Diplomancer.L = Diplomancer.L or { }
+Diplomancer.frame = CreateFrame("Frame", nil, InterfaceOptionsFramePanelContainer)
+Diplomancer.frame.name = GetAddOnInfo(ADDON_NAME, "Title")
+Diplomancer.frame:RegisterEvent("ADDON_LOADED")
+Diplomancer.frame:SetScript("OnEvent", function(self, event, ...) return Diplomancer[event] and Diplomancer[event](Diplomancer, ...) end)
+Diplomancer.frame:Hide()
 
-local db, zones, subzones, champions, racial, playerLevel, onTaxi, taxiEnded
+------------------------------------------------------------------------
 
-local L = setmetatable(DiplomancerStrings or { }, { __index = function(t, k) rawset(t, k, k) return k end })
-if DiplomancerStrings then DiplomancerStrings = nil end
+local db, onTaxi, taxiEnded, championFactions, championZones, racialFaction, subzoneFactions, zoneFactions
+local L = setmetatable(Diplomancer.L, { __index = function(t, s) t[s] = s return s end })
 
-local function Print(text)
-	print("|cff33ff99Diplomancer:|r "..text)
-end
+------------------------------------------------------------------------
 
-local function Debug(text)
-	print("|cffff3399[DEBUG] Diplomancer:|r "..text)
-end
-
---[[------------------------------------------------------------
-	Initialize
---------------------------------------------------------------]]
-function Diplomancer:ADDON_LOADED(addon)
-	if addon ~= "Diplomancer" then return end
-	-- Debug("ADDON_LOADED")
-
-	zones, subzones, champions, racial = self:GetData()
-	self.GetData = nil
-
-	local defaults = {
-		default = nil, -- custom faction to fallback to; default = racial
-		exalted = nil, -- ignore factions already at Exalted; default = no
-		verbose = nil, -- print messages when changing factions; default = no
-	}
-	if not DiplomancerSettings then
-		DiplomancerSettings = defaults
-		db = DiplomancerSettings
-	else
-		db = DiplomancerSettings
-		for k, v in pairs(defaults) do
-			if type(db[k]) ~= type(v) then
-				db[k] = v
-			end
+function Diplomancer:Debug(text, ...)
+	if ... then
+		if text:match("%%") then
+			text = text:format(...)
+		else
+			text = string.join(", ", text, ...)
 		end
 	end
+	print(("|cffff3399[DEBUG] Diplomancer:|r %s"):format(text))
+end
 
-	self:UnregisterEvent("ADDON_LOADED")
+function Diplomancer:Print(text, ...)
+	if ... then
+		if text:match("%%") then
+			text = text:format(...)
+		else
+			text = string.join(", ", text, ...)
+		end
+	end
+	print(("|cffff3399Diplomancer:|r %s"):format(text))
+end
+
+------------------------------------------------------------------------
+
+function Diplomancer:ADDON_LOADED(addon)
+	if addon ~= ADDON_NAME then return end
+	self:Debug("ADDON_LOADED", addon)
+
+	-- db = {
+	-- 	defaultFaction (string)
+	--	ignoreExalted  (boolean)
+	--	verbose        (boolean)
+	-- }
+
+	if not DiplomancerSettings then
+		DiplomancerSettings = defaultDB
+	end
+	db = DiplomancerSettings
+
+	self.frame:UnregisterEvent("ADDON_LOADED")
 	self.ADDON_LOADED = nil
-	
+
 	if IsLoggedIn() then
 		self:PLAYER_LOGIN()
 	else
-		self:RegisterEvent("PLAYER_LOGIN")
+		self.frame:RegisterEvent("PLAYER_LOGIN")
 	end
 end
 
+------------------------------------------------------------------------
+
 function Diplomancer:PLAYER_LOGIN()
-	playerLevel = UnitLevel("player")
+	self:Debug("PLAYER_LOGIN")
+
+	self:LocalizeData()
+
+	championFactions = self.championFactions
+	championZones = self.championZones
+	racialFaction = self.racialFaction
+	subzoneFactions = self.subzoneFactions
+	zoneFactions = self.zoneFactions
+
+	self.frame:RegisterEvent("ZONE_CHANGED")
+	self.frame:RegisterEvent("ZONE_CHANGED_INDOORS")
+	self.frame:RegisterEvent("ZONE_CHANGED_NEW_AREA")
+
+	self.frame:RegisterEvent("PLAYER_CONTROL_GAINED")
+
+	self.frame:UnregisterEvent("PLAYER_LOGIN")
+	self.PLAYER_LOGIN = nil
 
 	if UnitOnTaxi("player") then
 		onTaxi = true
 	else
 		self:Update()
 	end
-
-	self:RegisterEvent("PLAYER_CONTROL_GAINED")
-	self:RegisterEvent("ZONE_CHANGED")
-	self:RegisterEvent("ZONE_CHANGED_INDOORS")
-	self:RegisterEvent("ZONE_CHANGED_NEW_AREA")
-
-	self:UnregisterEvent("PLAYER_LOGIN")
-	self.PLAYER_LOGIN = nil
 end
 
---[[------------------------------------------------------------
-	Check taxi status
---------------------------------------------------------------]]
+------------------------------------------------------------------------
+
+function Diplomancer:Update()
+	self:Debug("Update")
+
+	if taxiEnded then
+		-- This is a hack to work around the fact that UnitOnTaxi still returns true right after PLAYER_CONTROL_GAINED has fired.
+		taxiEnded = false
+	elseif UnitOnTaxi("player") then
+		self:Debug("On taxi. Skipping update.")
+		onTaxi = true
+		return
+	end
+
+	local faction
+	local zone = GetRealZoneText()
+
+	if championZones[zone] and select(2, IsInInstance()) == "party" then
+		for k, v in pairs(championFactions) do
+			if UnitBuff("player", k) then
+				faction = v
+				break
+			end
+		end
+	end
+
+	if not faction then
+		local subzone = GetSubZoneText()
+		faction = subzone and subzoneFactions[zone] and subzoneFactions[zone][subzone]
+	end
+
+	if not faction then
+		faction = zoneFactions[zone]
+	end
+
+	self:SetWatchedFactionByName(faction or db.defaultFaction or racialFaction, db.verbose)
+end
+
+Diplomancer.ZONE_CHANGED = Diplomancer.Update
+Diplomancer.ZONE_CHANGED_INDOORS = Diplomancer.Update
+Diplomancer.ZONE_CHANGED_NEW_AREA = Diplomancer.Update
+
+------------------------------------------------------------------------
+
 function Diplomancer:PLAYER_CONTROL_GAINED()
-	-- Debug("PLAYER_CONTROL_GAINED")
+	self:Debug("PLAYER_CONTROL_GAINED")
+
 	if onTaxi then
-		-- Debug("No longer on taxi")
 		onTaxi = false
 		taxiEnded = true
 		self:Update()
 	end
 end
 
---[[------------------------------------------------------------
-	Check taxi status
---------------------------------------------------------------]]
-function Diplomancer:PLAYER_LEVEL_UP(level)
-	-- Debug("PLAYER_LEVEL_UP")
-	playerLevel = level or UnitLevel("player")
-	self:Update()
-end
+------------------------------------------------------------------------
 
---[[------------------------------------------------------------
-	Update watched faction for the current zone
---------------------------------------------------------------]]
-function Diplomancer:ZONE_CHANGED()
-	-- Debug("ZONE_CHANGED")
-	self:Update()
-end
-
-function Diplomancer:ZONE_CHANGED_INDOORS()
-	-- Debug("ZONE_CHANGED_INDOORS")
-	self:Update()
-end
-
-function Diplomancer:ZONE_CHANGED_NEW_AREA()
-	-- Debug("ZONE_CHANGED_NEW_AREA")
-	self:Update()
-end
-
-function Diplomancer:Update()
-	if taxiEnded then
-		taxiEnded = false
-	elseif UnitOnTaxi("player") then
-		-- Debug("On taxi; skipping update")
-		onTaxi = true
-		return
-	end
-
-	local zone, subzone = GetRealZoneText(), GetSubZoneText()
-	-- Debug("zone = "..zone.."; subzone = "..subzone)
-
-	local faction
-
-	if playerLevel == 80 then
-		local _, instanceType = IsInInstance()
-		-- Debug("UnitLevel 80, IsInInstance " .. instanceType)
-		if instanceType and instanceType == "party" then
-			for aura, champion in pairs(champions) do
-				if UnitAura("player", aura) then
-					-- Debug("Setting watch on " .. champion .. " (champion)")
-					faction = champion
-					break
-				end
-			end
-		end
-	end
-	
-	if not faction then
-		if subzones[zone] and subzones[zone][subzone] then
-			faction = subzones[zone][subzone]
-			-- Debug("Setting watch on "..faction.." (subzone)")
-		elseif zones[zone] then
-			faction = zones[zone]
-			-- Debug("Setting watch on "..faction.." (zone)")
-		elseif db.default then
-			faction = db.default
-			-- Debug("Setting watch on "..faction.." (default)")
-		else
-			faction = racial
-			-- Debug("Setting watch on "..faction.." (racial)")
-		end
-	end
-
-	if faction ~= tostring(GetWatchedFactionInfo()) then
-		self:SetWatchedFactionByName(faction)
-	end
-end
-
---[[------------------------------------------------------------
-	Set watched faction by name
-	Arguments:
-		faction	- exact faction name to set (case sensitive)
-	Returns:
-		set		- whether or not faction was found and set
-		faction	- name of faction set (nil if none)
---------------------------------------------------------------]]
-function Diplomancer:SetWatchedFactionByName(name)
-	if name == nil or type(name) ~= "string" or name == "" then return end
+local factionHeaderStatus = { }
+function Diplomancer:SetWatchedFactionByName(faction, verbose)
+	if type(faction) ~= "string" or faction:len() == 0 then return end
 
 	self:ExpandFactionHeaders()
 
-	local faction, _, standing
+	local faction, standing, _
 	for i = 1, GetNumFactions() do
 		faction, _, standing = GetFactionInfo(i)
 		if faction == name and (standing < 8 or not db.ignoreExalted) then
 			SetWatchedFactionIndex(i)
 			if db.verbose then
-				Print("Now watching "..faction..".")
+				self:Print("Now watching %s.", faction)
 			end
 			return true, name
 		end
@@ -196,34 +170,26 @@ function Diplomancer:SetWatchedFactionByName(name)
 	return false
 end
 
---[[------------------------------------------------------------
-	Get faction name from search term
-	Arguments:
-		search - partial faction name to match on
-	Returns:
-		found - whether or not a matching faction was found
-		faction - name of faction found (nil if none)
---------------------------------------------------------------]]
-function Diplomancer:FindFactionName(search)
-	if not search or not type(search) == "string" or search == "" then return end
-	search = search:lower()
+------------------------------------------------------------------------
 
-	self:ExpandFactionHeaders()
+function Diplomancer:GetFactionNameMatch(text)
+	if type(text) == "string" and text:len() > 0 then
+		text = text:lower()
 
-	local name
-	for i = 1, GetNumFactions() do
-		name = GetFactionInfo(i)
-		if name:lower():find(search) then
-			return true, name
+		self:ExpandFactionHeaders()
+
+		local faction
+		for i = 1, GetNumFactions() do
+			faction = GetFactionInfo(i)
+			if faction:lower():match(text) then
+				return faction
+			end
 		end
 	end
-
-	return false
 end
 
---[[------------------------------------------------------------
-	Expand active faction headers
---------------------------------------------------------------]]
+------------------------------------------------------------------------
+
 function Diplomancer:ExpandFactionHeaders()
 	local name, isHeader, isCollapsed, _
 	local n = GetNumFactions()
@@ -244,99 +210,119 @@ function Diplomancer:ExpandFactionHeaders()
 	end
 end
 
---[[------------------------------------------------------------
-	Options
-	Widget creation adapted from Tekkub's tekKonfig libraries
---------------------------------------------------------------]]
+------------------------------------------------------------------------
 
-local f = CreateFrame("Frame", nil, InterfaceOptionsFramePanelContainer)
-f.name = "Diplomancer"
-f:Hide()
-f:SetScript("OnShow", function()
-	local title = f:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
+Diplomancer.frame:SetScript("OnShow", function(self)
+	local title, subtitle, defaultLabel, defaultDropdown, ltex, mtex, rtex, defaultButton, exaltedCheckbox, verboseCheckbox
+
+	--------------------------------------------------------------------
+
+	title = self:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
 	title:SetPoint("TOPLEFT", 16, -16)
-	title:SetText(f.name)
+	title:SetText(self.name)
 
-	local subtitle = f:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
+	subtitle = self:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
 	subtitle:SetHeight(32)
 	subtitle:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -8)
 	subtitle:SetPoint("RIGHT", f, -32, 0)
 	subtitle:SetNonSpaceWrap(true)
 	subtitle:SetJustifyH("LEFT")
 	subtitle:SetJustifyV("TOP")
-	subtitle:SetText(GetAddOnMetadata("Diplomancer", "Notes"))
+	subtitle:SetText(GetAddOnMetadata(ADDON_NAME, "Notes"))
 
-	local function OnEnter(self)
-		if self.tiptext then
+	--------------------------------------------------------------------
+
+	local Widget_OnEnter = function(self)
+		if self.desc then
 			GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
-			GameTooltip:SetText(self.tiptext, nil, nil, nil, nil, true)
+			GameTooltip:AddLine(self.name, 1, 0.8, 0)
+			GameTooltip:AddLine(self.desc, 1, 1, 1)
 		end
 	end
 
-	local function OnLeave()
+	local Widget_OnLeave()
 		GameTooltip:Hide()
 	end
 
-	local reset
+	--------------------------------------------------------------------
 
-	local defaultlabel = f:CreateFontString(nil, "ARTWORK", "GameFontNormal")
-	defaultlabel:SetPoint("TOPLEFT", subtitle, "BOTTOMLEFT", 0, -8)
-	defaultlabel:SetText(L["Default Faction"])
+	defaultLabel = self:CreateFontString(nil, "ARTWORK", "GameFontNormal")
+	defaultLabel:SetPoint("TOPLEFT", subtitle, "BOTTOMLEFT", 0, -8)
+	defaultLabel:SetText(L["Default faction"])
 
-	local default = CreateFrame("Frame", "DiplomancerDropdown", f)
-	default.tiptext = L["Select a faction to watch when your current location doesn't have an associated faction."]
-	default:SetPoint("TOPLEFT", defaultlabel, "BOTTOMLEFT", -20, -2)
-	default:SetWidth(199)
-	default:SetHeight(32)
-	default:EnableMouse(true)
-	default:SetScript("OnEnter", OnEnter)
-	default:SetScript("OnLeave", OnLeave)
-	default:SetScript("OnHide", function() CloseDropDownMenus() end)
+	defaultDropdown = CreateFrame("Frame", "DiplomancerDefaultFactionDropdown", self)
+	defaultDropdown:SetPoint("TOPLEFT", defaultlabel, "BOTTOMLEFT", -20, -2)
+	defaultDropdown:SetWidth(199)
+	defaultDropdown:SetHeight(32)
+	defaultDropdown:EnableMouse(true)
 
-	local ltex = default:CreateTexture("DiplomancerDropdownLeft", "ARTWORK")
+	defaultDropdown:SetScript("OnEnter", Widget_OnEnter)
+	defaultDropdown:SetScript("OnLeave", Widget_OnLeave)
+	defaultDropdown:SetScript("OnHide", function() CloseDropDownMenus() end)
+
+	defaultDropdown.desc = L["Select a faction to watch when your current location doesn't have an associated faction."]
+
+	ltex = defaultDropdown:CreateTexture("DiplomancerDropdownLeft", "ARTWORK")
 	ltex:SetPoint("TOPLEFT", 0, 17)
 	ltex:SetWidth(25)
 	ltex:SetHeight(64)
 	ltex:SetTexture("Interface\\Glues\\CharacterCreate\\CharacterCreate-LabelFrame")
 	ltex:SetTexCoord(0, 0.1953125, 0, 1)
 
-	local mtex = default:CreateTexture(nil, "ARTWORK")
+	mtex = defaultDropdown:CreateTexture(nil, "ARTWORK")
 	mtex:SetPoint("LEFT", ltex, "RIGHT")
 	mtex:SetWidth(165)
 	mtex:SetHeight(64)
 	mtex:SetTexture("Interface\\Glues\\CharacterCreate\\CharacterCreate-LabelFrame")
 	mtex:SetTexCoord(0.1953125, 0.8046875, 0, 1)
 
-	local rtex = default:CreateTexture(nil, "ARTWORK")
+	rtex = defaultDropdown:CreateTexture(nil, "ARTWORK")
 	rtex:SetPoint("LEFT", mtex, "RIGHT")
 	rtex:SetWidth(25)
 	rtex:SetHeight(64)
 	rtex:SetTexture("Interface\\Glues\\CharacterCreate\\CharacterCreate-LabelFrame")
 	rtex:SetTexCoord(0.8046875, 1, 0, 1)
 
-	local defaulttext = default:CreateFontString("DiplomancerDropdownText", "ARTWORK", "GameFontHighlightSmall")
-	defaulttext:SetPoint("RIGHT", rtex, -43, 2)
-	defaulttext:SetWidth(0)
-	defaulttext:SetHeight(10)
-	defaulttext:SetJustifyH("RIGHT")
-	defaulttext:SetText(db.default or racial)
+	defaultDropdown.text = defaultDropdown:CreateFontString("DiplomancerDropdownText", "ARTWORK", "GameFontHighlightSmall")
+	defaultDropdown.text:SetPoint("RIGHT", rtex, -43, 2)
+	defaultDropdown.text:SetWidth(0)
+	defaultDropdown.text:SetHeight(10)
+	defaultDropdown.text:SetJustifyH("RIGHT")
+	defaultDropdown.text:SetText(db.defaultFaction or racialFaction)
 
-	local button = CreateFrame("Button", nil, default)
-	button:SetWidth(24)
-	button:SetHeight(24)
-	button:SetPoint("TOPRIGHT", rtex, -16, -18)
-	button:SetScript("OnEnter", OnEnter)
-	button:SetScript("OnLeave", OnLeave)
-	button:SetScript("OnClick", function(self)
-		ToggleDropDownMenu(nil, nil, default)
+	defaultDropdown.button = CreateFrame("Button", nil, default)
+	defaultDropdown.button:SetPoint("TOPRIGHT", rtex, -16, -18)
+	defaultDropdown.button:SetWidth(24)
+	defaultDropdown.button:SetHeight(24)
+
+	defaultDropdown.button:SetNormalTexture("Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Up")
+	defaultDropdown.button:SetPushedTexture("Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Down")
+	defaultDropdown.button:SetHighlightTexture("Interface\\Buttons\\UI-Common-MouseHilight")
+	defaultDropdown.button:SetDisabledTexture("Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Disabled")
+	defaultDropdown.button:GetHighlightTexture():SetBlendMode("ADD")
+
+	defaultDropdown.button:SetScript("OnEnter", Widget_OnEnter)
+	defaultDropdown.button:SetScript("OnLeave", Widget_OnLeave)
+	defaultDropdown.button:SetScript("OnClick", function(self)
+		ToggleDropDownMenu(nil, nil, defaultDropdown)
 		PlaySound("igMainMenuOptionCheckBoxOn")
 	end)
 
-	button:SetNormalTexture("Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Up")
-	button:SetPushedTexture("Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Down")
-	button:SetHighlightTexture("Interface\\Buttons\\UI-Common-MouseHilight")
-	button:SetDisabledTexture("Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Disabled")
-	button:GetHighlightTexture():SetBlendMode("ADD")
+	local function Dropdown_OnClick(self)
+		self = self or this
+
+		if self.value == racialFaction then
+			reset:Disable()
+		else
+			reset:Enable()
+		end
+
+		UIDropDownMenu_SetSelectedValue(defaultDropdown, self.value)
+		defaultDropdown.text:SetText(self.value)
+
+		db.defaultFaction = self.value
+		Diplomancer:Update()
+	end
 
 	local info = UIDropDownMenu_CreateInfo()
 	local function AddItem(text, value, func, checked, disabled)
@@ -348,16 +334,9 @@ f:SetScript("OnShow", function()
 		UIDropDownMenu_AddButton(info)
 	end
 
-	local function Dropdown_OnClick()
-		if this.value == racial then reset:Disable() else reset:Enable() end
-		UIDropDownMenu_SetSelectedValue(default, this.value)
-		defaulttext:SetText(this.value)
-		db.default = this.value
-		Diplomancer:Update()
-	end
-
-	UIDropDownMenu_Initialize(default, function()
-		local factions = {}
+	local factions = { }
+	UIDropDownMenu_Initialize(defaultDropdown, function()
+		wipe(factions)
 		Diplomancer:ExpandFactionHeaders()
 		for i = 1, GetNumFactions() do
 			local name, _, _, _, _, _, _, _, isHeader = GetFactionInfo(i)
@@ -370,94 +349,129 @@ f:SetScript("OnShow", function()
 		end
 		table.sort(factions)
 
-		local selected = db.default or racial
+		local selected = db.defaultFaction or racialFaction
 
 		for i, faction in ipairs(factions) do
 			AddItem(faction, faction, Dropdown_OnClick, faction == selected)
 		end
 	end)
 
-	UIDropDownMenu_SetSelectedValue(default, db.default)
+	UIDropDownMenu_SetSelectedValue(defaultDropdown, db.defaultFaction or racialFaction)
 
-	reset = CreateFrame("Button", nil, f)
-	reset.tiptext = L["Reset your default faction preference to your race's faction"]
-	reset:SetText(L["Reset"])
-	reset:SetPoint("LEFT", button, "RIGHT", 8, 0)
-	reset:SetWidth(80)
-	reset:SetHeight(22)
+	--------------------------------------------------------------------
 
-	reset:SetNormalFontObject(GameFontNormalSmall)
-	reset:SetDisabledFontObject(GameFontDisable)
-	reset:SetHighlightFontObject(GameFontHighlightSmall)
+	defaultButton = CreateFrame("Button", nil, self)
+	defaultButton:SetText(L["Reset"])
+	defaultButton:SetPoint("LEFT", defaultDropdown.button, "RIGHT", 8, 0)
+	defaultButton:SetWidth(80)
+	defaultButton:SetHeight(22)
 
-	reset:SetNormalTexture("Interface\\Buttons\\UI-Panel-Button-Up")
-	reset:SetPushedTexture("Interface\\Buttons\\UI-Panel-Button-Down")
-	reset:SetHighlightTexture("Interface\\Buttons\\UI-Panel-Button-Highlight")
-	reset:SetDisabledTexture("Interface\\Buttons\\UI-Panel-Button-Disabled")
-	reset:GetNormalTexture():SetTexCoord(0, 0.625, 0, 0.6875)
-	reset:GetPushedTexture():SetTexCoord(0, 0.625, 0, 0.6875)
-	reset:GetHighlightTexture():SetTexCoord(0, 0.625, 0, 0.6875)
-	reset:GetDisabledTexture():SetTexCoord(0, 0.625, 0, 0.6875)
-	reset:GetHighlightTexture():SetBlendMode("ADD")
+	defaultButton:SetNormalFontObject(GameFontNormalSmall)
+	defaultButton:SetDisabledFontObject(GameFontDisable)
+	defaultButton:SetHighlightFontObject(GameFontHighlightSmall)
 
-	reset:SetScript("OnEnter", OnEnter)
-	reset:SetScript("OnLeave", OnLeave)
+	defaultButton:SetNormalTexture("Interface\\Buttons\\UI-Panel-Button-Up")
+	defaultButton:SetPushedTexture("Interface\\Buttons\\UI-Panel-Button-Down")
+	defaultButton:SetHighlightTexture("Interface\\Buttons\\UI-Panel-Button-Highlight")
+	defaultButton:SetDisabledTexture("Interface\\Buttons\\UI-Panel-Button-Disabled")
+	defaultButton:GetNormalTexture():SetTexCoord(0, 0.625, 0, 0.6875)
+	defaultButton:GetPushedTexture():SetTexCoord(0, 0.625, 0, 0.6875)
+	defaultButton:GetHighlightTexture():SetTexCoord(0, 0.625, 0, 0.6875)
+	defaultButton:GetDisabledTexture():SetTexCoord(0, 0.625, 0, 0.6875)
+	defaultButton:GetHighlightTexture():SetBlendMode("ADD")
 
-	if db.default == nil then reset:Disable() else reset:Enable() end
+	defaultButton:SetScript("OnEnter", Widget_OnEnter)
+	defaultButton:SetScript("OnLeave", Widget_OnLeave)
 
-	local function CreateCheckbox(parent, text, size)
+	defaultButton.desc = L["Reset your default faction to your race's faction."]
+
+	if not db.defaultFaction then
+		defaultButton:Disable()
+	else
+		defaultButton:Enable()
+	end
+
+	--------------------------------------------------------------------
+
+	local Checkbox_OnClick(self)
+		local checked = self:GetChecked() and true or false
+		PlaySound(checked and "igMainMenuOptionCheckBoxOn" or "igMainMenuOptionCheckBoxOff")
+		if self.func then
+			self.func(checked)
+		end
+	end
+
+	local CreateCheckbox = function(parent, name, size)
 		local check = CreateFrame("CheckButton", nil, parent)
 		check:SetWidth(size or 26)
 		check:SetHeight(size or 26)
-
 		check:SetHitRectInsets(0, -100, 0, 0)
-
 		check:SetNormalTexture("Interface\\Buttons\\UI-CheckBox-Up")
 		check:SetPushedTexture("Interface\\Buttons\\UI-CheckBox-Down")
 		check:SetHighlightTexture("Interface\\Buttons\\UI-CheckBox-Highlight")
 		check:SetDisabledCheckedTexture("Interface\\Buttons\\UI-CheckBox-Check-Disabled")
 		check:SetCheckedTexture("Interface\\Buttons\\UI-CheckBox-Check")
-
-		check:SetScript("OnEnter", OnEnter)
-		check:SetScript("OnLeave", OnLeave)
+		check:SetScript("OnEnter", Widget_OnEnter)
+		check:SetScript("OnLeave", Widget_OnLeave)
+		check:SetScript("OnClick", Checkbox_OnClick)
 
 		local label = check:CreateFontString(nil, "ARTWORK", "GameFontHighlight")
 		label:SetPoint("LEFT", check, "RIGHT", 0, 1)
-		label:SetText(text)
+		label:SetText(name)
+		check.label = label
 
-		return check, label
+		return check
 	end
 
-	local exalted = CreateCheckbox(f, L["Ignore Exalted Factions"])
-	exalted.tiptext = L["Don't watch factions you've already acheived Exalted standing with."]
-	exalted:SetPoint("TOPLEFT", default, "BOTTOMLEFT", 16, -8)
-	exalted:SetScript("OnClick", function(self)
-		PlaySound(self:GetChecked() and "igMainMenuOptionCheckBoxOn" or "igMainMenuOptionCheckBoxOff")
-		db.ignoreExalted = self:GetChecked() and true or false
+	--------------------------------------------------------------------
+
+	exaltedCheckbox = self:CreateCheckbox(L["Ignore exalted factions"])
+	exaltedCheckbox:SetPoint("TOPLEFT", default, "BOTTOMLEFT", 0, -16)
+	exaltedCheckbox:SetChecked(db.ignoreExalted)
+	exaltedCheckbox.desc = L["With this option enabled, Diplomancer will not watch factions you have already attained Exalted status with."]
+	exaltedCheckbox.func = function(checked)
+		db.ignoreExalted = checked
 		Diplomancer:Update()
-	end)
-	exalted:SetChecked(db.ignoreExalted)
+	end
 
-	local verbose = CreateCheckbox(f, L["Enable Notifications"])
-	verbose.tiptext = L["Show a message in the chat frame when your watched faction changes."]
-	verbose:SetPoint("TOPLEFT", exalted, "BOTTOMLEFT", 0, -8)
-	verbose:SetScript("OnClick", function(self)
-		PlaySound(self:GetChecked() and "igMainMenuOptionCheckBoxOn" or "igMainMenuOptionCheckBoxOff")
-		db.verbose = self:GetChecked() and true or false
-	end)
-	verbose:SetChecked(db.verbose)
+	--------------------------------------------------------------------
 
-	LibStub("LibAboutPanel").new(f.name, "Diplomancer")
+	verboseCheckbox = self:CreateCheckbox(L["Announce watched faction"])
+	verboseCheckbox:SetPoint("TOPLEFT", exalted, "BOTTOMLEFT", 0, -16)
+	verboseCheckbox:SetChecked(db.verbose)
+	verboseCheckbox.desc = L["With this option enabled, Diplomancer will add a message to your chat frame when changing your watched faction."]
+	verboseCheckbox.func function(checked)
+		db.verbose = checked
+	end
 
-	f:SetScript("OnShow", nil)
+	--------------------------------------------------------------------
+
+	self:SetScript("OnShow", nil)
 end)
 
-InterfaceOptions_AddCategory(f)
+InterfaceOptions_AddCategory(Diplomancer.frame)
+LibStub("LibAboutPanel").new(Diplomancer.frame.name, ADDON_NAME)
 
-Diplomancer.configpanel = f
+------------------------------------------------------------------------
 
 SLASH_DIPLOMANCER1 = "/diplomancer"
 SLASH_DIPLOMANCER2 = "/dm"
-SlashCmdList.DIPLOMANCER = function()
-	InterfaceOptionsFrame_OpenToCategory(f)
+
+SlashCmdList.DIPLOMANCER = function(text)
+	if text and text:len() > 0 then
+		local cmd, arg = text:match("^%s*(%w+)%s*(.*)$")
+		if type(db[cmd]) == "boolean" then
+			db[cmd] = not db[cmd]
+			return Diplomancer:Update()
+		elseif cmd == "default" then
+			local faction = Diplomancer:GetFactionNameMatch(arg)
+			if faction then
+				db.default = faction
+				return Diplomancer:Update()
+			end
+		end
+	end
+	InterfaceOptionsFrame_OpenToCategory(Diplomancer.frame)
 end
+
+------------------------------------------------------------------------

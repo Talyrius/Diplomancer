@@ -1,38 +1,55 @@
 
-Diplomancer - a World of Warcraft user interface addon
-	by Phanx < addons@phanx.net >
-	Copyright �2007�2009 Alyssa "Phanx" Kinley
-	http://www.wowinterface.com/downloads/info9643-Diplomancer.html
-	http://wow.curse.com/downloads/wow-addons/details/diplomancer.aspx
-
+Diplomancer
+by Phanx < addons@phanx.net >
+Copyright ©2007–2009 Alyssa "Phanx" Kinley
+http://www.wowinterface.com/downloads/info9643-Diplomancer.html
+http://wow.curse.com/downloads/wow-addons/details/diplomancer.aspx
 
 Description
 
-	Diplomancer automatically sets your watched faction according to
-	your current location.
+	Diplomancer is a World of Warcraft user interface addon to
+	automatically change your watched faction based on your location.
 
-	Options are available in the standard Interface Options window. As a
-	shortcut, you can type "/diplomancer" or "/dm" to open the window
-	and jump directly to the Diplomancer panel.
+	For example:
+	- In Dalaran, you'll watch the Kirin Tor.
+	- At the Argent Tournament Grounds, you'll watch The Sunreavers or
+	  The Silver Covenant, depending on your race.
+	- Inside level 80 dungeons, if you're wearing a faction champion
+	  tabard, you'll watch that faction.
+
+	Diplomancer includes faction associations for over 80 zones and over
+	120 subzones, covering all continents and game expansions.
+	
+	If you find yourself in a location without an associated faction -
+	for example, if you are a troll on a weekend camping trip in the
+	Redridge Mountains - Diplomancer will watch your race's faction. If
+	you would prefer to watch another faction instead of your race's
+	faction, you can choose your own default faction.
+
+	Options are available in the standard Interface Options window.
+	Typing "/diplomancer" or "/dm" will open the window and jump
+	directly to the Diplomancer panel.
 
 
 Localization
 
-	Compatible with: enUS, deDE, zhCN
-	Translated into: enUS, deDE, zhCN
+	Diplomancer is compatible with these locales:
+	- English
+	- deDE / German / Deutsch
+	- zhCN / Simplified Chinese / 简体中文
 
 	If you can help translate for another locale, please see:
 	http://www.wowinterface.com/portal.php?&id=224&pageid=160
 
-	If you play in a non-English locale listed above, you must install
-	the following libraries separately to provide translations for zone
-	and faction names:
+	If you play in a non-English locale with which Diplomancer is
+	compatible, you must download and install the following libraries to
+	provide translations for faction and zone names:
 
-	LibBabble-Faction-3.0
-	- http://wow.curse.com/downloads/wow-addons/details/libbabble-faction-3-0.aspx
+	- LibBabble-Faction-3.0
+	  http://www.wowace.com/addons/libbabble-faction-3-0/
 
-	LibBabble-Zone-3.0
-	- http://wow.curse.com/downloads/wow-addons/details/libbabble-zone-3-0.aspx
+	- LibBabble-Zone-3.0
+	  http://www.wowace.com/addons/libbabble-zone-3-0/
 
 
 Bug Reports, Feature Requests, & General Feedback
