@@ -8,13 +8,11 @@
 ----------------------------------------------------------------------]]
 
 local Horde, Alliance
-do
-	local _, race = UnitRace("player") -- arg2 is "Scourge" for Undead players
-	if race == "BloodElf" or race == "Orc" or race == "Scourge" or race == "Tauren" or race == "Troll" then
-		Horde = true
-	else
-		Alliance = true
-	end
+local _, race = UnitRace("player") -- arg2 is "Scourge" for Undead players
+if race == "BloodElf" or race == "Orc" or race == "Scourge" or race == "Tauren" or race == "Troll" then
+	Horde = true
+else
+	Alliance = true
 end
 
 ------------------------------------------------------------------------

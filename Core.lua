@@ -94,7 +94,8 @@ function Diplomancer:Update()
 	-- self:Debug("Update")
 
 	if taxiEnded then
-		-- This is a hack to work around the fact that UnitOnTaxi still returns true right after PLAYER_CONTROL_GAINED has fired.
+		-- This is a hack to work around the fact that UnitOnTaxi still
+		-- returns true right after PLAYER_CONTROL_GAINED has fired.
 		taxiEnded = false
 	elseif UnitOnTaxi("player") then
 		-- self:Debug("On taxi. Skipping update.")
@@ -144,18 +145,17 @@ end
 
 ------------------------------------------------------------------------
 
-local factionHeaderStatus = { }
-function Diplomancer:SetWatchedFactionByName(faction, verbose)
-	if type(faction) ~= "string" or faction:len() == 0 then return end
+function Diplomancer:SetWatchedFactionByName(name, verbose)
+	if type(name) ~= "string" or name:len() == 0 then return end
+	-- self:Debug("SetWatchedFactionByName: %s", name)
 
 	self:ExpandFactionHeaders()
 
-	local faction, standing, _
 	for i = 1, GetNumFactions() do
-		faction, _, standing = GetFactionInfo(i)
-		if faction == name and (standing < 8 or not db.ignoreExalted) then
+		local faction, _, standing, _, _, _, _, _, _, _, _, watched = GetFactionInfo(i)
+		if not watched and faction == name and (standing < 8 or not db.ignoreExalted) then
 			SetWatchedFactionIndex(i)
-			if db.verbose then
+			if verbose then
 				self:Print("Now watching %s.", faction)
 			end
 			return true, name
@@ -238,8 +238,8 @@ Diplomancer.frame:SetScript("OnShow", function(self)
 	local function Widget_OnEnter(self)
 		if self.desc then
 			GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
-			GameTooltip:AddLine(self.name, 1, 0.8, 0)
-			GameTooltip:AddLine(self.desc, 1, 1, 1)
+			GameTooltip:SetText(self.desc, nil, nil, nil, nil, true)
+			GameTooltip:Show()
 		end
 	end
 
@@ -254,7 +254,7 @@ Diplomancer.frame:SetScript("OnShow", function(self)
 	defaultLabel:SetText(L["Default faction"])
 
 	defaultDropdown = CreateFrame("Frame", "DiplomancerDefaultFactionDropdown", self)
-	defaultDropdown:SetPoint("TOPLEFT", defaultlabel, "BOTTOMLEFT", 0, -2)
+	defaultDropdown:SetPoint("TOPLEFT", defaultLabel, "BOTTOMLEFT", -17, -2)
 	defaultDropdown:SetWidth(199)
 	defaultDropdown:SetHeight(32)
 	defaultDropdown:EnableMouse(true)
@@ -265,7 +265,7 @@ Diplomancer.frame:SetScript("OnShow", function(self)
 
 	defaultDropdown.desc = L["Select a faction to watch when your current location doesn't have an associated faction."]
 
-	ltex = defaultDropdown:CreateTexture("DiplomancerDropdownLeft", "ARTWORK")
+	ltex = defaultDropdown:CreateTexture("DiplomancerDefaultFactionDropdownLeft", "ARTWORK")
 	ltex:SetPoint("TOPLEFT", 0, 17)
 	ltex:SetWidth(25)
 	ltex:SetHeight(64)
@@ -286,14 +286,14 @@ Diplomancer.frame:SetScript("OnShow", function(self)
 	rtex:SetTexture("Interface\\Glues\\CharacterCreate\\CharacterCreate-LabelFrame")
 	rtex:SetTexCoord(0.8046875, 1, 0, 1)
 
-	defaultDropdown.text = defaultDropdown:CreateFontString("DiplomancerDropdownText", "ARTWORK", "GameFontHighlightSmall")
+	defaultDropdown.text = defaultDropdown:CreateFontString("DiplomancerDefaultFactionDropdownText", "ARTWORK", "GameFontHighlightSmall")
+	defaultDropdown.text:SetPoint("LEFT", ltex, 26, 2)
 	defaultDropdown.text:SetPoint("RIGHT", rtex, -43, 2)
-	defaultDropdown.text:SetWidth(0)
+	defaultDropdown.text:SetJustifyH("LEFT")
 	defaultDropdown.text:SetHeight(10)
-	defaultDropdown.text:SetJustifyH("RIGHT")
 	defaultDropdown.text:SetText(db.defaultFaction or racialFaction)
 
-	defaultDropdown.button = CreateFrame("Button", nil, default)
+	defaultDropdown.button = CreateFrame("Button", nil, defaultDropdown)
 	defaultDropdown.button:SetPoint("TOPRIGHT", rtex, -16, -18)
 	defaultDropdown.button:SetWidth(24)
 	defaultDropdown.button:SetHeight(24)
@@ -310,14 +310,16 @@ Diplomancer.frame:SetScript("OnShow", function(self)
 		ToggleDropDownMenu(nil, nil, defaultDropdown)
 		PlaySound("igMainMenuOptionCheckBoxOn")
 	end)
+	
+	defaultDropdown.button.desc = defaultDropdown.desc
 
 	local function Dropdown_OnClick(self)
 		self = self or this
 
 		if self.value == racialFaction then
-			reset:Disable()
+			defaultButton:Disable()
 		else
-			reset:Enable()
+			defaultButton:Enable()
 		end
 
 		UIDropDownMenu_SetSelectedValue(defaultDropdown, self.value)
@@ -327,16 +329,7 @@ Diplomancer.frame:SetScript("OnShow", function(self)
 		Diplomancer:Update()
 	end
 
-	local info = UIDropDownMenu_CreateInfo()
-	local function AddItem(text, value, func, checked, disabled)
-		info.text = text
-		info.value = value
-		info.func = func
-		info.checked = checked
-		info.disabled = disabled
-		UIDropDownMenu_AddButton(info)
-	end
-
+	local info = { } -- UIDropDownMenu_CreateInfo()
 	local factions = { }
 	UIDropDownMenu_Initialize(defaultDropdown, function()
 		wipe(factions)
@@ -355,7 +348,11 @@ Diplomancer.frame:SetScript("OnShow", function(self)
 		local selected = db.defaultFaction or racialFaction
 
 		for i, faction in ipairs(factions) do
-			AddItem(faction, faction, Dropdown_OnClick, faction == selected)
+			info.text = faction
+			info.value = faction
+			info.func = Dropdown_OnClick
+			info.checked = faction == selected
+			UIDropDownMenu_AddButton(info)
 		end
 	end)
 
@@ -365,9 +362,9 @@ Diplomancer.frame:SetScript("OnShow", function(self)
 
 	defaultButton = CreateFrame("Button", nil, self)
 	defaultButton:SetText(L["Reset"])
-	defaultButton:SetPoint("LEFT", defaultDropdown.button, "RIGHT", 8, 0)
+	defaultButton:SetPoint("TOPLEFT", defaultDropdown.button, "TOPRIGHT", 8, 0)
+	defaultButton:SetPoint("BOTTOMLEFT", defaultDropdown.button, "BOTTOMRIGHT", 8, 0)
 	defaultButton:SetWidth(80)
-	defaultButton:SetHeight(22)
 
 	defaultButton:SetNormalFontObject(GameFontNormalSmall)
 	defaultButton:SetDisabledFontObject(GameFontDisable)
@@ -431,23 +428,23 @@ Diplomancer.frame:SetScript("OnShow", function(self)
 
 	--------------------------------------------------------------------
 
+	verboseCheckbox = self:CreateCheckbox(L["Announce watched faction"])
+	verboseCheckbox:SetPoint("TOPLEFT", defaultDropdown, "BOTTOMLEFT", 15, -10)
+	verboseCheckbox:SetChecked(db.verbose)
+	verboseCheckbox.desc = L["With this option enabled, Diplomancer will add a message to your chat frame when changing your watched faction."]
+	verboseCheckbox.func = function(checked)
+		db.verbose = checked
+	end
+
+	--------------------------------------------------------------------
+
 	exaltedCheckbox = self:CreateCheckbox(L["Ignore exalted factions"])
-	exaltedCheckbox:SetPoint("TOPLEFT", default, "BOTTOMLEFT", 0, -16)
+	exaltedCheckbox:SetPoint("TOPLEFT", verboseCheckbox, "BOTTOMLEFT", 0, -8)
 	exaltedCheckbox:SetChecked(db.ignoreExalted)
 	exaltedCheckbox.desc = L["With this option enabled, Diplomancer will not watch factions you have already attained Exalted status with."]
 	exaltedCheckbox.func = function(checked)
 		db.ignoreExalted = checked
 		Diplomancer:Update()
-	end
-
-	--------------------------------------------------------------------
-
-	verboseCheckbox = self:CreateCheckbox(L["Announce watched faction"])
-	verboseCheckbox:SetPoint("TOPLEFT", exalted, "BOTTOMLEFT", 0, -16)
-	verboseCheckbox:SetChecked(db.verbose)
-	verboseCheckbox.desc = L["With this option enabled, Diplomancer will add a message to your chat frame when changing your watched faction."]
-	verboseCheckbox.func = function(checked)
-		db.verbose = checked
 	end
 
 	--------------------------------------------------------------------
