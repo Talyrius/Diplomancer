@@ -2,11 +2,6 @@
 
 local ADDON_NAME, Diplomancer = ...
 Diplomancer.L = Diplomancer.L or { }
-Diplomancer.frame = CreateFrame("Frame", nil, InterfaceOptionsFramePanelContainer)
-Diplomancer.frame.name = GetAddOnInfo(ADDON_NAME, "Title")
-Diplomancer.frame:RegisterEvent("ADDON_LOADED")
-Diplomancer.frame:SetScript("OnEvent", function(self, event, ...) return Diplomancer[event] and Diplomancer[event](Diplomancer, ...) end)
-Diplomancer.frame:Hide()
 
 ------------------------------------------------------------------------
 
@@ -41,16 +36,16 @@ end
 
 function Diplomancer:ADDON_LOADED(addon)
 	if addon ~= ADDON_NAME then return end
-	self:Debug("ADDON_LOADED", addon)
+	-- self:Debug("ADDON_LOADED", addon)
 
-	-- db = {
+	-- local defaultDB = {
 	-- 	defaultFaction (string)
 	--	ignoreExalted  (boolean)
 	--	verbose        (boolean)
 	-- }
 
 	if not DiplomancerSettings then
-		DiplomancerSettings = defaultDB
+		DiplomancerSettings = { }
 	end
 	db = DiplomancerSettings
 
@@ -67,7 +62,7 @@ end
 ------------------------------------------------------------------------
 
 function Diplomancer:PLAYER_LOGIN()
-	self:Debug("PLAYER_LOGIN")
+	-- self:Debug("PLAYER_LOGIN")
 
 	self:LocalizeData()
 
@@ -96,13 +91,13 @@ end
 ------------------------------------------------------------------------
 
 function Diplomancer:Update()
-	self:Debug("Update")
+	-- self:Debug("Update")
 
 	if taxiEnded then
 		-- This is a hack to work around the fact that UnitOnTaxi still returns true right after PLAYER_CONTROL_GAINED has fired.
 		taxiEnded = false
 	elseif UnitOnTaxi("player") then
-		self:Debug("On taxi. Skipping update.")
+		-- self:Debug("On taxi. Skipping update.")
 		onTaxi = true
 		return
 	end
@@ -138,7 +133,7 @@ Diplomancer.ZONE_CHANGED_NEW_AREA = Diplomancer.Update
 ------------------------------------------------------------------------
 
 function Diplomancer:PLAYER_CONTROL_GAINED()
-	self:Debug("PLAYER_CONTROL_GAINED")
+	-- self:Debug("PLAYER_CONTROL_GAINED")
 
 	if onTaxi then
 		onTaxi = false
@@ -212,6 +207,14 @@ end
 
 ------------------------------------------------------------------------
 
+Diplomancer.frame = CreateFrame("Frame", nil, InterfaceOptionsFramePanelContainer)
+Diplomancer.frame:RegisterEvent("ADDON_LOADED")
+Diplomancer.frame:SetScript("OnEvent", function(self, event, ...) return Diplomancer[event] and Diplomancer[event](Diplomancer, ...) end)
+
+------------------------------------------------------------------------
+
+Diplomancer.frame.name = GetAddOnInfo(ADDON_NAME, "Title")
+Diplomancer.frame:Hide()
 Diplomancer.frame:SetScript("OnShow", function(self)
 	local title, subtitle, defaultLabel, defaultDropdown, ltex, mtex, rtex, defaultButton, exaltedCheckbox, verboseCheckbox
 
@@ -232,7 +235,7 @@ Diplomancer.frame:SetScript("OnShow", function(self)
 
 	--------------------------------------------------------------------
 
-	local Widget_OnEnter = function(self)
+	local function Widget_OnEnter(self)
 		if self.desc then
 			GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
 			GameTooltip:AddLine(self.name, 1, 0.8, 0)
@@ -240,7 +243,7 @@ Diplomancer.frame:SetScript("OnShow", function(self)
 		end
 	end
 
-	local Widget_OnLeave()
+	local function Widget_OnLeave()
 		GameTooltip:Hide()
 	end
 
@@ -251,7 +254,7 @@ Diplomancer.frame:SetScript("OnShow", function(self)
 	defaultLabel:SetText(L["Default faction"])
 
 	defaultDropdown = CreateFrame("Frame", "DiplomancerDefaultFactionDropdown", self)
-	defaultDropdown:SetPoint("TOPLEFT", defaultlabel, "BOTTOMLEFT", -20, -2)
+	defaultDropdown:SetPoint("TOPLEFT", defaultlabel, "BOTTOMLEFT", 0, -2)
 	defaultDropdown:SetWidth(199)
 	defaultDropdown:SetHeight(32)
 	defaultDropdown:EnableMouse(true)
@@ -393,24 +396,27 @@ Diplomancer.frame:SetScript("OnShow", function(self)
 
 	--------------------------------------------------------------------
 
-	local Checkbox_OnClick(self)
-		local checked = self:GetChecked() and true or false
+	local function Checkbox_OnClick(self)
+		local checked = self:GetChecked() == 1
 		PlaySound(checked and "igMainMenuOptionCheckBoxOn" or "igMainMenuOptionCheckBoxOff")
 		if self.func then
 			self.func(checked)
 		end
 	end
 
-	local CreateCheckbox = function(parent, name, size)
-		local check = CreateFrame("CheckButton", nil, parent)
+	function self:CreateCheckbox(name, size)
+		local check = CreateFrame("CheckButton", nil, self)
 		check:SetWidth(size or 26)
 		check:SetHeight(size or 26)
+
 		check:SetHitRectInsets(0, -100, 0, 0)
+
 		check:SetNormalTexture("Interface\\Buttons\\UI-CheckBox-Up")
 		check:SetPushedTexture("Interface\\Buttons\\UI-CheckBox-Down")
 		check:SetHighlightTexture("Interface\\Buttons\\UI-CheckBox-Highlight")
 		check:SetDisabledCheckedTexture("Interface\\Buttons\\UI-CheckBox-Check-Disabled")
 		check:SetCheckedTexture("Interface\\Buttons\\UI-CheckBox-Check")
+
 		check:SetScript("OnEnter", Widget_OnEnter)
 		check:SetScript("OnLeave", Widget_OnLeave)
 		check:SetScript("OnClick", Checkbox_OnClick)
@@ -440,7 +446,7 @@ Diplomancer.frame:SetScript("OnShow", function(self)
 	verboseCheckbox:SetPoint("TOPLEFT", exalted, "BOTTOMLEFT", 0, -16)
 	verboseCheckbox:SetChecked(db.verbose)
 	verboseCheckbox.desc = L["With this option enabled, Diplomancer will add a message to your chat frame when changing your watched faction."]
-	verboseCheckbox.func function(checked)
+	verboseCheckbox.func = function(checked)
 		db.verbose = checked
 	end
 
@@ -473,5 +479,9 @@ SlashCmdList.DIPLOMANCER = function(text)
 	end
 	InterfaceOptionsFrame_OpenToCategory(Diplomancer.frame)
 end
+
+------------------------------------------------------------------------
+
+_G.Diplomancer = Diplomancer
 
 ------------------------------------------------------------------------
