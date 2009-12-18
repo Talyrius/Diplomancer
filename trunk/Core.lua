@@ -29,7 +29,7 @@ function Diplomancer:Print(text, ...)
 			text = string.join(", ", text, ...)
 		end
 	end
-	print(("|cffff3399Diplomancer:|r %s"):format(text))
+	print(("|cff33ff99Diplomancer:|r %s"):format(text))
 end
 
 ------------------------------------------------------------------------
