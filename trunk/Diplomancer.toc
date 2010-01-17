@@ -16,8 +16,11 @@
 ## LoadManagers: AddonLoader
 ## X-LoadOn-Always: delayed
 
-## OptionalDependencies: LibBabble-Faction-3.0, LibBabble-Zone-3.0
+## OptionalDependencies: LibAboutPanel, LibBabble-Faction-3.0, LibBabble-Zone-3.0
 ## SavedVariablesPerCharacter: DiplomancerSettings
+
+Libs\LibStub\LibStub.lua
+Libs\LibAboutPanel\LibAboutPanel.lua
 
 Locale-deDE.lua
 Locale-zhCN.lua
