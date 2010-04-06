@@ -1,12 +1,12 @@
 ## Interface: 30300
-## Version: 3.3.0.wowi:revision
+## Version: 3.3.3.wowi:revision
 
 ## Title: Diplomancer
 ## Notes: Automatically watch your current location's faction.
-## X-Copyright: Copyright ©2007–2009 Alyssa "Phanx" Kinley
+## X-Copyright: Copyright © 2007–2010 Alyssa "Phanx" Kinley
 ## X-License: All Rights Reserved. See README for license terms.
 ## X-Localizations: enUS, deDE, zhCN
-## X-Website: http://www.wowinterface.com/downloads/info9643-Diplomancer.html
+## X-Website: http://wow.curseforge.com/addons/diplomancer/
 ## X-WoWI-ID: 9643
 
 ## Author: Phanx
@@ -24,6 +24,7 @@ Libs\LibAboutPanel\LibAboutPanel.lua
 
 Locale-deDE.lua
 Locale-zhCN.lua
+Locale-zhTW.lua
 
 Core.lua
 Data.lua

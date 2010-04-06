@@ -1,4 +1,4 @@
-
+﻿
 Diplomancer - a World of Warcraft user interface addon
 
 	by Phanx < addons@phanx.net >
@@ -62,7 +62,7 @@ Credits
 
 License
 
-	Copyright ©2007–2009 Alyssa "Phanx" Kinley.
+	Copyright © 2007–2010 Alyssa "Phanx" Kinley.
 
 	The contents of this addon, excluding third-party resources, are
 	copyrighted to its author with all rights reserved, under United

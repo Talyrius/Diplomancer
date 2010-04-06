@@ -98,6 +98,7 @@ Z["Throne of Kil'jaeden"] = "基爾加丹王座"
 
 -- Howling Fjord
 Z["Camp Winterhoof"] = "冬蹄營地"
+Z["Explorers' League Outpost"] = ""
 Z["Kamagua"] = "卡瑪古"
 Z["Steel Gate"] = "鋼鐵之門"
 

@@ -100,6 +100,7 @@ Z["Throne of Kil'jaeden"] = "Kil'jaedens Thron"
 
 -- Howling Fjord
 Z["Camp Winterhoof"] = "Lager der Winterhufe"
+Z["Explorers' League Outpost"] = ""
 Z["Kamagua"] = "Kamagua"
 
 -- Icecrown
