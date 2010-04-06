@@ -2,7 +2,7 @@
 	Diplomancer
 	Automatically sets your watched faction based on your location.
 	by Phanx < addons@phanx.net >
-	Copyright ©2007–2009 Alyssa "Phanx" Kinley
+	Copyright © 2007–2010 Alyssa "Phanx" Kinley
 	http://www.wowinterface.com/downloads/info9643-Diplomancer.html
 	http://wow.curse.com/downloads/wow-addons/details/diplomancer.aspx
 ----------------------------------------------------------------------]]
@@ -83,6 +83,7 @@ local ZF = {
 	["Howling Fjord"]				= isHorde and "The Hand of Vengeance" or "Valiance Expedition",
 	["Hyjal Summit"]				= "The Scale of the Sands",
 	["Icecrown"]					= "Knights of the Ebon Blade",
+	["Icecrown Citadel"]            = "The Ashen Verdict",
 	["Ironforge"]					= isAlliance and "Ironforge",
 	["Isle of Quel'Danas"]			= "Shattered Sun Offensive",
 	["Karazhan"]					= "The Violet Eye",
@@ -208,24 +209,25 @@ local SF = {
 		["Throne of Kil'jaeden"]	= "Shattered Sun Offensive",
 	},
 	["Howling Fjord"] = {
-		["Camp Winterhoof"]			= isHorde and "The Taunka",
-		["Kamagua"]					= "The Kalu'ak",
-		["Steel Gate"]				= isAlliance and "Explorers' League",
+		["Camp Winterhoof"]			  = isHorde and "The Taunka",
+		["Explorers' League Outpost"] = isAlliance and "Explorers' League",
+		["Kamagua"]					  = "The Kalu'ak",
+		["Steel Gate"]				  = isAlliance and "Explorers' League",
 	},
 	["Icecrown"] = {
-		["The Argent Vanguard"]			= "Argent Crusade",
-		["Crusaders' Pinnacle"]			= "Argent Crusade",
-		["Argent Pavilion"]				= isHorde and "The Sunreavers" or "The Silver Covenant",
-		["Argent Tournament Grounds"]	= isHorde and "The Sunreavers" or "The Silver Covenant",
-		["Orgrim's Hammer"]				= isHorde and "Warsong Offensive",
-		["Silver Covenant Pavilion"]	= isHorde and "The Sunreavers" or "The Silver Covenant",
-		["Sunreaver Pavilion"]			= isHorde and "The Sunreavers" or "The Silver Covenant",
+		["The Argent Vanguard"]			    = "Argent Crusade",
+		["Crusaders' Pinnacle"]			    = "Argent Crusade",
+		["Argent Pavilion"]				    = isHorde and "The Sunreavers" or "The Silver Covenant",
+		["Argent Tournament Grounds"]	    = isHorde and "The Sunreavers" or "The Silver Covenant",
+		["Orgrim's Hammer"]				    = isHorde and "Warsong Offensive",
+		["Silver Covenant Pavilion"]	    = isHorde and "The Sunreavers" or "The Silver Covenant",
+		["Sunreaver Pavilion"]			    = isHorde and "The Sunreavers" or "The Silver Covenant",
 		["The isAlliance Valiants' Ring"]	= isHorde and "The Sunreavers" or "The Silver Covenant",
-		["The Argent Valiants' Ring"]	= isHorde and "The Sunreavers" or "The Silver Covenant",
-		["The Aspirants' Ring"]			= isHorde and "The Sunreavers" or "The Silver Covenant",
-		["The isHorde Valiants' Ring"]	= isHorde and "The Sunreavers" or "The Silver Covenant",
-		["The Ring of Champions"]		= isHorde and "The Sunreavers" or "The Silver Covenant",
-		["The Skybreaker"]				= isAlliance and "Valiance Expedition",
+		["The Argent Valiants' Ring"]	    = isHorde and "The Sunreavers" or "The Silver Covenant",
+		["The Aspirants' Ring"]			    = isHorde and "The Sunreavers" or "The Silver Covenant",
+		["The isHorde Valiants' Ring"]	    = isHorde and "The Sunreavers" or "The Silver Covenant",
+		["The Ring of Champions"]		    = isHorde and "The Sunreavers" or "The Silver Covenant",
+		["The Skybreaker"]				    = isAlliance and "Valiance Expedition",
 	},
 	["Nagrand"] = {
 		["Aeris Landing"]			= "The Consortium",
