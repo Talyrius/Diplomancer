@@ -3,15 +3,14 @@
 
 ## Title: Diplomancer
 ## Notes: Automatically watch your current location's faction.
+## Author: Phanx
+## X-Email: addons@phanx.net
+## X-Credits: Inspired by Charnow's SmartFactionWatch.
 ## X-Copyright: Copyright © 2007–2010 Alyssa "Phanx" Kinley
 ## X-License: All Rights Reserved. See README for license terms.
 ## X-Localizations: enUS, deDE, zhCN
 ## X-Website: http://wow.curseforge.com/addons/diplomancer/
 ## X-WoWI-ID: 9643
-
-## Author: Phanx
-## X-Email: addons@phanx.net
-## X-Credits: Inspired by Charnow's SmartFactionWatch.
 
 ## LoadManagers: AddonLoader
 ## X-LoadOn-Always: delayed
