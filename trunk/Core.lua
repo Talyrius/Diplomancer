@@ -45,12 +45,6 @@ function Diplomancer:ADDON_LOADED(addon)
 	if addon ~= ADDON_NAME then return end
 	-- self:Debug("ADDON_LOADED", addon)
 
-	-- local defaultDB = {
-	-- 	defaultFaction (string)
-	--	ignoreExalted  (boolean)
-	--	verbose        (boolean)
-	-- }
-
 	if not DiplomancerSettings then
 		DiplomancerSettings = { }
 	end
@@ -169,6 +163,8 @@ function Diplomancer:SetWatchedFactionByName(name, verbose)
 		end
 	end
 
+	self:CollapseFactionHeaders()
+
 	return false
 end
 
@@ -192,22 +188,34 @@ end
 
 ------------------------------------------------------------------------
 
+local factionHeaderState = { }
+
 function Diplomancer:ExpandFactionHeaders()
-	local name, isHeader, isCollapsed, _
 	local n = GetNumFactions()
 	for i = 1, n do
-		name, _, _, _, _, _, _, _, isHeader, isCollapsed = GetFactionInfo(i)
+		local name, _, _, _, _, _, _, _, isHeader, isCollapsed = GetFactionInfo(i)
 		if isHeader then
 			if isCollapsed and name ~= L["Inactive"] then
+				factionHeaderState[name] = true
 				ExpandFactionHeader(i)
 				n = GetNumFactions()
-				i = 1
 			elseif name == L["Inactive"] then
 				if not ReputationFrame:IsShown() then
 					CollapseFactionHeader(i)
 				end
 				break
 			end
+		end
+	end
+end
+
+function Diplomancer:CollapseFactionHeaders()
+	local n = GetNumFactions()
+	for i = 1, n do
+		local name, _, _, _, _, _, _, _, isHeader, isCollapsed = GetFactionInfo(i)
+		if isHeader and not isCollapsed and factionHeaderState[name] then
+			CollapseFactionHeader(i)
+			n = GetNumFactions()
 		end
 	end
 end
@@ -317,7 +325,7 @@ Diplomancer.frame:SetScript("OnShow", function(self)
 		ToggleDropDownMenu(nil, nil, defaultDropdown)
 		PlaySound("igMainMenuOptionCheckBoxOn")
 	end)
-	
+
 	defaultDropdown.button.desc = defaultDropdown.desc
 
 	local function Dropdown_OnClick(self)
