@@ -210,6 +210,9 @@ local SF = {
 		["Temple of Telhamat"]		= isAlliance and "Kurenai",
 		["Throne of Kil'jaeden"]	= "Shattered Sun Offensive",
 	},
+	["Hillsbrad Foothills"] = {
+		["Durnholde Keep"]			= "Ravenholdt",
+	},
 	["Howling Fjord"] = {
 		["Camp Winterhoof"]			  = isHorde and "The Taunka",
 		["Explorers' League Outpost"] = isAlliance and "Explorers' League",

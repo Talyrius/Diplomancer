@@ -98,6 +98,9 @@ Z["Mag'har Post"] = "Posten der Mag'har"
 Z["Temple of Telhamat"] = "Tempel von Telhamat"
 Z["Throne of Kil'jaeden"] = "Kil'jaedens Thron"
 
+-- Hillsbrad Foothills
+Z["Durnholde Keep"] = ""
+
 -- Howling Fjord
 Z["Camp Winterhoof"] = "Lager der Winterhufe"
 Z["Explorers' League Outpost"] = ""

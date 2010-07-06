@@ -99,6 +99,9 @@ Z["Mag'har Post"] = "玛格汉岗哨"
 Z["Temple of Telhamat"] = "塔哈玛特神殿"
 Z["Throne of Kil'jaeden"] = "基尔加丹王座"
 
+-- Hillsbrad Foothills
+Z["Durnholde Keep"] = ""
+
 -- Howling Fjord
 Z["Camp Winterhoof"] = "冬蹄营地"
 Z["Explorers' League Outpost"] = ""
