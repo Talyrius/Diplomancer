@@ -6,7 +6,7 @@
 ## Author: Phanx
 ## X-Email: addons@phanx.net
 ## X-Credits: Inspired by Charnow's SmartFactionWatch.
-## X-Copyright: Copyright © 2007–2010 Alyssa "Phanx" Kinley
+## X-Copyright: Copyright © 2007–2010 Phanx.
 ## X-License: All Rights Reserved. See README for license terms.
 ## X-Localizations: enUS, deDE, zhCN
 ## X-Website: http://wow.curseforge.com/addons/diplomancer/
@@ -15,15 +15,13 @@
 ## LoadManagers: AddonLoader
 ## X-LoadOn-Always: delayed
 
-## OptionalDependencies: LibAboutPanel, LibBabble-Faction-3.0, LibBabble-Zone-3.0
+## OptionalDependencies: LibAboutPanel, LibBabble-Faction-3.0, LibBabble-SubZone-3.0, LibBabble-Zone-3.0
 ## SavedVariablesPerCharacter: DiplomancerSettings
 
 Libs\LibStub\LibStub.lua
 Libs\LibAboutPanel\LibAboutPanel.lua
 
-Locale-deDE.lua
-Locale-zhCN.lua
-Locale-zhTW.lua
+Localizaton.lua
 
 Core.lua
 Data.lua
