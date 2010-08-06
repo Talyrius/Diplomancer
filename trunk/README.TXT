@@ -29,14 +29,14 @@ Usage
 Localization
 
 	Compatible with: en, deDE, esES, esMX, frFR, koKR, ruRU, zhCN, zhTW
-	Translated into: en, deDE, zhCN
+	Translated into: en, deDE, zhCN, zhTW
 
-	If you can help translate for any locale, please see this page:
-	http://www.wowinterface.com/portal.php?&id=224&pageid=160
+	If you can provide translations for the options panel text for any
+	locale, please send me a PM on either download site!
 
-	If you play in a non-English locale, you must download and install
-	the following libraries separately to provide translations for
-	faction, zone, and subzone names:
+	If you play in a non-English client, you will need to download and
+	install the following libraries separately, to provide the required
+	translations for faction names, zone names, and subzone names:
 
 	LibBabble-Faction-3.0
 	http://wow.curse.com/downloads/wow-addons/details/libbabble-faction-3-0.aspx
@@ -82,7 +82,7 @@ License
 	2. You may use source code from this addon for any purpose, provided
 	that the names of this addon and its author are not used to promote
 	your project, and do not appear in the title, source code, or file
-	names of your project, outside of an optional "credits" notation.
+	names of your project, outside of an optional credits notation.
 
 	All rights not explicitly addressed in this license are reserved by
 	the copyright holder.
