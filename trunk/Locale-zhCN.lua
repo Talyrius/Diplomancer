@@ -1,8 +1,7 @@
 --[[--------------------------------------------------------------------
 	zhCN translations for Diplomancer
-	Last updated: 2010-01-23 by 急云@CWDG
-	Previous contributors:
-		VENSTER
+	Contributors: VENSTER, 急云@CWDG
+	Last updated: 2010-08-05
 ----------------------------------------------------------------------]]
 
 if GetLocale() ~= "zhCN" then return end
@@ -12,9 +11,6 @@ local Z = {}
 ------------------------------------------------------------------------
 --	Interface strings
 ------------------------------------------------------------------------
-
-L["Inactive"] = "未激活"
--- This must match the in-game name of the Inactive faction group heading in your locale!
 
 L["Default Faction"] = "缺省声望"
 L["Select a faction to watch when your current location doesn't have an associated faction."] = "当目前所在区域没有对应声望时，选择监视的声望"
@@ -57,7 +53,7 @@ Z["Unu'pe"] = "乌努比"
 
 -- Crystalsong Forest
 Z["Sunreaver's Command"] = "夺日者指挥站"
-Z["Windrunner Overlook"] = "风行者观察站"
+Z["Windrunner's Overlook"] = "风行者观察站"
 
 -- Dalaran
 Z["Sunreaver's Sanctuary"] = "夺日者圣殿"
@@ -176,13 +172,13 @@ Z["Loken's Bargain"] = "洛肯的宝库"
 Z["Mimir's Workshop"] = "米米尔的车间"
 Z["Narvir's Cradle"] = "纳维尔支架"
 Z["Nidavelir"] = "尼达维里尔"
+Z["Plain of Echoes"] = "回音平原"
 Z["Temple of Invention"] = "创世神殿"
 Z["Temple of Life"] = "生命神殿"
 Z["Temple of Order"] = "秩序神殿"
 Z["Temple of Winter"] = "寒冬神殿"
 Z["Terrace of the Makers"] = "造物者圣台"
 Z["The Foot Steppes"] = "山底平原"
-Z["The Plain of Echoes"] = "回音平原"
 
 -- Tanaris
 Z["Caverns of Time"] = "时光之穴"

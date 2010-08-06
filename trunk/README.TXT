@@ -10,9 +10,9 @@ Description
 	Diplomancer automatically changes your watched faction based on your
 	current zone and subzone. It supports over 80 zones and 120 subzones
 	from all continents and game expansions.
-	
+
 	For example, while in Dalaran, you'll watch the Kirin Tor. At the
-	Argent TournamentGrounds, you'll watch The Sunreavers or The Silver
+	Argent Tournament Grounds, you'll watch The Sunreavers or The Silver
 	Covenant, depending on your race. Inside level 80 dungeons, if you
 	are wearing a faction champion tabard, you'll watch that faction.
 
@@ -28,21 +28,24 @@ Usage
 
 Localization
 
-	Compatible with: en*, deDE, zhCN
-	Translated into: en*, deDE, zhCN
+	Compatible with: en, deDE, esES, esMX, frFR, koKR, ruRU, zhCN, zhTW
+	Translated into: en, deDE, zhCN
 
 	If you can help translate for any locale, please see this page:
 	http://www.wowinterface.com/portal.php?&id=224&pageid=160
 
-	If you play in a non-English locale listed above, you must download
-	and install the following libraries separately to translate the
-	names of factions and zones:
+	If you play in a non-English locale, you must download and install
+	the following libraries separately to provide translations for
+	faction, zone, and subzone names:
 
-	- LibBabble-Faction-3.0
-	  http://www.wowace.com/addons/libbabble-faction-3-0/
+	LibBabble-Faction-3.0
+	http://wow.curse.com/downloads/wow-addons/details/libbabble-faction-3-0.aspx
 
-	- LibBabble-Zone-3.0
-	  http://www.wowace.com/addons/libbabble-zone-3-0/
+	LibBabble-SubZone-3.0
+	http://wow.curse.com/downloads/wow-addons/details/libbabble-subzone-3-0.aspx
+
+	LibBabble-Zone-3.0
+	http://wow.curse.com/downloads/wow-addons/details/libbabble-zone-3-0.aspx
 
 Feedback
 
@@ -62,7 +65,7 @@ Credits
 
 License
 
-	Copyright © 2007–2010 Alyssa "Phanx" Kinley.
+	Copyright © 2007–2010 Phanx.
 
 	The contents of this addon, excluding third-party resources, are
 	copyrighted to its author with all rights reserved, under United
@@ -77,9 +80,9 @@ License
 	1. You may make modifications to this addon for private use only.
 
 	2. You may use source code from this addon for any purpose, provided
-	that the names of this addon and its author do not appear in the
-	title, source code, or file names of your project, and are not used
-	to promote your project.
+	that the names of this addon and its author are not used to promote
+	your project, and do not appear in the title, source code, or file
+	names of your project, outside of an optional "credits" notation.
 
 	All rights not explicitly addressed in this license are reserved by
 	the copyright holder.
