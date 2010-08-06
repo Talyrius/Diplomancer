@@ -188,6 +188,7 @@ end
 
 ------------------------------------------------------------------------
 
+local FACTION_INACTIVE = FACTION_INACTIVE
 local factionHeaderState = { }
 
 function Diplomancer:ExpandFactionHeaders()
@@ -195,7 +196,7 @@ function Diplomancer:ExpandFactionHeaders()
 	for i = 1, n do
 		local name, _, _, _, _, _, _, _, isHeader, isCollapsed = GetFactionInfo(i)
 		if isHeader then
-			if isCollapsed and name ~= L["Inactive"] then
+			if isCollapsed and name ~= FACTION_INACTIVE then
 				factionHeaderState[name] = true
 				ExpandFactionHeader(i)
 				n = GetNumFactions()

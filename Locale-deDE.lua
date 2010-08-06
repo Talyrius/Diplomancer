@@ -1,7 +1,7 @@
 --[[--------------------------------------------------------------------
 	deDE translations for Diplomancer
-	Contributed by paterbrown
-	Last updated 2009-02-07
+	Contributors: paterbrown
+	Last updated: 2010-08-05
 ----------------------------------------------------------------------]]
 
 if GetLocale() ~= "deDE" then return end
@@ -11,9 +11,6 @@ local Z = {}
 ------------------------------------------------------------------------
 --	Interface strings
 ------------------------------------------------------------------------
-
-L["Inactive"] = "Inaktiv"
--- This must match the in-game name of the Inactive faction group heading in your locale!
 
 L["Default Faction"] = "Standardfraktion"
 L["Select a faction to watch when your current location doesn't have an associated faction."] = "Wähle eine Standardfraktion, welche angezeigt wird wenn dein Aufenthaltsort nicht mit einer Fraktion verknüpft ist."
@@ -48,15 +45,15 @@ Z["Vortex Pinnacle"] = "Vortexgipfel"
 -- Borean Tundra
 Z["Amber Ledge"] = "Bernsteinflöz"
 Z["D.E.H.T.A. Encampment"] = "Lager der D.E.H.T.A."
-Z["Kaskala"] = ""
-Z["Njord's Breath Bay"] = ""
+Z["Kaskala"] = "Kaskala"
+Z["Njord's Breath Bay"] = "Bucht des Njordatems"
 Z["Taunka'le Village"] = "Taunka'le"
 Z["Transitus Shield"] = "Transitusschild"
 Z["Unu'pe"] = "Unu'pe"
 
 -- Crystalsong Forest
 Z["Sunreaver's Command"] = "Sonnenhäschers Schar"
-Z["Windrunner Overlook"] = "Windläufers Warte"
+Z["Windrunner's Overlook"] = "Windläufers Warte"
 
 -- Dalaran
 Z["Sunreaver's Sanctuary"] = "Sonnenhäschers Zuflucht"
@@ -86,7 +83,7 @@ Z["Acherus: The Ebon Hold"] = "Acherus: Die Schwarze Festung"
 -- Felwood
 Z["Deadwood Village"] = "Lager der Totenwaldfelle"
 Z["Felpaw Village"] = "Revier der Teufelspfoten"
-Z["Timbermaw Hold"] = ""
+Z["Timbermaw Hold"] = "Holzschlundfeste"
 
 -- Grizzly Hills
 Z["Camp Oneqwah"] = "Camp Oneqwah"
@@ -99,27 +96,27 @@ Z["Temple of Telhamat"] = "Tempel von Telhamat"
 Z["Throne of Kil'jaeden"] = "Kil'jaedens Thron"
 
 -- Hillsbrad Foothills
-Z["Durnholde Keep"] = ""
+Z["Durnholde Keep"] = "Burg Durnholde"
 
 -- Howling Fjord
 Z["Camp Winterhoof"] = "Lager der Winterhufe"
-Z["Explorers' League Outpost"] = ""
+Z["Explorers' League Outpost"] = "Außenposten der Forscherliga"
 Z["Kamagua"] = "Kamagua"
 
 -- Icecrown
-Z["Argent Pavilion"] = ""
-Z["Argent Tournament Grounds"] = ""
+Z["Argent Pavilion"] = "Argentumpavillon"
+Z["Argent Tournament Grounds"] = "Argentumturnierplatz"
 Z["Crusaders' Pinnacle"] = "Kreuzfahrerturm"
 Z["Orgrim's Hammer"] = "Orgrims Hammer"
 Z["Scourgeholme"] = "Geißelholme"
-Z["Silver Covenant Pavilion"] = ""
-Z["Sunreaver Pavilion"] = ""
-Z["The Alliance Valiants' Ring"] = ""
-Z["The Argent Valiants' Ring"] = ""
+Z["Silver Covenant Pavilion"] = "Silberbundpavillon"
+Z["Sunreaver Pavilion"] = "Sonnenhäscherpavillon"
+Z["The Alliance Valiants' Ring"] = "Der Ring der Recken der Allianz"
+Z["The Argent Valiants' Ring"] = "Der Ring der Recken des Argentumkreuzzugs"
 Z["The Argent Vanguard"] = "Die Argentumvorhut"
-Z["The Aspirants' Ring"] = ""
-Z["The Horde Valiants' Ring"] = ""
-Z["The Ring of Champions"] = ""
+Z["The Aspirants' Ring"] = "Der Ring der Streiter"
+Z["The Horde Valiants' Ring"] = "Der Ring der Recken der Horde"
+Z["The Ring of Champions"] = "Der Ring der Champions"
 Z["The Skybreaker"] = "Die Himmelsbrecher"
 Z["Valley of Echoes"] = "Tal der Echos"
 
@@ -174,13 +171,13 @@ Z["Loken's Bargain"] = "Lokens Handel"
 Z["Mimir's Workshop"] = "Mimirs Werkstatt"
 Z["Narvir's Cradle"] = "Narvirs Wiege"
 Z["Nidavelir"] = "Nidavelir"
+Z["Plain of Echoes"] = "Ebene der Echos"
 Z["Temple of Invention"] = "Tempel des Erfindungsreichtums"
 Z["Temple of Life"] = "Tempel des Lebens"
 Z["Temple of Order"] = "Tempel der Ordnung"
 Z["Temple of Winter"] = "Tempel des Winters"
 Z["Terrace of the Makers"] = "Terrasse der Schöpfer"
 Z["The Foot Steppes"] = "Die Fußmarschen"
-Z["The Plain of Echoes"] = "Ebene der Echos"
 
 -- Tanaris
 Z["Caverns of Time"] = "Höhlen der Zeit"

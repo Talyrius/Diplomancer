@@ -11,8 +11,6 @@ local Z = {}
 --	Interface strings
 ------------------------------------------------------------------------
 
-L["Inactive"] = "未啟動"
-
 L["Default Faction"] = "缺省聲望"
 L["Select a faction to watch when your current location doesn't have an associated faction."] = "當目前所在區域沒有對應聲望時，選擇監視的聲望"
 
@@ -54,7 +52,7 @@ Z["Unu'pe"] = "烏努比"
 
 -- Crystalsong Forest
 Z["Sunreaver's Command"] = "奪日者指揮站"
-Z["Windrunner Overlook"] = "風行者觀察站"
+Z["Windrunner's Overlook"] = "風行者觀察站"
 
 -- Dalaran
 Z["Sunreaver's Sanctuary"] = "奪日者聖殿"
@@ -173,13 +171,13 @@ Z["Loken's Bargain"] = "洛肯的交易地"
 Z["Mimir's Workshop"] = "彌米爾工坊"
 Z["Narvir's Cradle"] = "那維爾搖籃"
 Z["Nidavelir"] = "尼達維里爾"
+Z["Plain of Echoes"] = "回聲平原"
 Z["Temple of Invention"] = "發明神殿"
 Z["Temple of Life"] = "生命神殿"
 Z["Temple of Order"] = "秩序神殿"
 Z["Temple of Winter"] = "凜冬神殿"
 Z["Terrace of the Makers"] = "造物者殿堂"
 Z["The Foot Steppes"] = "足跡冷原"
-Z["The Plain of Echoes"] = "回聲平原"
 
 -- Tanaris
 Z["Caverns of Time"] = "時光之穴"

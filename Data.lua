@@ -7,13 +7,9 @@
 	http://wow.curse.com/downloads/wow-addons/details/diplomancer.aspx
 ----------------------------------------------------------------------]]
 
-local isHorde, isAlliance
 local _, race = UnitRace("player") -- arg2 is "Scourge" for Undead players
-if race == "BloodElf" or race == "Orc" or race == "Scourge" or race == "Tauren" or race == "Troll" then
-	isHorde = true
-else
-	isAlliance = true
-end
+local isHorde = race == "BloodElf" or race == "Orc" or race == "Scourge" or race == "Tauren" or race == "Troll"
+local isAlliance = race == "Draenei" or race == "Dwarf" or race == "Gnome" or race == "Human" or race == "NightElf"
 
 ------------------------------------------------------------------------
 
@@ -168,7 +164,7 @@ local SF = {
 	},
 	["Crystalsong Forest"] = {
 		["Sunreaver's Command"]		= isHorde and "The Sunreavers",
-		["Windrunner Overlook"]		= isAlliance and "The Silver Covenant",
+		["Windrunner's Overlook"]	= isAlliance and "The Silver Covenant",
 	},
 	["Dalaran"] = {
 		["Sunreaver's Sanctuary"]	= isHorde and "The Sunreavers",
@@ -227,10 +223,10 @@ local SF = {
 		["Orgrim's Hammer"]				    = isHorde and "Warsong Offensive",
 		["Silver Covenant Pavilion"]	    = isHorde and "The Sunreavers" or "The Silver Covenant",
 		["Sunreaver Pavilion"]			    = isHorde and "The Sunreavers" or "The Silver Covenant",
-		["The isAlliance Valiants' Ring"]	= isHorde and "The Sunreavers" or "The Silver Covenant",
+		["The Alliance Valiants' Ring"]		= isHorde and "The Sunreavers" or "The Silver Covenant",
 		["The Argent Valiants' Ring"]	    = isHorde and "The Sunreavers" or "The Silver Covenant",
 		["The Aspirants' Ring"]			    = isHorde and "The Sunreavers" or "The Silver Covenant",
-		["The isHorde Valiants' Ring"]	    = isHorde and "The Sunreavers" or "The Silver Covenant",
+		["The Horde Valiants' Ring"]	    = isHorde and "The Sunreavers" or "The Silver Covenant",
 		["The Ring of Champions"]		    = isHorde and "The Sunreavers" or "The Silver Covenant",
 		["The Skybreaker"]				    = isAlliance and "Valiance Expedition",
 	},
@@ -285,12 +281,12 @@ local SF = {
 		["Mimir's Workshop"]		= isAlliance and "The Frostborn",
 		["Narvir's Cradle"]			= isAlliance and "The Frostborn",
 		["Nidavelir"]				= isAlliance and "The Frostborn",
+		["Plain of Echoes"]			= isHorde and "Warsong Offensive" or "The Frostborn",
 		["Temple of Invention"]		= isAlliance and "The Frostborn",
 		["Temple of Life"]			= isHorde and "Warsong Offensive" or "The Frostborn",
 		["Temple of Order"]			= isAlliance and "The Frostborn",
 		["Temple of Winter"]		= isAlliance and "The Frostborn",
 		["The Foot Steppes"]		= isAlliance and "The Frostborn",
-		["The Plain of Echoes"]		= isHorde and "Warsong Offensive" or "The Frostborn",
 	},
 	["Tanaris"] = {
 		["Caverns of Time"]			= "Keepers of Time",
@@ -338,6 +334,7 @@ local SF = {
 
 local _, Diplomancer = ...
 function Diplomancer:LocalizeData()
+	if self.localized then return end
 	-- self:Debug("LocalizeData")
 
 	if GetLocale():match("^en") then
@@ -348,13 +345,10 @@ function Diplomancer:LocalizeData()
 		self.zoneFactions = ZF
 	else
 		local BF = LibStub and LibStub("LibBabble-Faction-3.0", true) and LibStub("LibBabble-Faction-3.0"):GetLookupTable()
+		local BS = LibStub and LibStub("LibBabble-SubZone-3.0", true) and LibStub("LibBabble-SubZone-3.0"):GetLookupTable()
 		local BZ = LibStub and LibStub("LibBabble-Zone-3.0", true) and LibStub("LibBabble-Zone-3.0"):GetLookupTable()
 
-		local SZ = self.SubzoneNames
-
-		if not SZ then
-			return print("|cff33ff99Diplomancer|r is not yet compatible with your locale, because it is missing the translated names of subzones. To find out how you can help, see the addon's download page or the README file in the addon's folder.")
-		elseif not BF or not BZ then
+		if not BF or not BS or not BZ then
 			return print("|cff33ff99Diplomancer|r requires the LibBabble-Faction-3.0 and LibBabble-Zone-3.0 libraries in order to work in your locale. For instructions on how to get these libraries, see the README file in the addon's folder.")
 		end
 
@@ -372,10 +366,10 @@ function Diplomancer:LocalizeData()
 		for zone, subzones in pairs(SF) do
 			self.subzoneFactions[BZ[zone]] = { }
 			for subzone, faction in pairs(subzones) do
-				if SZ[subzone] then
-					self.subzoneFactions[BZ[zone]][SZ[subzone]] = BF[faction]
+				if BS[subzone] then
+					self.subzoneFactions[BZ[zone]][BS[subzone]] = BF[faction]
 				else
-					print(("|cff33ff99Diplomancer:|r No translation found for subzone %s in zone %s."):format(subzone, zone))
+					print("|cff33ff99Diplomancer:|r No translation found for subzone", subzone, "in zone", zone)
 				end
 			end
 		end
@@ -386,7 +380,7 @@ function Diplomancer:LocalizeData()
 		end
 	end
 
-	self.LocalizeData = nil
+	self.localized = true
 end
 
 ------------------------------------------------------------------------
