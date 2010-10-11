@@ -6,6 +6,10 @@ local LOCALE = GetLocale()
 if LOCALE:match("^en") then return end
 
 local _, Diplomancer = ...
+if not Diplomancer then -- WoW China is still running 3.2
+	Diplomancer = { }
+	_G.Diplomancer = Diplomancer
+end
 Diplomancer.L = { }
 
 --[[--------------------------------------------------------------------
@@ -32,23 +36,23 @@ end
 
 --[[--------------------------------------------------------------------
 	esES | Spanish | Español
-	Contributors: ???
-	Last updated: YYYY-MM-DD
+	Contributors: Phanx
+	Last updated: 2010-09-07
 ----------------------------------------------------------------------]]
 
 if LOCALE == "esES" or LOCALE == "esMX" then
 
--- L["Default Faction"] = ""
--- L["Select a faction to watch when your current location doesn't have an associated faction."] = ""
+L["Default Faction"] = "Facción Predeterminado"
+L["Select a faction to watch when your current location doesn't have an associated faction."] = "Seleccione una de las facciones a vigilar cuando su ubicación actual no tiene una facción asociada."
 
--- L["Reset"] = ""
--- L["Reset your default faction preference to your race's faction."] = ""
+L["Reset"] = "Restablecer"
+L["Reset your default faction preference to your race's faction."] = "Restablecer su preferencia por defecto a la facción de la facción de tu raza."
 
--- L["Ignore Exalted Factions"] = ""
--- L["Don't watch factions you've already acheived Exalted standing with."] = ""
+L["Ignore Exalted Factions"] = "Ignorar Facciones Exaltados"
+L["Don't watch factions you've already acheived Exalted standing with."] = "No vea las facciones con las que ya hemos logrado la reputación de Exaltado."
 
--- L["Enable Notifications"] = ""
--- L["Show a message in the chat frame when your watched faction changes."] = ""
+L["Enable Notifications"] = "Habilitar las Notificaciones"
+L["Show a message in the chat frame when your watched faction changes."] = "Mostrar un mensaje en el marco del chat al cambiar tu facción seguimientos."
 
 end
 

@@ -2,12 +2,13 @@
 	Diplomancer
 	Automatically sets your watched faction based on your location.
 	by Phanx < addons@phanx.net >
-	Copyright © 2007–2010 Alyssa "Phanx" Kinley
+	Copyright © 2007–2010 Phanx
 	http://www.wowinterface.com/downloads/info9643-Diplomancer.html
 	http://wow.curse.com/downloads/wow-addons/details/diplomancer.aspx
 ----------------------------------------------------------------------]]
 
 local ADDON_NAME, Diplomancer = ...
+if not Diplomancer then Diplomancer = _G.Diplomancer end -- WoW China is still running 3.2
 Diplomancer.L = Diplomancer.L or { }
 
 ------------------------------------------------------------------------
@@ -41,7 +42,7 @@ end
 
 ------------------------------------------------------------------------
 
-function Diplomancer:ADDON_LOADED(addon)
+function Diplomancer:ADDON_LOADED(_, addon)
 	if addon ~= ADDON_NAME then return end
 	-- self:Debug("ADDON_LOADED", addon)
 
@@ -73,6 +74,7 @@ function Diplomancer:PLAYER_LOGIN()
 	subzoneFactions = self.subzoneFactions
 	zoneFactions = self.zoneFactions
 
+	self.frame:RegisterEvent("PLAYER_ENTERING_WORLD")
 	self.frame:RegisterEvent("ZONE_CHANGED")
 	self.frame:RegisterEvent("ZONE_CHANGED_INDOORS")
 	self.frame:RegisterEvent("ZONE_CHANGED_NEW_AREA")
@@ -91,9 +93,7 @@ end
 
 ------------------------------------------------------------------------
 
-function Diplomancer:Update()
-	-- self:Debug("Update")
-
+function Diplomancer:Update(event)
 	if taxiEnded then
 		-- This is a hack to work around the fact that UnitOnTaxi still
 		-- returns true right after PLAYER_CONTROL_GAINED has fired.
@@ -107,11 +107,20 @@ function Diplomancer:Update()
 	local faction
 	local zone = GetRealZoneText()
 
-	if championZones[zone] and select(2, IsInInstance()) == "party" then
-		for k, v in pairs(championFactions) do
-			if UnitBuff("player", k) then
-				faction = v
-				break
+	-- self:Debug("Update", event, zone)
+
+	local championMinDiff = championZones[zone]
+	if championMinDiff then
+		local _, type = IsInInstance()
+		local diff = GetInstanceDifficulty()
+		self:Debug("championZones", zone, championMinDiff, type, diff)
+		if type == "party" and diff >= championMinDiff then
+			for k, v in pairs(championFactions) do
+				if IsEquippedItem(k) then
+					faction = v
+					self:Debug("CHAMPION", faction)
+					break
+				end
 			end
 		end
 	end
@@ -119,15 +128,20 @@ function Diplomancer:Update()
 	if not faction then
 		local subzone = GetSubZoneText()
 		faction = subzone and subzoneFactions[zone] and subzoneFactions[zone][subzone]
+		-- if faction then self:Debug("SUBZONE", faction) end
 	end
 
 	if not faction then
 		faction = zoneFactions[zone]
+		-- if faction then self:Debug("ZONE", faction) end
 	end
+
+	-- if not faction then self:Debug("RACE", racialFaction) end
 
 	self:SetWatchedFactionByName(faction or db.defaultFaction or racialFaction, db.verbose)
 end
 
+Diplomancer.PLAYER_ENTERING_WORLD = Diplomancer.Update
 Diplomancer.ZONE_CHANGED = Diplomancer.Update
 Diplomancer.ZONE_CHANGED_INDOORS = Diplomancer.Update
 Diplomancer.ZONE_CHANGED_NEW_AREA = Diplomancer.Update
@@ -225,7 +239,7 @@ end
 
 Diplomancer.frame = CreateFrame("Frame", nil, InterfaceOptionsFramePanelContainer)
 Diplomancer.frame:RegisterEvent("ADDON_LOADED")
-Diplomancer.frame:SetScript("OnEvent", function(self, event, ...) return Diplomancer[event] and Diplomancer[event](Diplomancer, ...) end)
+Diplomancer.frame:SetScript("OnEvent", function(self, event, ...) return Diplomancer[event] and Diplomancer[event](Diplomancer, event, ...) end)
 
 ------------------------------------------------------------------------
 

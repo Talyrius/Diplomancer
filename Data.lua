@@ -14,21 +14,30 @@ local isAlliance = race == "Draenei" or race == "Dwarf" or race == "Gnome" or ra
 ------------------------------------------------------------------------
 
 local CF = {
-	[GetSpellInfo(57819)] = "Argent Crusade",
-	[GetSpellInfo(57821)] = "Kirin Tor",
-	[GetSpellInfo(57820)] = "Knights of the Ebon Blade",
-	[GetSpellInfo(57822)] = "The Wyrmrest Accord",
+	[43154] = "Argent Crusade",
+	[43157] = "Kirin Tor",
+	[43155] = "Knights of the Ebon Blade",
+	[43156] = "The Wyrmrest Accord",
 }
 
 local CZ = {
-	["Halls of Lightning"]    = true,
-	["Halls of Reflection"]   = true,
-	["Pit of Saron"]          = true,
-	["Stratholme Past"]       = true,
-	["The Oculus"]            = true,
-	["The Forge of Souls"]    = true,
-	["Trial of the Champion"] = true,
-	["Utgarde Pinnacle"]      = true,
+	["Ahn'kahet: The Old Kingdom"] = 2, -- Heroic only
+	["Azjol-Nerub"]                = 2,
+	["The Culling of Stratholme"]  = 1, -- Normal and Heroic
+    ["Drak'Tharon Keep"]           = 2,
+    ["Gundrak"]                    = 2,
+	["Halls of Lightning"]         = 1,
+	["Halls of Reflection"]        = 1,
+	["Halls of Stone"]             = 2,
+	["Pit of Saron"]               = 1,
+	["Stratholme Past"]            = 1,
+	["The Nexus"]                  = 2,
+	["The Oculus"]                 = 1,
+	["The Forge of Souls"]         = 1,
+	["The Violet Hold"]            = 2,
+	["Trial of the Champion"]      = 1,
+	["Utgarde Keep"]               = 2,
+	["Utgarde Pinnacle"]           = 1,
 }
 
 ------------------------------------------------------------------------
@@ -221,14 +230,18 @@ local SF = {
 		["Argent Pavilion"]				    = isHorde and "The Sunreavers" or "The Silver Covenant",
 		["Argent Tournament Grounds"]	    = isHorde and "The Sunreavers" or "The Silver Covenant",
 		["Orgrim's Hammer"]				    = isHorde and "Warsong Offensive",
+		["Scourgeholme"]                    = "Argent Crusade",
 		["Silver Covenant Pavilion"]	    = isHorde and "The Sunreavers" or "The Silver Covenant",
 		["Sunreaver Pavilion"]			    = isHorde and "The Sunreavers" or "The Silver Covenant",
 		["The Alliance Valiants' Ring"]		= isHorde and "The Sunreavers" or "The Silver Covenant",
 		["The Argent Valiants' Ring"]	    = isHorde and "The Sunreavers" or "The Silver Covenant",
 		["The Aspirants' Ring"]			    = isHorde and "The Sunreavers" or "The Silver Covenant",
+		["The Breach"]                      = "Argent Crusade",
 		["The Horde Valiants' Ring"]	    = isHorde and "The Sunreavers" or "The Silver Covenant",
+		["The Pit of Fiends"]               = "Argent Crusade",
 		["The Ring of Champions"]		    = isHorde and "The Sunreavers" or "The Silver Covenant",
 		["The Skybreaker"]				    = isAlliance and "Valiance Expedition",
+		["Valley of Echoes"]                = "Argent Crusade",
 	},
 	["Nagrand"] = {
 		["Aeris Landing"]			= "The Consortium",
@@ -353,8 +366,8 @@ function Diplomancer:LocalizeData()
 		end
 
 		self.championFactions = { }
-		for aura, faction in pairs(CF) do
-			self.championFactions[aura] = BF[faction]
+		for item, faction in pairs(CF) do
+			self.championFactions[item] = BF[faction]
 		end
 
 		self.championZones = { }
