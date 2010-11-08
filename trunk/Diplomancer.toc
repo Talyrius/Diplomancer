@@ -10,6 +10,7 @@
 ## X-License: All Rights Reserved. See README for license terms.
 ## X-Localizations: enUS, deDE, zhCN
 ## X-Website: http://wow.curseforge.com/addons/diplomancer/
+## X-Curse-Project-ID: diplomancer
 ## X-WoWI-ID: 9643
 
 ## LoadManagers: AddonLoader
