@@ -209,7 +209,7 @@ local SF = {
 		["Camp Oneqwah"]			= isHorde and "The Taunka",
 	},
 	["Hellfire Peninsula"] = {
-		["Cenarion Post"]			= "Cenarion Circle",
+		["Cenarion Post"]			= "Cenarion Expedition",
 		["Mag'har Grounds"]			= isHorde and "The Mag'har",
 		["Mag'har Post"]			= isHorde and "The Mag'har",
 		["Temple of Telhamat"]		= isAlliance and "Kurenai",
