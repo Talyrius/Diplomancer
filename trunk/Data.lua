@@ -2,7 +2,6 @@
 	Diplomancer
 	Automatically sets your watched faction based on your location.
 	by Phanx < addons@phanx.net >
-	Copyright © 2007–2010 Alyssa "Phanx" Kinley
 	http://www.wowinterface.com/downloads/info9643-Diplomancer.html
 	http://wow.curse.com/downloads/wow-addons/details/diplomancer.aspx
 ----------------------------------------------------------------------]]
@@ -71,6 +70,7 @@ local ZF = {
 	["Crystalsong Forest"]			= "Kirin Tor",
 	["Dalaran"]						= "Kirin Tor",
 	["Darnassus"]					= isAlliance and "Darnassus",
+	["Deepholm"]                    = "The Earthen Ring",
 	["Dire Maul"]					= "Shen'dralar",
 	["Deadwind Pass"]				= "The Violet Eye",
 	["Dragonblight"]				= "The Wyrmrest Accord",
@@ -131,6 +131,7 @@ local ZF = {
 	["Silverpine Forest"]           = isHorde and "Undercity",
 	["The Slave Pens"]				= "Cenarion Expedition",
 	["The Steamvault"]				= "Cenarion Expedition",
+	["The Stonecore"]				= "The Earthen Ring",
 	["The Storm Peaks"]				= "The Sons of Hodir",
 	["The Underbog"]				= "Cenarion Expedition",
 	["Thunder Bluff"]				= isHorde and "Thunder Bluff",
@@ -179,6 +180,18 @@ local SF = {
 		["Sunreaver's Sanctuary"]	= isHorde and "The Sunreavers",
 		["The Filthy Animal"]		= isHorde and "The Sunreavers",
 		["The Silver Enclave"]		= isAlliance and "The Silver Covenant",
+	},
+	["Deepholm"] = {
+		["Crimson Expanse"]         = "Therazane",
+		["Crumbling Depths"]        = "Therazane",
+		["Fungal Deep"]             = "Therazane",
+		["Halcyon Egress"]          = "Therazane",
+		["Lorthuna's Gate"]         = "Therazane",
+		["Shuddering Spires"]       = "Therazane",
+		["The Pale Roost"]          = "Therazane",
+		["Therazane's Throne"]      = "Therazane",
+		["Twilight Precipice"]      = "Therazane",
+		["Verlok Stand"]            = "Therazane",
 	},
 	["Desolace"] = {
 		["Gelkis Village"]			= "Magram Clan Centaur",
