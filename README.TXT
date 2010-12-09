@@ -67,22 +67,9 @@ License
 
 	Copyright © 2007–2010 Phanx.
 
-	The contents of this addon, excluding third-party resources, are
-	copyrighted to its author with all rights reserved, under United
-	States copyright law and various international treaties.
+	I, the copyright holder of this work, hereby release it into the
+	public domain. This applies worldwide.
 
-	In particular, please note that you may not distribute this addon in
-	any form, with or without modifications, including as part of a
-	compilation, without prior written permission from its author.
-
-	The author of this addon hereby grants you the following rights:
-
-	1. You may make modifications to this addon for private use only.
-
-	2. You may use source code from this addon for any purpose, provided
-	that the names of this addon and its author are not used to promote
-	your project, and do not appear in the title, source code, or file
-	names of your project, outside of an optional credits notation.
-
-	All rights not explicitly addressed in this license are reserved by
-	the copyright holder.
+	In case this is not legally possible, I hereby grant any entity the
+	right to use this work for any purpose, without any conditions,
+	unless such conditions are required by law.
