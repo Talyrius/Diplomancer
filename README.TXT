@@ -1,75 +1,74 @@
-﻿
-Diplomancer - a World of Warcraft user interface addon
+﻿# Diplomancer
 
-	by Phanx < addons@phanx.net >
-	http://www.wowinterface.com/downloads/info9643-Diplomancer.html
-	http://wow.curse.com/downloads/wow-addons/details/diplomancer.aspx
+* by Phanx < addons@phanx.net >
+* http://www.wowinterface.com/downloads/info9643-Diplomancer.html
+* http://wow.curse.com/downloads/wow-addons/details/diplomancer.aspx
 
-Description
 
-	Diplomancer automatically changes your watched faction based on your
-	current zone and subzone. It supports over 80 zones and 120 subzones
-	from all continents and game expansions.
+## Description
 
-	For example, while in Dalaran, you'll watch the Kirin Tor. At the
-	Argent Tournament Grounds, you'll watch The Sunreavers or The Silver
-	Covenant, depending on your race. Inside level 80 dungeons, if you
-	are wearing a faction champion tabard, you'll watch that faction.
+Diplomancer automatically changes your watched faction based on your
+current zone and subzone. It supports over 80 zones and 120 subzones
+from all continents and game expansions.
 
-	In places without an associated faction - for example, if you're a
-	troll on a weekend camping trip in the lovely Redridge Mountains -
-	you'll watch your race's faction. You can also choose your own
-	default faction to watch instead of your race's faction.
+For example, while in Dalaran, you'll watch the Kirin Tor. At the Argent
+Tournament Grounds, you'll watch The Sunreavers or The Silver Covenant,
+depending on your race. Inside level 80 dungeons, if you are wearing a
+faction champion tabard, you'll watch that faction.
 
-Usage
+In places without an associated faction - for example, if you're a troll
+on a weekend camping trip in the lovely Redridge Mountains - you'll
+watch your race's faction. You can also choose your own default faction
+to watch instead of your race's faction.
 
-	Options are available in the Interface Options window. Type "/dm" or
-	"/diplomancer" to open the window directly to the Diplomancer panel.
 
-Localization
+## Usage
 
-	Compatible with: en, deDE, esES, esMX, frFR, koKR, ruRU, zhCN, zhTW
-	Translated into: en, deDE, zhCN, zhTW
+Type "/dm" for options, or find them in the Interface Options window.
 
-	If you can provide translations for the options panel text for any
-	locale, please send me a PM on either download site!
 
-	If you play in a non-English client, you will need to download and
-	install the following libraries separately, to provide the required
-	translations for faction names, zone names, and subzone names:
+## Localization
 
-	LibBabble-Faction-3.0
-	http://wow.curse.com/downloads/wow-addons/details/libbabble-faction-3-0.aspx
+* Compatible with: en, deDE, esES, esMX, frFR, koKR, ruRU, zhCN, zhTW
+* Translated into: en, deDE, zhCN, zhTW
 
-	LibBabble-SubZone-3.0
-	http://wow.curse.com/downloads/wow-addons/details/libbabble-subzone-3-0.aspx
+If you can provide translations for the options panel text for any
+locale, please send me a PM on either download site!
 
-	LibBabble-Zone-3.0
-	http://wow.curse.com/downloads/wow-addons/details/libbabble-zone-3-0.aspx
+If you play in a non-English client, you will need to download and
+install the following libraries separately, to provide the required
+translations for faction names, zone names, and subzone names:
 
-Feedback
+LibBabble-Faction-3.0
+http://wow.curse.com/downloads/wow-addons/details/libbabble-faction-3-0.aspx
 
-	Please use the ticket system on either download site report bugs or
-	request features. Use the comment system only for general questions
-	or comments.
+LibBabble-SubZone-3.0
+http://wow.curse.com/downloads/wow-addons/details/libbabble-subzone-3-0.aspx
 
-	If you need to contact me privately, you may do by private message
-	on either download site, or by email at addons@phanx.net.
+LibBabble-Zone-3.0
+http://wow.curse.com/downloads/wow-addons/details/libbabble-zone-3-0.aspx
 
-	Note that email and private messaging are not appropriate ways to
-	report bugs, request features, or ask for help with using an addon.
 
-Credits
+## Feedback
 
-	Diplomancer was inspired by Charnow's SmartFactionWatch.
+For bug reports and feature requests, please use the ticket tracker on
+either download site. For general questions and comments, feel free to
+post a comment on either download site.
 
-License
+If you need to contact me privately, you may do by private message
+on either download site, or by email at addons@phanx.net.
 
-	Copyright © 2007–2010 Phanx.
 
-	I, the copyright holder of this work, hereby release it into the
-	public domain. This applies worldwide.
+## Credits
 
-	In case this is not legally possible, I hereby grant any entity the
-	right to use this work for any purpose, without any conditions,
-	unless such conditions are required by law.
+Diplomancer was inspired by Charnow's SmartFactionWatch.
+
+
+## License
+
+Copyright © 2007–2010 Phanx
+
+I, the copyright holder of this work, hereby release it into the public
+domain. This applies worldwide. In case this is not legally possible:
+I grant anyone the right to use this work for any purpose, without any
+conditions, unless such conditions are required by law.
