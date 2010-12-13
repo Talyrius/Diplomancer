@@ -143,6 +143,7 @@ local ZF = {
 	["Thunder Bluff"]				= isHorde and "Thunder Bluff",
 	["Tirisfal Glades"]             = isHorde and "Undercity",
 	["Trial of the Crusader"]		= isHorde and "The Sunreavers" or "The Silver Covenant",
+	["Twilight Highlands"]			= isHorde and "Dragonmaw Clan",
 	["Uldum"]						= "Ramkahen",
 	["Undercity"]					= isHorde and "Undercity",
 	["Warsong Gulch"]				= isHorde and "Warsong Outriders" or "Silverwing Sentinels",
