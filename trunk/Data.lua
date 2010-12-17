@@ -2,14 +2,9 @@
 	Diplomancer
 	Automatically sets your watched faction based on your location.
 	by Phanx < addons@phanx.net >
+	Copyright © 2007–2010 Phanx. Some rights reserved. See LICENSE.txt for details.
 	http://www.wowinterface.com/downloads/info9643-Diplomancer.html
 	http://wow.curse.com/downloads/wow-addons/details/diplomancer.aspx
-
-	Copyright © 2007–2010 Phanx.
-	I, the copyright holder of this work, hereby release it into the public
-	domain. This applies worldwide. In case this is not legally possible:
-	I grant anyone the right to use this work for any purpose, without any
-	conditions, unless such conditions are required by law.
 ----------------------------------------------------------------------]]
 
 local _, race = UnitRace("player") -- arg2 is "Scourge" for Undead players
@@ -19,30 +14,81 @@ local isAlliance = race == "Draenei" or race == "Dwarf" or race == "Gnome" or ra
 ------------------------------------------------------------------------
 
 local CF = {
-	[43154] = "Argent Crusade",
-	[43157] = "Kirin Tor",
-	[43155] = "Knights of the Ebon Blade",
-	[43156] = "The Wyrmrest Accord",
+	[93830] = { 15, "Bilgewater Cartel" },
+	[93827] = { 15, "Darkspear Trolls" },
+	[93806] = { 15, "Darnassus" },
+	[93811] = { 15, "Exodus" },
+	[93816] = { 15, "Gilneas" },
+	[93821] = { 15, "Gnomeregan" },
+	[93806] = { 15, "Gnomeregan" },
+	[93825] = { 15, "Orgrimmar" },
+	[93828] = { 15, "Silvermoon City" },
+	[93795] = { 15, "Stormwind" },
+	[94463] = { 15, "Thunder Bluff" },
+	[94462] = { 15, "Undercity" },
+	[57819] = { 80, "Argent Crusade" },
+	[57821] = { 80, "Kirin Tor" },
+	[57820] = { 80, "Knights of the Ebon Blade" },
+	[57822] = { 80, "The Wyrmrest Accord" },
+	[94158] = { 85, "Dragonmaw Clan" },
+	[93341] = { 85, "Guardians of Hyjal" },
+	[93337] = { 85, "Ramkahen" },
+	[93339] = { 85, "The Earthen Ring" },
+	[93374] = { 85, "Therazane" },
+	[93368] = { 85, "Wildhammer Clan" },
 }
 
 local CZ = {
-	["Ahn'kahet: The Old Kingdom"] = 2, -- Heroic only
-	["Azjol-Nerub"]                = 2,
-	["The Culling of Stratholme"]  = 1, -- Normal and Heroic
-    ["Drak'Tharon Keep"]           = 2,
-    ["Gundrak"]                    = 2,
-	["Halls of Lightning"]         = 1,
-	["Halls of Reflection"]        = 1,
-	["Halls of Stone"]             = 2,
-	["Pit of Saron"]               = 1,
-	["Stratholme Past"]            = 1,
-	["The Nexus"]                  = 2,
-	["The Oculus"]                 = 1,
-	["The Forge of Souls"]         = 1,
-	["The Violet Hold"]            = 2,
-	["Trial of the Champion"]      = 1,
-	["Utgarde Keep"]               = 2,
-	["Utgarde Pinnacle"]           = 1,
+	[70] = {
+		-- This list exists because we need to exclude Outland dungeons
+		-- when championing a home city faction.
+		["Auchenai Crypts"]			= true,
+		["Hellfire Ramparts"]		= true,
+		["Magisters' Terrace"]		= true,
+		["Mana-Tombs"]				= true,
+		["Old Hillsbrad Foothills"]	= true,
+		["Sethekk Halls"]			= true,
+		["Shadow Labyrinth"]		= true,
+		["The Arcatraz"]			= true,
+		["The Black Morass"]		= true,
+		["The Blood Furnace"]		= true,
+		["The Botanica"]			= true,
+		["The Mechanar"]			= true,
+		["The Shattered Halls"]		= true,
+		["The Slave Pens"]			= true,
+		["The Steamvault"]			= true,
+		["The Underbog"]			= true,
+	},
+	[80] = {
+		["Ahn'kahet: The Old Kingdom"] = 2, -- Heroic only
+		["Azjol-Nerub"]                = 2,
+		["The Culling of Stratholme"]  = 1, -- Normal and Heroic
+		["Drak'Tharon Keep"]           = 2,
+		["Gundrak"]                    = 2,
+		["Halls of Lightning"]         = 1,
+		["Halls of Reflection"]        = 1,
+		["Halls of Stone"]             = 2,
+		["Pit of Saron"]               = 1,
+		["Stratholme Past"]            = 1,
+		["The Nexus"]                  = 2,
+		["The Oculus"]                 = 1,
+		["The Forge of Souls"]         = 1,
+		["The Violet Hold"]            = 2,
+		["Trial of the Champion"]      = 1,
+		["Utgarde Keep"]               = 2,
+		["Utgarde Pinnacle"]           = 1,
+	},
+	[85] = {
+		["Blackrock Caverns"]			= 2,
+		["Deadmines"]					= 2,
+		["Grim Batol"]					= 1,
+		["Halls of Origination"]		= 1,
+		["Lost City of the Tol'vir"]	= 1,
+		["Shadowfang Keep"]				= 2,
+		["The Stonecore"]				= 1,
+		["The Vortex Pinnacle"]			= 1,
+		["Throne of the Tides"]			= 2,
+	},
 }
 
 ------------------------------------------------------------------------
@@ -344,6 +390,14 @@ local SF = {
 	["Tirisfal Glades"] = {
 		["The Bulwark"]				= "Argent Dawn",
 	},
+	["Twilight Highlands"] = {
+		["Dragonmaw Pass"]			= isHorde and "Bilgewater Cartel",
+		["Iso'rath"]				= "The Earthen Ring",
+		["Ring of the Elements"]	= "The Earthen Ring",
+		["Ruins of Drakgor"]		= "The Earthen Ring",
+		["The Krazzwerks"]			= isHorde and "Bilgewater Cartel",
+		["The Maw of Madness"]		= "The Earthen Ring",
+	},
 	["Winterspring"] = {
 		["Frostfire Hot Springs"]	= "Timbermaw Hold",
 		["Frostsaber Rock"]			= isAlliance and "Wintersaber Trainers",
@@ -387,13 +441,16 @@ function Diplomancer:LocalizeData()
 		end
 
 		self.championFactions = { }
-		for item, faction in pairs(CF) do
-			self.championFactions[item] = BF[faction]
+		for buff, data in pairs(CF) do
+			self.championFactions[GetSpellInfo(buff)] = { data[1], BF[data[2]] }
 		end
 
 		self.championZones = { }
-		for zone in pairs(CZ) do
-			self.championZones[BZ[zone]] = true
+		for level, data in pairs(CZ) do
+			self.championZones[level] = { }
+			for zone, info in pairs(data) do
+				self.championZones[level][BZ[zone]] = info
+			end
 		end
 
 		self.subzoneFactions = { }
@@ -413,6 +470,8 @@ function Diplomancer:LocalizeData()
 			self.zoneFactions[BZ[zone]] = BF[faction]
 		end
 	end
+
+	CF, CZ, RF, SF, ZF = nil, nil, nil, nil, nil
 
 	self.localized = true
 end

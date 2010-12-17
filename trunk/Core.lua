@@ -2,14 +2,9 @@
 	Diplomancer
 	Automatically sets your watched faction based on your location.
 	by Phanx < addons@phanx.net >
+	Copyright © 2007–2010 Phanx. Some rights reserved. See LICENSE.txt for details.
 	http://www.wowinterface.com/downloads/info9643-Diplomancer.html
 	http://wow.curse.com/downloads/wow-addons/details/diplomancer.aspx
-
-	Copyright © 2007–2010 Phanx.
-	I, the copyright holder of this work, hereby release it into the public
-	domain. This applies worldwide. In case this is not legally possible:
-	I grant anyone the right to use this work for any purpose, without any
-	conditions, unless such conditions are required by law.
 ----------------------------------------------------------------------]]
 
 local ADDON_NAME, Diplomancer = ...
@@ -114,18 +109,29 @@ function Diplomancer:Update(event)
 
 	-- self:Debug("Update", event, zone)
 
-	local championMinDiff = championZones[zone]
-	if championMinDiff then
-		local _, type = IsInInstance()
-		local diff = GetInstanceDifficulty()
-		self:Debug("championZones", zone, championMinDiff, type, diff)
-		if type == "party" and diff >= championMinDiff then
-			for k, v in pairs(championFactions) do
-				if IsEquippedItem(k) then
-					faction = v
-					self:Debug("CHAMPION", faction)
-					break
+	local _, instanceType = IsInInstance()
+	if instanceType == "party" then
+		for buff, info in pairs(championFactions) do
+			if UnitBuff("player", buff) then
+				local instances = championZones[info[1]]
+				if instances and instances[zone] then
+					-- Championing this faction has a level requirement.
+					if GetInstanceDifficulty() >= instances[zone] then
+						faction = info[2]
+						self:Debug("CHAMPION", faction)
+						if db.defaultChampion then db.defaultFaction = faction end
+					end
+				elseif not instances and not championZones[70][zone] then
+					-- Championing this faction doesn't have a level requirement,
+					-- but Outland dungeons don't count, and WotLK dungeons are weird.
+					local minDifficulty = instances[80][zone]
+					if not minDifficulty or GetInstanceDifficulty() >= minDifficulty then
+						faction = info[2]
+						self:Debug("CHAMPION", faction)
+						if db.defaultChampion then db.defaultFaction = faction end
+					end
 				end
+				break
 			end
 		end
 	end
@@ -139,6 +145,16 @@ function Diplomancer:Update(event)
 	if not faction then
 		faction = zoneFactions[zone]
 		-- if faction then self:Debug("ZONE", faction) end
+	end
+
+	if not faction and db.defaultChampion then
+		for buff, info in pairs(championFactions) do
+			if UnitBuff("player", buff) then
+				faction = info[2]
+				-- if faction self:Debug("DEFAULT CHAMPION", faction) end
+				break
+			end
+		end
 	end
 
 	-- if not faction then self:Debug("RACE", racialFaction) end
@@ -155,10 +171,30 @@ Diplomancer.ZONE_CHANGED_NEW_AREA = Diplomancer.Update
 
 function Diplomancer:PLAYER_CONTROL_GAINED()
 	-- self:Debug("PLAYER_CONTROL_GAINED")
-
 	if onTaxi then
 		onTaxi = false
 		taxiEnded = true
+		self:Update()
+	end
+end
+
+------------------------------------------------------------------------
+
+function Diplomancer:PLAYER_ENTERING_WORLD()
+	-- self:Debug("PLAYER_ENTERING_WORLD")
+	if select(2, IsInInstance()) == "party" then
+		self.frame:RegisterEvent("UNIT_INVENTORY_CHANGED")
+	else
+		self.frame:UnregisterEvent("UNIT_INVENTORY_CHANGED")
+	end
+	self:Update()
+end
+
+------------------------------------------------------------------------
+
+function Diplomancer:UNIT_INVENTORY_CHANGED(unit)
+	if unit == "player" then
+		-- self:Debug("UNIT_INVENTORY_CHANGED")
 		self:Update()
 	end
 end
@@ -198,7 +234,7 @@ function Diplomancer:GetFactionNameMatch(text)
 		local faction
 		for i = 1, GetNumFactions() do
 			faction = GetFactionInfo(i)
-			if faction:lower():match(text) then
+			if faction:lower():gsub("'", ""):match(text) then
 				return faction
 			end
 		end
@@ -251,7 +287,7 @@ Diplomancer.frame:SetScript("OnEvent", function(self, event, ...) return Diploma
 Diplomancer.frame.name = GetAddOnInfo(ADDON_NAME, "Title")
 Diplomancer.frame:Hide()
 Diplomancer.frame:SetScript("OnShow", function(self)
-	local title, subtitle, defaultLabel, defaultDropdown, ltex, mtex, rtex, defaultButton, exaltedCheckbox, verboseCheckbox
+	local title, subtitle, defaultLabel, defaultDropdown, ltex, mtex, rtex, defaultButton, defaultChampion, exaltedCheckbox, verboseCheckbox
 
 	--------------------------------------------------------------------
 
@@ -463,23 +499,34 @@ Diplomancer.frame:SetScript("OnShow", function(self)
 
 	--------------------------------------------------------------------
 
-	verboseCheckbox = self:CreateCheckbox(L["Announce watched faction"])
-	verboseCheckbox:SetPoint("TOPLEFT", defaultDropdown, "BOTTOMLEFT", 15, -10)
-	verboseCheckbox:SetChecked(db.verbose)
-	verboseCheckbox.desc = L["With this option enabled, Diplomancer will add a message to your chat frame when changing your watched faction."]
-	verboseCheckbox.func = function(checked)
-		db.verbose = checked
+	defaultChampion = self:CreateCheckbox(L["Default to championed faction"])
+	defaultChampion:SetPoint("TOPLEFT", defaultDropdown, "BOTTOMLEFT", 15, -10)
+	defaultChampion:SetChecked(db.defaultChampion)
+	defaultChampion.desc = L["Use your currently championed faction as your default faction."]
+	defaultChampion.func = function(checked)
+		db.defaultChampion = checked
+		Diplomancer:Update()
 	end
 
 	--------------------------------------------------------------------
 
 	exaltedCheckbox = self:CreateCheckbox(L["Ignore exalted factions"])
-	exaltedCheckbox:SetPoint("TOPLEFT", verboseCheckbox, "BOTTOMLEFT", 0, -8)
+	exaltedCheckbox:SetPoint("TOPLEFT", defaultChampion, "BOTTOMLEFT", 0, -8)
 	exaltedCheckbox:SetChecked(db.ignoreExalted)
-	exaltedCheckbox.desc = L["With this option enabled, Diplomancer will not watch factions you have already attained Exalted status with."]
+	exaltedCheckbox.desc = L["Don't watch factions with whom you have already attained Exalted reputation."]
 	exaltedCheckbox.func = function(checked)
 		db.ignoreExalted = checked
 		Diplomancer:Update()
+	end
+
+	--------------------------------------------------------------------
+
+	verboseCheckbox = self:CreateCheckbox(L["Announce watched faction"])
+	verboseCheckbox:SetPoint("TOPLEFT", exaltedCheckbox, "BOTTOMLEFT", 0, -8)
+	verboseCheckbox:SetChecked(db.verbose)
+	verboseCheckbox.desc = L["Show a message in the chat frame when your watched faction is changed."]
+	verboseCheckbox.func = function(checked)
+		db.verbose = checked
 	end
 
 	--------------------------------------------------------------------
