@@ -1,9 +1,10 @@
 ﻿# Diplomancer
 
-by Phanx < addons@phanx.net >
-Copyright © 2007–2010 Phanx. Some rights reserved. See LICENSE.txt for details.
-http://www.wowinterface.com/downloads/info9643-Diplomancer.html
-http://wow.curse.com/downloads/wow-addons/details/diplomancer.aspx
+* by Phanx < addons@phanx.net >
+* Currently maintained by Akkorian < akkorian@hotmail.com >
+* Copyright © 2007–2010 Phanx. Some rights reserved. See LICENSE.txt for details.
+* http://www.wowinterface.com/downloads/info9643-Diplomancer.html
+* http://wow.curse.com/downloads/wow-addons/details/diplomancer.aspx
 
 
 ## Description
@@ -12,42 +13,45 @@ Diplomancer automatically changes your watched faction based on your
 current zone and subzone. It supports over 80 zones and 120 subzones
 from all continents and game expansions.
 
-For example, while in Dalaran, you'll watch the Kirin Tor. At the Argent
-Tournament Grounds, you'll watch The Sunreavers or The Silver Covenant,
+For example, while in Dalaran, you’ll watch the Kirin Tor. At the Argent
+Tournament Grounds, you’ll watch The Sunreavers or The Silver Covenant,
 depending on your race. Inside level 80 dungeons, if you are wearing a
-faction champion tabard, you'll watch that faction.
+faction champion tabard, you’ll watch that faction.
 
-In places without an associated faction - for example, if you're a troll
-on a weekend camping trip in the lovely Redridge Mountains - you'll
-watch your race's faction. You can also choose your own default faction
-to watch instead of your race's faction.
+In places without an associated faction - for example, if you’re a troll
+on a weekend camping trip in the lovely Redridge Mountains - you’ll
+watch your race’s faction. You can also choose your own default faction
+to watch instead of your race’s faction.
+
+Diplomancer was inspired by Charnow’s SmartFactionWatch.
 
 
 ## Usage
 
-Type "/dm" for options, or find them in the Interface Options window.
+Type “/dm” for options, or find them in the Interface Options window.
 
 
 ## Localization
 
-* Compatible with: en, deDE, esES, esMX, frFR, koKR, ruRU, zhCN, zhTW
-* Translated into: en, deDE, zhCN, zhTW
+Diplomancer is compatible with English, Deutsch, Español, Français,
+Русский, 한국어, 简体中文, and 正體中文 game clients.
 
-If you can provide translations for the options panel text for any
-locale, please send me a PM on either download site!
+The options panel is currently translated into English, Deutsch, and
+简体中文. If you can provide translations for any locale, please send me
+a PM on either download site.
 
-If you play in a non-English client, you will need to download and
-install the following libraries separately, to provide the required
-translations for faction names, zone names, and subzone names:
+If you are playing in a non-English client, you must also download and
+install the following libraries to provide the translated names of
+factions, subzones, and zones that Diplomancer needs to function:
 
-LibBabble-Faction-3.0
-http://wow.curse.com/downloads/wow-addons/details/libbabble-faction-3-0.aspx
+* LibBabble-Faction-3.0
+  http://wow.curse.com/downloads/wow-addons/details/libbabble-faction-3-0.aspx
 
-LibBabble-SubZone-3.0
-http://wow.curse.com/downloads/wow-addons/details/libbabble-subzone-3-0.aspx
+* LibBabble-SubZone-3.0
+  http://wow.curse.com/downloads/wow-addons/details/libbabble-subzone-3-0.aspx
 
-LibBabble-Zone-3.0
-http://wow.curse.com/downloads/wow-addons/details/libbabble-zone-3-0.aspx
+* LibBabble-Zone-3.0
+  http://wow.curse.com/downloads/wow-addons/details/libbabble-zone-3-0.aspx
 
 
 ## Feedback
@@ -58,8 +62,3 @@ post a comment on either download site.
 
 If you need to contact me privately, you may do by private message
 on either download site, or by email at addons@phanx.net.
-
-
-## Credits
-
-Diplomancer was inspired by Charnow's SmartFactionWatch.

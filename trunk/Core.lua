@@ -298,7 +298,7 @@ Diplomancer.frame:SetScript("OnShow", function(self)
 	subtitle = self:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
 	subtitle:SetHeight(32)
 	subtitle:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -8)
-	subtitle:SetPoint("RIGHT", f, -32, 0)
+	subtitle:SetPoint("RIGHT", self, -32, 0)
 	subtitle:SetNonSpaceWrap(true)
 	subtitle:SetJustifyH("LEFT")
 	subtitle:SetJustifyV("TOP")
@@ -385,8 +385,6 @@ Diplomancer.frame:SetScript("OnShow", function(self)
 	defaultDropdown.button.desc = defaultDropdown.desc
 
 	local function Dropdown_OnClick(self)
-		self = self or this
-
 		if self.value == racialFaction then
 			defaultButton:Disable()
 		else

@@ -421,6 +421,8 @@ local SF = {
 ------------------------------------------------------------------------
 
 local _, Diplomancer = ...
+if not Diplomancer then Diplomancer = _G.Diplomancer end -- WoW China is still running 3.2
+
 function Diplomancer:LocalizeData()
 	if self.localized then return end
 	-- self:Debug("LocalizeData")
