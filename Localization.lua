@@ -18,7 +18,7 @@ end
 Diplomancer.L = { }
 
 --[[--------------------------------------------------------------------
-	deDE | German | Deutsch
+	German | Deutsch
 	Contributors: paterbrown
 	Last updated: 2009-02-07
 ----------------------------------------------------------------------]]
@@ -43,32 +43,32 @@ if LOCALE == "deDE" then
 end
 
 --[[--------------------------------------------------------------------
-	esES | Spanish | Español
-	Contributors: Phanx
-	Last updated: 2010-12-14
+	Spanish | Español
+	Contributors: ???
+	Last updated: YYYY-MM-DD
 ----------------------------------------------------------------------]]
 
 if LOCALE == "esES" or LOCALE == "esMX" then
 
-	L["Default faction"] = "Facción por defecto"
-	L["Select a faction to watch when your current location doesn't have an associated faction."] = "Seleccione una de las facciones a vigilar cuando su ubicación actual no tiene una facción asociada."
+--	L["Default faction"] = ""
+--	L["Select a faction to watch when your current location doesn't have an associated faction."] = ""
 
-	L["Reset"] = "Restablecer"
-	L["Reset your default faction preference to your race's faction."] = "Restablecer su preferencia por defecto a la facción de la facción de su raza."
+--	L["Reset"] = ""
+--	L["Reset your default faction preference to your race's faction."] = ""
 
-	L["Default to championed faction"] = "Por defecto a facción abanderas"
-	L["Use your currently championed faction as your default faction.] = "Utilice su facción en la actualidad abanderas como su facción por defecto."
+--	L["Default to championed faction"] = ""
+--	L["Use your currently championed faction as your default faction.] = ""
 
-	L["Ignore exalted factions"] = "Ignorar facciones Exaltados"
-	L["Don't watch factions with whom you have already attained Exalted reputation."] = "No vea las facciones con las que ya hemos logrado la reputación de Exaltado."
+--	L["Ignore exalted factions"] = ""
+--	L["Don't watch factions with whom you have already attained Exalted reputation."] = ""
 
-	L["Announce watched faction"] = "Habilitar las notificaciones"
-	L["Show a message in the chat frame when your watched faction is changed."] = "Mostrar un mensaje en el marco del chat al cambiar tu facción seguimientos."
+--	L["Announce watched faction"] = ""
+--	L["Show a message in the chat frame when your watched faction is changed."] = ""
 
 end
 
 --[[--------------------------------------------------------------------
-	frFR | French | Français
+	French | Français
 	Contributors: ???
 	Last updated: YYYY-MM-DD
 ----------------------------------------------------------------------]]
@@ -93,7 +93,7 @@ if LOCALE == "frFR" then
 end
 
 --[[--------------------------------------------------------------------
-	ruRU | Russian | Русский
+	Russian | Русский
 	Contributors: ???
 	Last updated: YYYY-MM-DD
 ----------------------------------------------------------------------]]
@@ -118,7 +118,7 @@ if LOCALE == "ruRU" then
 end
 
 --[[--------------------------------------------------------------------
-	koKR | Korean | 한국어
+	Korean | 한국어
 	Contributors: ???
 	Last updated: YYYY-MM-DD
 ----------------------------------------------------------------------]]
@@ -143,7 +143,7 @@ if LOCALE == "koKR" then
 end
 
 --[[--------------------------------------------------------------------
-	zhCN | Simplified Chinese | 简体中文
+	Simplified Chinese | 简体中文
 	Contributors: VENSTER, 急云@CWDG
 	Last updated: 2010-08-05
 ----------------------------------------------------------------------]]
@@ -168,7 +168,7 @@ if LOCALE == "zhCN" then
 end
 
 --[[--------------------------------------------------------------------
-	zhTW | Traditional Chinese | 正體中文
+	Traditional Chinese | 正體中文
 	Contributors: 急云@CWDG
 	Last updated: 2010-01-23
 ----------------------------------------------------------------------]]
