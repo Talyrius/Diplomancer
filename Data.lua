@@ -8,8 +8,8 @@
 ----------------------------------------------------------------------]]
 
 local _, race = UnitRace("player") -- arg2 is "Scourge" for Undead players
-local isHorde = race == "BloodElf" or race == "Orc" or race == "Scourge" or race == "Tauren" or race == "Troll"
-local isAlliance = race == "Draenei" or race == "Dwarf" or race == "Gnome" or race == "Human" or race == "NightElf"
+local isHorde = race == "BloodElf" or race == "Goblin" or race == "Orc" or race == "Scourge" or race == "Tauren" or race == "Troll"
+local isAlliance = race == "Draenei" or race == "Dwarf" or race == "Gnome" or race == "Human" or race == "NightElf" or race == "Worgen"
 
 ------------------------------------------------------------------------
 
@@ -98,12 +98,14 @@ local RF = {
 	["Draenei"]  = "Exodar",
 	["Dwarf"]    = "Ironforge",
 	["Gnome"]    = "Gnomeregan Exiles",
+	["Goblin"]   = "Bilgewater Cartel",
 	["Human"]    = "Stormwind City",
 	["NightElf"] = "Darnassus",
 	["Orc"]      = "Orgrimmar",
 	["Tauren"]   = "Thunder Bluff",
 	["Troll"]    = "Darkspear Trolls",
 	["Scourge"]  = "Undercity",
+	["Worgen"]   = "Gilneas",
 }
 
 ------------------------------------------------------------------------
@@ -133,6 +135,7 @@ local ZF = {
 	["Eversong Woods"]				= isHorde and "Silvermoon City",
 	["Gates of Ahn'Qiraj"]			= "Cenarion Circle",
 	["Ghostlands"]					= isHorde and "Tranquillien",
+	["Gilneas"]						= isAlliance and "Gilneas",
 	["Grizzly Hills"]				= isHorde and "Warsong Offensive" or "Valiance Expedition",
 	["Halls of Reflection"]			= isHorde and "The Sunreavers" or "The Silver Covenant",
 	["Hellfire Peninsula"]			= isHorde and "Thrallmar" or "Honor Hold",
@@ -144,6 +147,7 @@ local ZF = {
 	["Ironforge"]					= isAlliance and "Ironforge",
 	["Isle of Quel'Danas"]			= "Shattered Sun Offensive",
 	["Karazhan"]					= "The Violet Eye",
+	["Kezan"]						= isHorde and "Bilgewater Cartel",
 	["Magisters' Terrace"]			= "Shattered Sun Offensive",
 	["Magtheridon's Lair"]			= isHorde and "Thrallmar" or "Honor Hold",
 	["Mana-Tombs"]					= "The Consortium",
