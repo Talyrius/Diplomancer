@@ -9,7 +9,7 @@
 ## X-Copyright: Copyright © 2007–2010 Phanx
 ## X-License: Some rights reserved. See LICENSE.txt for details.
 ## X-CompatibleLocales: deDE, enUS, esES, esMX, frFR, koKR, ruRU, zhCN, zhTW
-## X-Localizations: deDE, enUS, zhCN, zhTW
+## X-Localizations: deDE, enUS, frFR, zhCN, zhTW
 ## X-Website: http://www.wowinterface.com/downloads/info9643-Diplomancer.html
 ## X-Curse-Project-ID: diplomancer
 ## X-WoWI-ID: 9643
