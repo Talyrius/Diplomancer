@@ -70,25 +70,25 @@ end
 --[[--------------------------------------------------------------------
 	French | Français
 	Contributors: ???
-	Last updated: YYYY-MM-DD
+	Last updated: 2010-08-05
 ----------------------------------------------------------------------]]
 
 if LOCALE == "frFR" then
 
---	L["Default faction"] = ""
---	L["Select a faction to watch when your current location doesn't have an associated faction."] = ""
+	L["Default faction"] = "Faction par défaut"
+	L["Select a faction to watch when your current location doesn't have an associated faction."] = "Sélectionnez une faction de regarder si votre position actuelle n'est pas une faction associée."
 
---	L["Reset"] = ""
---	L["Reset your default faction preference to your race's faction."] = ""
+	L["Reset"] = "Remise"
+	L["Reset your default faction preference to your race's faction."] = "Réinitialiser votre préférence faction par défaut à la faction de votre course."
 
 --	L["Default to championed faction"] = ""
 --	L["Use your currently championed faction as your default faction.] = ""
 
---	L["Ignore exalted factions"] = ""
+	L["Ignore exalted factions"] = "Ignorer factions Exalté"
 --	L["Don't watch factions with whom you have already attained Exalted reputation."] = ""
 
---	L["Announce watched faction"] = ""
---	L["Show a message in the chat frame when your watched faction is changed."] = ""
+	L["Announce watched faction"] = "Activer les notifications"
+	L["Show a message in the chat frame when your watched faction is changed."] = "Afficher un message dans le chat cadre lorsque vos modifications faction regardé."
 
 end
 
