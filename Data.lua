@@ -403,7 +403,7 @@ local SF = {
 		["Dragonmaw Pass"]			= isHorde and "Bilgewater Cartel",
 		["Highbank"]				= isAlliance and "Stormwind",
 		["Iso'rath"]				= "The Earthen Ring",
-		["Obsidiant Forest"]		= isAlliance and "Stormwind",
+		["Obsidian Forest"]			= isAlliance and "Stormwind",
 		["Ring of the Elements"]	= "The Earthen Ring",
 		["Ruins of Drakgor"]		= "The Earthen Ring",
 		["The Krazzwerks"]			= isHorde and "Bilgewater Cartel",
@@ -411,7 +411,8 @@ local SF = {
 		["Victor's Point"]			= isAlliance and "Stormwind",
 	},
 	["Wetlands"] = {
-		["Greenkeeper's Grove"]		= isAlliance and "Darnassus",
+		["Direforge Hill"]			= isAlliance and "Darnassus",
+		["Greenwarden's Grove"]		= isAlliance and "Darnassus",
 		["Menethil Harbor"]			= isAlliance and "Stormwind",
 		["The Green Belt"]			= isAlliance and "Darnassus",
 	},
