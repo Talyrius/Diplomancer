@@ -201,7 +201,7 @@ local ZF = {
 	["Uldum"]						= "Ramkahen",
 	["Undercity"]					= isHorde and "Undercity",
 	["Warsong Gulch"]				= isHorde and "Warsong Outriders" or "Silverwing Sentinels",
-	["Western Plaguelands"]			= "Argent Dawn",
+	["Western Plaguelands"]			= "Argent Crusade",
 	["Wetlands"]					= isAlliance and "Ironforge",
 	["Winterspring"]				= "Everlook",
 	["Zangarmarsh"]					= "Cenarion Expedition",
@@ -409,6 +409,12 @@ local SF = {
 		["The Krazzwerks"]			= isHorde and "Bilgewater Cartel",
 		["The Maw of Madness"]		= "The Earthen Ring",
 		["Victor's Point"]			= isAlliance and "Stormwind",
+	},
+	["Western Plaguelands"] = {
+		["Andorhal"]				= isAlliance and "Stormwind" or "Undercity",
+		["Chillwind Camp"]			= isAlliance and "Stormwind",
+		["Sorrow Hill"]				= isAlliance and "Stormwind",
+		["Uther's Tomb"]			= isAlliance and "Stormwind",
 	},
 	["Wetlands"] = {
 		["Direforge Hill"]			= isAlliance and "Darnassus",
