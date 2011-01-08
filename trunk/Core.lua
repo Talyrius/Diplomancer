@@ -19,25 +19,23 @@ local L = setmetatable(Diplomancer.L, { __index = function(t, s) t[s] = s return
 ------------------------------------------------------------------------
 
 function Diplomancer:Debug(text, ...)
-	if ... then
-		if text:match("%%") then
-			text = text:format(...)
-		else
-			text = string.join(", ", text, ...)
-		end
+	if not text then return end
+	if text:match("%%") then
+		text = text:format(...)
+	else
+		text = string.join(", ", text, ...)
 	end
-	print(("|cffff3399[DEBUG] Diplomancer:|r %s"):format(text))
+	print( ("|cffff3399[DEBUG] Diplomancer:|r %s"):format(text) )
 end
 
 function Diplomancer:Print(text, ...)
-	if ... then
-		if text:match("%%") then
-			text = text:format(...)
-		else
-			text = string.join(", ", text, ...)
-		end
+	if not text then return end
+	if text:match("%%") then
+		text = text:format(...)
+	else
+		text = string.join(", ", text, ...)
 	end
-	print(("|cff33ff99Diplomancer:|r %s"):format(text))
+	print( ("|cff33ff99Diplomancer:|r %s"):format(text) )
 end
 
 ------------------------------------------------------------------------
@@ -287,15 +285,16 @@ Diplomancer.frame:SetScript("OnEvent", function(self, event, ...) return Diploma
 Diplomancer.frame.name = GetAddOnInfo(ADDON_NAME, "Title")
 Diplomancer.frame:Hide()
 Diplomancer.frame:SetScript("OnShow", function(self)
-	local title, subtitle, defaultLabel, defaultDropdown, ltex, mtex, rtex, defaultButton, defaultChampion, exaltedCheckbox, verboseCheckbox
+	self.CreateCheckbox = LibStub("PhanxConfig-Checkbox").CreateCheckbox
+	self.CreateScrollingDropdown = LibStub("PhanxConfig-Checkbox").CreateScrollingDropdown
 
 	--------------------------------------------------------------------
 
-	title = self:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
+	local title = self:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
 	title:SetPoint("TOPLEFT", 16, -16)
 	title:SetText(self.name)
 
-	subtitle = self:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
+	local subtitle = self:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
 	subtitle:SetHeight(32)
 	subtitle:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -8)
 	subtitle:SetPoint("RIGHT", self, -32, 0)
@@ -306,234 +305,118 @@ Diplomancer.frame:SetScript("OnShow", function(self)
 
 	--------------------------------------------------------------------
 
-	local function Widget_OnEnter(self)
+	local factions = {}
+	Diplomancer:ExpandFactionHeaders()
+	for i = 1, GetNumFactions() do
+		local name, _, _, _, _, _, _, _, isHeader = GetFactionInfo(i)
+		if name == L["Inactive"] then
+			break
+		end
+		if not isHeader then
+			table.insert(factions, name)
+		end
+	end
+	table.sort(factions)
+
+	local default = self:CreateScrollingDropdown(L["Default faction"], factions)
+	default.desc = L["Select a faction to watch when your current location doesn't have an associated faction."]
+	default:SetPoint("TOPLEFT", subtitle, "BOTTOMLEFT", 0, -8)
+	default:SetPoint("TOPRIGHT", subtitle, "BOTTOM", -8, -8)
+	default:SetValue(db.defaultFaction or racialFaction)
+
+	--------------------------------------------------------------------
+
+	local reset = CreateFrame("Button", nil, self)
+	reset:SetText(L["Reset"])
+	reset.desc = L["Reset your default faction to your race's faction."]
+
+	reset:SetPoint("TOPLEFT", default.button, "TOPRIGHT", 8, 0)
+	reset:SetPoint("BOTTOMLEFT", default.button, "BOTTOMRIGHT", 8, 0)
+	reset:SetWidth(80)
+
+	reset:SetNormalFontObject(GameFontNormalSmall)
+	reset:SetDisabledFontObject(GameFontDisable)
+	reset:SetHighlightFontObject(GameFontHighlightSmall)
+
+	reset:SetNormalTexture("Interface\\Buttons\\UI-Panel-Button-Up")
+	reset:SetPushedTexture("Interface\\Buttons\\UI-Panel-Button-Down")
+	reset:SetHighlightTexture("Interface\\Buttons\\UI-Panel-Button-Highlight")
+	reset:SetDisabledTexture("Interface\\Buttons\\UI-Panel-Button-Disabled")
+	reset:GetNormalTexture():SetTexCoord(0, 0.625, 0, 0.6875)
+	reset:GetPushedTexture():SetTexCoord(0, 0.625, 0, 0.6875)
+	reset:GetHighlightTexture():SetTexCoord(0, 0.625, 0, 0.6875)
+	reset:GetDisabledTexture():SetTexCoord(0, 0.625, 0, 0.6875)
+	reset:GetHighlightTexture():SetBlendMode("ADD")
+
+	reset:SetScript("OnEnter", function(self)
 		if self.desc then
 			GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
 			GameTooltip:SetText(self.desc, nil, nil, nil, nil, true)
 			GameTooltip:Show()
 		end
-	end
+	end)
 
-	local function Widget_OnLeave()
+	reset:SetScript("OnLeave", function()
 		GameTooltip:Hide()
-	end
-
-	--------------------------------------------------------------------
-
-	defaultLabel = self:CreateFontString(nil, "ARTWORK", "GameFontNormal")
-	defaultLabel:SetPoint("TOPLEFT", subtitle, "BOTTOMLEFT", 0, -8)
-	defaultLabel:SetText(L["Default faction"])
-
-	defaultDropdown = CreateFrame("Frame", "DiplomancerDefaultFactionDropdown", self)
-	defaultDropdown:SetPoint("TOPLEFT", defaultLabel, "BOTTOMLEFT", -17, -2)
-	defaultDropdown:SetWidth(199)
-	defaultDropdown:SetHeight(32)
-	defaultDropdown:EnableMouse(true)
-
-	defaultDropdown:SetScript("OnEnter", Widget_OnEnter)
-	defaultDropdown:SetScript("OnLeave", Widget_OnLeave)
-	defaultDropdown:SetScript("OnHide", function() CloseDropDownMenus() end)
-
-	defaultDropdown.desc = L["Select a faction to watch when your current location doesn't have an associated faction."]
-
-	ltex = defaultDropdown:CreateTexture("DiplomancerDefaultFactionDropdownLeft", "ARTWORK")
-	ltex:SetPoint("TOPLEFT", 0, 17)
-	ltex:SetWidth(25)
-	ltex:SetHeight(64)
-	ltex:SetTexture("Interface\\Glues\\CharacterCreate\\CharacterCreate-LabelFrame")
-	ltex:SetTexCoord(0, 0.1953125, 0, 1)
-
-	mtex = defaultDropdown:CreateTexture(nil, "ARTWORK")
-	mtex:SetPoint("LEFT", ltex, "RIGHT")
-	mtex:SetWidth(165)
-	mtex:SetHeight(64)
-	mtex:SetTexture("Interface\\Glues\\CharacterCreate\\CharacterCreate-LabelFrame")
-	mtex:SetTexCoord(0.1953125, 0.8046875, 0, 1)
-
-	rtex = defaultDropdown:CreateTexture(nil, "ARTWORK")
-	rtex:SetPoint("LEFT", mtex, "RIGHT")
-	rtex:SetWidth(25)
-	rtex:SetHeight(64)
-	rtex:SetTexture("Interface\\Glues\\CharacterCreate\\CharacterCreate-LabelFrame")
-	rtex:SetTexCoord(0.8046875, 1, 0, 1)
-
-	defaultDropdown.text = defaultDropdown:CreateFontString("DiplomancerDefaultFactionDropdownText", "ARTWORK", "GameFontHighlightSmall")
-	defaultDropdown.text:SetPoint("LEFT", ltex, 26, 2)
-	defaultDropdown.text:SetPoint("RIGHT", rtex, -43, 2)
-	defaultDropdown.text:SetJustifyH("LEFT")
-	defaultDropdown.text:SetHeight(10)
-	defaultDropdown.text:SetText(db.defaultFaction or racialFaction)
-
-	defaultDropdown.button = CreateFrame("Button", nil, defaultDropdown)
-	defaultDropdown.button:SetPoint("TOPRIGHT", rtex, -16, -18)
-	defaultDropdown.button:SetWidth(24)
-	defaultDropdown.button:SetHeight(24)
-
-	defaultDropdown.button:SetNormalTexture("Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Up")
-	defaultDropdown.button:SetPushedTexture("Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Down")
-	defaultDropdown.button:SetHighlightTexture("Interface\\Buttons\\UI-Common-MouseHilight")
-	defaultDropdown.button:SetDisabledTexture("Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Disabled")
-	defaultDropdown.button:GetHighlightTexture():SetBlendMode("ADD")
-
-	defaultDropdown.button:SetScript("OnEnter", Widget_OnEnter)
-	defaultDropdown.button:SetScript("OnLeave", Widget_OnLeave)
-	defaultDropdown.button:SetScript("OnClick", function(self)
-		ToggleDropDownMenu(nil, nil, defaultDropdown)
-		PlaySound("igMainMenuOptionCheckBoxOn")
 	end)
 
-	defaultDropdown.button.desc = defaultDropdown.desc
-
-	local function Dropdown_OnClick(self)
-		if self.value == racialFaction then
-			defaultButton:Disable()
-		else
-			defaultButton:Enable()
-		end
-
-		UIDropDownMenu_SetSelectedValue(defaultDropdown, self.value)
-		defaultDropdown.text:SetText(self.value)
-
-		db.defaultFaction = self.value
-		Diplomancer:Update()
-	end
-
-	local info = { } -- UIDropDownMenu_CreateInfo()
-	local factions = { }
-	UIDropDownMenu_Initialize(defaultDropdown, function()
-		wipe(factions)
-		Diplomancer:ExpandFactionHeaders()
-		for i = 1, GetNumFactions() do
-			local name, _, _, _, _, _, _, _, isHeader = GetFactionInfo(i)
-			if name == L["Inactive"] then
-				break
-			end
-			if not isHeader then
-				table.insert(factions, name)
-			end
-		end
-		table.sort(factions)
-
-		local selected = db.defaultFaction or racialFaction
-
-		for i, faction in ipairs(factions) do
-			info.text = faction
-			info.value = faction
-			info.func = Dropdown_OnClick
-			info.checked = faction == selected
-			UIDropDownMenu_AddButton(info)
-		end
-	end)
-
-	UIDropDownMenu_SetSelectedValue(defaultDropdown, db.defaultFaction or racialFaction)
-
-	--------------------------------------------------------------------
-
-	defaultButton = CreateFrame("Button", nil, self)
-	defaultButton:SetText(L["Reset"])
-	defaultButton:SetPoint("TOPLEFT", defaultDropdown.button, "TOPRIGHT", 8, 0)
-	defaultButton:SetPoint("BOTTOMLEFT", defaultDropdown.button, "BOTTOMRIGHT", 8, 0)
-	defaultButton:SetWidth(80)
-
-	defaultButton:SetNormalFontObject(GameFontNormalSmall)
-	defaultButton:SetDisabledFontObject(GameFontDisable)
-	defaultButton:SetHighlightFontObject(GameFontHighlightSmall)
-
-	defaultButton:SetNormalTexture("Interface\\Buttons\\UI-Panel-Button-Up")
-	defaultButton:SetPushedTexture("Interface\\Buttons\\UI-Panel-Button-Down")
-	defaultButton:SetHighlightTexture("Interface\\Buttons\\UI-Panel-Button-Highlight")
-	defaultButton:SetDisabledTexture("Interface\\Buttons\\UI-Panel-Button-Disabled")
-	defaultButton:GetNormalTexture():SetTexCoord(0, 0.625, 0, 0.6875)
-	defaultButton:GetPushedTexture():SetTexCoord(0, 0.625, 0, 0.6875)
-	defaultButton:GetHighlightTexture():SetTexCoord(0, 0.625, 0, 0.6875)
-	defaultButton:GetDisabledTexture():SetTexCoord(0, 0.625, 0, 0.6875)
-	defaultButton:GetHighlightTexture():SetBlendMode("ADD")
-
-	defaultButton:SetScript("OnEnter", Widget_OnEnter)
-	defaultButton:SetScript("OnLeave", Widget_OnLeave)
-
-	defaultButton.desc = L["Reset your default faction to your race's faction."]
-
-	if not db.defaultFaction then
-		defaultButton:Disable()
+	if not db.defaultFaction or db.defaultFaction == racialFaction then
+		reset:Disable()
 	else
-		defaultButton:Enable()
+		reset:Enable()
 	end
 
 	--------------------------------------------------------------------
 
-	local function Checkbox_OnClick(self)
-		local checked = self:GetChecked() == 1
-		PlaySound(checked and "igMainMenuOptionCheckBoxOn" or "igMainMenuOptionCheckBoxOff")
-		if self.func then
-			self.func(checked)
-		end
-	end
-
-	function self:CreateCheckbox(name, size)
-		local check = CreateFrame("CheckButton", nil, self)
-		check:SetWidth(size or 26)
-		check:SetHeight(size or 26)
-
-		check:SetHitRectInsets(0, -100, 0, 0)
-
-		check:SetNormalTexture("Interface\\Buttons\\UI-CheckBox-Up")
-		check:SetPushedTexture("Interface\\Buttons\\UI-CheckBox-Down")
-		check:SetHighlightTexture("Interface\\Buttons\\UI-CheckBox-Highlight")
-		check:SetDisabledCheckedTexture("Interface\\Buttons\\UI-CheckBox-Check-Disabled")
-		check:SetCheckedTexture("Interface\\Buttons\\UI-CheckBox-Check")
-
-		check:SetScript("OnEnter", Widget_OnEnter)
-		check:SetScript("OnLeave", Widget_OnLeave)
-		check:SetScript("OnClick", Checkbox_OnClick)
-
-		local label = check:CreateFontString(nil, "ARTWORK", "GameFontHighlight")
-		label:SetPoint("LEFT", check, "RIGHT", 0, 1)
-		label:SetText(name)
-		check.label = label
-
-		return check
-	end
-
-	--------------------------------------------------------------------
-
-	defaultChampion = self:CreateCheckbox(L["Default to championed faction"])
-	defaultChampion:SetPoint("TOPLEFT", defaultDropdown, "BOTTOMLEFT", 15, -10)
-	defaultChampion:SetChecked(db.defaultChampion)
-	defaultChampion.desc = L["Use your currently championed faction as your default faction."]
-	defaultChampion.func = function(checked)
+	local champion = self:CreateCheckbox(L["Default to championed faction"])
+	champion.desc = L["Use your currently championed faction as your default faction."]
+	champion:SetPoint("TOPLEFT", default, "BOTTOMLEFT", 15, -10)
+	champion:SetChecked(db.defaultChampion)
+	champion.func = function(checked)
 		db.defaultChampion = checked
 		Diplomancer:Update()
 	end
 
 	--------------------------------------------------------------------
 
-	exaltedCheckbox = self:CreateCheckbox(L["Ignore exalted factions"])
-	exaltedCheckbox:SetPoint("TOPLEFT", defaultChampion, "BOTTOMLEFT", 0, -8)
-	exaltedCheckbox:SetChecked(db.ignoreExalted)
-	exaltedCheckbox.desc = L["Don't watch factions with whom you have already attained Exalted reputation."]
-	exaltedCheckbox.func = function(checked)
+	local exalted = self:CreateCheckbox(L["Ignore exalted factions"])
+	exalted.desc = L["Don't watch factions with whom you have already attained Exalted reputation."]
+	exalted:SetPoint("TOPLEFT", champion, "BOTTOMLEFT", 0, -8)
+	exalted:SetChecked(db.ignoreExalted)
+	exalted.func = function(checked)
 		db.ignoreExalted = checked
 		Diplomancer:Update()
 	end
 
 	--------------------------------------------------------------------
 
-	verboseCheckbox = self:CreateCheckbox(L["Announce watched faction"])
-	verboseCheckbox:SetPoint("TOPLEFT", exaltedCheckbox, "BOTTOMLEFT", 0, -8)
-	verboseCheckbox:SetChecked(db.verbose)
-	verboseCheckbox.desc = L["Show a message in the chat frame when your watched faction is changed."]
-	verboseCheckbox.func = function(checked)
+	local announce = self:CreateCheckbox(L["Announce watched faction"])
+	announce.desc = L["Show a message in the chat frame when your watched faction is changed."]
+	announce:SetPoint("TOPLEFT", exalted, "BOTTOMLEFT", 0, -8)
+	announce:SetChecked(db.verbose)
+	announce.func = function(checked)
 		db.verbose = checked
 	end
 
 	--------------------------------------------------------------------
 
+	self.refresh = function()
+		default:SetValue(db.defaultFaction or racialFaction)
+		if not db.defaultFaction or db.defaultFaction == racialFaction then
+			reset:Disable()
+		else
+			reset:Enable()
+		end
+		champion:SetChecked(db.defaultChampion)
+		exalted:SetChecked(db.ignoreExalted)
+		announce:SetChecked(db.verbose)
+	end
+
 	self:SetScript("OnShow", nil)
 end)
 
 InterfaceOptions_AddCategory(Diplomancer.frame)
-LibStub("LibAboutPanel").new(Diplomancer.frame.name, ADDON_NAME)
+Diplomancer.aboutPanel = LibStub("LibAboutPanel").new(Diplomancer.frame.name, ADDON_NAME)
 
 ------------------------------------------------------------------------
 
@@ -554,6 +437,7 @@ SlashCmdList.DIPLOMANCER = function(text)
 			end
 		end
 	end
+	InterfaceOptionsFrame_OpenToCategory(Diplomancer.aboutPanel)
 	InterfaceOptionsFrame_OpenToCategory(Diplomancer.frame)
 end
 
