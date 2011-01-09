@@ -216,7 +216,7 @@ function Diplomancer:SetWatchedFactionByName(name, verbose)
 		end
 	end
 
-	self:CollapseFactionHeaders()
+	self:RestoreFactionHeaders()
 
 	return false
 end
@@ -263,7 +263,7 @@ function Diplomancer:ExpandFactionHeaders()
 	end
 end
 
-function Diplomancer:CollapseFactionHeaders()
+function Diplomancer:RestoreFactionHeaders()
 	local n = GetNumFactions()
 	for i = 1, n do
 		local name, _, _, _, _, _, _, _, isHeader, isCollapsed = GetFactionInfo(i)
@@ -286,7 +286,7 @@ Diplomancer.frame.name = GetAddOnInfo(ADDON_NAME, "Title")
 Diplomancer.frame:Hide()
 Diplomancer.frame:SetScript("OnShow", function(self)
 	self.CreateCheckbox = LibStub("PhanxConfig-Checkbox").CreateCheckbox
-	self.CreateScrollingDropdown = LibStub("PhanxConfig-Checkbox").CreateScrollingDropdown
+	self.CreateScrollingDropdown = LibStub("PhanxConfig-ScrollingDropdown").CreateScrollingDropdown
 
 	--------------------------------------------------------------------
 
@@ -308,25 +308,37 @@ Diplomancer.frame:SetScript("OnShow", function(self)
 	local factions = {}
 	Diplomancer:ExpandFactionHeaders()
 	for i = 1, GetNumFactions() do
-		local name, _, _, _, _, _, _, _, isHeader = GetFactionInfo(i)
+		local name, _, standing, _, _, _, _, _, isHeader = GetFactionInfo(i)
 		if name == L["Inactive"] then
 			break
 		end
-		if not isHeader then
+		if not isHeader and ( standing < 8 or not db.ignoreExalted ) then
 			table.insert(factions, name)
 		end
 	end
+	Diplomancer:RestoreFactionHeaders()
 	table.sort(factions)
+
+	local reset
 
 	local default = self:CreateScrollingDropdown(L["Default faction"], factions)
 	default.desc = L["Select a faction to watch when your current location doesn't have an associated faction."]
 	default:SetPoint("TOPLEFT", subtitle, "BOTTOMLEFT", 0, -8)
 	default:SetPoint("TOPRIGHT", subtitle, "BOTTOM", -8, -8)
 	default:SetValue(db.defaultFaction or racialFaction)
-
+	default.OnValueChanged = function(self, value)
+			if value == racialFaction then
+				db.defaultFaction = nil
+				reset:Disable()
+			else
+				db.defaultFaction = value
+				reset:Enable()
+			end
+			Diplomancer:Update()
+		end
 	--------------------------------------------------------------------
 
-	local reset = CreateFrame("Button", nil, self)
+	reset = CreateFrame("Button", nil, self)
 	reset:SetText(L["Reset"])
 	reset.desc = L["Reset your default faction to your race's faction."]
 
@@ -360,6 +372,13 @@ Diplomancer.frame:SetScript("OnShow", function(self)
 		GameTooltip:Hide()
 	end)
 
+	reset:SetScript("OnClick", function( self )
+		self:Disable()
+		db.defaultFaction = nil
+		default:SetValue( racialFaction )
+		Diplomancer:Update()
+	end)
+
 	if not db.defaultFaction or db.defaultFaction == racialFaction then
 		reset:Disable()
 	else
@@ -370,7 +389,7 @@ Diplomancer.frame:SetScript("OnShow", function(self)
 
 	local champion = self:CreateCheckbox(L["Default to championed faction"])
 	champion.desc = L["Use your currently championed faction as your default faction."]
-	champion:SetPoint("TOPLEFT", default, "BOTTOMLEFT", 15, -10)
+	champion:SetPoint("TOPLEFT", default, "BOTTOMLEFT", 0, -10)
 	champion:SetChecked(db.defaultChampion)
 	champion.func = function(checked)
 		db.defaultChampion = checked
@@ -401,12 +420,27 @@ Diplomancer.frame:SetScript("OnShow", function(self)
 	--------------------------------------------------------------------
 
 	self.refresh = function()
+		wipe(factions)
+		Diplomancer:ExpandFactionHeaders()
+		for i = 1, GetNumFactions() do
+			local name, _, standing, _, _, _, _, _, isHeader = GetFactionInfo(i)
+			if name == L["Inactive"] then
+				break
+			end
+			if not isHeader and ( standing < 8 or not db.ignoreExalted ) then
+				table.insert(factions, name)
+			end
+		end
+		Diplomancer:RestoreFactionHeaders()
+		table.sort(factions)
+
 		default:SetValue(db.defaultFaction or racialFaction)
 		if not db.defaultFaction or db.defaultFaction == racialFaction then
 			reset:Disable()
 		else
 			reset:Enable()
 		end
+
 		champion:SetChecked(db.defaultChampion)
 		exalted:SetChecked(db.ignoreExalted)
 		announce:SetChecked(db.verbose)
@@ -423,22 +457,26 @@ Diplomancer.aboutPanel = LibStub("LibAboutPanel").new(Diplomancer.frame.name, AD
 SLASH_DIPLOMANCER1 = "/diplomancer"
 SLASH_DIPLOMANCER2 = "/dm"
 
-SlashCmdList.DIPLOMANCER = function(text)
-	if text and text:len() > 0 then
-		local cmd, arg = text:match("^%s*(%w+)%s*(.*)$")
-		if type(db[cmd]) == "boolean" then
-			db[cmd] = not db[cmd]
-			return Diplomancer:Update()
-		elseif cmd == "default" then
-			local faction = Diplomancer:GetFactionNameMatch(arg)
+SlashCmdList.DIPLOMANCER = function( text )
+	if text and string.len( text ) > 0 then
+		local cmd, arg = string.match( string.lower( text ), "^%s*(%w+)%s*(.*)$" )
+		if cmd == "default" then
+			local faction = Diplomancer:GetFactionNameMatch( arg )
 			if faction then
 				db.default = faction
 				return Diplomancer:Update()
 			end
+		else
+			for k, v in pairs( db ) do
+				if string.lower( k ) == cmd and type( v ) == "boolean" then
+					db[ k ] = not db[ k ]
+					return Diplomancer:Update()
+				end
+			end
 		end
 	end
-	InterfaceOptionsFrame_OpenToCategory(Diplomancer.aboutPanel)
-	InterfaceOptionsFrame_OpenToCategory(Diplomancer.frame)
+	InterfaceOptionsFrame_OpenToCategory( Diplomancer.aboutPanel )
+	InterfaceOptionsFrame_OpenToCategory( Diplomancer.frame )
 end
 
 ------------------------------------------------------------------------
