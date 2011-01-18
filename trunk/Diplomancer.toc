@@ -6,7 +6,7 @@
 ## Author: Phanx, Akkorian
 ## X-Email: akkorian@hotmail.com
 ## X-Credits: Inspired by Charnow's SmartFactionWatch.
-## X-Copyright: Copyright © 2007–2010 Phanx
+## X-Copyright: Copyright © 2007–2011 Phanx
 ## X-License: Some rights reserved. See LICENSE.txt for details.
 ## X-CompatibleLocales: deDE, enUS, esES, esMX, frFR, koKR, ruRU, zhCN, zhTW
 ## X-Localizations: deDE, enUS, frFR, zhCN, zhTW

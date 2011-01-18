@@ -1,13 +1,15 @@
-﻿# Diplomancer
+﻿Diplomancer
+===========
 
-* by Phanx < addons@phanx.net >
-* Currently maintained by Akkorian < akkorian@hotmail.com >
-* Copyright © 2007–2010 Phanx. Some rights reserved. See LICENSE.txt for details.
+* Written by Phanx <addons@phanx.net>
+* Maintained by Akkorian <akkorian@hotmail.com>
+* Copyright © 2007–2011 Phanx. Some rights reserved. See LICENSE.txt for details.
 * http://www.wowinterface.com/downloads/info9643-Diplomancer.html
 * http://wow.curse.com/downloads/wow-addons/details/diplomancer.aspx
 
 
-## Description
+Description
+-----------
 
 Diplomancer automatically changes your watched faction based on your
 current zone and subzone. It supports over 80 zones and 120 subzones
@@ -26,7 +28,8 @@ to watch instead of your race’s faction.
 Diplomancer was inspired by Charnow’s SmartFactionWatch.
 
 
-## Usage
+Usage
+-----
 
 Type “/dm” for options, or find them in the Interface Options window.
 
@@ -54,11 +57,12 @@ factions, subzones, and zones that Diplomancer needs to function:
   http://wow.curse.com/downloads/wow-addons/details/libbabble-zone-3-0.aspx
 
 
-## Feedback
+Feedback
+--------
 
 For bug reports and feature requests, please use the ticket tracker on
 either download site. For general questions and comments, feel free to
 post a comment on either download site.
 
 If you need to contact me privately, you may do by private message
-on either download site, or by email at addons@phanx.net.
+on either download site, or by email at <akkorian@hotmail.com>.
