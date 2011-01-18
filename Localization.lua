@@ -1,8 +1,9 @@
 --[[--------------------------------------------------------------------
 	Diplomancer
 	Automatically sets your watched faction based on your location.
-	by Phanx < addons@phanx.net >
-	Copyright © 2007–2010 Phanx. Some rights reserved. See LICENSE.txt for details.
+	Written by Phanx <addons@phanx.net>
+	Maintained by Akkorian <akkorian@hotmail.com>
+	Copyright © 2007–2011 Phanx. Some rights reserved. See LICENSE.txt for details.
 	http://www.wowinterface.com/downloads/info9643-Diplomancer.html
 	http://wow.curse.com/downloads/wow-addons/details/diplomancer.aspx
 ----------------------------------------------------------------------]]
