@@ -297,8 +297,8 @@ Diplomancer.frame.runOnce = function(self)
 
 	local default = LibStub("PhanxConfig-ScrollingDropdown").CreateScrollingDropdown(self, L["Default faction"], factions,
 		L["Select a faction to watch when your current location doesn't have an associated faction."])
-	default:SetPoint("TOPLEFT", subtitle, "BOTTOMLEFT", 0, -8)
-	default:SetPoint("TOPRIGHT", subtitle, "BOTTOM", -8, -8)
+	default:SetPoint("TOPLEFT", notes, "BOTTOMLEFT", 0, -8)
+	default:SetPoint("TOPRIGHT", notes, "BOTTOM", -8, -8)
 	default:SetValue(db.defaultFaction or racialFaction)
 	default.OnValueChanged = function(self, value)
 		if value == racialFaction then
