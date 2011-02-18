@@ -1,5 +1,5 @@
 ## Interface: 40000
-## Version: 4.0.3.wowi:revision
+## Version: 4.0.6.wowi:revision
 
 ## Title: Diplomancer
 ## Notes: Automatically watch your current location's faction.
@@ -17,13 +17,16 @@
 ## LoadManagers: AddonLoader
 ## X-LoadOn-Always: delayed
 
-## OptionalDependencies: LibAboutPanel, LibBabble-Faction-3.0, LibBabble-SubZone-3.0, LibBabble-Zone-3.0
+## OptionalDependencies: LibAboutPanel, LibBabble-Faction-3.0, LibBabble-SubZone-3.0, LibBabble-Zone-3.0, PhanxConfigWidgets
 ## SavedVariablesPerCharacter: DiplomancerSettings
 
 Libs\LibStub\LibStub.lua
 Libs\LibAboutPanel\LibAboutPanel.lua
+Libs\PhanxConfig-Button\PhanxConfig-Button.lua
 Libs\PhanxConfig-Checkbox\PhanxConfig-Checkbox.lua
 Libs\PhanxConfig-Dropdown\PhanxConfig-Dropdown.lua
+Libs\PhanxConfig-Header\PhanxConfig-Header.lua
+Libs\PhanxConfig-OptionsPanel\PhanxConfig-OptionsPanel.lua
 Libs\PhanxConfig-ScrollingDropdown\PhanxConfig-ScrollingDropdown.lua
 
 Localization.lua
