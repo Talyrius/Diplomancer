@@ -277,102 +277,46 @@ end
 
 ------------------------------------------------------------------------
 
-Diplomancer.frame = CreateFrame("Frame", nil, InterfaceOptionsFramePanelContainer)
+Diplomancer.frame = LibStub("PhanxConfig-OptionsPanel").CreateOptionsPanel(ADDON_NAME)
+
 Diplomancer.frame:RegisterEvent("ADDON_LOADED")
 Diplomancer.frame:SetScript("OnEvent", function(self, event, ...) return Diplomancer[event] and Diplomancer[event](Diplomancer, event, ...) end)
 
-------------------------------------------------------------------------
-
-Diplomancer.frame.name = GetAddOnInfo(ADDON_NAME, "Title")
-Diplomancer.frame:Hide()
-Diplomancer.frame:SetScript("OnShow", function(self)
-	self.CreateCheckbox = LibStub("PhanxConfig-Checkbox").CreateCheckbox
-	self.CreateScrollingDropdown = LibStub("PhanxConfig-ScrollingDropdown").CreateScrollingDropdown
+Diplomancer.frame.runOnce = function(self)
+	local CreateCheckbox = LibStub("PhanxConfig-Checkbox").CreateCheckbox
 
 	--------------------------------------------------------------------
 
-	local title = self:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
-	title:SetPoint("TOPLEFT", 16, -16)
-	title:SetText(self.name)
-
-	local subtitle = self:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
-	subtitle:SetHeight(32)
-	subtitle:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -8)
-	subtitle:SetPoint("RIGHT", self, -32, 0)
-	subtitle:SetNonSpaceWrap(true)
-	subtitle:SetJustifyH("LEFT")
-	subtitle:SetJustifyV("TOP")
-	subtitle:SetText(GetAddOnMetadata(ADDON_NAME, "Notes"))
+	local title, notes = LibStub("PhanxConfig-Header").CreateHeader(self, ADDON_NAME, GetAddOnMetadata(ADDON_NAME, "Notes"))
 
 	--------------------------------------------------------------------
 
-	local factions = {}
-	Diplomancer:ExpandFactionHeaders()
-	for i = 1, GetNumFactions() do
-		local name, _, standing, _, _, _, _, _, isHeader = GetFactionInfo(i)
-		if name == L["Inactive"] then
-			break
-		end
-		if not isHeader and ( standing < 8 or not db.ignoreExalted ) then
-			table.insert(factions, name)
-		end
-	end
-	Diplomancer:RestoreFactionHeaders()
-	table.sort(factions)
+	local factions = { }
 
 	local reset
 
-	local default = self:CreateScrollingDropdown(L["Default faction"], factions)
-	default.desc = L["Select a faction to watch when your current location doesn't have an associated faction."]
+	local default = LibStub("PhanxConfig-ScrollingDropdown").CreateScrollingDropdown(self, L["Default faction"], factions,
+		L["Select a faction to watch when your current location doesn't have an associated faction."])
 	default:SetPoint("TOPLEFT", subtitle, "BOTTOMLEFT", 0, -8)
 	default:SetPoint("TOPRIGHT", subtitle, "BOTTOM", -8, -8)
 	default:SetValue(db.defaultFaction or racialFaction)
 	default.OnValueChanged = function(self, value)
-			if value == racialFaction then
-				db.defaultFaction = nil
-				reset:Disable()
-			else
-				db.defaultFaction = value
-				reset:Enable()
-			end
-			Diplomancer:Update()
+		if value == racialFaction then
+			db.defaultFaction = nil
+			reset:Disable()
+		else
+			db.defaultFaction = value
+			reset:Enable()
 		end
+		Diplomancer:Update()
+	end
+
 	--------------------------------------------------------------------
 
-	reset = CreateFrame("Button", nil, self)
-	reset:SetText(L["Reset"])
-	reset.desc = L["Reset your default faction to your race's faction."]
-
+	reset = LibStub("PhanxConfig-Button").CreateButton(self, L["Reset"], L["Reset your default faction to your race's faction."])
 	reset:SetPoint("TOPLEFT", default.button, "TOPRIGHT", 8, 0)
 	reset:SetPoint("BOTTOMLEFT", default.button, "BOTTOMRIGHT", 8, 0)
 	reset:SetWidth(80)
-
-	reset:SetNormalFontObject(GameFontNormalSmall)
-	reset:SetDisabledFontObject(GameFontDisable)
-	reset:SetHighlightFontObject(GameFontHighlightSmall)
-
-	reset:SetNormalTexture("Interface\\Buttons\\UI-Panel-Button-Up")
-	reset:SetPushedTexture("Interface\\Buttons\\UI-Panel-Button-Down")
-	reset:SetHighlightTexture("Interface\\Buttons\\UI-Panel-Button-Highlight")
-	reset:SetDisabledTexture("Interface\\Buttons\\UI-Panel-Button-Disabled")
-	reset:GetNormalTexture():SetTexCoord(0, 0.625, 0, 0.6875)
-	reset:GetPushedTexture():SetTexCoord(0, 0.625, 0, 0.6875)
-	reset:GetHighlightTexture():SetTexCoord(0, 0.625, 0, 0.6875)
-	reset:GetDisabledTexture():SetTexCoord(0, 0.625, 0, 0.6875)
-	reset:GetHighlightTexture():SetBlendMode("ADD")
-
-	reset:SetScript("OnEnter", function(self)
-		if self.desc then
-			GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
-			GameTooltip:SetText(self.desc, nil, nil, nil, nil, true)
-			GameTooltip:Show()
-		end
-	end)
-
-	reset:SetScript("OnLeave", function()
-		GameTooltip:Hide()
-	end)
-
 	reset:SetScript("OnClick", function( self )
 		self:Disable()
 		db.defaultFaction = nil
@@ -380,18 +324,10 @@ Diplomancer.frame:SetScript("OnShow", function(self)
 		Diplomancer:Update()
 	end)
 
-	if not db.defaultFaction or db.defaultFaction == racialFaction then
-		reset:Disable()
-	else
-		reset:Enable()
-	end
-
 	--------------------------------------------------------------------
 
-	local champion = self:CreateCheckbox(L["Default to championed faction"])
-	champion.desc = L["Use your currently championed faction as your default faction."]
+	local champion = CreateCheckbox(self, L["Default to championed faction"], L["Use your currently championed faction as your default faction."])
 	champion:SetPoint("TOPLEFT", default, "BOTTOMLEFT", 0, -10)
-	champion:SetChecked(db.defaultChampion)
 	champion.func = function(checked)
 		db.defaultChampion = checked
 		Diplomancer:Update()
@@ -399,10 +335,8 @@ Diplomancer.frame:SetScript("OnShow", function(self)
 
 	--------------------------------------------------------------------
 
-	local exalted = self:CreateCheckbox(L["Ignore exalted factions"])
-	exalted.desc = L["Don't watch factions with whom you have already attained Exalted reputation."]
+	local exalted = CreateCheckbox(self, L["Ignore exalted factions"], L["Don't watch factions with whom you have already attained Exalted reputation."])
 	exalted:SetPoint("TOPLEFT", champion, "BOTTOMLEFT", 0, -8)
-	exalted:SetChecked(db.ignoreExalted)
 	exalted.func = function(checked)
 		db.ignoreExalted = checked
 		Diplomancer:Update()
@@ -410,10 +344,8 @@ Diplomancer.frame:SetScript("OnShow", function(self)
 
 	--------------------------------------------------------------------
 
-	local announce = self:CreateCheckbox(L["Announce watched faction"])
-	announce.desc = L["Show a message in the chat frame when your watched faction is changed."]
+	local announce = CreateCheckbox(self, L["Announce watched faction"], L["Show a message in the chat frame when your watched faction is changed."])
 	announce:SetPoint("TOPLEFT", exalted, "BOTTOMLEFT", 0, -8)
-	announce:SetChecked(db.verbose)
 	announce.func = function(checked)
 		db.verbose = checked
 	end
@@ -446,12 +378,9 @@ Diplomancer.frame:SetScript("OnShow", function(self)
 		exalted:SetChecked(db.ignoreExalted)
 		announce:SetChecked(db.verbose)
 	end
+end
 
-	self:SetScript("OnShow", nil)
-end)
-
-InterfaceOptions_AddCategory(Diplomancer.frame)
-Diplomancer.aboutPanel = LibStub("LibAboutPanel").new(Diplomancer.frame.name, ADDON_NAME)
+Diplomancer.aboutPanel = LibStub("LibAboutPanel").new(ADDON_NAME, ADDON_NAME)
 
 ------------------------------------------------------------------------
 
