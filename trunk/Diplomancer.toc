@@ -3,13 +3,15 @@
 
 ## Title: Diplomancer
 ## Notes: Automatically watch your current location's faction.
+## Notes-esES: Sigue automáticamente la facción asociada con tu lugar actual.
+## Notes-esMX: Sigue automáticamente la facción asociada con tu lugar actual.
 ## Author: Phanx, Akkorian
 ## X-Email: akkorian@hotmail.com
 ## X-Credits: Inspired by Charnow's SmartFactionWatch.
 ## X-Copyright: Copyright © 2007–2011 Phanx
 ## X-License: Some rights reserved. See LICENSE.txt for details.
-## X-CompatibleLocales: deDE, enUS, esES, esMX, frFR, koKR, ruRU, zhCN, zhTW
-## X-Localizations: deDE, enUS, frFR, zhCN, zhTW
+## X-CompatibleLocales: enUS, deDE, esES, esMX, frFR, koKR, ruRU, zhCN, zhTW
+## X-Localizations: enUS, deDE, esES, esMX, frFR, zhCN, zhTW
 ## X-Website: http://www.wowinterface.com/downloads/info9643-Diplomancer.html
 ## X-Curse-Project-ID: diplomancer
 ## X-WoWI-ID: 9643

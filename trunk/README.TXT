@@ -39,7 +39,7 @@ Type “/dm” for options, or find them in the Interface Options window.
 Diplomancer is compatible with English, Deutsch, Español, Français,
 Русский, 한국어, 简体中文, and 正體中文 game clients.
 
-The options panel is currently translated into English, Deutsch, and
+The options are currently translated into English, Deutsch, Español, and
 简体中文. If you can provide translations for any locale, please send me
 a PM on either download site.
 
