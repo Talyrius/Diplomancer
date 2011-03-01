@@ -21,22 +21,20 @@ local L = setmetatable(Diplomancer.L, { __index = function(t, s) t[s] = s return
 
 function Diplomancer:Debug(text, ...)
 	if not text then return end
-	if text:match("%%") then
-		text = text:format(...)
+	if text:match("%%[dfs%d%.]") then
+		print( "|cffff3399[DEBUG] Diplomancer:|r, text:format(...) )
 	else
-		text = string.join(", ", text, ...)
+		print( "|cffff3399[DEBUG] Diplomancer:|r, text, ... )
 	end
-	print( ("|cffff3399[DEBUG] Diplomancer:|r %s"):format(text) )
 end
 
 function Diplomancer:Print(text, ...)
 	if not text then return end
-	if text:match("%%") then
-		text = text:format(...)
+	if text:match("%%[dfs%d%.]") then
+		print( "|cff33ff99Diplomancer:|r, text:format(...) )
 	else
-		text = string.join(", ", text, ...)
+		print( "|cff33ff99Diplomancer:|r, text, ... )
 	end
-	print( ("|cff33ff99Diplomancer:|r %s"):format(text) )
 end
 
 ------------------------------------------------------------------------
@@ -211,7 +209,7 @@ function Diplomancer:SetWatchedFactionByName(name, verbose)
 		if not watched and faction == name and (standing < 8 or not db.ignoreExalted) then
 			SetWatchedFactionIndex(i)
 			if verbose then
-				self:Print("Now watching %s.", faction)
+				self:Print(L["Now watching %s."], faction)
 			end
 			return true, name
 		end
