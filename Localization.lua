@@ -40,6 +40,7 @@ if LOCALE == "deDE" then
 
 	L["Announce watched faction"] = "Schalte Benachrichtigungen ein"
 	L["Show a message in the chat frame when your watched faction is changed."] = "Zeigt eine Meldung im Chatfenster wenn sich die angezeigte Fraktion ändert."
+--	L["Now watching %s."] = ""
 
 return end
 
@@ -65,6 +66,7 @@ if LOCALE == "esES" or LOCALE == "esMX" then
 
 	L["Announce watched faction"] = "Anunciar seguido facción"
 	L["Show a message in the chat frame when your watched faction is changed."] = "Mostrar un mensaje en la ventana de chat cuando Diplomancer cambia tu facción seguido."
+	L["Now watching %s."] = "Ahora siguiendo %s."
 
 return end
 
@@ -90,6 +92,7 @@ if LOCALE == "frFR" then
 
 	L["Announce watched faction"] = "Activer les notifications"
 	L["Show a message in the chat frame when your watched faction is changed."] = "Afficher un message dans le chat cadre lorsque vos modifications faction regardé."
+--	L["Now watching %s."] = ""
 
 return end
 
@@ -115,6 +118,7 @@ if LOCALE == "ruRU" then
 
 --	L["Announce watched faction"] = ""
 --	L["Show a message in the chat frame when your watched faction is changed."] = ""
+--	L["Now watching %s."] = ""
 
 return end
 
@@ -140,6 +144,7 @@ if LOCALE == "koKR" then
 
 --	L["Announce watched faction"] = ""
 --	L["Show a message in the chat frame when your watched faction is changed."] = ""
+--	L["Now watching %s."] = ""
 
 return end
 
@@ -165,6 +170,7 @@ if LOCALE == "zhCN" then
 
 	L["Announce watched faction"] = "开启提示"
 	L["Show a message in the chat frame when your watched faction is changed."] = "选择是否显示声望监视状态变动"
+--	L["Now watching %s."] = ""
 
 return end
 
@@ -190,5 +196,6 @@ if LOCALE == "zhTW" then
 
 	L["Announce watched faction"] = "開啟提示"
 	L["Show a message in the chat frame when your watched faction is changed."] = "選擇是否顯示聲望監視狀態變動"
+--	L["Now watching %s."] = ""
 
 return end
