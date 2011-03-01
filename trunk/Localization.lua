@@ -33,9 +33,9 @@ if LOCALE == "deDE" then
 	L["Reset your default faction preference to your race's faction."] = "Zurücksetzen der Standardfraktion auf deine Volksfraktion."
 
 --	L["Default to championed faction"] = ""
---	L["Use your currently championed faction as your default faction.] = ""
+--	L["Use your currently championed faction as your default faction."] = ""
 
-	L["Ignore exalted factions"] = "Ignoriere ehrfürchtige Fraktionen"
+	L["Ignore Exalted factions"] = "Ignoriere ehrfürchtige Fraktionen"
 	L["Don't watch factions with whom you have already attained Exalted reputation."] = "Zeigt Fraktionen mit ehrfürchtigem Ruf nicht mehr an."
 
 	L["Announce watched faction"] = "Schalte Benachrichtigungen ein"
@@ -58,9 +58,9 @@ if LOCALE == "esES" or LOCALE == "esMX" then
 	L["Reset your default faction preference to your race's faction."] = "Restablecer tu facción predeterminado al facción de tu raza."
 
 	L["Default to championed faction"] = "Utilizar facción abanderada"
-	L["Use your currently championed faction as your default faction.] = "Utilizar tu facción abanderada como tu facción predeterminado."
+	L["Use your currently championed faction as your default faction."] = "Utilizar tu facción abanderada como tu facción predeterminado."
 
-	L["Ignore exalted factions"] = "Ignorar facciones Exaltados"
+	L["Ignore Exalted factions"] = "Ignorar facciones Exaltados"
 	L["Don't watch factions with whom you have already attained Exalted reputation."] = "No seguir las facciones con las que ya ha alcanzado el nivel de Exaltado."
 
 	L["Announce watched faction"] = "Anunciar seguido facción"
@@ -70,7 +70,7 @@ return end
 
 --[[--------------------------------------------------------------------
 	French | Français
-	Contributors: ???
+	Contributors: UNKNOWN
 	Last updated: 2010-08-05
 ----------------------------------------------------------------------]]
 
@@ -83,9 +83,9 @@ if LOCALE == "frFR" then
 	L["Reset your default faction preference to your race's faction."] = "Réinitialiser votre préférence faction par défaut à la faction de votre course."
 
 --	L["Default to championed faction"] = ""
---	L["Use your currently championed faction as your default faction.] = ""
+--	L["Use your currently championed faction as your default faction."] = ""
 
-	L["Ignore exalted factions"] = "Ignorer factions Exalté"
+	L["Ignore Exalted factions"] = "Ignorer factions Exalté"
 --	L["Don't watch factions with whom you have already attained Exalted reputation."] = ""
 
 	L["Announce watched faction"] = "Activer les notifications"
@@ -95,7 +95,7 @@ return end
 
 --[[--------------------------------------------------------------------
 	Russian | Русский
-	Contributors: ???
+	Contributors: UNKNOWN
 	Last updated: YYYY-MM-DD
 ----------------------------------------------------------------------]]
 
@@ -108,9 +108,9 @@ if LOCALE == "ruRU" then
 --	L["Reset your default faction preference to your race's faction."] = ""
 
 --	L["Default to championed faction"] = ""
---	L["Use your currently championed faction as your default faction.] = ""
+--	L["Use your currently championed faction as your default faction."] = ""
 
---	L["Ignore exalted factions"] = ""
+--	L["Ignore Exalted factions"] = ""
 --	L["Don't watch factions with whom you have already attained Exalted reputation."] = ""
 
 --	L["Announce watched faction"] = ""
@@ -120,7 +120,7 @@ return end
 
 --[[--------------------------------------------------------------------
 	Korean | 한국어
-	Contributors: ???
+	Contributors: UNKNOWN
 	Last updated: YYYY-MM-DD
 ----------------------------------------------------------------------]]
 
@@ -133,9 +133,9 @@ if LOCALE == "koKR" then
 --	L["Reset your default faction preference to your race's faction."] = ""
 
 --	L["Default to championed faction"] = ""
---	L["Use your currently championed faction as your default faction.] = ""
+--	L["Use your currently championed faction as your default faction."] = ""
 
---	L["Ignore exalted factions"] = ""
+--	L["Ignore Exalted factions"] = ""
 --	L["Don't watch factions with whom you have already attained Exalted reputation."] = ""
 
 --	L["Announce watched faction"] = ""
@@ -158,9 +158,9 @@ if LOCALE == "zhCN" then
 	L["Reset your default faction preference to your race's faction."] = "将你的缺省声望重置为种族声望"
 
 --	L["Default to championed faction"] = ""
---	L["Use your currently championed faction as your default faction.] = ""
+--	L["Use your currently championed faction as your default faction."] = ""
 
-	L["Ignore exalted factions"] = "忽略已崇拜的声望"
+	L["Ignore Exalted factions"] = "忽略已崇拜的声望"
 	L["Don't watch factions with whom you have already attained Exalted reputation."] = "选择是否忽略监视已经崇拜的声望"
 
 	L["Announce watched faction"] = "开启提示"
@@ -183,9 +183,9 @@ if LOCALE == "zhTW" then
 	L["Reset your default faction preference to your race's faction."] = "將你的缺省聲望重置為種族聲望"
 
 --	L["Default to championed faction"] = ""
---	L["Use your currently championed faction as your default faction.] = ""
+--	L["Use your currently championed faction as your default faction."] = ""
 
-	L["Ignore exalted factions"] = "忽略已崇拜的聲望"
+	L["Ignore Exalted factions"] = "忽略已崇拜的聲望"
 	L["Don't watch factions with whom you have already attained Exalted reputation."] = "選擇是否忽略監視已經崇拜的聲望"
 
 	L["Announce watched faction"] = "開啟提示"

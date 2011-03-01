@@ -335,7 +335,7 @@ Diplomancer.frame.runOnce = function(self)
 
 	--------------------------------------------------------------------
 
-	local exalted = CreateCheckbox(self, L["Ignore exalted factions"], L["Don't watch factions with whom you have already attained Exalted reputation."])
+	local exalted = CreateCheckbox(self, L["Ignore Exalted factions"], L["Don't watch factions with whom you have already attained Exalted reputation."])
 	exalted:SetPoint("TOPLEFT", champion, "BOTTOMLEFT", 0, -8)
 	exalted.func = function(checked)
 		db.ignoreExalted = checked
