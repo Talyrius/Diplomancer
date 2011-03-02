@@ -36,25 +36,17 @@ Type “/dm” for options, or find them in the Interface Options window.
 
 ## Localization
 
-Diplomancer is compatible with English, Deutsch, Español, Français,
-Русский, 한국어, 简体中文, and 正體中文 game clients.
+Compatible with English, Deutsch, Español, Français, Русский, 한국어,
+简体中文, and 正體中文 game clients.
 
-The options are currently translated into English, Deutsch, Español, and
-简体中文. If you can provide translations for any locale, please send me
-a PM on either download site.
+Translated into English, Deutsch, Español, and 简体中文.
 
 If you are playing in a non-English client, you must also download and
-install the following libraries to provide the translated names of
-factions, subzones, and zones that Diplomancer needs to function:
+install Diplomancer_Translations to load translations for zone, subzone,
+and faction names:
 
-* LibBabble-Faction-3.0
-  http://wow.curse.com/downloads/wow-addons/details/libbabble-faction-3-0.aspx
-
-* LibBabble-SubZone-3.0
-  http://wow.curse.com/downloads/wow-addons/details/libbabble-subzone-3-0.aspx
-
-* LibBabble-Zone-3.0
-  http://wow.curse.com/downloads/wow-addons/details/libbabble-zone-3-0.aspx
+* http://www.wowinterface.com/downloads/info19508.html
+* http://wow.curse.com/downloads/wow-addons/details/diplomancer-translations.aspx
 
 
 Feedback
