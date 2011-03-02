@@ -16,7 +16,6 @@ if not Diplomancer then -- WoW China is still running 3.2
 	Diplomancer = { }
 	_G.Diplomancer = Diplomancer
 end
-Diplomancer.L = { }
 
 --[[--------------------------------------------------------------------
 	German | Deutsch
@@ -24,25 +23,25 @@ Diplomancer.L = { }
 	Last updated: 2009-02-07
 ----------------------------------------------------------------------]]
 
-if LOCALE == "deDE" then
+if LOCALE == "deDE" then Diplomancer.L = {
 
-	L["Default faction"] = "Standardfraktion"
-	L["Select a faction to watch when your current location doesn't have an associated faction."] = "Wähle eine Standardfraktion, welche angezeigt wird wenn dein Aufenthaltsort nicht mit einer Fraktion verknüpft ist."
+	["Default faction"] = "Standardfraktion",
+	["Select a faction to watch when your current location doesn't have an associated faction."] = "Wähle eine Standardfraktion, welche angezeigt wird wenn dein Aufenthaltsort nicht mit einer Fraktion verknüpft ist.",
 
-	L["Reset"] = "Reset"
-	L["Reset your default faction preference to your race's faction."] = "Zurücksetzen der Standardfraktion auf deine Volksfraktion."
+	["Reset"] = "Reset",
+	["Reset your default faction preference to your race's faction."] = "Zurücksetzen der Standardfraktion auf deine Volksfraktion.",
 
---	L["Default to championed faction"] = ""
---	L["Use your currently championed faction as your default faction."] = ""
+--	["Default to championed faction"] = "",
+--	["Use your currently championed faction as your default faction."] = "",
 
-	L["Ignore Exalted factions"] = "Ignoriere ehrfürchtige Fraktionen"
-	L["Don't watch factions with whom you have already attained Exalted reputation."] = "Zeigt Fraktionen mit ehrfürchtigem Ruf nicht mehr an."
+	["Ignore Exalted factions"] = "Ignoriere ehrfürchtige Fraktionen",
+	["Don't watch factions with whom you have already attained Exalted reputation."] = "Zeigt Fraktionen mit ehrfürchtigem Ruf nicht mehr an.",
 
-	L["Announce watched faction"] = "Schalte Benachrichtigungen ein"
-	L["Show a message in the chat frame when your watched faction is changed."] = "Zeigt eine Meldung im Chatfenster wenn sich die angezeigte Fraktion ändert."
---	L["Now watching %s."] = ""
+	["Announce watched faction"] = "Schalte Benachrichtigungen ein",
+	["Show a message in the chat frame when your watched faction is changed."] = "Zeigt eine Meldung im Chatfenster wenn sich die angezeigte Fraktion ändert.",
+--	["Now watching %s."] = "",
 
-return end
+} return end
 
 --[[--------------------------------------------------------------------
 	Spanish | Español
@@ -50,25 +49,25 @@ return end
 	Last updated: 2011-02-28
 ----------------------------------------------------------------------]]
 
-if LOCALE == "esES" or LOCALE == "esMX" then
+if LOCALE == "esES" or LOCALE == "esMX" then Diplomancer.L = {
 
-	L["Default faction"] = "Facción predeterminado"
-	L["Select a faction to watch when your current location doesn't have an associated faction."] = "Seleccionar una facción para seguir, mientras estás en lugares sin facciones asociadas."
+	["Default faction"] = "Facción predeterminado",
+	["Select a faction to watch when your current location doesn't have an associated faction."] = "Seleccionar una facción para seguir, mientras estás en lugares sin facciones asociadas.",
 
-	L["Reset"] = "Restablecer"
-	L["Reset your default faction preference to your race's faction."] = "Restablecer tu facción predeterminado al facción de tu raza."
+	["Reset"] = "Restablecer",
+	["Reset your default faction preference to your race's faction."] = "Restablecer tu facción predeterminado al facción de tu raza.",
 
-	L["Default to championed faction"] = "Utilizar facción abanderada"
-	L["Use your currently championed faction as your default faction."] = "Utilizar tu facción abanderada como tu facción predeterminado."
+	["Default to championed faction"] = "Utilizar facción abanderada",
+	["Use your currently championed faction as your default faction."] = "Utilizar tu facción abanderada como tu facción predeterminado.",
 
-	L["Ignore Exalted factions"] = "Ignorar facciones Exaltados"
-	L["Don't watch factions with whom you have already attained Exalted reputation."] = "No seguir las facciones con las que ya ha alcanzado el nivel de Exaltado."
+	["Ignore Exalted factions"] = "Ignorar facciones Exaltados",
+	["Don't watch factions with whom you have already attained Exalted reputation."] = "No seguir las facciones con las que ya ha alcanzado el nivel de Exaltado.",
 
-	L["Announce watched faction"] = "Anunciar seguido facción"
-	L["Show a message in the chat frame when your watched faction is changed."] = "Mostrar un mensaje en la ventana de chat cuando Diplomancer cambia tu facción seguido."
-	L["Now watching %s."] = "Ahora siguiendo %s."
+	["Announce watched faction"] = "Anunciar seguido facción",
+	["Show a message in the chat frame when your watched faction is changed."] = "Mostrar un mensaje en la ventana de chat cuando Diplomancer cambia tu facción seguido.",
+	["Now watching %s."] = "Ahora siguiendo %s.",
 
-return end
+} return end
 
 --[[--------------------------------------------------------------------
 	French | Français
@@ -76,25 +75,25 @@ return end
 	Last updated: 2010-08-05
 ----------------------------------------------------------------------]]
 
-if LOCALE == "frFR" then
+if LOCALE == "frFR" then Diplomancer.L = {
 
-	L["Default faction"] = "Faction par défaut"
-	L["Select a faction to watch when your current location doesn't have an associated faction."] = "Sélectionnez une faction de regarder si votre position actuelle n'est pas une faction associée."
+	["Default faction"] = "Faction par défaut",
+	["Select a faction to watch when your current location doesn't have an associated faction."] = "Sélectionnez une faction de regarder si votre position actuelle n'est pas une faction associée.",
 
-	L["Reset"] = "Remise"
-	L["Reset your default faction preference to your race's faction."] = "Réinitialiser votre préférence faction par défaut à la faction de votre course."
+	["Reset"] = "Remise",
+	["Reset your default faction preference to your race's faction."] = "Réinitialiser votre préférence faction par défaut à la faction de votre course.",
 
---	L["Default to championed faction"] = ""
---	L["Use your currently championed faction as your default faction."] = ""
+--	["Default to championed faction"] = "",
+--	["Use your currently championed faction as your default faction."] = "",
 
-	L["Ignore Exalted factions"] = "Ignorer factions Exalté"
---	L["Don't watch factions with whom you have already attained Exalted reputation."] = ""
+	["Ignore Exalted factions"] = "Ignorer factions Exalté",
+--	["Don't watch factions with whom you have already attained Exalted reputation."] = "",
 
-	L["Announce watched faction"] = "Activer les notifications"
-	L["Show a message in the chat frame when your watched faction is changed."] = "Afficher un message dans le chat cadre lorsque vos modifications faction regardé."
---	L["Now watching %s."] = ""
+	["Announce watched faction"] = "Activer les notifications",
+	["Show a message in the chat frame when your watched faction is changed."] = "Afficher un message dans le chat cadre lorsque vos modifications faction regardé.",
+--	["Now watching %s."] = "",
 
-return end
+} return end
 
 --[[--------------------------------------------------------------------
 	Russian | Русский
@@ -102,25 +101,25 @@ return end
 	Last updated: YYYY-MM-DD
 ----------------------------------------------------------------------]]
 
-if LOCALE == "ruRU" then
+if LOCALE == "ruRU" then Diplomancer.L = {
 
---	L["Default faction"] = ""
---	L["Select a faction to watch when your current location doesn't have an associated faction."] = ""
+--	["Default faction"] = "",
+--	["Select a faction to watch when your current location doesn't have an associated faction."] = "",
 
---	L["Reset"] = ""
---	L["Reset your default faction preference to your race's faction."] = ""
+--	["Reset"] = "",
+--	["Reset your default faction preference to your race's faction."] = "",
 
---	L["Default to championed faction"] = ""
---	L["Use your currently championed faction as your default faction."] = ""
+--	["Default to championed faction"] = "",
+--	["Use your currently championed faction as your default faction."] = "",
 
---	L["Ignore Exalted factions"] = ""
---	L["Don't watch factions with whom you have already attained Exalted reputation."] = ""
+--	["Ignore Exalted factions"] = "",
+--	["Don't watch factions with whom you have already attained Exalted reputation."] = "",
 
---	L["Announce watched faction"] = ""
---	L["Show a message in the chat frame when your watched faction is changed."] = ""
---	L["Now watching %s."] = ""
+--	["Announce watched faction"] = "",
+--	["Show a message in the chat frame when your watched faction is changed."] = "",
+--	["Now watching %s."] = "",
 
-return end
+} return end
 
 --[[--------------------------------------------------------------------
 	Korean | 한국어
@@ -128,25 +127,25 @@ return end
 	Last updated: YYYY-MM-DD
 ----------------------------------------------------------------------]]
 
-if LOCALE == "koKR" then
+if LOCALE == "koKR" then Diplomancer.L = {
 
---	L["Default faction"] = ""
---	L["Select a faction to watch when your current location doesn't have an associated faction."] = ""
+--	["Default faction"] = "",
+--	["Select a faction to watch when your current location doesn't have an associated faction."] = "",
 
---	L["Reset"] = ""
---	L["Reset your default faction preference to your race's faction."] = ""
+--	["Reset"] = "",
+--	["Reset your default faction preference to your race's faction."] = "",
 
---	L["Default to championed faction"] = ""
---	L["Use your currently championed faction as your default faction."] = ""
+--	["Default to championed faction"] = "",
+--	["Use your currently championed faction as your default faction."] = "",
 
---	L["Ignore Exalted factions"] = ""
---	L["Don't watch factions with whom you have already attained Exalted reputation."] = ""
+--	["Ignore Exalted factions"] = "",
+--	["Don't watch factions with whom you have already attained Exalted reputation."] = "",
 
---	L["Announce watched faction"] = ""
---	L["Show a message in the chat frame when your watched faction is changed."] = ""
---	L["Now watching %s."] = ""
+--	["Announce watched faction"] = "",
+--	["Show a message in the chat frame when your watched faction is changed."] = "",
+--	["Now watching %s."] = "",
 
-return end
+} return end
 
 --[[--------------------------------------------------------------------
 	Simplified Chinese | 简体中文
@@ -154,25 +153,25 @@ return end
 	Last updated: 2010-08-05
 ----------------------------------------------------------------------]]
 
-if LOCALE == "zhCN" then
+if LOCALE == "zhCN" then Diplomancer.L = {
 
-	L["Default faction"] = "缺省声望"
-	L["Select a faction to watch when your current location doesn't have an associated faction."] = "当目前所在区域没有对应声望时，选择监视的声望"
+	["Default faction"] = "缺省声望",
+	["Select a faction to watch when your current location doesn't have an associated faction."] = "当目前所在区域没有对应声望时，选择监视的声望",
 
-	L["Reset"] = "重置"
-	L["Reset your default faction preference to your race's faction."] = "将你的缺省声望重置为种族声望"
+	["Reset"] = "重置",
+	["Reset your default faction preference to your race's faction."] = "将你的缺省声望重置为种族声望",
 
---	L["Default to championed faction"] = ""
---	L["Use your currently championed faction as your default faction."] = ""
+--	["Default to championed faction"] = "",
+--	["Use your currently championed faction as your default faction."] = "",
 
-	L["Ignore Exalted factions"] = "忽略已崇拜的声望"
-	L["Don't watch factions with whom you have already attained Exalted reputation."] = "选择是否忽略监视已经崇拜的声望"
+	["Ignore Exalted factions"] = "忽略已崇拜的声望",
+	["Don't watch factions with whom you have already attained Exalted reputation."] = "选择是否忽略监视已经崇拜的声望",
 
-	L["Announce watched faction"] = "开启提示"
-	L["Show a message in the chat frame when your watched faction is changed."] = "选择是否显示声望监视状态变动"
---	L["Now watching %s."] = ""
+	["Announce watched faction"] = "开启提示",
+	["Show a message in the chat frame when your watched faction is changed."] = "选择是否显示声望监视状态变动",
+--	["Now watching %s."] = "",
 
-return end
+} return end
 
 --[[--------------------------------------------------------------------
 	Traditional Chinese | 正體中文
@@ -180,22 +179,22 @@ return end
 	Last updated: 2010-01-23
 ----------------------------------------------------------------------]]
 
-if LOCALE == "zhTW" then
+if LOCALE == "zhTW" then Diplomancer.L = {
 
-	L["Default faction"] = "缺省聲望"
-	L["Select a faction to watch when your current location doesn't have an associated faction."] = "當目前所在區域沒有對應聲望時，選擇監視的聲望"
+	["Default faction"] = "缺省聲望",
+	["Select a faction to watch when your current location doesn't have an associated faction."] = "當目前所在區域沒有對應聲望時，選擇監視的聲望",
 
-	L["Reset"] = "重置"
-	L["Reset your default faction preference to your race's faction."] = "將你的缺省聲望重置為種族聲望"
+	["Reset"] = "重置",
+	["Reset your default faction preference to your race's faction."] = "將你的缺省聲望重置為種族聲望",
 
---	L["Default to championed faction"] = ""
---	L["Use your currently championed faction as your default faction."] = ""
+--	["Default to championed faction"] = "",
+--	["Use your currently championed faction as your default faction."] = "",
 
-	L["Ignore Exalted factions"] = "忽略已崇拜的聲望"
-	L["Don't watch factions with whom you have already attained Exalted reputation."] = "選擇是否忽略監視已經崇拜的聲望"
+	["Ignore Exalted factions"] = "忽略已崇拜的聲望",
+	["Don't watch factions with whom you have already attained Exalted reputation."] = "選擇是否忽略監視已經崇拜的聲望",
 
-	L["Announce watched faction"] = "開啟提示"
-	L["Show a message in the chat frame when your watched faction is changed."] = "選擇是否顯示聲望監視狀態變動"
---	L["Now watching %s."] = ""
+	["Announce watched faction"] = "開啟提示",
+	["Show a message in the chat frame when your watched faction is changed."] = "選擇是否顯示聲望監視狀態變動",
+--	["Now watching %s."] = "",
 
-return end
+} return end
