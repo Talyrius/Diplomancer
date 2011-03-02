@@ -64,6 +64,7 @@ function Diplomancer:PLAYER_LOGIN()
 	-- self:Debug("PLAYER_LOGIN")
 
 	self:LocalizeData()
+	if not self.localized then return end
 
 	championFactions = self.championFactions
 	championZones = self.championZones
