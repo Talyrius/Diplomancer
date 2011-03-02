@@ -22,18 +22,18 @@ local L = setmetatable(Diplomancer.L, { __index = function(t, s) t[s] = s return
 function Diplomancer:Debug(text, ...)
 	if not text then return end
 	if text:match("%%[dfs%d%.]") then
-		print( "|cffff3399[DEBUG] Diplomancer:|r, text:format(...) )
+		print( "|cffff3399[DEBUG] Diplomancer:|r", text:format(...) )
 	else
-		print( "|cffff3399[DEBUG] Diplomancer:|r, text, ... )
+		print( "|cffff3399[DEBUG] Diplomancer:|r", text, ... )
 	end
 end
 
 function Diplomancer:Print(text, ...)
 	if not text then return end
 	if text:match("%%[dfs%d%.]") then
-		print( "|cff33ff99Diplomancer:|r, text:format(...) )
+		print( "|cff33ff99Diplomancer:|r", text:format(...) )
 	else
-		print( "|cff33ff99Diplomancer:|r, text, ... )
+		print( "|cff33ff99Diplomancer:|r", text, ... )
 	end
 end
 
