@@ -9,7 +9,6 @@
 ----------------------------------------------------------------------]]
 
 local ADDON_NAME, Diplomancer = ...
-if not Diplomancer then Diplomancer = _G.Diplomancer end -- WoW China is still running 3.2
 Diplomancer.L = Diplomancer.L or { }
 
 ------------------------------------------------------------------------
