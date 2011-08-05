@@ -43,6 +43,7 @@ function Diplomancer:ADDON_LOADED(_, addon)
 	-- self:Debug("ADDON_LOADED", addon)
 
 	if not DiplomancerSettings then
+		-- self:Debug("No saved settings found!")
 		DiplomancerSettings = { }
 	end
 	db = DiplomancerSettings
@@ -93,7 +94,7 @@ end
 function Diplomancer:Update(event)
 	if taxiEnded then
 		-- This is a hack to work around the fact that UnitOnTaxi still
-		-- returns true right after PLAYER_CONTROL_GAINED has fired.
+		-- returns true during the PLAYER_CONTROL_GAINED event.
 		taxiEnded = false
 	elseif UnitOnTaxi("player") then
 		-- self:Debug("On taxi. Skipping update.")
@@ -115,8 +116,10 @@ function Diplomancer:Update(event)
 					-- Championing this faction has a level requirement.
 					if GetInstanceDifficulty() >= instances[zone] then
 						faction = info[2]
-						self:Debug("CHAMPION", faction)
-						if db.defaultChampion then db.defaultFaction = faction end
+						-- self:Debug("CHAMPION", faction)
+						if db.defaultChampion then
+							db.defaultFaction = faction
+						end
 					end
 				elseif not instances and not championZones[70][zone] then
 					-- Championing this faction doesn't have a level requirement,
@@ -124,8 +127,10 @@ function Diplomancer:Update(event)
 					local minDifficulty = instances[80][zone]
 					if not minDifficulty or GetInstanceDifficulty() >= minDifficulty then
 						faction = info[2]
-						self:Debug("CHAMPION", faction)
-						if db.defaultChampion then db.defaultFaction = faction end
+						-- self:Debug("CHAMPION", faction)
+						if db.defaultChampion then
+							db.defaultFaction = faction
+						end
 					end
 				end
 				break
@@ -148,7 +153,7 @@ function Diplomancer:Update(event)
 		for buff, info in pairs(championFactions) do
 			if UnitBuff("player", buff) then
 				faction = info[2]
-				-- if faction self:Debug("DEFAULT CHAMPION", faction) end
+				-- if faction then self:Debug("DEFAULT CHAMPION", faction) end
 				break
 			end
 		end
@@ -315,10 +320,10 @@ Diplomancer.frame.runOnce = function(self)
 	reset:SetPoint("TOPLEFT", default.button, "TOPRIGHT", 8, 0)
 	reset:SetPoint("BOTTOMLEFT", default.button, "BOTTOMRIGHT", 8, 0)
 	reset:SetWidth(math.max(16 + reset:GetFontString():GetStringWidth(), 80))
-	reset:SetScript("OnClick", function( self )
+	reset:SetScript("OnClick", function(self)
 		self:Disable()
 		db.defaultFaction = nil
-		default:SetValue( racialFaction )
+		default:SetValue(racialFaction)
 		Diplomancer:Update()
 	end)
 
@@ -326,7 +331,7 @@ Diplomancer.frame.runOnce = function(self)
 
 	local champion = CreateCheckbox(self, L["Default to championed faction"], L["Use your currently championed faction as your default faction."])
 	champion:SetPoint("TOPLEFT", default, "BOTTOMLEFT", 0, -10)
-	champion.func = function(checked)
+	champion.OnClick = function(self, checked)
 		db.defaultChampion = checked
 		Diplomancer:Update()
 	end
@@ -335,7 +340,7 @@ Diplomancer.frame.runOnce = function(self)
 
 	local exalted = CreateCheckbox(self, L["Ignore Exalted factions"], L["Don't watch factions with whom you have already attained Exalted reputation."])
 	exalted:SetPoint("TOPLEFT", champion, "BOTTOMLEFT", 0, -8)
-	exalted.func = function(checked)
+	exalted.OnClick = function(self, checked)
 		db.ignoreExalted = checked
 		Diplomancer:Update()
 	end
@@ -344,7 +349,7 @@ Diplomancer.frame.runOnce = function(self)
 
 	local announce = CreateCheckbox(self, L["Announce watched faction"], L["Show a message in the chat frame when your watched faction is changed."])
 	announce:SetPoint("TOPLEFT", exalted, "BOTTOMLEFT", 0, -8)
-	announce.func = function(checked)
+	announce.OnClick = function(self, checked)
 		db.verbose = checked
 	end
 
