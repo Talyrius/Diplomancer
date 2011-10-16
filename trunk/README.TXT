@@ -2,7 +2,6 @@
 ===========
 
 * Written by Phanx <addons@phanx.net>
-* Maintained by Akkorian <akkorian@hotmail.com>
 * Copyright © 2007–2011 Phanx. Some rights reserved. See LICENSE.txt for details.
 * http://www.wowinterface.com/downloads/info9643-Diplomancer.html
 * http://wow.curse.com/downloads/wow-addons/details/diplomancer.aspx
@@ -58,3 +57,11 @@ post a comment on either download site.
 
 If you need to contact me privately, you may do by private message
 on either download site, or by email at <akkorian@hotmail.com>.
+
+
+Credits
+-------
+
+Many thanks to Akkorian for maintaining Diplomancer while I took some
+time off from WoW. Also thanks to Charnow, whose addon SmartFactionWatch
+inspired me to write Diplomancer years ago.
