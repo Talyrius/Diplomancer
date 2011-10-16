@@ -38,8 +38,8 @@ Type “/dm” for options, or find them in the Interface Options window.
 Compatible with English, Deutsch, Español, Français, Русский, 한국어,
 简体中文, and 正體中文 game clients.
 
-Translated into English, Deutsch, Español, Français, Русский, 한국어,
-and 简体中文.
+Translated into English, Deutsch, Español, Français, Português, Русский,
+한국어, and 简体中文.
 
 If you are playing in a non-English client, you must also download and
 install Diplomancer_Translations to load translations for zone, subzone,

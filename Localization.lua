@@ -40,7 +40,7 @@ if LOCALE == "deDE" then Diplomancer.L = {
 
 --[[--------------------------------------------------------------------
 	Spanish | Español
-	Last updated:2011-02-28 by Akkorian
+	Last updated: 2011-02-28 by Akkorian
 ----------------------------------------------------------------------]]
 
 if LOCALE == "esES" or LOCALE == "esMX" then Diplomancer.L = {
@@ -89,8 +89,33 @@ if LOCALE == "frFR" then Diplomancer.L = {
 } return end
 
 --[[--------------------------------------------------------------------
+	Portuguese | Português
+	Last updated: 2011-10-19 by Phanx
+----------------------------------------------------------------------]]
+
+if LOCALE == "ptBR" then Diplomancer.L = {
+
+	["Default faction"] = "Facção padrão",
+	["Select a faction to watch when your current location doesn't have an associated faction."] = "Selecione uma facção a seguir ao da sua localização actual não tem uma facção associados.",
+
+	["Reset"] = "Restabelecer",
+	["Reset your default faction preference to your race's faction."] = "Restabeleça a sua preferência de facção padrão para a sua facção raça.",
+
+	["Default to championed faction"] = "Use facção patrocinado",
+	["Use your currently championed faction as your default faction."] = "Use sua facção atualmente patrocinada como sua facção padrão.",
+
+	["Ignore Exalted factions"] = "Ignore facções Exaltado",
+	["Don't watch factions with whom you have already attained Exalted reputation."] = "Não siga as facções com quem você já alcançaram reputação Exaltado.",
+
+	["Announce watched faction"] = "Anunciar facção seguido",
+	["Show a message in the chat frame when your watched faction is changed."] = "Mostrar uma mensagem no quadro de bate-papo quando sua facção seguido é alterado.",
+	["Now watching %s."] = "Agora seguintes %s.",
+
+} return end
+
+--[[--------------------------------------------------------------------
 	Russian | Русский
-	Last updated:2011-03-15 by Akkorian
+	Last updated: 2011-03-15 by Akkorian
 ----------------------------------------------------------------------]]
 
 if LOCALE == "ruRU" then Diplomancer.L = {
@@ -115,7 +140,7 @@ if LOCALE == "ruRU" then Diplomancer.L = {
 
 --[[--------------------------------------------------------------------
 	Korean | 한국어
-	Last updated:2011-03-03 by talkswind @ CurseForge
+	Last updated: 2011-03-03 by talkswind @ CurseForge
 ----------------------------------------------------------------------]]
 
 if LOCALE == "koKR" then Diplomancer.L = {
@@ -140,7 +165,7 @@ if LOCALE == "koKR" then Diplomancer.L = {
 
 --[[--------------------------------------------------------------------
 	Simplified Chinese | 简体中文
-	Last updated:2010-08-05 by VENSTER
+	Last updated: 2010-08-05 by VENSTER
 	Previous contributors: 急云@CWDG
 ----------------------------------------------------------------------]]
 
