@@ -16,7 +16,7 @@
 ## X-Credits: Inspired by Charnow's SmartFactionWatch.
 ## X-Copyright: Copyright © 2007–2011 Phanx
 ## X-License: Some rights reserved. See LICENSE.txt for details.
-## X-CompatibleLocales: enUS, deDE, esES, esMX, frFR, ptBR, ruRU, koKR, zhCN, zhTW
+## X-CompatibleLocales: enUS, deDE, esES, esMX, frFR, ruRU, koKR, zhCN, zhTW
 ## X-Localizations: enUS, deDE, esES, esMX, frFR, ptBR, ruRU, koKR, zhCN, zhTW
 ## X-Website: http://www.wowinterface.com/downloads/info9643-Diplomancer.html
 ## X-Curse-Project-ID: diplomancer
@@ -36,6 +36,11 @@ Libs\PhanxConfig-Dropdown\PhanxConfig-Dropdown.lua
 Libs\PhanxConfig-Header\PhanxConfig-Header.lua
 Libs\PhanxConfig-OptionsPanel\PhanxConfig-OptionsPanel.lua
 Libs\PhanxConfig-ScrollingDropdown\PhanxConfig-ScrollingDropdown.lua
+
+Libs\LibBabble-Faction-3.0\LibBabble-3.0.lua
+Libs\LibBabble-Faction-3.0\LibBabble-Faction-3.0.lua
+Libs\LibBabble-SubZone-3.0\LibBabble-SubZone-3.0.lua
+Libs\LibBabble-Zone-3.0\LibBabble-Zone-3.0.lua
 
 Localization.lua
 
