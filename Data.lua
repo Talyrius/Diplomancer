@@ -124,7 +124,7 @@ local ZF = {
 	["Ashenvale"]					= isHorde and "Warsong Offensive" or "Darnassus",
 	["Auchenai Crypts"]				= "Lower City",
 	["Azshara"]						= isHorde and "Bilgewater Cartel" or nil,
-	["Azuremyst isle"]				= isAlliance and "Exodar" or nil,
+	["Azuremyst Isle"]				= isAlliance and "Exodar" or nil,
 	["Baradin Hold"]				= isHorde and "Hellscream's Reach" or "Baradin's Wardens",
 	["Black Temple"]				= "Ashtongue Deathsworn",
 	["Blackrock Depths"]			= "Thorium Brotherhood",
@@ -516,7 +516,7 @@ function Diplomancer:LocalizeData()
 				if BS[subzone] then
 					self.subzoneFactions[BZ[zone]][BS[subzone]] = BF[faction]
 				else
-					print("|cff33ff99Diplomancer:|r bad subzone", zone, "==>", subzone)
+					-- print("|cff33ff99Diplomancer:|r missing subzone", zone, "==>", subzone)
 				end
 			end
 		end

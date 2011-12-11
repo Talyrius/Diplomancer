@@ -316,7 +316,7 @@ Diplomancer.frame.runOnce = function(self)
 
 	--------------------------------------------------------------------
 
-	reset = LibStub("PhanxConfig-Button").CreateButton(self, L["Reset"], L["Reset your default faction to your race's faction."])
+	reset = LibStub("PhanxConfig-Button").CreateButton(self, L["Reset"], L["Reset your default faction preference to your race's faction."])
 	reset:SetPoint("TOPLEFT", default.button, "TOPRIGHT", 8, 0)
 	reset:SetPoint("BOTTOMLEFT", default.button, "BOTTOMRIGHT", 8, 0)
 	reset:SetWidth(math.max(16 + reset:GetFontString():GetStringWidth(), 80))
