@@ -486,20 +486,12 @@ function Diplomancer:LocalizeData()
 		self.subzoneFactions = SF
 		self.zoneFactions = ZF
 	else
-		local loaded, reason = LoadAddOn("Diplomancer_Translations")
-
 		local BF = LibStub and LibStub("LibBabble-Faction-3.0", true) and LibStub("LibBabble-Faction-3.0"):GetLookupTable()
 		local BS = LibStub and LibStub("LibBabble-SubZone-3.0", true) and LibStub("LibBabble-SubZone-3.0"):GetUnstrictLookupTable()
 		local BZ = LibStub and LibStub("LibBabble-Zone-3.0", true) and LibStub("LibBabble-Zone-3.0"):GetLookupTable()
 
 		if not BF or not BS or not BZ then
-			print("|cff33ff99Diplomancer|r is missing the zone, subzone, and faction name translations it needs to work in your locale!")
-			if reason == "MISSING" then
-				print("To fix this, download Diplomancer_Translations from the same place you downloaded Diplomancer.")
-			else
-				print("To fix this, enable Diplomancer_Translations in the AddOns list on the character selection screen.")
-			end
-			return
+			print("|cff33ff99Diplomancer|r is not yet compatible with your language. See the download page for more information.")
 		end
 
 		self.championFactions = { }
