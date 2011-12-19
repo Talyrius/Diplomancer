@@ -1,7 +1,7 @@
 Diplomancer
 by Phanx <addons@phanx.net>
 http://www.wowinterface.com/downloads/info9643-Diplomancer.html
-http://wow.curse.com/downloads/wow-addons/details/diplomancer.aspx
+http://www.curse.com/addons/wow/diplomancer
 
 Copyright © 2007–2011 Phanx
 
