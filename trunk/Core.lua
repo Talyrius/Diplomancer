@@ -17,13 +17,13 @@ local db, onTaxi, taxiEnded, championFactions, championZones, racialFaction, sub
 local L = setmetatable(Diplomancer.L, { __index = function(t, s) t[s] = s return s end })
 
 ------------------------------------------------------------------------
-
+DEBUG_CHAT_FRAME = ChatFrame4
 function Diplomancer:Debug(text, ...)
 	if not text then return end
-	if text:match("%%[dfs%d%.]") then
-		print( "|cffff3399[DEBUG] Diplomancer:|r", text:format(...) )
+	if text:match("%%[dfsx%d%.$]") then
+		(DEBUG_CHAT_FRAME or DEFAULT_CHAT_FRAME):AddMessage( "|cffff3399Diplomancer:|r " .. text:format(...) )
 	else
-		print( "|cffff3399[DEBUG] Diplomancer:|r", text, ... )
+		(DEBUG_CHAT_FRAME or DEFAULT_CHAT_FRAME):AddMessage( "|cffff3399Diplomancer:|r " .. text, ... )
 	end
 end
 
@@ -43,7 +43,7 @@ function Diplomancer:ADDON_LOADED(_, addon)
 	-- self:Debug("ADDON_LOADED", addon)
 
 	if not DiplomancerSettings then
-		-- self:Debug("No saved settings found!")
+		self:Debug("No saved settings found!")
 		DiplomancerSettings = { }
 	end
 	db = DiplomancerSettings
@@ -97,71 +97,73 @@ function Diplomancer:Update(event)
 		-- returns true during the PLAYER_CONTROL_GAINED event.
 		taxiEnded = false
 	elseif UnitOnTaxi("player") then
-		-- self:Debug("On taxi. Skipping update.")
+		self:Debug("On taxi. Skipping update.")
 		onTaxi = true
 		return
 	end
 
 	local faction
 	local zone = GetRealZoneText()
+	self:Debug("Update", event, zone)
 
-	-- self:Debug("Update", event, zone)
-
-	local _, instanceType = IsInInstance()
-	if instanceType == "party" then
-		for buff, info in pairs(championFactions) do
-			if UnitBuff("player", buff) then
-				local instances = championZones[info[1]]
-				if instances and instances[zone] then
-					-- Championing this faction has a level requirement.
-					if GetInstanceDifficulty() >= instances[zone] then
-						faction = info[2]
-						-- self:Debug("CHAMPION", faction)
-						if db.defaultChampion then
-							db.defaultFaction = faction
-						end
-					end
-				elseif not instances and not championZones[70][zone] then
-					-- Championing this faction doesn't have a level requirement,
-					-- but Outland dungeons don't count, and WotLK dungeons are weird.
-					local minDifficulty = instances[80][zone]
-					if not minDifficulty or GetInstanceDifficulty() >= minDifficulty then
-						faction = info[2]
-						-- self:Debug("CHAMPION", faction)
-						if db.defaultChampion then
-							db.defaultFaction = faction
-						end
+	local tabardFaction, tabardLevel = self:GetChampionedFaction()
+	if tabardFaction then
+		local _, instanceType = IsInInstance()
+		if instanceType == "party" then
+			self:Debug("Wearing tabard for", tabardFaction)
+			local instances = championZones[tabardLevel]
+			if instances and instances[zone] then
+				-- Championing this faction has a level requirement.
+				if GetInstanceDifficulty() >= instances[zone] then
+					faction = tabardFaction
+					self:Debug("CHAMPION", faction)
+					if db.defaultChampion then
+						db.defaultFaction = faction
 					end
 				end
-				break
+			elseif not instances and not championZones[70][zone] then
+				-- Championing this faction doesn't have a level requirement,
+				-- but Outland dungeons don't count, and WotLK dungeons are weird.
+				local minDifficulty = instances[80][zone]
+				if not minDifficulty or GetInstanceDifficulty() >= minDifficulty then
+					faction = tabardFaction
+					self:Debug("CHAMPION", faction)
+					if db.defaultChampion then
+						db.defaultFaction = faction
+					end
+				end
 			end
 		end
 	end
 
 	if not faction then
 		local subzone = GetSubZoneText()
+		self:Debug("Checking subzone", subzone)
 		faction = subzone and subzoneFactions[zone] and subzoneFactions[zone][subzone]
-		-- if faction then self:Debug("SUBZONE", faction) end
-	end
-
-	if not faction then
-		faction = zoneFactions[zone]
-		-- if faction then self:Debug("ZONE", faction) end
-	end
-
-	if not faction and db.defaultChampion then
-		for buff, info in pairs(championFactions) do
-			if UnitBuff("player", buff) then
-				faction = info[2]
-				-- if faction then self:Debug("DEFAULT CHAMPION", faction) end
-				break
-			end
+		if faction then
+			self:Debug("SUBZONE", faction)
 		end
 	end
 
-	-- if not faction then self:Debug("RACE", racialFaction) end
+	if not faction then
+		self:Debug("Checking zone", zone)
+		faction = zoneFactions[zone]
+		if faction then
+			self:Debug("ZONE", faction)
+		end
+	end
 
-	self:SetWatchedFactionByName(faction or db.defaultFaction or racialFaction, db.verbose)
+	if not faction and tabardFaction and db.defaultChampion then
+		faction = tabardFaction
+		self:Debug("DEFAULT CHAMPION", faction)
+	end
+
+	if not faction then
+		faction = db.defaultFaction or racialFaction
+		self:Debug(db.defaultFaction and "DEFAULT" or "RACE", faction)
+	end
+
+	self:SetWatchedFactionByName(faction, db.verbose)
 end
 
 Diplomancer.PLAYER_ENTERING_WORLD = Diplomancer.Update
@@ -172,7 +174,7 @@ Diplomancer.ZONE_CHANGED_NEW_AREA = Diplomancer.Update
 ------------------------------------------------------------------------
 
 function Diplomancer:PLAYER_CONTROL_GAINED()
-	-- self:Debug("PLAYER_CONTROL_GAINED")
+	self:Debug("PLAYER_CONTROL_GAINED")
 	if onTaxi then
 		onTaxi = false
 		taxiEnded = true
@@ -205,7 +207,7 @@ end
 
 function Diplomancer:SetWatchedFactionByName(name, verbose)
 	if type(name) ~= "string" or name:len() == 0 then return end
-	-- self:Debug("SetWatchedFactionByName: %s", name)
+	self:Debug("SetWatchedFactionByName: %s", name)
 
 	self:ExpandFactionHeaders()
 
@@ -239,6 +241,21 @@ function Diplomancer:GetFactionNameMatch(text)
 			if faction:lower():gsub("'", ""):match(text) then
 				return faction
 			end
+		end
+	end
+end
+
+------------------------------------------------------------------------
+
+function Diplomancer:GetChampionedFaction()
+	local CF = self.championFactions
+	for i = 1, 40 do
+		local _, _, _, _, _, _, _, _, _, _, id = UnitBuff("player", i)
+		if not id then
+			return
+		end
+		if CF[id] then
+			return CF[id][2], CF[id][1]
 		end
 	end
 end
