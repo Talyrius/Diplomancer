@@ -221,6 +221,7 @@ local ZF = {
 	["The Storm Peaks"]				= "The Sons of Hodir",
 	["The Underbog"]				= "Cenarion Expedition",
 	["The Veiled Sea"]				= isAlliance and "Darnassus" or nil,
+	["The Wandering Isle"]			= "Shang Xi's Academy",
 	["Thousand Needles"]			= isHorde and "Bilgewater Cartel" or "Gnomeregan",
 	["Thunder Bluff"]				= isHorde and "Thunder Bluff" or nil,
 	["Tirisfal Glades"]             = isHorde and "Undercity" or nil,
