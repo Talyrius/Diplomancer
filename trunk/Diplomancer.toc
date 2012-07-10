@@ -1,5 +1,5 @@
-## Interface: 40300
-## Version: 4.3.0.wowi:revision
+## Interface: 50001
+## Version: 5.0.1.wowi:revision-beta
 
 ## Title: Diplomancer
 ## Notes: Automatically watch your current location's faction.
@@ -7,6 +7,7 @@
 ## Notes-esES: Sigue automáticamente la facción asociada con tu lugar actual.
 ## Notes-esMX: Sigue automáticamente la facción asociada con tu lugar actual.
 ## Notes-frFR: Automatiquement regarder la faction associée à votre position actuelle.
+## Notes-itIT: Segue automaticamente la fazione associato alla posizione corrente.
 ## Notes-ptBR: Segue automaticamente a facção associado à sua localização actual.
 ## Notes-ruRU: Автоматически следить за выполнением фракция связана с вашего текущего местоположения.
 ## Notes-koKR: 현재 위치의 진영을 자동으로 감시합니다.
@@ -14,9 +15,9 @@
 ## Author: Phanx, Akkorian
 ## X-Email: addons@phanx.net
 ## X-Credits: Inspired by Charnow's SmartFactionWatch.
-## X-Copyright: Copyright © 2007–2011 Phanx
-## X-License: Some rights reserved. See LICENSE.txt for details.
-## X-CompatibleLocales: enUS, deDE, esES, esMX, frFR, ruRU, koKR, zhCN, zhTW
+## X-Copyright: Copyright (c) 2007-2012 Phanx. All rights reserved.
+## X-License: See accompanying LICENSE file for details.
+## X-CompatibleLocales: enUS, deDE, esES, esMX, frFR, ptBR, ruRU, koKR, zhCN, zhTW
 ## X-Localizations: enUS, deDE, esES, esMX, frFR, ptBR, ruRU, koKR, zhCN, zhTW
 ## X-Website: http://www.wowinterface.com/downloads/info9643-Diplomancer.html
 ## X-Curse-Project-ID: diplomancer

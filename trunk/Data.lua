@@ -1,16 +1,22 @@
 --[[--------------------------------------------------------------------
 	Diplomancer
 	Automatically sets your watched faction based on your location.
-	Written by Phanx <addons@phanx.net>
-	Maintained by Akkorian <akkorian@hotmail.com>
-	Copyright © 2007–2011 Phanx. Some rights reserved. See LICENSE.txt for details.
+	Copyright (c) 2007-2012 Phanx <addons@phanx.net>. All rights reserved.
+	See the accompanying README and LICENSE files for more information.
 	http://www.wowinterface.com/downloads/info9643-Diplomancer.html
 	http://www.curse.com/addons/wow/diplomancer
 ----------------------------------------------------------------------]]
 
-local _, race = UnitRace("player") -- arg2 is "Scourge" for Undead players
-local isHorde = race == "BloodElf" or race == "Goblin" or race == "Orc" or race == "Scourge" or race == "Tauren" or race == "Troll"
-local isAlliance = race == "Draenei" or race == "Dwarf" or race == "Gnome" or race == "Human" or race == "NightElf" or race == "Worgen"
+local _, Diplomancer = ...
+
+function Diplomancer:LocalizeData()
+	if self.localized then return end
+	-- self:Debug("LocalizeData")
+
+	local _, race = UnitRace("player") -- arg2 is "Scourge" for Undead players
+
+	local isHorde = UnitFactionGroup("player") == "Horde"
+	local isAlliance = not isHorde
 
 ------------------------------------------------------------------------
 
@@ -217,7 +223,7 @@ local ZF = {
 	["The Veiled Sea"]				= isAlliance and "Darnassus" or nil,
 	["Thousand Needles"]			= isHorde and "Bilgewater Cartel" or "Gnomeregan",
 	["Thunder Bluff"]				= isHorde and "Thunder Bluff" or nil,
-	["Tirisfal Glades"]             = isHorde and "Undercity" or nil,	
+	["Tirisfal Glades"]             = isHorde and "Undercity" or nil,
 	["Tol Barad"]					= isHorde and "Hellscream's Reach" or "Baradin's Wardens",
 	["Tol Barad Peninsula"]			= isHorde and "Hellscream's Reach" or "Baradin's Wardens",
 	["Trial of the Crusader"]		= isHorde and "The Sunreavers" or "The Silver Covenant",
@@ -473,12 +479,6 @@ local SF = {
 
 ------------------------------------------------------------------------
 
-local _, Diplomancer = ...
-
-function Diplomancer:LocalizeData()
-	if self.localized then return end
-	-- self:Debug("LocalizeData")
-
 	if GetLocale():match("^en") then
 		self.championFactions = CF
 		self.championZones = CZ
@@ -526,8 +526,6 @@ function Diplomancer:LocalizeData()
 			self.zoneFactions[BZ[zone]] = BF[faction]
 		end
 	end
-
-	CF, CZ, RF, SF, ZF, isHorde, isAlliance, race, _ = nil, nil, nil, nil, nil, nil, nil, nil, nil
 
 	self.localized = true
 end

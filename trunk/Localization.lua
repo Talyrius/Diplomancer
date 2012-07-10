@@ -1,9 +1,8 @@
 --[[--------------------------------------------------------------------
 	Diplomancer
 	Automatically sets your watched faction based on your location.
-	Written by Phanx <addons@phanx.net>
-	Maintained by Akkorian <akkorian@hotmail.com>
-	Copyright © 2007–2011 Phanx. Some rights reserved. See LICENSE.txt for details.
+	Copyright (c) 2007-2012 Phanx <addons@phanx.net>. All rights reserved.
+	See the accompanying README and LICENSE files for more information.
 	http://www.wowinterface.com/downloads/info9643-Diplomancer.html
 	http://www.curse.com/addons/wow/diplomancer
 ----------------------------------------------------------------------]]
@@ -89,6 +88,31 @@ if LOCALE == "frFR" then Diplomancer.L = {
 } return end
 
 --[[--------------------------------------------------------------------
+	Italian | Italiano
+	Last updated: 2012-07-10 by Phanx
+----------------------------------------------------------------------]]
+
+if LOCALE == "itIT" then Diplomancer.L = {
+
+	["Default faction"] = "Fazione di default",
+	["Select a faction to watch when your current location doesn't have an associated faction."] = "Seleziona una fazione per vedere se la posizione attuale non è una fazione associato.",
+
+	["Reset"] = "Reimposta",
+	["Reset your default faction preference to your race's faction."] = "Reimposta la tua preferenza fazione predefinito per la fazione di tua razza.",
+
+	["Default to championed faction"] = "Usa fazione sponsorizzato",
+	["Use your currently championed faction as your default faction."] = "Usa la tua fazione attualmente sponsorizzato la sua fazione di default.",
+
+	["Ignore Exalted factions"] = "Ignora fazioni Osannato",
+	["Don't watch factions with whom you have already attained Exalted reputation."] = "Non seguire le fazioni con cui avete raggiunto la reputazione Osannato.",
+
+	["Announce watched faction"] = "Avvisi fazione seguirono",
+	["Show a message in the chat frame when your watched faction is changed."] = "Mostra un messaggio nella finestra di chat quando la fazione seguita è cambiato.",
+	["Now watching %s."] = "Ora seguendo %s.",
+
+} return end
+
+--[[--------------------------------------------------------------------
 	Portuguese | Português
 	Last updated: 2011-10-19 by Phanx
 ----------------------------------------------------------------------]]
@@ -147,7 +171,7 @@ if LOCALE == "koKR" then Diplomancer.L = {
 
 	["Default faction"] = "기본 진영",
 	["Select a faction to watch when your current location doesn't have an associated faction."] = "현재 위치가 관련된 진영이 없는 경우에 감시할 진영을 선택합니다.",
-	
+
 	["Default to championed faction"] = "옹호하고 있는 진영을 기본 진영으로",
 	["Use your currently championed faction as your default faction."] = "현재 옹호하고 있는 진영을 기본 진영으로 사용합니다.",
 
@@ -156,7 +180,7 @@ if LOCALE == "koKR" then Diplomancer.L = {
 
 	["Ignore Exalted factions"] = "확고한 동맹 진영 무시",
 	["Don't watch factions with whom you have already attained Exalted reputation."] = "확고한 동맹 평판을 이미 달성한 진영은 감시하지 않습니다. ",
-	
+
 	["Announce watched faction"] = "감시 중인 진영 알림",
 	["Show a message in the chat frame when your watched faction is changed."] = "감시 중인 진영이 변경된 경우에 대화창에 메시지를 보여줍니다.",
 	["Now watching %s."] = "%s|1을;를; 지금 감시 중에 있습니다.",
