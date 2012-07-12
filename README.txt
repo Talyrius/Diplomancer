@@ -39,8 +39,8 @@ Localization
 Compatible with English, Deutsch, Español (EU), Español (AL), Français,
 Português, Русский, 한국어, 简体中文, and 正體中文 game clients.
 
-Translated into English, Deutsch, Español, Français, Português, Русский,
-한국어, and 简体中文.
+Translated into English, Deutsch, Español, Français, Italiano, Português,
+Русский, 한국어, and 简体中文.
 
 To add or update translations for any language, see the Localization tab
 on the CurseForge project page:
