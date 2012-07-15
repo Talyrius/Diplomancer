@@ -8,7 +8,7 @@
 ----------------------------------------------------------------------]]
 
 local ADDON_NAME, Diplomancer = ...
-Diplomancer.L = Diplomancer.L or { }
+Diplomancer.L = Diplomancer.L or {}
 
 ------------------------------------------------------------------------
 
@@ -16,22 +16,22 @@ local db, onTaxi, taxiEnded, championFactions, championZones, racialFaction, sub
 local L = setmetatable(Diplomancer.L, { __index = function(t, s) t[s] = s return s end })
 
 ------------------------------------------------------------------------
-DEBUG_CHAT_FRAME = ChatFrame4
+
 function Diplomancer:Debug(text, ...)
 	if not text then return end
 	if text:match("%%[dfsx%d%.$]") then
-		(DEBUG_CHAT_FRAME or DEFAULT_CHAT_FRAME):AddMessage( "|cffff3399Diplomancer:|r " .. text:format(...) )
+		(DEBUG_CHAT_FRAME or DEFAULT_CHAT_FRAME):AddMessage("|cffff3399Diplomancer:|r " .. text:format(...))
 	else
-		(DEBUG_CHAT_FRAME or DEFAULT_CHAT_FRAME):AddMessage( "|cffff3399Diplomancer:|r " .. text, ... )
+		(DEBUG_CHAT_FRAME or DEFAULT_CHAT_FRAME):AddMessage("|cffff3399Diplomancer:|r " .. text, ...)
 	end
 end
 
 function Diplomancer:Print(text, ...)
 	if not text then return end
 	if text:match("%%[dfs%d%.]") then
-		print( "|cff33ff99Diplomancer:|r", text:format(...) )
+		print("|cff33ff99Diplomancer:|r", text:format(...))
 	else
-		print( "|cff33ff99Diplomancer:|r", text, ... )
+		print("|cff33ff99Diplomancer:|r", text, ...)
 	end
 end
 
@@ -43,7 +43,7 @@ function Diplomancer:ADDON_LOADED(_, addon)
 
 	if not DiplomancerSettings then
 		self:Debug("No saved settings found!")
-		DiplomancerSettings = { }
+		DiplomancerSettings = {}
 	end
 	db = DiplomancerSettings
 
@@ -262,7 +262,7 @@ end
 ------------------------------------------------------------------------
 
 local FACTION_INACTIVE = FACTION_INACTIVE
-local factionHeaderState = { }
+local factionHeaderState = {}
 
 function Diplomancer:ExpandFactionHeaders()
 	local n = GetNumFactions()
@@ -310,7 +310,7 @@ Diplomancer.frame.runOnce = function(self)
 
 	--------------------------------------------------------------------
 
-	local factions = { }
+	local factions = {}
 
 	local reset
 
@@ -379,7 +379,7 @@ Diplomancer.frame.runOnce = function(self)
 			if name == L["Inactive"] then
 				break
 			end
-			if not isHeader and ( standing < 8 or not db.ignoreExalted ) then
+			if not isHeader and (standing < 8 or not db.ignoreExalted) then
 				table.insert(factions, name)
 			end
 		end
@@ -406,26 +406,26 @@ Diplomancer.aboutPanel = LibStub("LibAboutPanel").new(ADDON_NAME, ADDON_NAME)
 SLASH_DIPLOMANCER1 = "/diplomancer"
 SLASH_DIPLOMANCER2 = "/dm"
 
-SlashCmdList.DIPLOMANCER = function( text )
-	if text and string.len( text ) > 0 then
-		local cmd, arg = string.match( string.lower( text ), "^%s*(%w+)%s*(.*)$" )
+SlashCmdList.DIPLOMANCER = function(text)
+	if text and string.len(text) > 0 then
+		local cmd, arg = string.match(string.lower(text), "^%s*(%w+)%s*(.*)$")
 		if cmd == "default" then
-			local faction = Diplomancer:GetFactionNameMatch( arg )
+			local faction = Diplomancer:GetFactionNameMatch(arg)
 			if faction then
 				db.default = faction
 				return Diplomancer:Update()
 			end
 		else
-			for k, v in pairs( db ) do
-				if string.lower( k ) == cmd and type( v ) == "boolean" then
-					db[ k ] = not db[ k ]
+			for k, v in pairs(db) do
+				if string.lower(k) == cmd and type(v) == "boolean" then
+					db[k] = not db[k]
 					return Diplomancer:Update()
 				end
 			end
 		end
 	end
-	InterfaceOptionsFrame_OpenToCategory( Diplomancer.aboutPanel )
-	InterfaceOptionsFrame_OpenToCategory( Diplomancer.frame )
+	InterfaceOptionsFrame_OpenToCategory(Diplomancer.aboutPanel)
+	InterfaceOptionsFrame_OpenToCategory(Diplomancer.frame)
 end
 
 ------------------------------------------------------------------------
