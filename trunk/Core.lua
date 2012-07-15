@@ -102,7 +102,7 @@ function Diplomancer:Update(event)
 	end
 
 	local faction
-	local zone = GetRealZoneText()
+	local zone = GetCurrentMapAreaID()
 	self:Debug("Update", event, zone)
 
 	local tabardFaction, tabardLevel = self:GetChampionedFaction()
@@ -145,7 +145,7 @@ function Diplomancer:Update(event)
 	end
 
 	if not faction then
-		self:Debug("Checking zone", zone)
+		self:Debug("Checking zone", zone, GetRealZoneText())
 		faction = zoneFactions[zone]
 		if faction then
 			self:Debug("ZONE", faction)

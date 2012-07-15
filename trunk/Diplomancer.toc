@@ -12,7 +12,7 @@
 ## Notes-ruRU: Автоматически следить за выполнением фракция связана с вашего текущего местоположения.
 ## Notes-koKR: 현재 위치의 진영을 자동으로 감시합니다.
 
-## Author: Phanx, Akkorian
+## Author: Phanx
 ## X-Email: addons@phanx.net
 ## X-Credits: Inspired by Charnow's SmartFactionWatch.
 ## X-Copyright: Copyright (c) 2007-2012 Phanx. All rights reserved.
@@ -26,7 +26,7 @@
 ## LoadManagers: AddonLoader
 ## X-LoadOn-Always: delayed
 
-## OptionalDependencies: LibAboutPanel, LibBabble-Faction-3.0, LibBabble-SubZone-3.0, LibBabble-Zone-3.0, PhanxConfigWidgets
+## OptionalDependencies: LibAboutPanel, LibBabble-Faction-3.0, LibBabble-SubZone-3.0, PhanxConfigWidgets
 ## SavedVariablesPerCharacter: DiplomancerSettings
 
 Libs\LibStub\LibStub.lua
@@ -41,7 +41,6 @@ Libs\PhanxConfig-ScrollingDropdown\PhanxConfig-ScrollingDropdown.lua
 Libs\LibBabble-Faction-3.0\LibBabble-3.0.lua
 Libs\LibBabble-Faction-3.0\LibBabble-Faction-3.0.lua
 Libs\LibBabble-SubZone-3.0\LibBabble-SubZone-3.0.lua
-Libs\LibBabble-Zone-3.0\LibBabble-Zone-3.0.lua
 
 Localization.lua
 
