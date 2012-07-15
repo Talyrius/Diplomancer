@@ -195,9 +195,9 @@ local ZF = {
 -- Ghostlands
 	[463] = isHorde and "Tranquillien" or nil,
 -- Gilneas
-	[684] = isAlliance and "Gilneas" or nil,
+	["545"] = isAlliance and "Gilneas" or nil,
 -- Gilneas City
-	[685] = isAlliance and "Gilneas" or nil,
+	["611"] = isAlliance and "Gilneas" or nil,
 -- Grizzly Hills
 	[490] = isHorde and "Warsong Offensive" or isAlliance and "Valiance Expedition",
 -- Halls of Reflection
@@ -255,7 +255,9 @@ local ZF = {
 -- Redridge Mountains
 	[36] = isAlliance and "Stormwind" or nil,
 -- Ruins of Gilneas
-	[""] = isAlliance and "Gilneas" or nil,
+	[684] = isAlliance and "Gilneas" or nil,
+-- Ruins of Gilneas City
+	[685] = isAlliance and "Gilneas" or nil,
 -- Ruins of Ahn'Qiraj
 	[717] = "Cenarion Circle",
 -- Scholomance
@@ -313,7 +315,7 @@ local ZF = {
 -- The Lost Isles
 	[544] = isHorde and "Bilgewater Cartel" or nil,
 -- The Maelstrom
-	[737] = "The Earthen Ring", -- TODO: Remove the continent.
+	[737] = "The Earthen Ring", -- TODO: Remove the continent, maybe?
 	[751] = "The Earthen Ring",
 -- The Mechanar
 	[730] = "The Sha'tar",
@@ -329,8 +331,6 @@ local ZF = {
 	[495] = "The Sons of Hodir",
 -- The Underbog
 	[726] = "Cenarion Expedition",
--- The Veiled Sea
-	[""] = isAlliance and "Darnassus" or nil,
 -- The Wandering Isle
 	[808] = "Shang Xi's Academy",
 -- Thousand Needles
