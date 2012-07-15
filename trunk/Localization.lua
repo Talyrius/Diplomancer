@@ -214,7 +214,7 @@ if LOCALE == "zhCN" then Diplomancer.L = {
 } return end
 
 --[[--------------------------------------------------------------------
-	Traditional Chinese | 正體中文
+	Traditional Chinese | 繁體中文
 	Last updated: 2010-01-23 by 急云@CWDG
 ----------------------------------------------------------------------]]
 
