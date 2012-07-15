@@ -10,27 +10,26 @@
 Description
 -----------
 
-Diplomancer automatically changes your watched faction based on your
-current zone and subzone. It supports over 80 zones and 120 subzones
-from all continents and game expansions.
+Diplomancer proactively changes your watched faction based on your
+current location.
 
-For example, while in Dalaran, you’ll watch the Kirin Tor. At the Argent
-Tournament Grounds, you’ll watch The Sunreavers or The Silver Covenant,
-depending on your race. Inside level 80 dungeons, if you are wearing a
-faction champion tabard, you’ll watch that faction.
+It differs from other faction-switching addons in that it changes your
+watched faction as soon as you enter a particular area, instead of
+waiting until you gain reputation with a faction. It includes faction
+associations for all Classic, Burning Crusade, Wrath of the Lich King,
+and Cataclysm content. It also recognizes faction champion tabards
+inside appropriately-leveled dungeons.
 
-In places without an associated faction - for example, if you’re a troll
-on a weekend camping trip in the lovely Redridge Mountains - you’ll
-watch your race’s faction. You can also choose your own default faction
-to watch instead of your race’s faction.
-
-Diplomancer was inspired by Charnow’s SmartFactionWatch.
+While in locations without an associated faction — for example, if
+you’re a troll taking a weekend camping trip in the lovely Redridge
+Mountains — Diplomancer will watch your race’s faction. If you’d prefer
+to watch another faction instead, you can choose your own default.
 
 
 Usage
 -----
 
-Type "/dm" for options, or find them in the Interface Options window.
+Type “/dm” for options, or find them in the Interface Options window.
 
 
 Localization
@@ -42,10 +41,24 @@ Português, Русский, 한국어, 简体中文, and 繁體中文 game clien
 Translated into English, Deutsch, Español, Français, Italiano, Português,
 Русский, 한국어, 简体中文, and 繁體中文.
 
-To add or update translations for any language, see the Localization tab
+To add or update translations for Diplomancer, see the Localization tab
 on the CurseForge project page:
+	http://wow.curseforge.com/addons/diplomancer/localization/
 
-http://wow.curseforge.com/addons/diplomancer/localization/
+To add or update translations for faction or subzone names, see the
+LibBabble-Faction-3.0 and LibBabble-Subzone-3.0 project pages:
+	http://wow.curseforge.com/addons/libbabble-faction-3-0/
+	http://wow.curseforge.com/addons/libbabble-subzone-3-0/
+
+Diplomancer depends on the faction and subzone names provided by these
+libraries to work in non-English locales, so if either library does not
+yet include translations for your locale, Diplomancer won’t work for
+you yet either.
+
+These libraries are not loaded while playing in English, so if you only
+play in English and are concerned about disk space, you can safely
+remove them from the Diplomancer/Libs folder. *Do not* remove the other
+libraries, as they are required for the options window.
 
 
 Feedback
