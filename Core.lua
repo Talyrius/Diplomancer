@@ -18,6 +18,7 @@ local L = setmetatable(Diplomancer.L, { __index = function(t, s) t[s] = s return
 ------------------------------------------------------------------------
 
 function Diplomancer:Debug(text, ...)
+	do return end
 	if not text then return end
 	if text:match("%%[dfsx%d%.$]") then
 		(DEBUG_CHAT_FRAME or DEFAULT_CHAT_FRAME):AddMessage("|cffff3399Diplomancer:|r " .. text:format(...))

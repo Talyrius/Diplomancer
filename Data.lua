@@ -143,9 +143,9 @@ local ZF = {
 -- Auchenai Crypts
 	[722] = "Lower City",
 -- Azshara
-	[181] = isHorde and "Bilgewater Cartel" or nil,
+	[181] = isHorde and "Bilgewater Cartel",
 -- Azuremyst Isle
-	[464] = isAlliance and "Exodar" or nil,
+	[464] = isAlliance and "Exodar",
 -- Baradin Hold
 	[752] = isHorde and "Hellscream's Reach" or isAlliance and "Baradin's Wardens",
 -- Black Temple
@@ -153,51 +153,53 @@ local ZF = {
 -- Blackrock Depths
 	[704] = "Thorium Brotherhood",
 -- Bloodmyst Isle
-	[476] = isAlliance and "Exodar" or nil,
+	[476] = isAlliance and "Exodar",
 -- Borean Tundra
 	[486] = isHorde and "Warsong Offensive" or isAlliance and "Valiance Expedition",
--- Caverns of Time
-	[""] = "Keepers of Time",
--- Coilfang Reservoir
-	[""] = "Cenarion Expedition",
+-- Camp Narache
+	[890] = isHorde and "Thunder Bluff",
+-- Coldridge Valley
+	[866] = isAlliance and "Irongforge",
 -- Crystalsong Forest
 	[510] = "Kirin Tor",
 -- Dalaran
 	[504] = "Kirin Tor",
 -- Darkshore
-	[42]  = isAlliance and "Darnassus" or nil,
+	[42]  = isAlliance and "Darnassus",
 -- Darnassus
-	[381] = isAlliance and "Darnassus" or nil,
+	[381] = isAlliance and "Darnassus",
 -- Deepholm
 	[640] = "The Earthen Ring",
 -- Dire Maul
 	[699] = "Shen'dralar",
 -- Deadwind Pass
 	[32]  = "The Violet Eye",
+-- Deathknell
+	[892] = isHorde and "Undercity",
 -- Dragonblight
 	[488] = "The Wyrmrest Accord",
 -- Dun Morogh
-	[27]  = isAlliance and "Ironforge" or nil,
+	[27]  = isAlliance and "Ironforge",
 -- Durotar
-	[4]   = isHorde and "Orgrimmar" or nil,
+	[4]   = isHorde and "Orgrimmar",
 -- Eastern Plaguelands
 	[23]  = "Argent Dawn",
+-- Echo Isles
+	[891] = isHorde and "Darkspear Trolls",
 -- Elwynn Forest
-	[30]  = isAlliance and "Stormwind" or nil,
+	[30]  = isAlliance and "Stormwind",
 -- Eversong Woods
-	[462] = isHorde and "Silvermoon City" or nil,
+	[462] = isHorde and "Silvermoon City",
 -- Feralas
 	[121] = isHorde and "Thunder Bluff" or isAlliance and "Darnassus",
 -- Firelands
 	[800] = "Avengers of Hyjal",
--- Gates of Ahn'Qiraj
-	[""] = "Cenarion Circle",
 -- Ghostlands
-	[463] = isHorde and "Tranquillien" or nil,
+	[463] = isHorde and "Tranquillien",
 -- Gilneas
-	["545"] = isAlliance and "Gilneas" or nil,
+	["545"] = isAlliance and "Gilneas",
 -- Gilneas City
-	["611"] = isAlliance and "Gilneas" or nil,
+	["611"] = isAlliance and "Gilneas",
 -- Grizzly Hills
 	[490] = isHorde and "Warsong Offensive" or isAlliance and "Valiance Expedition",
 -- Halls of Reflection
@@ -215,15 +217,15 @@ local ZF = {
 -- Icecrown Citadel
 	[604] = "The Ashen Verdict",
 -- Ironforge
-	[341] = isAlliance and "Ironforge" or nil,
+	[341] = isAlliance and "Ironforge",
 -- Isle of Quel'Danas
 	[499] = "Shattered Sun Offensive",
 -- Karazhan
 	[799] = "The Violet Eye",
 -- Kezan
-	[605] = isHorde and "Bilgewater Cartel" or nil,
+	[605] = isHorde and "Bilgewater Cartel",
 -- Loch Modan
-	[35]  = isAlliance and "Ironforge" or nil,
+	[35]  = isAlliance and "Ironforge",
 -- Magisters' Terrace
 	[798] = "Shattered Sun Offensive",
 -- Magtheridon's Lair
@@ -239,25 +241,29 @@ local ZF = {
 -- Mount Hyjal
 	[606] = "Guardians of Hyjal",
 -- Mulgore
-	[9]   = isHorde and "Thunder Bluff" or nil,
+	[9]   = isHorde and "Thunder Bluff",
 -- Nagrand
 	[477] = isHorde and "The Mag'har" or isAlliance and "Kurenai",
 -- Netherstorm
 	[479] = "The Consortium",
+-- New Tinkertown
+	[895] = isAlliance and "Gnomeregan",
 -- Northern Barrens
 	[11]  = isHorde and "Orgrimmar" or isAlliance and "Ratchet",
+-- Northshire
+	[864] = isAlliance and "Stormwind",
 -- Old Hillsbrad Foothills
 	[734] = "Keepers of Time",
 -- Orgrimmar
-	[321] = isHorde and "Orgrimmar" or nil,
+	[321] = isHorde and "Orgrimmar",
 -- Pit of Saron
 	[602] = isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
 -- Redridge Mountains
-	[36] = isAlliance and "Stormwind" or nil,
+	[36] = isAlliance and "Stormwind",
 -- Ruins of Gilneas
-	[684] = isAlliance and "Gilneas" or nil,
+	[684] = isAlliance and "Gilneas",
 -- Ruins of Gilneas City
-	[685] = isAlliance and "Gilneas" or nil,
+	[685] = isAlliance and "Gilneas",
 -- Ruins of Ahn'Qiraj
 	[717] = "Cenarion Circle",
 -- Scholomance
@@ -268,6 +274,8 @@ local ZF = {
 	[723] = "Lower City",
 -- Shadow Labyrinth
 	[724] = "Lower City",
+-- Shadowglen
+	[888] = "Shadowglen",
 -- Shadowmoon Valley
 	[473] = "Netherwing",
 -- Shattrath City
@@ -275,15 +283,15 @@ local ZF = {
 -- Silithus
 	[261] = "Cenarion Circle",
 -- Silvermoon City
-	[480] = isHorde and "Silvermoon City" or nil,
+	[480] = isHorde and "Silvermoon City",
 -- Silverpine Forest
-	[21]  = isHorde and "Undercity" or nil,
+	[21]  = isHorde and "Undercity",
 -- Southern Barrens
 	[607] = isHorde and "Orgrimmar" or isAlliance and "Stormwind",
 -- Stonetalon Mountains
 	[81]  = isHorde and "Orgrimmar" or isAlliance and "Darnassus",
 -- Stormwind City
-	[301] = isAlliance and "Stormwind" or nil,
+	[301] = isAlliance and "Stormwind",
 -- Stratholme
 	[765] = "Argent Dawn",
 -- Sunwell Plateau
@@ -291,7 +299,7 @@ local ZF = {
 -- Tanaris
 	[161] = "Gadgetzan",
 -- Teldrassil
-	[41]  = isAlliance and "Darnassus" or nil,
+	[41]  = isAlliance and "Darnassus",
 -- Tempest Keep
 	[""] = "The Sha'tar",
 -- Temple of Ahn'Qiraj
@@ -307,13 +315,13 @@ local ZF = {
 -- The Botanica
 	[729] = "The Sha'tar",
 -- The Exodar
-	[471] = isAlliance and "Exodar" or nil,
+	[471] = isAlliance and "Exodar",
 -- The Eye
 	[782] = "The Sha'tar",
 -- The Forge of Souls
 	[601] = isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
 -- The Lost Isles
-	[544] = isHorde and "Bilgewater Cartel" or nil,
+	[544] = isHorde and "Bilgewater Cartel",
 -- The Maelstrom
 	[737] = "The Earthen Ring", -- TODO: Remove the continent, maybe?
 	[751] = "The Earthen Ring",
@@ -336,9 +344,9 @@ local ZF = {
 -- Thousand Needles
 	[61]  = isHorde and "Bilgewater Cartel" or isAlliance and "Gnomeregan",
 -- Thunder Bluff
-	[362] = isHorde and "Thunder Bluff" or nil,
+	[362] = isHorde and "Thunder Bluff",
 -- Tirisfal Glades
-	[20]  = isHorde and "Undercity" or nil,
+	[20]  = isHorde and "Undercity",
 -- Tol Barad
 	[708] = isHorde and "Hellscream's Reach" or isAlliance and "Baradin's Wardens",
 -- Tol Barad Peninsula
@@ -350,13 +358,15 @@ local ZF = {
 -- Uldum
 	[720] = "Ramkahen",
 -- Undercity
-	[382] = isHorde and "Undercity" or nil,
+	[382] = isHorde and "Undercity",
+-- Valley of Trials
+	[889] = isHorde and "Orgrimmar",
 -- Warsong Gulch
 	[443] = isHorde and "Warsong Outriders" or isAlliance and "Silverwing Sentinels",
 -- Western Plaguelands
 	[22]  = "Argent Crusade",
 -- Wetlands
-	[40]  = isAlliance and "Ironforge" or nil,
+	[40]  = isAlliance and "Ironforge",
 -- Winterspring
 	[281] = "Everlook",
 -- Zangarmarsh
@@ -399,20 +409,20 @@ local SF = {
 		["D.E.H.T.A. Encampment"]	= "Cenarion Expedition",
 		["Kaskala"]					= "The Kalu'ak",
 		["Njord's Breath Bay"]		= "The Kalu'ak",
-		["Taunka'le Village"]		= isHorde and "The Taunka" or nil,
+		["Taunka'le Village"]		= isHorde and "The Taunka",
 		["Transitus Shield"]		= "Kirin Tor",
 		["Unu'pe"]					= "The Kalu'ak",
 	},
 	-- Crystalsong Forest
 	[510] = {
-		["Sunreaver's Command"]		= isHorde and "The Sunreavers" or nil,
-		["Windrunner's Overlook"]	= isAlliance and "The Silver Covenant" or nil,
+		["Sunreaver's Command"]		= isHorde and "The Sunreavers",
+		["Windrunner's Overlook"]	= isAlliance and "The Silver Covenant",
 	},
 	-- Dalaran
 	[504] = {
-		["Sunreaver's Sanctuary"]	= isHorde and "The Sunreavers" or nil,
-		["The Filthy Animal"]		= isHorde and "The Sunreavers" or nil,
-		["The Silver Enclave"]		= isAlliance and "The Silver Covenant" or nil,
+		["Sunreaver's Sanctuary"]	= isHorde and "The Sunreavers",
+		["The Filthy Animal"]		= isHorde and "The Sunreavers",
+		["The Silver Enclave"]		= isAlliance and "The Silver Covenant",
 	},
 	-- Deepholm
 	[640] = {
@@ -431,16 +441,16 @@ local SF = {
 	[488] = {
 		["Light's Trust"]			= "Argent Crusade",
 		["Moa'ki Harbor"]			= "The Kalu'ak",
-		["Agmar's Hammer"]			= isHorde and "Warsong Offensive" or nil,
-		["Dragon's Fall"]			= isHorde and "Warsong Offensive" or nil,
-		["Stars' Rest"]				= isAlliance and "Valiance Expedition" or nil,
-		["Venomspite"]				= isHorde and "The Hand of Vengeance" or nil,
-		["Westwind Refugee Camp"]	= isHorde and "The Taunka" or nil,
-		["Wintergarde Keep"]		= isAlliance and "Valiance Expedition" or nil,
+		["Agmar's Hammer"]			= isHorde and "Warsong Offensive",
+		["Dragon's Fall"]			= isHorde and "Warsong Offensive",
+		["Stars' Rest"]				= isAlliance and "Valiance Expedition",
+		["Venomspite"]				= isHorde and "The Hand of Vengeance",
+		["Westwind Refugee Camp"]	= isHorde and "The Taunka",
+		["Wintergarde Keep"]		= isAlliance and "Valiance Expedition",
 	},
 	-- Durotar
 	[4]  = { -- TODO: update
-		["Sen'jin Village"]			= isHorde and "Darkspear Trolls" or nil,
+		["Sen'jin Village"]			= isHorde and "Darkspear Trolls",
 	},
 	-- Eastern Plaguelands
 	[23]  = { -- TODO: update
@@ -454,14 +464,14 @@ local SF = {
 	},
 	-- Grizzly Hills
 	[490] = {
-		["Camp Oneqwah"]			= isHorde and "The Taunka" or nil,
+		["Camp Oneqwah"]			= isHorde and "The Taunka",
 	},
 	-- Hellfire Peninsula
 	[465] = {
 		["Cenarion Post"]			= "Cenarion Expedition",
-		["Mag'har Grounds"]			= isHorde and "The Mag'har" or nil,
-		["Mag'har Post"]			= isHorde and "The Mag'har" or nil,
-		["Temple of Telhamat"]		= isAlliance and "Kurenai" or nil,
+		["Mag'har Grounds"]			= isHorde and "The Mag'har",
+		["Mag'har Post"]			= isHorde and "The Mag'har",
+		["Temple of Telhamat"]		= isAlliance and "Kurenai",
 		["Throne of Kil'jaeden"]	= "Shattered Sun Offensive",
 	},
 	-- Hillsbrad Foothills
@@ -470,10 +480,10 @@ local SF = {
 	},
 	-- Howling Fjord
 	[491] = {
-		["Camp Winterhoof"]			  = isHorde and "The Taunka" or nil,
-		["Explorers' League Outpost"] = isAlliance and "Explorers' League" or nil,
+		["Camp Winterhoof"]			  = isHorde and "The Taunka",
+		["Explorers' League Outpost"] = isAlliance and "Explorers' League",
 		["Kamagua"]					  = "The Kalu'ak",
-		["Steel Gate"]				  = isAlliance and "Explorers' League" or nil,
+		["Steel Gate"]				  = isAlliance and "Explorers' League",
 	},
 	-- Icecrown
 	[492] = {
@@ -481,7 +491,7 @@ local SF = {
 		["Crusaders' Pinnacle"]			    = "Argent Crusade",
 		["Argent Pavilion"]				    = isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
 		["Argent Tournament Grounds"]	    = isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
-		["Orgrim's Hammer"]				    = isHorde and "Warsong Offensive" or nil,
+		["Orgrim's Hammer"]				    = isHorde and "Warsong Offensive",
 		["Scourgeholme"]                    = "Argent Crusade",
 		["Silver Covenant Pavilion"]	    = isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
 		["Sunreaver Pavilion"]			    = isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
@@ -492,7 +502,7 @@ local SF = {
 		["The Horde Valiants' Ring"]	    = isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
 		["The Pit of Fiends"]               = "Argent Crusade",
 		["The Ring of Champions"]		    = isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
-		["The Skybreaker"]				    = isAlliance and "Valiance Expedition" or nil,
+		["The Skybreaker"]				    = isAlliance and "Valiance Expedition",
 		["Valley of Echoes"]                = "Argent Crusade",
 	},
 	-- Nagrand
@@ -539,11 +549,11 @@ local SF = {
 		["Bael Modan Excavation"]	= isHorde and "Thunder Bluff" or isAlliance and "Ironforge",
 		["Bael'dun Keep"]			= isHorde and "Thunder Bluff" or isAlliance and "Ironforge",
 		["Firestone Point"]			= "The Earthen Ring",
-		["Frazzlecraz Motherlode"]	= isAlliance and "Ironforge" or nil,
-		["Ruins of Taurajo"]		= isHorde and "Thunder Bluff" or nil,
-		["Spearhead"]				= isHorde and "Thunder Bluff" or nil,
-		["Twinbraid's Patrol"]		= isAlliance and "Ironforge" or nil,
-		["Vendetta Point"]			= isHorde and "Thunder Bluff" or nil,
+		["Frazzlecraz Motherlode"]	= isAlliance and "Ironforge",
+		["Ruins of Taurajo"]		= isHorde and "Thunder Bluff",
+		["Spearhead"]				= isHorde and "Thunder Bluff",
+		["Twinbraid's Patrol"]		= isAlliance and "Ironforge",
+		["Vendetta Point"]			= isHorde and "Thunder Bluff",
 	},
 	-- Stranglethorn Vale
 	[689] = { -- TODO: update
@@ -552,24 +562,24 @@ local SF = {
 	},
 	-- Storm Peaks
 	[495] = {
-		["Camp Tunka'lo"]			= isHorde and "Warsong Offensive" or nil,
-		["Frostfloe Deep"]			= isHorde and "Warsong Offensive" or nil,
-		["Frosthold"]				= isAlliance and "The Frostborn" or nil,
-		["Frosthowl Cavern"]		= isHorde and "Warsong Offensive" or nil,
-		["Gimorak's Den"]			= isHorde and "Warsong Offensive" or nil,
-		["Grom'arsh Crash-Site"]	= isHorde and "Warsong Offensive" or nil,
-		["Inventor's Library"]		= isAlliance and "The Frostborn" or nil,
-		["Loken's Bargain"]			= isAlliance and "The Frostborn" or nil,
-		["Mimir's Workshop"]		= isAlliance and "The Frostborn" or nil,
-		["Narvir's Cradle"]			= isAlliance and "The Frostborn" or nil,
-		["Nidavelir"]				= isAlliance and "The Frostborn" or nil,
+		["Camp Tunka'lo"]			= isHorde and "Warsong Offensive",
+		["Frostfloe Deep"]			= isHorde and "Warsong Offensive",
+		["Frosthold"]				= isAlliance and "The Frostborn",
+		["Frosthowl Cavern"]		= isHorde and "Warsong Offensive",
+		["Gimorak's Den"]			= isHorde and "Warsong Offensive",
+		["Grom'arsh Crash-Site"]	= isHorde and "Warsong Offensive",
+		["Inventor's Library"]		= isAlliance and "The Frostborn",
+		["Loken's Bargain"]			= isAlliance and "The Frostborn",
+		["Mimir's Workshop"]		= isAlliance and "The Frostborn",
+		["Narvir's Cradle"]			= isAlliance and "The Frostborn",
+		["Nidavelir"]				= isAlliance and "The Frostborn",
 		["Plain of Echoes"]			= isHorde and "Warsong Offensive" or isAlliance and "The Frostborn",
-		["Temple of Invention"]		= isAlliance and "The Frostborn" or nil,
+		["Temple of Invention"]		= isAlliance and "The Frostborn",
 		["Temple of Life"]			= isHorde and "Warsong Offensive" or isAlliance and "The Frostborn",
-		["Temple of Order"]			= isAlliance and "The Frostborn" or nil,
-		["Temple of Winter"]		= isAlliance and "The Frostborn" or nil,
-		["The Foot Steppes"]		= isAlliance and "The Frostborn" or nil,
-		["The Howling Hollow"]		= isHorde and "Warsong Offensive" or nil,
+		["Temple of Order"]			= isAlliance and "The Frostborn",
+		["Temple of Winter"]		= isAlliance and "The Frostborn",
+		["The Foot Steppes"]		= isAlliance and "The Frostborn",
+		["The Howling Hollow"]		= isHorde and "Warsong Offensive",
 	},
 	-- Tanaris
 	[161] = { -- TODO: update
@@ -601,34 +611,34 @@ local SF = {
 	},
 	-- Twilight Highlands
 	[700] = {
-		["Dragonmaw Pass"]			= isHorde and "Bilgewater Cartel" or nil,
+		["Dragonmaw Pass"]			= isHorde and "Bilgewater Cartel",
 		["Highbank"]				= isHorde and "Bilgewater Cartel" or isAlliance and "Stormwind",
 		["Iso'rath"]				= "The Earthen Ring",
-		["Obsidian Forest"]			= isAlliance and "Stormwind" or nil,
+		["Obsidian Forest"]			= isAlliance and "Stormwind",
 		["Ring of the Elements"]	= "The Earthen Ring",
 		["Ruins of Drakgor"]		= "The Earthen Ring",
-		["The Krazzworks"]			= isHorde and "Bilgewater Cartel" or nil,
+		["The Krazzworks"]			= isHorde and "Bilgewater Cartel",
 		["The Maw of Madness"]		= "The Earthen Ring",
-		["Victor's Point"]			= isAlliance and "Stormwind" or nil,
+		["Victor's Point"]			= isAlliance and "Stormwind",
 	},
 	-- Western Plaguelands
 	[22]  = { -- TODO: update
 		["Andorhal"]				= isAlliance and "Stormwind" or "Undercity",
-		["Chillwind Camp"]			= isAlliance and "Stormwind" or nil,
-		["Sorrow Hill"]				= isAlliance and "Stormwind" or nil,
-		["Uther's Tomb"]			= isAlliance and "Stormwind" or nil,
+		["Chillwind Camp"]			= isAlliance and "Stormwind",
+		["Sorrow Hill"]				= isAlliance and "Stormwind",
+		["Uther's Tomb"]			= isAlliance and "Stormwind",
 	},
 	-- Wetlands
 	[40]  = { -- TODO: update
-		["Direforge Hill"]			= isAlliance and "Darnassus" or nil,
-		["Greenwarden's Grove"]		= isAlliance and "Darnassus" or nil,
-		["Menethil Harbor"]			= isAlliance and "Stormwind" or nil,
-		["The Green Belt"]			= isAlliance and "Darnassus" or nil,
+		["Direforge Hill"]			= isAlliance and "Darnassus",
+		["Greenwarden's Grove"]		= isAlliance and "Darnassus",
+		["Menethil Harbor"]			= isAlliance and "Stormwind",
+		["The Green Belt"]			= isAlliance and "Darnassus",
 	},
 	-- Winterspring
 	[281] = { -- TODO: update
 		["Frostfire Hot Springs"]	= "Timbermaw Hold",
-		["Frostsaber Rock"]			= isAlliance and "Wintersaber Trainers" or nil,
+		["Frostsaber Rock"]			= isAlliance and "Wintersaber Trainers",
 		["Timbermaw Hold"]			= "Timbermaw Hold",
 		["Timbermaw Post"]			= "Timbermaw Hold",
 		["Winterfall Village"]		= "Timbermaw Hold",
@@ -638,10 +648,10 @@ local SF = {
 		["Funggor Cavern"]			= "Sporeggar",
 		["Quagg Ridge"]				= "Sporeggar",
 		["Sporeggar"]				= "Sporeggar",
-		["Swamprat Post"]			= isHorde and "Darkspear Trolls" or nil,
-		["Telredor"]				= isAlliance and "Exodar" or nil,
+		["Swamprat Post"]			= isHorde and "Darkspear Trolls",
+		["Telredor"]				= isAlliance and "Exodar",
 		["The Spawning Glen"]		= "Sporeggar",
-		["Zabra'jin"]				= isHorde and "Darkspear Trolls" or nil,
+		["Zabra'jin"]				= isHorde and "Darkspear Trolls",
 	},
 	-- Zul'Drak
 	[496] = {
