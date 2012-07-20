@@ -40,7 +40,7 @@ end
 
 function Diplomancer:ADDON_LOADED(_, addon)
 	if addon ~= ADDON_NAME then return end
-	-- self:Debug("ADDON_LOADED", addon)
+	self:Debug("ADDON_LOADED", addon)
 
 	if not DiplomancerSettings then
 		self:Debug("No saved settings found!")
@@ -61,7 +61,7 @@ end
 ------------------------------------------------------------------------
 
 function Diplomancer:PLAYER_LOGIN()
-	-- self:Debug("PLAYER_LOGIN")
+	self:Debug("PLAYER_LOGIN")
 
 	self:LocalizeData()
 	if not self.localized then return end
@@ -110,7 +110,7 @@ function Diplomancer:Update(event)
 	if tabardFaction then
 		local _, instanceType = IsInInstance()
 		if instanceType == "party" then
-			self:Debug("Wearing tabard for", tabardFaction)
+			self:Debug("Wearing tabard for:", tabardFaction)
 			local instances = championZones[tabardLevel]
 			if instances and instances[zone] then
 				-- Championing this faction has a level requirement.
@@ -119,6 +119,9 @@ function Diplomancer:Update(event)
 					self:Debug("CHAMPION", faction)
 					if db.defaultChampion then
 						db.defaultFaction = faction
+					end
+					if self:SetWatchedFactionByName(faction, db.verbose) then
+						return
 					end
 				end
 			elseif not instances and not championZones[70][zone] then
@@ -131,6 +134,9 @@ function Diplomancer:Update(event)
 					if db.defaultChampion then
 						db.defaultFaction = faction
 					end
+					if self:SetWatchedFactionByName(faction, db.verbose) then
+						return
+					end
 				end
 			end
 		end
@@ -138,31 +144,39 @@ function Diplomancer:Update(event)
 
 	if not faction then
 		local subzone = GetSubZoneText()
-		self:Debug("Checking subzone", subzone)
+		self:Debug("Checking subzone:", subzone)
 		faction = subzone and subzoneFactions[zone] and subzoneFactions[zone][subzone]
 		if faction then
 			self:Debug("SUBZONE", faction)
+			if self:SetWatchedFactionByName(faction, db.verbose) then
+				return
+			end
 		end
 	end
 
 	if not faction then
-		self:Debug("Checking zone", zone, GetRealZoneText())
+		self:Debug("Checking zone:", zone, GetRealZoneText())
 		faction = zoneFactions[zone]
 		if faction then
 			self:Debug("ZONE", faction)
+			if self:SetWatchedFactionByName(faction, db.verbose) then
+				return
+			end
 		end
 	end
 
 	if not faction and tabardFaction and db.defaultChampion then
 		faction = tabardFaction
-		self:Debug("DEFAULT CHAMPION", faction)
+		if faction then
+			self:Debug("DEFAULT CHAMPION", faction)
+			if self:SetWatchedFactionByName(faction, db.verbose) then
+				return
+			end
+		end
 	end
 
-	if not faction then
-		faction = db.defaultFaction or racialFaction
-		self:Debug(db.defaultFaction and "DEFAULT" or "RACE", faction)
-	end
-
+	faction = db.defaultFaction or racialFaction
+	self:Debug(db.defaultFaction and "DEFAULT" or "RACE", faction)
 	self:SetWatchedFactionByName(faction, db.verbose)
 end
 
