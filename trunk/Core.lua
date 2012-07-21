@@ -17,23 +17,33 @@ local L = setmetatable(Diplomancer.L, { __index = function(t, s) t[s] = s return
 
 ------------------------------------------------------------------------
 
-function Diplomancer:Debug(text, ...)
+function Diplomancer:Debug(str, ...)
 	do return end
-	if not text then return end
-	if text:match("%%[dfsx%d%.$]") then
-		(DEBUG_CHAT_FRAME or DEFAULT_CHAT_FRAME):AddMessage("|cffff3399Diplomancer:|r " .. text:format(...))
-	else
-		(DEBUG_CHAT_FRAME or DEFAULT_CHAT_FRAME):AddMessage("|cffff3399Diplomancer:|r " .. text, ...)
+	if not str then return end
+
+	if (...) then
+		if type(str) == "string" and (str:find("%%%.%d") or str:find("%%[dfqsx%d]")) then
+			str = str:format(...)
+		else
+			str = (" "):join(tostring(str), tostringall(...))
+		end
 	end
+
+	(DEBUG_CHAT_FRAME or DEFAULT_CHAT_FRAME):AddMessage("|cffff9933Diplomancer:|r " .. str)
 end
 
-function Diplomancer:Print(text, ...)
-	if not text then return end
-	if text:match("%%[dfs%d%.]") then
-		print("|cff33ff99Diplomancer:|r", text:format(...))
-	else
-		print("|cff33ff99Diplomancer:|r", text, ...)
+function Diplomancer:Print(str, ...)
+	if not str then return end
+
+	if (...) then
+		if str:find("%%%.%d") or str:find("%%[dfqsx%d]") then
+			str = str:format(...)
+		else
+			str = (" "):join(str, tostringall(...))
+		end
 	end
+
+	DEFAULT_CHAT_FRAME:AddMessage("|cffddff99Diplomancer:|r " .. str)
 end
 
 ------------------------------------------------------------------------
@@ -107,6 +117,7 @@ function Diplomancer:Update(event)
 	self:Debug("Update", event, zone)
 
 	local tabardFaction, tabardLevel = self:GetChampionedFaction()
+
 	if tabardFaction then
 		local _, instanceType = IsInInstance()
 		if instanceType == "party" then
@@ -142,36 +153,30 @@ function Diplomancer:Update(event)
 		end
 	end
 
-	if not faction then
-		local subzone = GetSubZoneText()
-		self:Debug("Checking subzone:", subzone)
-		faction = subzone and subzoneFactions[zone] and subzoneFactions[zone][subzone]
-		if faction then
-			self:Debug("SUBZONE", faction)
-			if self:SetWatchedFactionByName(faction, db.verbose) then
-				return
-			end
+	local subzone = GetSubZoneText()
+	self:Debug("Checking subzone:", subzone)
+	faction = subzone and subzoneFactions[zone] and subzoneFactions[zone][subzone]
+	if faction then
+		self:Debug("SUBZONE", faction)
+		if self:SetWatchedFactionByName(faction, db.verbose) then
+			return
 		end
 	end
 
-	if not faction then
-		self:Debug("Checking zone:", zone, GetRealZoneText())
-		faction = zoneFactions[zone]
-		if faction then
-			self:Debug("ZONE", faction)
-			if self:SetWatchedFactionByName(faction, db.verbose) then
-				return
-			end
+	self:Debug("Checking zone:", zone, GetRealZoneText())
+	faction = zoneFactions[zone]
+	if faction then
+		self:Debug("ZONE", faction)
+		if self:SetWatchedFactionByName(faction, db.verbose) then
+			return
 		end
 	end
 
-	if not faction and tabardFaction and db.defaultChampion then
-		faction = tabardFaction
-		if faction then
-			self:Debug("DEFAULT CHAMPION", faction)
-			if self:SetWatchedFactionByName(faction, db.verbose) then
-				return
-			end
+	faction = db.defaultChampion and tabardFaction
+	if faction then
+		self:Debug("DEFAULT CHAMPION", faction)
+		if self:SetWatchedFactionByName(faction, db.verbose) then
+			return
 		end
 	end
 
@@ -227,18 +232,21 @@ function Diplomancer:SetWatchedFactionByName(name, verbose)
 
 	for i = 1, GetNumFactions() do
 		local faction, _, standing, _, _, _, _, _, _, _, _, watched = GetFactionInfo(i)
-		if not watched and faction == name and (standing < 8 or not db.ignoreExalted) then
-			SetWatchedFactionIndex(i)
-			if verbose then
-				self:Print(L["Now watching %s."], faction)
+		--self:Debug(i, faction, standing, watched)
+		if not watched and faction == name then
+			if standing < 8 or not db.ignoreExalted then
+				SetWatchedFactionIndex(i)
+				if verbose then
+					self:Print(L["Now watching %s."], faction)
+				end
+				return true, name
+			else
+				return
 			end
-			return true, name
 		end
 	end
 
 	self:RestoreFactionHeaders()
-
-	return false
 end
 
 ------------------------------------------------------------------------
@@ -264,14 +272,16 @@ end
 function Diplomancer:GetChampionedFaction()
 	local CF = self.championFactions
 	for i = 1, 40 do
-		local _, _, _, _, _, _, _, _, _, _, id = UnitBuff("player", i)
+		local name, _, _, _, _, _, _, _, _, _, id = UnitBuff("player", i)
 		if not id then
 			return
 		end
 		if CF[id] then
+			self:Debug("GetChampionedFaction:", tostring(CF[id][2]), tostring(CF[id][1]))
 			return CF[id][2], CF[id][1]
 		end
 	end
+	self:Debug("GetChampionedFaction:", "none")
 end
 
 ------------------------------------------------------------------------

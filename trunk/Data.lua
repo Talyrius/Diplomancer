@@ -44,7 +44,7 @@ local CF = {
 	[93339] = { 85, "The Earthen Ring" },
 	[93341] = { 85, "Guardians of Hyjal" },
 	[93337] = { 85, "Ramkahen" },
-	[93374] = { 85, "Therazane" },
+	[93347] = { 85, "Therazane" },
 	[93368] = { 85, "Wildhammer Clan" },
 }
 
