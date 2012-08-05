@@ -8,42 +8,43 @@
 ----------------------------------------------------------------------]]
 
 local ADDON_NAME, Diplomancer = ...
-Diplomancer.L = Diplomancer.L or {}
-
-------------------------------------------------------------------------
+_G.Diplomancer = Diplomancer
 
 local db, onTaxi, taxiEnded, championFactions, championZones, racialFaction, subzoneFactions, zoneFactions
-local L = setmetatable(Diplomancer.L, { __index = function(t, s) t[s] = s return s end })
 
 ------------------------------------------------------------------------
 
-function Diplomancer:Debug(str, ...)
-	do return end
-	if not str then return end
-
-	if (...) then
-		if type(str) == "string" and (str:find("%%%.%d") or str:find("%%[dfqsx%d]")) then
-			str = str:format(...)
-		else
-			str = (" "):join(tostring(str), tostringall(...))
-		end
-	end
-
-	(DEBUG_CHAT_FRAME or DEFAULT_CHAT_FRAME):AddMessage("|cffff9933Diplomancer:|r " .. str)
+if not Diplomancer.L then
+	Diplomancer.L = {}
 end
 
-function Diplomancer:Print(str, ...)
-	if not str then return end
+local L = setmetatable(Diplomancer.L, { __index = function(t, k)
+	local v = tostring(k)
+	rawset(t, k, v)
+	return v
+end })
 
-	if (...) then
-		if str:find("%%%.%d") or str:find("%%[dfqsx%d]") then
-			str = str:format(...)
+------------------------------------------------------------------------
+
+function Diplomancer:Debug(text, ...)
+	do return end
+	if text then
+		if text:match("%%[dfqsx%d%.]") then
+			print("|cffff3399Diplomancer:|r " .. format(text, ...))
 		else
-			str = (" "):join(str, tostringall(...))
+			print("|cffff3399Diplomancer:|r " .. text, ...)
 		end
 	end
+end
 
-	DEFAULT_CHAT_FRAME:AddMessage("|cffddff99Diplomancer:|r " .. str)
+function Diplomancer:Print(text, ...)
+	if text then
+		if text:match("%%[dfqs%d%.]") then
+			print("|cffffcc00Diplomancer:|r", format(text, ...))
+		else
+			print("|cffffcc00Diplomancer:|r", text, ...)
+		end
+	end
 end
 
 ------------------------------------------------------------------------
@@ -117,7 +118,6 @@ function Diplomancer:Update(event)
 	self:Debug("Update", event, zone)
 
 	local tabardFaction, tabardLevel = self:GetChampionedFaction()
-
 	if tabardFaction then
 		local _, instanceType = IsInInstance()
 		if instanceType == "party" then
@@ -153,30 +153,36 @@ function Diplomancer:Update(event)
 		end
 	end
 
-	local subzone = GetSubZoneText()
-	self:Debug("Checking subzone:", subzone)
-	faction = subzone and subzoneFactions[zone] and subzoneFactions[zone][subzone]
-	if faction then
-		self:Debug("SUBZONE", faction)
-		if self:SetWatchedFactionByName(faction, db.verbose) then
-			return
+	if not faction then
+		local subzone = GetSubZoneText()
+		self:Debug("Checking subzone:", subzone)
+		faction = subzone and subzoneFactions[zone] and subzoneFactions[zone][subzone]
+		if faction then
+			self:Debug("SUBZONE", faction)
+			if self:SetWatchedFactionByName(faction, db.verbose) then
+				return
+			end
 		end
 	end
 
-	self:Debug("Checking zone:", zone, GetRealZoneText())
-	faction = zoneFactions[zone]
-	if faction then
-		self:Debug("ZONE", faction)
-		if self:SetWatchedFactionByName(faction, db.verbose) then
-			return
+	if not faction then
+		self:Debug("Checking zone:", zone, GetRealZoneText())
+		faction = zoneFactions[zone]
+		if faction then
+			self:Debug("ZONE", faction)
+			if self:SetWatchedFactionByName(faction, db.verbose) then
+				return
+			end
 		end
 	end
 
-	faction = db.defaultChampion and tabardFaction
-	if faction then
-		self:Debug("DEFAULT CHAMPION", faction)
-		if self:SetWatchedFactionByName(faction, db.verbose) then
-			return
+	if not faction and tabardFaction and db.defaultChampion then
+		faction = tabardFaction
+		if faction then
+			self:Debug("DEFAULT CHAMPION", faction)
+			if self:SetWatchedFactionByName(faction, db.verbose) then
+				return
+			end
 		end
 	end
 
@@ -205,7 +211,8 @@ end
 
 function Diplomancer:PLAYER_ENTERING_WORLD()
 	-- self:Debug("PLAYER_ENTERING_WORLD")
-	if select(2, IsInInstance()) == "party" then
+	local _, instanceType = IsInInstance()
+	if instanceType == "party" then
 		self.frame:RegisterEvent("UNIT_INVENTORY_CHANGED")
 	else
 		self.frame:UnregisterEvent("UNIT_INVENTORY_CHANGED")
@@ -232,35 +239,32 @@ function Diplomancer:SetWatchedFactionByName(name, verbose)
 
 	for i = 1, GetNumFactions() do
 		local faction, _, standing, _, _, _, _, _, _, _, _, watched = GetFactionInfo(i)
-		--self:Debug(i, faction, standing, watched)
-		if not watched and faction == name then
-			if standing < 8 or not db.ignoreExalted then
-				SetWatchedFactionIndex(i)
-				if verbose then
-					self:Print(L["Now watching %s."], faction)
-				end
-				return true, name
-			else
-				return
+		if not watched and faction == name and (standing < 8 or not db.ignoreExalted) then
+			SetWatchedFactionIndex(i)
+			if verbose then
+				self:Print(L["Now watching %s."], faction)
 			end
+			return true, name
 		end
 	end
 
 	self:RestoreFactionHeaders()
+
+	return false
 end
 
 ------------------------------------------------------------------------
 
 function Diplomancer:GetFactionNameMatch(text)
-	if type(text) == "string" and text:len() > 0 then
-		text = text:lower()
+	if type(text) == "string" and strlen(text) > 0 then
+		text = strlower(text)
 
 		self:ExpandFactionHeaders()
 
 		local faction
 		for i = 1, GetNumFactions() do
 			faction = GetFactionInfo(i)
-			if faction:lower():gsub("'", ""):match(text) then
+			if gsub(strlower(faction), "'", ""):match(text) then
 				return faction
 			end
 		end
@@ -272,13 +276,15 @@ end
 function Diplomancer:GetChampionedFaction()
 	local CF = self.championFactions
 	for i = 1, 40 do
-		local name, _, _, _, _, _, _, _, _, _, id = UnitBuff("player", i)
+		local _, _, _, _, _, _, _, _, _, _, id = UnitBuff("player", i)
 		if not id then
 			return
 		end
-		if CF[id] then
-			self:Debug("GetChampionedFaction:", tostring(CF[id][2]), tostring(CF[id][1]))
-			return CF[id][2], CF[id][1]
+		local data = CF[id]
+		if data then
+			local faction, level = data[2], data[1]
+			self:Debug("GetChampionedFaction:", tostring(faction), tostring(level))
+			return faction, level
 		end
 	end
 	self:Debug("GetChampionedFaction:", "none")
@@ -318,143 +324,3 @@ function Diplomancer:RestoreFactionHeaders()
 		end
 	end
 end
-
-------------------------------------------------------------------------
-
-Diplomancer.frame = LibStub("PhanxConfig-OptionsPanel").CreateOptionsPanel(ADDON_NAME)
-
-Diplomancer.frame:RegisterEvent("ADDON_LOADED")
-Diplomancer.frame:SetScript("OnEvent", function(self, event, ...) return Diplomancer[event] and Diplomancer[event](Diplomancer, event, ...) end)
-
-Diplomancer.frame.runOnce = function(self)
-	local CreateCheckbox = LibStub("PhanxConfig-Checkbox").CreateCheckbox
-
-	--------------------------------------------------------------------
-
-	local title, notes = LibStub("PhanxConfig-Header").CreateHeader(self, ADDON_NAME, GetAddOnMetadata(ADDON_NAME, "Notes"))
-
-	--------------------------------------------------------------------
-
-	local factions = {}
-
-	local reset
-
-	local default = LibStub("PhanxConfig-ScrollingDropdown").CreateScrollingDropdown(self, L["Default faction"], factions,
-		L["Select a faction to watch when your current location doesn't have an associated faction."])
-	default:SetPoint("TOPLEFT", notes, "BOTTOMLEFT", 0, -8)
-	default:SetWidth(270)
-	default:SetValue(db.defaultFaction or racialFaction)
-	default.OnValueChanged = function(self, value)
-		if value == racialFaction then
-			db.defaultFaction = nil
-			reset:Disable()
-		else
-			db.defaultFaction = value
-			reset:Enable()
-		end
-		Diplomancer:Update()
-	end
-
-	--------------------------------------------------------------------
-
-	reset = LibStub("PhanxConfig-Button").CreateButton(self, L["Reset"], L["Reset your default faction preference to your race's faction."])
-	reset:SetPoint("TOPLEFT", default.button, "TOPRIGHT", 8, 0)
-	reset:SetPoint("BOTTOMLEFT", default.button, "BOTTOMRIGHT", 8, 0)
-	reset:SetWidth(math.max(16 + reset:GetFontString():GetStringWidth(), 80))
-	reset:SetScript("OnClick", function(self)
-		self:Disable()
-		db.defaultFaction = nil
-		default:SetValue(racialFaction)
-		Diplomancer:Update()
-	end)
-
-	--------------------------------------------------------------------
-
-	local champion = CreateCheckbox(self, L["Default to championed faction"], L["Use your currently championed faction as your default faction."])
-	champion:SetPoint("TOPLEFT", default, "BOTTOMLEFT", 0, -10)
-	champion.OnClick = function(self, checked)
-		db.defaultChampion = checked
-		Diplomancer:Update()
-	end
-
-	--------------------------------------------------------------------
-
-	local exalted = CreateCheckbox(self, L["Ignore Exalted factions"], L["Don't watch factions with whom you have already attained Exalted reputation."])
-	exalted:SetPoint("TOPLEFT", champion, "BOTTOMLEFT", 0, -8)
-	exalted.OnClick = function(self, checked)
-		db.ignoreExalted = checked
-		Diplomancer:Update()
-	end
-
-	--------------------------------------------------------------------
-
-	local announce = CreateCheckbox(self, L["Announce watched faction"], L["Show a message in the chat frame when your watched faction is changed."])
-	announce:SetPoint("TOPLEFT", exalted, "BOTTOMLEFT", 0, -8)
-	announce.OnClick = function(self, checked)
-		db.verbose = checked
-	end
-
-	--------------------------------------------------------------------
-
-	self.refresh = function()
-		wipe(factions)
-		Diplomancer:ExpandFactionHeaders()
-		for i = 1, GetNumFactions() do
-			local name, _, standing, _, _, _, _, _, isHeader = GetFactionInfo(i)
-			if name == L["Inactive"] then
-				break
-			end
-			if not isHeader and (standing < 8 or not db.ignoreExalted) then
-				table.insert(factions, name)
-			end
-		end
-		Diplomancer:RestoreFactionHeaders()
-		table.sort(factions)
-
-		default:SetValue(db.defaultFaction or racialFaction)
-		if not db.defaultFaction or db.defaultFaction == racialFaction then
-			reset:Disable()
-		else
-			reset:Enable()
-		end
-
-		champion:SetChecked(db.defaultChampion)
-		exalted:SetChecked(db.ignoreExalted)
-		announce:SetChecked(db.verbose)
-	end
-end
-
-Diplomancer.aboutPanel = LibStub("LibAboutPanel").new(ADDON_NAME, ADDON_NAME)
-
-------------------------------------------------------------------------
-
-SLASH_DIPLOMANCER1 = "/diplomancer"
-SLASH_DIPLOMANCER2 = "/dm"
-
-SlashCmdList.DIPLOMANCER = function(text)
-	if text and string.len(text) > 0 then
-		local cmd, arg = string.match(string.lower(text), "^%s*(%w+)%s*(.*)$")
-		if cmd == "default" then
-			local faction = Diplomancer:GetFactionNameMatch(arg)
-			if faction then
-				db.default = faction
-				return Diplomancer:Update()
-			end
-		else
-			for k, v in pairs(db) do
-				if string.lower(k) == cmd and type(v) == "boolean" then
-					db[k] = not db[k]
-					return Diplomancer:Update()
-				end
-			end
-		end
-	end
-	InterfaceOptionsFrame_OpenToCategory(Diplomancer.aboutPanel)
-	InterfaceOptionsFrame_OpenToCategory(Diplomancer.frame)
-end
-
-------------------------------------------------------------------------
-
-_G.Diplomancer = Diplomancer
-
-------------------------------------------------------------------------
