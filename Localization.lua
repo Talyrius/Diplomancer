@@ -125,10 +125,10 @@ if LOCALE == "ptBR" then Diplomancer.L = {
 	["Reset"] = "Restabelecer",
 	["Reset your default faction preference to your race's faction."] = "Restabeleça a sua preferência de facção padrão para a sua facção raça.",
 
-	["Default to championed faction"] = "Use facção patrocinado",
-	["Use your currently championed faction as your default faction."] = "Use sua facção atualmente patrocinada como sua facção padrão.",
+	["Default to championed faction"] = "Usar facção patrocinado",
+	["Use your currently championed faction as your default faction."] = "Usar sua facção atualmente patrocinada como sua facção padrão.",
 
-	["Ignore Exalted factions"] = "Ignore facções Exaltado",
+	["Ignore Exalted factions"] = "Ignorar facções Exaltado",
 	["Don't watch factions with whom you have already attained Exalted reputation."] = "Não siga as facções com quem você já alcançaram reputação Exaltado.",
 
 	["Announce watched faction"] = "Anunciar facção seguido",

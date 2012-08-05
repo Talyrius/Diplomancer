@@ -44,5 +44,7 @@ Libs\LibBabble-SubZone-3.0\LibBabble-SubZone-3.0.lua
 
 Localization.lua
 
-Core.lua
 Data.lua
+
+Core.lua
+Options.lua
