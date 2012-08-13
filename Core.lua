@@ -30,9 +30,9 @@ function Diplomancer:Debug(text, ...)
 	do return end
 	if text then
 		if text:match("%%[dfqsx%d%.]") then
-			print("|cffff3399Diplomancer:|r " .. format(text, ...))
+			print("|cffff9999Diplomancer:|r", format(text, ...))
 		else
-			print("|cffff3399Diplomancer:|r " .. text, ...)
+			print("|cffff9999Diplomancer:|r", text, tostringall(...))
 		end
 	end
 end
@@ -42,7 +42,7 @@ function Diplomancer:Print(text, ...)
 		if text:match("%%[dfqs%d%.]") then
 			print("|cffffcc00Diplomancer:|r", format(text, ...))
 		else
-			print("|cffffcc00Diplomancer:|r", text, ...)
+			print("|cffffcc00Diplomancer:|r", text, tostringall(...))
 		end
 	end
 end
@@ -153,10 +153,13 @@ function Diplomancer:Update(event)
 		end
 	end
 
-	if not faction then
-		local subzone = GetSubZoneText()
-		self:Debug("Checking subzone:", subzone)
-		faction = subzone and subzoneFactions[zone] and subzoneFactions[zone][subzone]
+	local subzone = GetSubZoneText()
+	if strlen(subzone) == 0 then
+		subzone = nil
+	end
+	self:Debug("Checking subzone:", subzone or "nil")
+	if subzone then
+		faction = subzoneFactions[zone] and subzoneFactions[zone][subzone]
 		if faction then
 			self:Debug("SUBZONE", faction)
 			if self:SetWatchedFactionByName(faction, db.verbose) then
@@ -165,18 +168,16 @@ function Diplomancer:Update(event)
 		end
 	end
 
-	if not faction then
-		self:Debug("Checking zone:", zone, GetRealZoneText())
-		faction = zoneFactions[zone]
-		if faction then
-			self:Debug("ZONE", faction)
-			if self:SetWatchedFactionByName(faction, db.verbose) then
-				return
-			end
+	self:Debug("Checking zone:", zone, GetRealZoneText())
+	faction = zoneFactions[zone]
+	if faction then
+		self:Debug("ZONE", faction)
+		if self:SetWatchedFactionByName(faction, db.verbose) then
+			return
 		end
 	end
 
-	if not faction and tabardFaction and db.defaultChampion then
+	if tabardFaction and db.defaultChampion then
 		faction = tabardFaction
 		if faction then
 			self:Debug("DEFAULT CHAMPION", faction)
@@ -188,7 +189,10 @@ function Diplomancer:Update(event)
 
 	faction = db.defaultFaction or racialFaction
 	self:Debug(db.defaultFaction and "DEFAULT" or "RACE", faction)
-	self:SetWatchedFactionByName(faction, db.verbose)
+	if not self:SetWatchedFactionByName(faction, db.verbose) then
+		self:Debug("NONE")
+		SetWatchedFactionIndex(0)
+	end
 end
 
 Diplomancer.PLAYER_ENTERING_WORLD = Diplomancer.Update
@@ -239,18 +243,24 @@ function Diplomancer:SetWatchedFactionByName(name, verbose)
 
 	for i = 1, GetNumFactions() do
 		local faction, _, standing, _, _, _, _, _, _, _, _, watched = GetFactionInfo(i)
-		if not watched and faction == name and (standing < 8 or not db.ignoreExalted) then
-			SetWatchedFactionIndex(i)
-			if verbose then
-				self:Print(L["Now watching %s."], faction)
+		--self:Debug("GetFactionInfo", i, faction, standing, watched)
+		if faction == name then
+			self:Debug("Found faction:", faction, standing, watched)
+			if (standing < 8 or not db.ignoreExalted) then
+				if not watched then
+					SetWatchedFactionIndex(i)
+					if verbose then
+						self:Print(L["Now watching %s."], faction)
+					end
+				end
+				return true, name
+			else
+				break
 			end
-			return true, name
 		end
 	end
 
 	self:RestoreFactionHeaders()
-
-	return false
 end
 
 ------------------------------------------------------------------------
