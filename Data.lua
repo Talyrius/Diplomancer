@@ -668,7 +668,7 @@ local SF = {
 		self.subzoneFactions = SF
 		self.zoneFactions = ZF
 	else
-		local BF = LibStub and LibStub("LibBabble-Faction-3.0", true) and LibStub("LibBabble-Faction-3.0"):GetLookupTable()
+		local BF = LibStub and LibStub("LibBabble-Faction-3.0", true) and LibStub("LibBabble-Faction-3.0"):GetUnstrictLookupTable()
 		local BS = LibStub and LibStub("LibBabble-SubZone-3.0", true) and LibStub("LibBabble-SubZone-3.0"):GetUnstrictLookupTable()
 
 		if not BF or not BS then
@@ -694,7 +694,7 @@ local SF = {
 		for zone, subzones in pairs(SF) do
 			self.subzoneFactions[zone] = { }
 			for subzone, faction in pairs(subzones) do
-				if BS[subzone] then
+				if BS[subzone] and BF[faction] then
 					self.subzoneFactions[zone][BS[subzone]] = BF[faction]
 				else
 					-- print("|cff33ff99Diplomancer:|r missing subzone", zone, "==>", subzone)
