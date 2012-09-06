@@ -164,6 +164,8 @@ local ZF = {
 	[510] = "Kirin Tor",
 -- Dalaran
 	[504] = "Kirin Tor",
+-- Darkmoon Faire
+	[823] = "Darkmoon Faire",
 -- Darkshore
 	[42]  = isAlliance and "Darnassus",
 -- Darnassus
@@ -661,6 +663,20 @@ local SF = {
 
 ------------------------------------------------------------------------
 
+	-- Remove faction-related false values
+	for zone, faction in pairs(ZF) do
+		if not faction then
+			ZF[zone] = nil
+		end
+	end
+	for zone, t in pairs(SF) do
+		for subzone, faction in pairs(t) do
+			if not faction then
+				t[subzone] = nil
+			end
+		end
+	end
+
 	if GetLocale():match("^en") then
 		self.championFactions = CF
 		self.championZones = CZ
@@ -694,7 +710,7 @@ local SF = {
 		for zone, subzones in pairs(SF) do
 			self.subzoneFactions[zone] = { }
 			for subzone, faction in pairs(subzones) do
-				if BS[subzone] and BF[faction] then
+				if faction and BS[subzone] then
 					self.subzoneFactions[zone][BS[subzone]] = BF[faction]
 				else
 					-- print("|cff33ff99Diplomancer:|r missing subzone", zone, "==>", subzone)
@@ -704,7 +720,9 @@ local SF = {
 
 		self.zoneFactions = { }
 		for zone, faction in pairs(ZF) do
-			self.zoneFactions[zone] = BF[faction]
+			if faction then
+				self.zoneFactions[zone] = BF[faction]
+			end
 		end
 	end
 
