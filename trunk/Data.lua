@@ -671,7 +671,7 @@ local SF = {
 	end
 	for zone, t in pairs(SF) do
 		for subzone, faction in pairs(t) do
-			it not faction then
+			if not faction then
 				t[subzone] = nil
 			end
 		end
