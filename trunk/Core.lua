@@ -27,7 +27,7 @@ end })
 ------------------------------------------------------------------------
 
 function Diplomancer:Debug(text, ...)
---	do return end
+	do return end
 	if text then
 		if text:match("%%[dfqsx%d%.]") then
 			print("|cffff9999Diplomancer:|r", format(text, ...))
