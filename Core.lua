@@ -10,7 +10,7 @@
 local ADDON_NAME, Diplomancer = ...
 _G.Diplomancer = Diplomancer
 
-local db, onTaxi, taxiEnded, championFactions, championZones, racialFaction, subzoneFactions, zoneFactions
+local db, onTaxi, tabard, taxiEnded, championFactions, championZones, racialFaction, subzoneFactions, zoneFactions
 
 ------------------------------------------------------------------------
 
@@ -83,12 +83,12 @@ function Diplomancer:PLAYER_LOGIN()
 	subzoneFactions = self.subzoneFactions
 	zoneFactions = self.zoneFactions
 
+	self.frame:RegisterEvent("PLAYER_CONTROL_GAINED")
 	self.frame:RegisterEvent("PLAYER_ENTERING_WORLD")
+	self.frame:RegisterEvent("UNIT_INVENTORY_CHANGED")
 	self.frame:RegisterEvent("ZONE_CHANGED")
 	self.frame:RegisterEvent("ZONE_CHANGED_INDOORS")
 	self.frame:RegisterEvent("ZONE_CHANGED_NEW_AREA")
-
-	self.frame:RegisterEvent("PLAYER_CONTROL_GAINED")
 
 	self.frame:UnregisterEvent("PLAYER_LOGIN")
 	self.PLAYER_LOGIN = nil
@@ -213,23 +213,17 @@ end
 
 ------------------------------------------------------------------------
 
-function Diplomancer:PLAYER_ENTERING_WORLD()
-	-- self:Debug("PLAYER_ENTERING_WORLD")
-	local _, instanceType = IsInInstance()
-	if instanceType == "party" then
-		self.frame:RegisterEvent("UNIT_INVENTORY_CHANGED")
-	else
-		self.frame:UnregisterEvent("UNIT_INVENTORY_CHANGED")
-	end
-	self:Update()
-end
+-- local INVSLOT_TABARD = GetInventorySlotInfo("TabardSlot")
 
-------------------------------------------------------------------------
-
-function Diplomancer:UNIT_INVENTORY_CHANGED(unit)
+function Diplomancer:UNIT_INVENTORY_CHANGED(_, unit)
 	if unit == "player" then
-		-- self:Debug("UNIT_INVENTORY_CHANGED")
-		self:Update()
+		self:Debug("UNIT_INVENTORY_CHANGED")
+		local new = GetInventoryItemID(unit, INVSLOT_TABARD)
+		self:Debug("Current", new and GetItemInfo(new) or "none", "Previous", tabard and GetItemInfo(tabard) or "none")
+		if new ~= tabard then
+			tabard = new
+			self:Update()
+		end
 	end
 end
 
