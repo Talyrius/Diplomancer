@@ -10,7 +10,7 @@
 local ADDON_NAME, Diplomancer = ...
 _G.Diplomancer = Diplomancer
 
-local db, onTaxi, taxiEnded, championFactions, championZones, racialFaction, subzoneFactions, zoneFactions
+local db, onTaxi, tabard, taxiEnded, championFactions, championZones, racialFaction, subzoneFactions, zoneFactions
 
 ------------------------------------------------------------------------
 
@@ -27,7 +27,7 @@ end })
 ------------------------------------------------------------------------
 
 function Diplomancer:Debug(text, ...)
-	do return end
+--	do return end
 	if text then
 		if text:match("%%[dfqsx%d%.]") then
 			print("|cffff9999Diplomancer:|r", format(text, ...))
@@ -213,10 +213,17 @@ end
 
 ------------------------------------------------------------------------
 
+-- local INVSLOT_TABARD = GetInventorySlotInfo("TabardSlot")
+
 function Diplomancer:UNIT_INVENTORY_CHANGED(_, unit)
 	if unit == "player" then
 		self:Debug("UNIT_INVENTORY_CHANGED")
-		self:Update()
+		local new = GetInventoryItemID(unit, INVSLOT_TABARD)
+		self:Debug("Current", new and GetItemInfo(new) or "none", "Previous", tabard and GetItemInfo(tabard) or "none")
+		if new ~= tabard then
+			tabard = new
+			self:Update()
+		end
 	end
 end
 
