@@ -130,6 +130,8 @@ local RF = {
 ------------------------------------------------------------------------
 
 local ZF = {
+-- Abyssal Depths
+	[614] = "The Earthen Ring",
 -- Ahn'Qiraj: The Fallen Kingdom
 	[772] = "Brood of Nozdormu",
 -- Alterac Valley
@@ -224,6 +226,8 @@ local ZF = {
 	[499] = "Shattered Sun Offensive",
 -- Karazhan
 	[799] = "The Violet Eye",
+-- Kelp'thar Forest
+	[610] = "The Earthen Ring",
 -- Kezan
 	[605] = isHorde and "Bilgewater Cartel",
 -- Loch Modan
@@ -282,6 +286,8 @@ local ZF = {
 	[473] = "Netherwing",
 -- Shattrath City
 	[481] = "The Sha'tar",
+-- Shimmering Expanse
+	[615] = "The Earthen Ring",
 -- Silithus
 	[261] = "Cenarion Circle",
 -- Silvermoon City
