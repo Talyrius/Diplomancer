@@ -21,31 +21,33 @@ function Diplomancer:LocalizeData()
 ------------------------------------------------------------------------
 
 local CF = {
-	[93830] = { 15, "Bilgewater Cartel" },
-	[93827] = { 15, "Darkspear Trolls" },
-	[93806] = { 15, "Darnassus" },
-	[93811] = { 15, "Exodar" },
-	[93816] = { 15, "Gilneas" },
-	[93821] = { 15, "Gnomeregan" },
-	[93806] = { 15, "Gnomeregan" },
-	[93805] = { 15, "Ironforge" },
-	[93825] = { 15, "Orgrimmar" },
-	[93828] = { 15, "Silvermoon City" },
-	[93795] = { 15, "Stormwind" },
-	[94463] = { 15, "Thunder Bluff" },
-	[94462] = { 15, "Undercity" },
+	[93830]  = { 15, "Bilgewater Cartel" },
+	[93827]  = { 15, "Darkspear Trolls" },
+	[93806]  = { 15, "Darnassus" },
+	[93811]  = { 15, "Exodar" },
+	[93816]  = { 15, "Gilneas" },
+	[93821]  = { 15, "Gnomeregan" },
+	[93806]  = { 15, "Gnomeregan" },
+	[126436] = { 15, "Huojin Pandaren" },
+	[93805]  = { 15, "Ironforge" },
+	[93825]  = { 15, "Orgrimmar" },
+	[93828]  = { 15, "Silvermoon City" },
+	[93795]  = { 15, "Stormwind" },
+	[94463]  = { 15, "Thunder Bluff" },
+	[126434] = { 15, "Tushui Pandaren" },
+	[94462]  = { 15, "Undercity" },
 
-	[57819] = { 80, "Argent Crusade" },
-	[57821] = { 80, "Kirin Tor" },
-	[57820] = { 80, "Knights of the Ebon Blade" },
-	[57822] = { 80, "The Wyrmrest Accord" },
+	[57819]  = { 80, "Argent Crusade" },
+	[57821]  = { 80, "Kirin Tor" },
+	[57820]  = { 80, "Knights of the Ebon Blade" },
+	[57822]  = { 80, "The Wyrmrest Accord" },
 
-	[94158] = { 85, "Dragonmaw Clan" },
-	[93339] = { 85, "The Earthen Ring" },
-	[93341] = { 85, "Guardians of Hyjal" },
-	[93337] = { 85, "Ramkahen" },
-	[93347] = { 85, "Therazane" },
-	[93368] = { 85, "Wildhammer Clan" },
+	[94158]  = { 85, "Dragonmaw Clan" },
+	[93339]  = { 85, "The Earthen Ring" },
+	[93341]  = { 85, "Guardians of Hyjal" },
+	[93337]  = { 85, "Ramkahen" },
+	[93347]  = { 85, "Therazane" },
+	[93368]  = { 85, "Wildhammer Clan" },
 }
 
 local CZ = {
@@ -182,6 +184,8 @@ local ZF = {
 	[892] = isHorde and "Undercity",
 -- Dragonblight
 	[488] = "The Wyrmrest Accord",
+-- Dread Wastes
+	[858] = "The Klaxxi",
 -- Dun Morogh
 	[27]  = isAlliance and "Ironforge",
 -- Durotar
@@ -328,6 +332,8 @@ local ZF = {
 	[782] = "The Sha'tar",
 -- The Forge of Souls
 	[601] = isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
+-- The Jade Forest
+	[806] = isHorde and "Forest Hozen" or isAlliance and "Pearlfin Jinyu",
 -- The Lost Isles
 	[544] = isHorde and "Bilgewater Cartel",
 -- The Maelstrom
@@ -359,6 +365,8 @@ local ZF = {
 	[708] = isHorde and "Hellscream's Reach" or isAlliance and "Baradin's Wardens",
 -- Tol Barad Peninsula
 	[709] = isHorde and "Hellscream's Reach" or isAlliance and "Baradin's Wardens",
+-- Townlong Steppes
+	[810] = "Shado-Pan",
 -- Trial of the Crusader
 	[543] = isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
 -- Twilight Highlands
@@ -367,6 +375,8 @@ local ZF = {
 	[720] = "Ramkahen",
 -- Undercity
 	[382] = isHorde and "Undercity",
+-- Vale of Eternal Blossoms
+	[811] = "Golden Lotus",
 -- Valley of Trials
 	[889] = isHorde and "Orgrimmar",
 -- Warsong Gulch
@@ -456,6 +466,13 @@ local SF = {
 		["Westwind Refugee Camp"]	= isHorde and "The Taunka",
 		["Wintergarde Keep"]		= isAlliance and "Valiance Expedition",
 	},
+	-- Dread Wastes
+	[858] = {
+		["Lonesome Cove"] = "The Anglers",
+		["Shelf of Mazu"] = "The Anglers",
+		["Soggy's Gamble"] = "The Anglers",
+		["Wreck of the Mist-Hopper"] = "The Anglers",
+	},
 	-- Durotar
 	[4]  = { -- TODO: update
 		["Sen'jin Village"]			= isHorde and "Darkspear Trolls",
@@ -512,6 +529,33 @@ local SF = {
 		["The Ring of Champions"]		    = isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
 		["The Skybreaker"]				    = isAlliance and "Valiance Expedition",
 		["Valley of Echoes"]                = "Argent Crusade",
+	},
+	-- Krasarang Wilds
+	[857] = {
+		[""] = "The Anglers",
+		["Angkhal Pavilion"] = "The August Celestials",
+		["Anglers Expedition"] = "The Anglers",
+		["Anglers Wharf"] = "The Anglers",
+		["Cradle of Chi-Ji"] = "The August Celestials",
+		["Dojani River"] = "The Anglers",
+		["Dome Balrissa"] = "The August Celestials",
+		["Narsong Trench"] = "The Anglers",
+		["Pedestal of Hope"] = "The August Celestials",
+		["Sandy Shallows"] = "The Anglers",
+		["Sarjun Depths"] = "The Anglers",
+		["Temple of the Red Crane"] = "The August Celestials",
+	},
+	-- Kun-Lai Summit
+	[809] = {
+		["Firebough Nook"] = "Shado-Pan",
+		["Gate of the August Celestials"] = "The August Celestials",
+		["Serpent's Spine"] = "Shado-Pan",
+		["Shado-Li Basin"] = "Shado-Pan",
+		["Shado-Pan Fallback"] = "Shado-Pan",
+		["Shado-Pan Monastery"] = "Shado-Pan",
+		["Temple of the White Tiger"] = "The August Celestials",
+		["The Ox Gate"] = "Shado-Pan",
+		["Winter's Blossom"] = "Shado-Pan",
 	},
 	-- Nagrand
 	[477] = {
@@ -607,15 +651,37 @@ local SF = {
 		["Veil Ala'rak"]			= "Sha'tari Skyguard",
 		["Veil Harr'ik"]			= "Sha'tari Skyguard",
 	},
-	-- Tirisfal Glades
-	[20]  = { -- TODO: update
-		["The Bulwark"]				= "Argent Dawn",
+	-- The Jade Forest
+	[806] = {
+		["Fountain of the Everseeing"] = "The August Celestials",
+		["Jade Temple Grounds"] = "The August Celestials",
+		["Mistveil Sea"] = "Order of the Cloud Serpent",
+		["Serpent's Heart"] = "The August Celestials",
+		["Serpent's Overlook"] = "The August Celestials",
+		["Temple of the Jade Serpent"] = "The August Celestials",
+		["Terrace of the Twin Dragons"] = "The August Celestials",
+		["The Arboretum"] = "Order of the Cloud Serpent",
+		["The Heart of Jade"] = "The August Celestials",
+		["The Scrollkeeper's Sanctum"] = "The August Celestials",
+		["Windward Isle"] = "Order of the Cloud Serpent",
+	},
+	-- The Veiled Stair
+	[873] = {
+		["Tavern in the Mists"] = "The Black Prince",
 	},
 	-- Thousand Needles
 	[61]  = {
 		["Arikara's Needle"]		= isHorde and "Thunder Bluff" or isAlliance and "Darnassus",
 		["Darkcloud Pinnacle"]		= isHorde and "Thunder Bluff" or isAlliance and "Darnassus",
 		["Freewind Post"]			= isHorde and "Thunder Bluff" or isAlliance and "Darnassus",
+	},
+	-- Tirisfal Glades
+	[20]  = { -- TODO: update
+		["The Bulwark"]				= "Argent Dawn",
+	},
+	-- Townlong Steppes
+	[810] = {
+		["Niuzao Temple"] = "The August Celestials",
 	},
 	-- Twilight Highlands
 	[700] = {
@@ -628,6 +694,36 @@ local SF = {
 		["The Krazzworks"]			= isHorde and "Bilgewater Cartel",
 		["The Maw of Madness"]		= "The Earthen Ring",
 		["Victor's Point"]			= isAlliance and "Stormwind",
+	},
+	-- Vale of Eternal Blossoms
+	[811] = {
+		["Chamber of Enlightenment"] = isAlliance and "The August Celestials",
+		["Chamber of Masters"] = isHorde and "The August Celestials",
+		["Chamber of Reflection"] = isAlliance and "The August Celestials",
+		["Chamber of Wisdom"] = isHorde and "The August Celestials",
+		["Ethereal Corridor"] = isAlliance and "The August Celestials",
+		["Hall of Secrets"] = isHorde and "The August Celestials",
+		["Hall of the Crescent Moon"] = isHorde and "The August Celestials",
+		["Hall of Tranquillity"] = isHorde and "The August Celestials",
+		["Path of Serenity"] = isAlliance and "The August Celestials",
+		["Seat of Knowledge"] = "The Lorewalkers",
+		["Summer's Rest"] = isHorde and "The August Celestials",
+		["The Celestial Vault"] = isAlliance and "The August Celestials",
+		["The Emperor's Step"] = isAlliance and "The August Celestials",
+		["The Golden Lantern"] = isAlliance and "The August Celestials",
+		["The Golden Terrace"] = isHorde and "The August Celestials",
+		["The Imperial Exchange"] = isAlliance and "The August Celestials",
+		["The Imperial Mercantile"] = isHorde and "The August Celestials",
+		["The Jade Vaults"] = isHorde and "The August Celestials",
+		["The Keggary"] = isHorde and "The August Celestials",
+		["The Star's Bazaar"] = isAlliance and "The August Celestials",
+		["The Summer Terrace"] = isAlliance and "The August Celestials",
+	},
+	-- Valley of the Four Winds
+	[807] = {
+		["Cattail Lake"] = "The Tillers",
+		["Sunsong Ranch"] = "The Tillers",
+		["The Heartland"] = "The Tillers",
 	},
 	-- Western Plaguelands
 	[22]  = { -- TODO: update
@@ -718,6 +814,8 @@ local SF = {
 			for subzone, faction in pairs(subzones) do
 				if faction and BS[subzone] then
 					self.subzoneFactions[zone][BS[subzone]] = BF[faction]
+				elseif faction and faction == "" then
+					self.subzoneFactions[zone][subzone] = BF[faction]
 				else
 					-- print("|cff33ff99Diplomancer:|r missing subzone", zone, "==>", subzone)
 				end

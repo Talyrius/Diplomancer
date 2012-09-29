@@ -154,10 +154,7 @@ function Diplomancer:Update(event)
 	end
 
 	local subzone = GetSubZoneText()
-	if strlen(subzone) == 0 then
-		subzone = nil
-	end
-	self:Debug("Checking subzone:", subzone or "nil")
+	self:Debug("Checking subzone:", strlen(subzone) > 0 and subzone or "nil")
 	if subzone then
 		faction = subzoneFactions[zone] and subzoneFactions[zone][subzone]
 		if faction then
