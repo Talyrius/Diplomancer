@@ -391,21 +391,6 @@ local ZF = {
 	[467] = "Cenarion Expedition",
 -- Zul'Drak
 	[496] = "Argent Crusade",
-
--- Dread Wastes
---	[858] = "",
--- Krasarang Wilds
---	[857] = "",
--- Kun-Lai Summit
---	[809] = "",
--- The Jade Forest
---	[806] = "",
--- Townlong Steppes
---	[810] = "",
--- Vale of Eternal Blossoms
---	[811] = "",
--- Valley of the Four Winds
---	[807] = "",
 }
 
 ------------------------------------------------------------------------
@@ -697,16 +682,21 @@ local SF = {
 	},
 	-- Vale of Eternal Blossoms
 	[811] = {
+		[""] = "The August Celestials",
 		["Chamber of Enlightenment"] = isAlliance and "The August Celestials",
 		["Chamber of Masters"] = isHorde and "The August Celestials",
 		["Chamber of Reflection"] = isAlliance and "The August Celestials",
 		["Chamber of Wisdom"] = isHorde and "The August Celestials",
 		["Ethereal Corridor"] = isAlliance and "The August Celestials",
+		["Gate of the Setting Sun"] = "Shado-Pan",
 		["Hall of Secrets"] = isHorde and "The August Celestials",
 		["Hall of the Crescent Moon"] = isHorde and "The August Celestials",
 		["Hall of Tranquillity"] = isHorde and "The August Celestials",
+		["Mogu'shan Palace"] = "The August Celestials",
 		["Path of Serenity"] = isAlliance and "The August Celestials",
 		["Seat of Knowledge"] = "The Lorewalkers",
+		["Serpent's Spine"] = "Shado-Pan",
+		["Setting Sun Garrison"] = "Shado-Pan",
 		["Summer's Rest"] = isHorde and "The August Celestials",
 		["The Celestial Vault"] = isAlliance and "The August Celestials",
 		["The Emperor's Step"] = isAlliance and "The August Celestials",
@@ -722,8 +712,12 @@ local SF = {
 	-- Valley of the Four Winds
 	[807] = {
 		["Cattail Lake"] = "The Tillers",
+		["Halfhill"] = "The Tillers",
+		["Serpent's Spine"] = "Shado-Pan",
 		["Sunsong Ranch"] = "The Tillers",
+		["The Halfhill Market"] = "The Tillers",
 		["The Heartland"] = "The Tillers",
+		["The Lazy Turnip"] = "The Tillers",
 	},
 	-- Western Plaguelands
 	[22]  = { -- TODO: update
