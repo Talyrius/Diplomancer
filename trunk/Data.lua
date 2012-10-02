@@ -109,6 +109,19 @@ local CZ = {
 		[781] = 1, -- Zul'Aman
 		[793] = 1, -- Zul'Gurub
 	},
+	[90] = {
+		-- 2: Heroic only
+		-- 1: Normal and Heroic
+		[875] = 2, -- Gate of the Setting Sun
+		[885] = 1, -- Mogu'Shan Palace
+		[871] = 2, -- Scarlet Halls
+		[874] = 2, -- Scarlet Monastery
+		[898] = 2, -- Scholomance
+		[877] = 1, -- Shado-pan Monastery
+		[887] = 2, -- Siege of Niuzao Temple
+		[876] = 1, -- Stormstout Brewery
+		[867] = 1, -- Temple of the Jade Serpent
+	},
 }
 
 ------------------------------------------------------------------------
@@ -234,6 +247,8 @@ local ZF = {
 	[610] = "The Earthen Ring",
 -- Kezan
 	[605] = isHorde and "Bilgewater Cartel",
+-- Krasarang Wilds
+	[857] = "The Anglers",
 -- Loch Modan
 	[35]  = isAlliance and "Ironforge",
 -- Magisters' Terrace
@@ -517,18 +532,14 @@ local SF = {
 	},
 	-- Krasarang Wilds
 	[857] = {
-		[""] = "The Anglers",
 		["Angkhal Pavilion"] = "The August Celestials",
-		["Anglers Expedition"] = "The Anglers",
-		["Anglers Wharf"] = "The Anglers",
 		["Cradle of Chi-Ji"] = "The August Celestials",
-		["Dojani River"] = "The Anglers",
+		["Dawnchaser Retreat"] = isHorde and "Thunder Bluff",
 		["Dome Balrissa"] = "The August Celestials",
-		["Narsong Trench"] = "The Anglers",
 		["Pedestal of Hope"] = "The August Celestials",
-		["Sandy Shallows"] = "The Anglers",
-		["Sarjun Depths"] = "The Anglers",
+		["Sentinel Basecamp"] = isAlliance and "Darnassus",
 		["Temple of the Red Crane"] = "The August Celestials",
+		["Thunder Cleft"] = isHorde and "Thunder Bluff",
 	},
 	-- Kun-Lai Summit
 	[809] = {
@@ -639,10 +650,10 @@ local SF = {
 	-- The Jade Forest
 	[806] = {
 		["Fountain of the Everseeing"] = "The August Celestials",
-		["Jade Temple Grounds"] = "The August Celestials",
+		["Jade Temple Grounds"] = "Order of the Cloud Serpent",
 		["Mistveil Sea"] = "Order of the Cloud Serpent",
-		["Serpent's Heart"] = "The August Celestials",
-		["Serpent's Overlook"] = "The August Celestials",
+		["Serpent's Heart"] = "Order of the Cloud Serpent",
+		["Serpent's Overlook"] = "Order of the Cloud Serpent",
 		["Temple of the Jade Serpent"] = "The August Celestials",
 		["Terrace of the Twin Dragons"] = "The August Celestials",
 		["The Arboretum"] = "Order of the Cloud Serpent",
@@ -682,7 +693,7 @@ local SF = {
 	},
 	-- Vale of Eternal Blossoms
 	[811] = {
-		[""] = "The August Celestials",
+		[""] = "The August Celestials", -- NEEDS VERIFICATION
 		["Chamber of Enlightenment"] = isAlliance and "The August Celestials",
 		["Chamber of Masters"] = isHorde and "The August Celestials",
 		["Chamber of Reflection"] = isAlliance and "The August Celestials",
@@ -714,6 +725,8 @@ local SF = {
 		["Cattail Lake"] = "The Tillers",
 		["Halfhill"] = "The Tillers",
 		["Serpent's Spine"] = "Shado-Pan",
+		["Skyrange"] = "The Tillers",
+		["Springtail Crag"] = "The Tillers",
 		["Sunsong Ranch"] = "The Tillers",
 		["The Halfhill Market"] = "The Tillers",
 		["The Heartland"] = "The Tillers",
