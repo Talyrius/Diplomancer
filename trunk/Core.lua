@@ -137,8 +137,8 @@ function Diplomancer:Update(event)
 				end
 			elseif not instances and not championZones[70][zone] then
 				-- Championing this faction doesn't have a level requirement,
-				-- but Outland dungeons don't count, and WotLK dungeons are weird.
-				local minDifficulty = instances[80][zone]
+				-- but Outland dungeons don't count, and WotLK/Cataclysm dungeons are weird.
+				local minDifficulty = championZones[85][zone] or championZones[80][zone]
 				if not minDifficulty or GetInstanceDifficulty() >= minDifficulty then
 					faction = tabardFaction
 					self:Debug("CHAMPION", faction)
