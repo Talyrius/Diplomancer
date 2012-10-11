@@ -307,6 +307,10 @@ local ZF = {
 	[481] = "The Sha'tar",
 -- Shimmering Expanse
 	[615] = "The Earthen Ring",
+-- Shrine of Seven Stars
+	[905] = isAlliance and "The August Celestials",
+-- Shrine of Two Moons
+	[903] = isHorde and "The August Celestials",
 -- Silithus
 	[261] = "Cenarion Circle",
 -- Silvermoon City
@@ -392,6 +396,8 @@ local ZF = {
 	[382] = isHorde and "Undercity",
 -- Vale of Eternal Blossoms
 	[811] = "Golden Lotus",
+-- Valley of the Four Winds
+	[807] = "The Tillers",
 -- Valley of Trials
 	[889] = isHorde and "Orgrimmar",
 -- Warsong Gulch
@@ -650,8 +656,9 @@ local SF = {
 	-- The Jade Forest
 	[806] = {
 		["Fountain of the Everseeing"] = "The August Celestials",
-		["Jade Temple Grounds"] = "Order of the Cloud Serpent",
+		["Jade Temple Grounds"] = "The August Celestials",
 		["Mistveil Sea"] = "Order of the Cloud Serpent",
+		["Oona Kagu"] = "Order of the Cloud Serpent",
 		["Serpent's Heart"] = "Order of the Cloud Serpent",
 		["Serpent's Overlook"] = "Order of the Cloud Serpent",
 		["Temple of the Jade Serpent"] = "The August Celestials",
@@ -659,6 +666,7 @@ local SF = {
 		["The Arboretum"] = "Order of the Cloud Serpent",
 		["The Heart of Jade"] = "The August Celestials",
 		["The Scrollkeeper's Sanctum"] = "The August Celestials",
+		["The Widow's Wail"] = "Order of the Cloud Serpent",
 		["Windward Isle"] = "Order of the Cloud Serpent",
 	},
 	-- The Veiled Stair
@@ -694,43 +702,16 @@ local SF = {
 	-- Vale of Eternal Blossoms
 	[811] = {
 		[""] = "The August Celestials", -- NEEDS VERIFICATION
-		["Chamber of Enlightenment"] = isAlliance and "The August Celestials",
-		["Chamber of Masters"] = isHorde and "The August Celestials",
-		["Chamber of Reflection"] = isAlliance and "The August Celestials",
-		["Chamber of Wisdom"] = isHorde and "The August Celestials",
-		["Ethereal Corridor"] = isAlliance and "The August Celestials",
 		["Gate of the Setting Sun"] = "Shado-Pan",
-		["Hall of Secrets"] = isHorde and "The August Celestials",
-		["Hall of the Crescent Moon"] = isHorde and "The August Celestials",
-		["Hall of Tranquillity"] = isHorde and "The August Celestials",
 		["Mogu'shan Palace"] = "The August Celestials",
-		["Path of Serenity"] = isAlliance and "The August Celestials",
 		["Seat of Knowledge"] = "The Lorewalkers",
 		["Serpent's Spine"] = "Shado-Pan",
-		["Setting Sun Garrison"] = "Shado-Pan",
-		["Summer's Rest"] = isHorde and "The August Celestials",
-		["The Celestial Vault"] = isAlliance and "The August Celestials",
-		["The Emperor's Step"] = isAlliance and "The August Celestials",
-		["The Golden Lantern"] = isAlliance and "The August Celestials",
 		["The Golden Terrace"] = isHorde and "The August Celestials",
-		["The Imperial Exchange"] = isAlliance and "The August Celestials",
-		["The Imperial Mercantile"] = isHorde and "The August Celestials",
-		["The Jade Vaults"] = isHorde and "The August Celestials",
-		["The Keggary"] = isHorde and "The August Celestials",
-		["The Star's Bazaar"] = isAlliance and "The August Celestials",
 		["The Summer Terrace"] = isAlliance and "The August Celestials",
 	},
 	-- Valley of the Four Winds
 	[807] = {
-		["Cattail Lake"] = "The Tillers",
-		["Halfhill"] = "The Tillers",
 		["Serpent's Spine"] = "Shado-Pan",
-		["Skyrange"] = "The Tillers",
-		["Springtail Crag"] = "The Tillers",
-		["Sunsong Ranch"] = "The Tillers",
-		["The Halfhill Market"] = "The Tillers",
-		["The Heartland"] = "The Tillers",
-		["The Lazy Turnip"] = "The Tillers",
 	},
 	-- Western Plaguelands
 	[22]  = { -- TODO: update
