@@ -102,6 +102,17 @@ end
 
 ------------------------------------------------------------------------
 
+function Diplomancer:GetCurrentMapAreaID()
+	if WorldMapFrame:IsShown() then
+		local viewing = GetCurrentMapAreaID()
+		SetMapToCurrentZone()
+		local current = GetCurrentMapAreaID()
+		SetMapByID(viewing)
+		return current
+	end
+	return GetCurrentMapAreaID()
+end
+
 function Diplomancer:Update(event)
 	if taxiEnded then
 		-- This is a hack to work around the fact that UnitOnTaxi still
@@ -114,7 +125,7 @@ function Diplomancer:Update(event)
 	end
 
 	local faction
-	local zone = GetCurrentMapAreaID()
+	local zone = self:GetCurrentMapAreaID()
 	self:Debug("Update", event, zone)
 
 	local tabardFaction, tabardLevel = self:GetChampionedFaction()
