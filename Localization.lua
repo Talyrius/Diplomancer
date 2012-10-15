@@ -64,26 +64,26 @@ if LOCALE == "esES" or LOCALE == "esMX" then Diplomancer.L = {
 
 --[[--------------------------------------------------------------------
 	French | Français
-	Last updated: 2010-08-05 by Akkorian
+	Last updated: 2012-10-15 by L0relei @ CurseForge
 ----------------------------------------------------------------------]]
 
 if LOCALE == "frFR" then Diplomancer.L = {
 
 	["Default faction"] = "Faction par défaut",
-	["Select a faction to watch when your current location doesn't have an associated faction."] = "Sélectionnez une faction de regarder si votre position actuelle n'est pas une faction associée.",
+	["Select a faction to watch when your current location doesn't have an associated faction."] = "Sélectionnez une faction à surveiller si votre position actuelle n'a pas de faction associée.",
 
-	["Reset"] = "Remise",
-	["Reset your default faction preference to your race's faction."] = "Réinitialiser votre préférence faction par défaut à la faction de votre course.",
+	["Reset"] = "RàZ",
+	["Reset your default faction preference to your race's faction."] = "Réinitialiser votre faction par défaut à la faction de votre race.",
 
-	["Default to championed faction"] = "Par défaut à votre faction défendu",
-	["Use your currently championed faction as your default faction."] = "Utiliser votre faction défendu que votre faction par défaut.",
+	["Default to championed faction"] = "Faction défendue par défaut",
+	["Use your currently championed faction as your default faction."] = "Utiliser la faction actuellement défendue en tant que faction par défaut.",
 
-	["Ignore Exalted factions"] = "Ignorer factions Exalté",
-	["Don't watch factions with whom you have already attained Exalted reputation."] = "Ne pas regarder factions avec lesquelles vous avez déjà atteint debout Exalté.",
+	["Ignore Exalted factions"] = "Ignorer les factions Exalté",
+	["Don't watch factions with whom you have already attained Exalted reputation."] = "Ne pas surveiller les factions avec lesquelles vous êtes déjà Exalté.",
 
-	["Announce watched faction"] = "Activer les notifications",
-	["Show a message in the chat frame when your watched faction is changed."] = "Afficher un message dans le chat cadre lorsque vos modifications faction regardé.",
-	["Now watching %s."] = "Maintenant regarder %s.",
+	["Announce watched faction"] = "Annoncer la faction surveillée",
+	["Show a message in the chat frame when your watched faction is changed."] = "Afficher un message dans la fenêtre de discussion lorsque la faction surveillée change.",
+	["Now watching %s."] = "Surveiller à présent %s.",
 
 } return end
 
