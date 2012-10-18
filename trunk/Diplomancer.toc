@@ -6,7 +6,7 @@
 ## Notes-deDE: Automatische Anzeige der Fraktion mit der Aufenthaltsort verknüpft.
 ## Notes-esES: Sigue automáticamente la facción asociada con tu lugar actual.
 ## Notes-esMX: Sigue automáticamente la facción asociada con tu lugar actual.
-## Notes-frFR: Automatiquement regarder la faction associée à votre position actuelle.
+## Notes-frFR: Surveiller automatiquement la faction associée à votre position actuelle.
 ## Notes-itIT: Segue automaticamente la fazione associato alla posizione corrente.
 ## Notes-ptBR: Segue automaticamente a facção associado à sua localização actual.
 ## Notes-ruRU: Автоматически следить за выполнением фракция связана с вашего текущего местоположения.
