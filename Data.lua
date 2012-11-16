@@ -426,6 +426,7 @@ local SF = {
 		["Ruuan Weald"]				= "Cenarion Expedition",
 		["Shartuul's Transporter"]	= "Ogri'la",
 		["Vortex Pinnacle"]			= "Ogri'la",
+		["Vortex Summit"]			= "Ogri'la",
 	},
 	-- Borean Tundra
 	[486] = {
