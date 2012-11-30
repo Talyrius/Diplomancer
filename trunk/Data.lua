@@ -419,11 +419,11 @@ local ZF = {
 local SF = {
 	-- Blade's Edge Mountains
 	[475] = {
-		["Evergrove"]				= "Cenarion Expedition",
+		["Evergrove"]				= "Cenarion Expedition",",
+		["Ruuan Weald"]				= "Cenarion Expedition",
 		["Forge Camp: Terror"]		= "Ogri'la",
 		["Forge Camp: Wrath"]		= "Ogri'la",
-		["Ogri'la"]					= "Ogri'la",
-		["Ruuan Weald"]				= "Cenarion Expedition",
+		["Ogri'la"]					= "Ogri'la
 		["Shartuul's Transporter"]	= "Ogri'la",
 		["Vortex Pinnacle"]			= "Ogri'la",
 		["Vortex Summit"]			= "Ogri'la",
@@ -431,12 +431,12 @@ local SF = {
 	-- Borean Tundra
 	[486] = {
 		["Amber Ledge"]				= "Kirin Tor",
-		["D.E.H.T.A. Encampment"]	= "Cenarion Expedition",
 		["Kaskala"]					= "The Kalu'ak",
 		["Njord's Breath Bay"]		= "The Kalu'ak",
-		["Taunka'le Village"]		= isHorde and "The Taunka",
-		["Transitus Shield"]		= "Kirin Tor",
 		["Unu'pe"]					= "The Kalu'ak",
+		["D.E.H.T.A. Encampment"]	= "Cenarion Expedition",
+		["Transitus Shield"]		= "Kirin Tor",
+		["Taunka'le Village"]		= isHorde and "The Taunka",
 	},
 	-- Crystalsong Forest
 	[510] = {
@@ -468,16 +468,16 @@ local SF = {
 		["Moa'ki Harbor"]			= "The Kalu'ak",
 		["Agmar's Hammer"]			= isHorde and "Warsong Offensive",
 		["Dragon's Fall"]			= isHorde and "Warsong Offensive",
-		["Stars' Rest"]				= isAlliance and "Valiance Expedition",
 		["Venomspite"]				= isHorde and "The Hand of Vengeance",
 		["Westwind Refugee Camp"]	= isHorde and "The Taunka",
+		["Stars' Rest"]				= isAlliance and "Valiance Expedition",
 		["Wintergarde Keep"]		= isAlliance and "Valiance Expedition",
 	},
 	-- Dread Wastes
 	[858] = {
-		["Lonesome Cove"] = "The Anglers",
-		["Shelf of Mazu"] = "The Anglers",
-		["Soggy's Gamble"] = "The Anglers",
+		["Lonesome Cove"]            = "The Anglers",
+		["Shelf of Mazu"]            = "The Anglers",
+		["Soggy's Gamble"]           = "The Anglers",
 		["Wreck of the Mist-Hopper"] = "The Anglers",
 	},
 	-- Durotar
@@ -501,10 +501,10 @@ local SF = {
 	-- Hellfire Peninsula
 	[465] = {
 		["Cenarion Post"]			= "Cenarion Expedition",
+		["Throne of Kil'jaeden"]	= "Shattered Sun Offensive",
 		["Mag'har Grounds"]			= isHorde and "The Mag'har",
 		["Mag'har Post"]			= isHorde and "The Mag'har",
 		["Temple of Telhamat"]		= isAlliance and "Kurenai",
-		["Throne of Kil'jaeden"]	= "Shattered Sun Offensive",
 	},
 	-- Hillsbrad Foothills
 	[24]  = {
@@ -512,53 +512,57 @@ local SF = {
 	},
 	-- Howling Fjord
 	[491] = {
+		["Kamagua"]					  = "The Kalu'ak",
 		["Camp Winterhoof"]			  = isHorde and "The Taunka",
 		["Explorers' League Outpost"] = isAlliance and "Explorers' League",
-		["Kamagua"]					  = "The Kalu'ak",
 		["Steel Gate"]				  = isAlliance and "Explorers' League",
 	},
 	-- Icecrown
 	[492] = {
-		["The Argent Vanguard"]			    = "Argent Crusade",
-		["Crusaders' Pinnacle"]			    = "Argent Crusade",
-		["Argent Pavilion"]				    = isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
-		["Argent Tournament Grounds"]	    = isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
-		["Orgrim's Hammer"]				    = isHorde and "Warsong Offensive",
-		["Scourgeholme"]                    = "Argent Crusade",
-		["Silver Covenant Pavilion"]	    = isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
-		["Sunreaver Pavilion"]			    = isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
-		["The Alliance Valiants' Ring"]		= isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
-		["The Argent Valiants' Ring"]	    = isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
-		["The Aspirants' Ring"]			    = isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
-		["The Breach"]                      = "Argent Crusade",
-		["The Horde Valiants' Ring"]	    = isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
-		["The Pit of Fiends"]               = "Argent Crusade",
-		["The Ring of Champions"]		    = isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
-		["The Skybreaker"]				    = isAlliance and "Valiance Expedition",
-		["Valley of Echoes"]                = "Argent Crusade",
+		["The Argent Vanguard"]			= "Argent Crusade",
+		["Crusaders' Pinnacle"]			= "Argent Crusade",
+		["Scourgeholme"]				= "Argent Crusade",
+		["The Breach"]					= "Argent Crusade",
+		["The Pit of Fiends"]			= "Argent Crusade",
+		["Valley of Echoes"]			= "Argent Crusade",
+		["Orgrim's Hammer"]				= isHorde and "Warsong Offensive",
+		["The Skybreaker"]				= isAlliance and "Valiance Expedition",
+		["Argent Pavilion"]				= isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
+		["Argent Tournament Grounds"]	= isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
+		["Silver Covenant Pavilion"]	= isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
+		["Sunreaver Pavilion"]			= isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
+		["The Alliance Valiants' Ring"]	= isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
+		["The Argent Valiants' Ring"]	= isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
+		["The Aspirants' Ring"]			= isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
+		["The Horde Valiants' Ring"]	= isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
+		["The Ring of Champions"]		= isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
 	},
 	-- Krasarang Wilds
 	[857] = {
-		["Angkhal Pavilion"] = "The August Celestials",
-		["Cradle of Chi-Ji"] = "The August Celestials",
-		["Dawnchaser Retreat"] = isHorde and "Thunder Bluff",
-		["Dome Balrissa"] = "The August Celestials",
-		["Pedestal of Hope"] = "The August Celestials",
-		["Sentinel Basecamp"] = isAlliance and "Darnassus",
-		["Temple of the Red Crane"] = "The August Celestials",
-		["Thunder Cleft"] = isHorde and "Thunder Bluff",
+		["Angkhal Pavilion"]		= "The August Celestials",
+		["Cradle of Chi-Ji"]		= "The August Celestials",
+		["Dome Balrissa"]			= "The August Celestials",
+		["Pedestal of Hope"]		= "The August Celestials",
+		["Temple of the Red Crane"]	= "The August Celestials",
+		["Dawnchaser Retreat"]		= isHorde and "Thunder Bluff",
+		["Thunder Cleft"]			= isHorde and "Thunder Bluff",
+		["Sentinel Basecamp"]		= isAlliance and "Darnassus",
+		["Bilgewater Beach"]		= isHorde and "Dominance Offensive" or isAlliance and "Operation: Shieldwall",
+		["Domination Point"]		= isHorde and "Dominance Offensive" or isAlliance and "Operation: Shieldwall",
+		["Lion's Landing"]			= isHorde and "Dominance Offensive" or isAlliance and "Operation: Shieldwall",
+		["Ruins of Ogudei"]			= isHorde and "Dominance Offensive" or isAlliance and "Operation: Shieldwall",
 	},
 	-- Kun-Lai Summit
 	[809] = {
-		["Firebough Nook"] = "Shado-Pan",
-		["Gate of the August Celestials"] = "The August Celestials",
-		["Serpent's Spine"] = "Shado-Pan",
-		["Shado-Li Basin"] = "Shado-Pan",
-		["Shado-Pan Fallback"] = "Shado-Pan",
-		["Shado-Pan Monastery"] = "Shado-Pan",
-		["Temple of the White Tiger"] = "The August Celestials",
-		["The Ox Gate"] = "Shado-Pan",
-		["Winter's Blossom"] = "Shado-Pan",
+		["Gate of the August Celestials"]	= "The August Celestials",
+		["Temple of the White Tiger"]		= "The August Celestials",
+		["Firebough Nook"] 					= "Shado-Pan",
+		["Serpent's Spine"]					= "Shado-Pan",
+		["Shado-Li Basin"]					= "Shado-Pan",
+		["Shado-Pan Fallback"]				= "Shado-Pan",
+		["Shado-Pan Monastery"]				= "Shado-Pan",
+		["The Ox Gate"]						= "Shado-Pan",
+		["Winter's Blossom"]				= "Shado-Pan",
 	},
 	-- Nagrand
 	[477] = {
@@ -600,15 +604,15 @@ local SF = {
 	},
 	-- Southern Barrens
 	[607] = {
+		["Firestone Point"]			= "The Earthen Ring",
+		["Ruins of Taurajo"]		= isHorde and "Thunder Bluff",
+		["Spearhead"]				= isHorde and "Thunder Bluff",
+		["Vendetta Point"]			= isHorde and "Thunder Bluff",
 		["Bael Modan"]				= isHorde and "Thunder Bluff" or isAlliance and "Ironforge",
 		["Bael Modan Excavation"]	= isHorde and "Thunder Bluff" or isAlliance and "Ironforge",
 		["Bael'dun Keep"]			= isHorde and "Thunder Bluff" or isAlliance and "Ironforge",
-		["Firestone Point"]			= "The Earthen Ring",
 		["Frazzlecraz Motherlode"]	= isAlliance and "Ironforge",
-		["Ruins of Taurajo"]		= isHorde and "Thunder Bluff",
-		["Spearhead"]				= isHorde and "Thunder Bluff",
 		["Twinbraid's Patrol"]		= isAlliance and "Ironforge",
-		["Vendetta Point"]			= isHorde and "Thunder Bluff",
 	},
 	-- Stranglethorn Vale
 	[689] = { -- TODO: update
@@ -619,22 +623,22 @@ local SF = {
 	[495] = {
 		["Camp Tunka'lo"]			= isHorde and "Warsong Offensive",
 		["Frostfloe Deep"]			= isHorde and "Warsong Offensive",
-		["Frosthold"]				= isAlliance and "The Frostborn",
 		["Frosthowl Cavern"]		= isHorde and "Warsong Offensive",
 		["Gimorak's Den"]			= isHorde and "Warsong Offensive",
 		["Grom'arsh Crash-Site"]	= isHorde and "Warsong Offensive",
+		["The Howling Hollow"]		= isHorde and "Warsong Offensive",
+		["Plain of Echoes"]			= isHorde and "Warsong Offensive" or isAlliance and "The Frostborn",
+		["Temple of Life"]			= isHorde and "Warsong Offensive" or isAlliance and "The Frostborn",
+		["Frosthold"]				= isAlliance and "The Frostborn",
 		["Inventor's Library"]		= isAlliance and "The Frostborn",
 		["Loken's Bargain"]			= isAlliance and "The Frostborn",
 		["Mimir's Workshop"]		= isAlliance and "The Frostborn",
 		["Narvir's Cradle"]			= isAlliance and "The Frostborn",
 		["Nidavelir"]				= isAlliance and "The Frostborn",
-		["Plain of Echoes"]			= isHorde and "Warsong Offensive" or isAlliance and "The Frostborn",
 		["Temple of Invention"]		= isAlliance and "The Frostborn",
-		["Temple of Life"]			= isHorde and "Warsong Offensive" or isAlliance and "The Frostborn",
 		["Temple of Order"]			= isAlliance and "The Frostborn",
 		["Temple of Winter"]		= isAlliance and "The Frostborn",
 		["The Foot Steppes"]		= isAlliance and "The Frostborn",
-		["The Howling Hollow"]		= isHorde and "Warsong Offensive",
 	},
 	-- Tanaris
 	[161] = { -- TODO: update
@@ -642,12 +646,12 @@ local SF = {
 	},
 	-- Terokkar Forest
 	[478] = {
+		["Mana Tombs"]				= "The Consortium",
 		["Blackwind Lake"]			= "Sha'tari Skyguard",
 		["Blackwind Landing"]		= "Sha'tari Skyguard",
 		["Blackwind Valley"]		= "Sha'tari Skyguard",
 		["Lake Ere'Noru"]			= "Sha'tari Skyguard",
 		["Lower Veil Shil'ak"]		= "Sha'tari Skyguard",
-		["Mana Tombs"]				= "The Consortium",
 		["Skettis"]					= "Sha'tari Skyguard",
 		["Terokk's Rest"]			= "Sha'tari Skyguard",
 		["Upper Veil Shil'ak"]		= "Sha'tari Skyguard",
@@ -656,23 +660,23 @@ local SF = {
 	},
 	-- The Jade Forest
 	[806] = {
-		["Fountain of the Everseeing"] = "The August Celestials",
-		["Jade Temple Grounds"] = "The August Celestials",
-		["Mistveil Sea"] = "Order of the Cloud Serpent",
-		["Oona Kagu"] = "Order of the Cloud Serpent",
-		["Serpent's Heart"] = "Order of the Cloud Serpent",
-		["Serpent's Overlook"] = "Order of the Cloud Serpent",
-		["Temple of the Jade Serpent"] = "The August Celestials",
-		["Terrace of the Twin Dragons"] = "The August Celestials",
-		["The Arboretum"] = "Order of the Cloud Serpent",
-		["The Heart of Jade"] = "The August Celestials",
-		["The Scrollkeeper's Sanctum"] = "The August Celestials",
-		["The Widow's Wail"] = "Order of the Cloud Serpent",
-		["Windward Isle"] = "Order of the Cloud Serpent",
+		["Fountain of the Everseeing"]	= "The August Celestials",
+		["Jade Temple Grounds"]			= "The August Celestials",
+		["Temple of the Jade Serpent"]	= "The August Celestials",
+		["Terrace of the Twin Dragons"]	= "The August Celestials",
+		["The Heart of Jade"]			= "The August Celestials",
+		["The Scrollkeeper's Sanctum"]	= "The August Celestials",
+		["Mistveil Sea"]				= "Order of the Cloud Serpent",
+		["Oona Kagu"]					= "Order of the Cloud Serpent",
+		["Serpent's Heart"]				= "Order of the Cloud Serpent",
+		["Serpent's Overlook"]			= "Order of the Cloud Serpent",
+		["The Arboretum"]				= "Order of the Cloud Serpent",
+		["The Widow's Wail"]			= "Order of the Cloud Serpent",
+		["Windward Isle"]				= "Order of the Cloud Serpent",
 	},
 	-- The Veiled Stair
 	[873] = {
-		["Tavern in the Mists"] = "The Black Prince",
+		["Tavern in the Mists"]		= "The Black Prince",
 	},
 	-- Thousand Needles
 	[61]  = {
@@ -686,33 +690,33 @@ local SF = {
 	},
 	-- Townlong Steppes
 	[810] = {
-		["Niuzao Temple"] = "The August Celestials",
+		["Niuzao Temple"]			= "The August Celestials",
 	},
 	-- Twilight Highlands
 	[700] = {
-		["Dragonmaw Pass"]			= isHorde and "Bilgewater Cartel",
-		["Highbank"]				= isHorde and "Bilgewater Cartel" or isAlliance and "Stormwind",
 		["Iso'rath"]				= "The Earthen Ring",
-		["Obsidian Forest"]			= isAlliance and "Stormwind",
 		["Ring of the Elements"]	= "The Earthen Ring",
 		["Ruins of Drakgor"]		= "The Earthen Ring",
-		["The Krazzworks"]			= isHorde and "Bilgewater Cartel",
 		["The Maw of Madness"]		= "The Earthen Ring",
+		["Dragonmaw Pass"]			= isHorde and "Bilgewater Cartel",
+		["The Krazzworks"]			= isHorde and "Bilgewater Cartel",
+		["Highbank"]				= isHorde and "Bilgewater Cartel" or isAlliance and "Stormwind",
+		["Obsidian Forest"]			= isAlliance and "Stormwind",
 		["Victor's Point"]			= isAlliance and "Stormwind",
 	},
 	-- Vale of Eternal Blossoms
 	[811] = {
-		[""] = "The August Celestials", -- NEEDS VERIFICATION
-		["Gate of the Setting Sun"] = "Shado-Pan",
-		["Mogu'shan Palace"] = "The August Celestials",
-		["Seat of Knowledge"] = "The Lorewalkers",
-		["Serpent's Spine"] = "Shado-Pan",
-		["The Golden Terrace"] = isHorde and "The August Celestials",
-		["The Summer Terrace"] = isAlliance and "The August Celestials",
+		["Gate of the Setting Sun"]	= "Shado-Pan",
+		["Serpent's Spine"]			= "Shado-Pan",
+		[""]						= "The August Celestials", -- NEEDS VERIFICATION
+		["Mogu'shan Palace"]		= "The August Celestials",
+		["Seat of Knowledge"]		= "The Lorewalkers",
+		["The Golden Terrace"]		= isHorde and "The August Celestials",
+		["The Summer Terrace"]		= isAlliance and "The August Celestials",
 	},
 	-- Valley of the Four Winds
 	[807] = {
-		["Serpent's Spine"] = "Shado-Pan",
+		["Serpent's Spine"]			= "Shado-Pan",
 	},
 	-- Western Plaguelands
 	[22]  = { -- TODO: update
@@ -731,20 +735,20 @@ local SF = {
 	-- Winterspring
 	[281] = { -- TODO: update
 		["Frostfire Hot Springs"]	= "Timbermaw Hold",
-		["Frostsaber Rock"]			= isAlliance and "Wintersaber Trainers",
 		["Timbermaw Hold"]			= "Timbermaw Hold",
 		["Timbermaw Post"]			= "Timbermaw Hold",
 		["Winterfall Village"]		= "Timbermaw Hold",
+		["Frostsaber Rock"]			= isAlliance and "Wintersaber Trainers",
 	},
 	-- Zangarmarsh
 	[467] = {
 		["Funggor Cavern"]			= "Sporeggar",
 		["Quagg Ridge"]				= "Sporeggar",
 		["Sporeggar"]				= "Sporeggar",
-		["Swamprat Post"]			= isHorde and "Darkspear Trolls",
-		["Telredor"]				= isAlliance and "Exodar",
 		["The Spawning Glen"]		= "Sporeggar",
+		["Swamprat Post"]			= isHorde and "Darkspear Trolls",
 		["Zabra'jin"]				= isHorde and "Darkspear Trolls",
+		["Telredor"]				= isAlliance and "Exodar",
 	},
 	-- Zul'Drak
 	[496] = {
