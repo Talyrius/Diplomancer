@@ -29,7 +29,7 @@ Diplomancer.frame.runOnce = function(self)
 
 	--------------------------------------------------------------------
 
-	local factions = {}
+	local factions, factionDisplayNames = {}, {}
 
 	local reset
 
@@ -43,7 +43,7 @@ Diplomancer.frame.runOnce = function(self)
 			db.defaultFaction = nil
 			reset:Disable()
 		else
-			db.defaultFaction = value
+			db.defaultFaction = factionDisplayNames[value] or value
 			reset:Enable()
 		end
 		Diplomancer:Update()
@@ -93,13 +93,25 @@ Diplomancer.frame.runOnce = function(self)
 	self.refresh = function()
 		wipe(factions)
 		Diplomancer:ExpandFactionHeaders()
+		local curHeader
 		for i = 1, GetNumFactions() do
-			local name, _, standing, _, _, _, _, _, isHeader = GetFactionInfo(i)
+			local name, _, standing, _, _, _, _, _, isHeader, _, hasRep, _, isChild = GetFactionInfo(i)
 			if name == L["Inactive"] then
 				break
 			end
-			if not isHeader and (standing < 8 or not db.ignoreExalted) then
-				tinsert(factions, name)
+			if isHeader and hasRep then
+				curHeader = name
+			elseif curHeader and (isHeader or not isChild) then
+				curHeader = nil
+			end
+			if (hasRep or not isHeader) and (standing < 8 or not db.ignoreExalted) then
+				if curHeader then
+					local display = format("%s: %s", curHeader, name)
+					factionDisplayNames[display] = name
+					tinsert(factions, display)
+				else
+					tinsert(factions, name)
+				end
 			end
 		end
 		Diplomancer:RestoreFactionHeaders()
