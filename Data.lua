@@ -548,9 +548,18 @@ local SF = {
 		["Thunder Cleft"]			= isHorde and "Thunder Bluff",
 		["Sentinel Basecamp"]		= isAlliance and "Darnassus",
 		["Bilgewater Beach"]		= isHorde and "Dominance Offensive" or isAlliance and "Operation: Shieldwall",
+		["Blacksand Spillway"]		= isHorde and "Dominance Offensive" or isAlliance and "Operation: Shieldwall",
 		["Domination Point"]		= isHorde and "Dominance Offensive" or isAlliance and "Operation: Shieldwall",
 		["Lion's Landing"]			= isHorde and "Dominance Offensive" or isAlliance and "Operation: Shieldwall",
+		["Ogregrind's Dig"]			= isHorde and "Dominance Offensive" or isAlliance and "Operation: Shieldwall",
+		["Quickchop's Lumber Farm"]	= isHorde and "Dominance Offensive" or isAlliance and "Operation: Shieldwall",
 		["Ruins of Ogudei"]			= isHorde and "Dominance Offensive" or isAlliance and "Operation: Shieldwall",
+		["Sparkrocket Outpost"]		= isHorde and "Dominance Offensive" or isAlliance and "Operation: Shieldwall",
+		["The Boiling Crustacean"]	= isHorde and "Dominance Offensive" or isAlliance and "Operation: Shieldwall",
+		["The Skyfire"]				= isHorde and "Dominance Offensive" or isAlliance and "Operation: Shieldwall",
+		["The Southern Isles"]		= isHorde and "Dominance Offensive" or isAlliance and "Operation: Shieldwall",
+		-- Faction ships don't have a subzone name
+		[""]						= isHorde and "Dominance Offensive" or isAlliance and "Operation: Shieldwall",
 	},
 	-- Kun-Lai Summit
 	[809] = {
