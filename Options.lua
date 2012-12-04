@@ -66,7 +66,7 @@ Diplomancer.frame.runOnce = function(self)
 
 	local champion = CreateCheckbox(self, L["Default to championed faction"], L["Use your currently championed faction as your default faction."])
 	champion:SetPoint("TOPLEFT", default, "BOTTOMLEFT", 0, -10)
-	champion.OnClick = function(self, checked)
+	champion.OnValueChanged = function(self, checked)
 		db.defaultChampion = checked
 		Diplomancer:Update()
 	end
@@ -75,7 +75,7 @@ Diplomancer.frame.runOnce = function(self)
 
 	local exalted = CreateCheckbox(self, L["Ignore Exalted factions"], L["Don't watch factions with whom you have already attained Exalted reputation."])
 	exalted:SetPoint("TOPLEFT", champion, "BOTTOMLEFT", 0, -8)
-	exalted.OnClick = function(self, checked)
+	exalted.OnValueChanged = function(self, checked)
 		db.ignoreExalted = checked
 		Diplomancer:Update()
 	end
@@ -84,7 +84,7 @@ Diplomancer.frame.runOnce = function(self)
 
 	local announce = CreateCheckbox(self, L["Announce watched faction"], L["Show a message in the chat frame when your watched faction is changed."])
 	announce:SetPoint("TOPLEFT", exalted, "BOTTOMLEFT", 0, -8)
-	announce.OnClick = function(self, checked)
+	announce.OnValueChanged = function(self, checked)
 		db.verbose = checked
 	end
 
@@ -118,15 +118,11 @@ Diplomancer.frame.runOnce = function(self)
 		sort(factions)
 
 		default:SetValue(db.defaultFaction or racialFaction)
-		if not db.defaultFaction or db.defaultFaction == racialFaction then
-			reset:Disable()
-		else
-			reset:Enable()
-		end
+		default:SetEnabled(db.defaultFaction and db.defaultFaction ~= racialFaction)
 
-		champion:SetChecked(db.defaultChampion)
-		exalted:SetChecked(db.ignoreExalted)
-		announce:SetChecked(db.verbose)
+		champion:SetValue(db.defaultChampion)
+		exalted:SetValue(db.ignoreExalted)
+		announce:SetValue(db.verbose)
 	end
 end
 

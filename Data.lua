@@ -419,23 +419,23 @@ local ZF = {
 local SF = {
 	-- Blade's Edge Mountains
 	[475] = {
-		["Evergrove"]				= "Cenarion Expedition",",
+		["Evergrove"]				= "Cenarion Expedition",
 		["Ruuan Weald"]				= "Cenarion Expedition",
 		["Forge Camp: Terror"]		= "Ogri'la",
 		["Forge Camp: Wrath"]		= "Ogri'la",
-		["Ogri'la"]					= "Ogri'la
+		["Ogri'la"]					= "Ogri'la",
 		["Shartuul's Transporter"]	= "Ogri'la",
 		["Vortex Pinnacle"]			= "Ogri'la",
 		["Vortex Summit"]			= "Ogri'la",
 	},
 	-- Borean Tundra
 	[486] = {
+		["D.E.H.T.A. Encampment"]	= "Cenarion Expedition",
 		["Amber Ledge"]				= "Kirin Tor",
+		["Transitus Shield"]		= "Kirin Tor",
 		["Kaskala"]					= "The Kalu'ak",
 		["Njord's Breath Bay"]		= "The Kalu'ak",
 		["Unu'pe"]					= "The Kalu'ak",
-		["D.E.H.T.A. Encampment"]	= "Cenarion Expedition",
-		["Transitus Shield"]		= "Kirin Tor",
 		["Taunka'le Village"]		= isHorde and "The Taunka",
 	},
 	-- Crystalsong Forest
@@ -565,13 +565,13 @@ local SF = {
 	[809] = {
 		["Gate of the August Celestials"]	= "The August Celestials",
 		["Temple of the White Tiger"]		= "The August Celestials",
-		["Firebough Nook"] 					= "Shado-Pan",
-		["Serpent's Spine"]					= "Shado-Pan",
-		["Shado-Li Basin"]					= "Shado-Pan",
-		["Shado-Pan Fallback"]				= "Shado-Pan",
-		["Shado-Pan Monastery"]				= "Shado-Pan",
-		["The Ox Gate"]						= "Shado-Pan",
-		["Winter's Blossom"]				= "Shado-Pan",
+		["Firebough Nook"] 			= "Shado-Pan",
+		["Serpent's Spine"]			= "Shado-Pan",
+		["Shado-Li Basin"]			= "Shado-Pan",
+		["Shado-Pan Fallback"]		= "Shado-Pan",
+		["Shado-Pan Monastery"]		= "Shado-Pan",
+		["The Ox Gate"]				= "Shado-Pan",
+		["Winter's Blossom"]		= "Shado-Pan",
 	},
 	-- Nagrand
 	[477] = {
@@ -596,20 +596,20 @@ local SF = {
 	},
 	-- Shattrath City
 	[481] = {
-		["Aldor Rise"]				= "The Aldor",
 		["Lower City"]				= "Lower City",
-		["Scryer's Tier"]			= "The Scryers",
+		["Aldor Rise"]				= "The Aldor",
 		["Shrine of Unending Light"]= "The Aldor",
+		["Scryer's Tier"]			= "The Scryers",
 		["The Seer's Library"]		= "The Scryers",
 	},
 	-- Sholazar Basin
 	[493] = {
 		["Frenzyheart Hill"]		= "Frenzyheart Tribe",
 		["Kartak's Hold"]			= "Frenzyheart Tribe",
+		["Spearborn Encampment"]	= "Frenzyheart Tribe",
 		["Mistwhisper Refuge"]		= "The Oracles",
 		["Rainspeaker Canopy"]		= "The Oracles",
 		["Sparktouched Haven"]		= "The Oracles",
-		["Spearborn Encampment"]	= "Frenzyheart Tribe",
 	},
 	-- Southern Barrens
 	[607] = {
@@ -790,19 +790,18 @@ local SF = {
 	else
 		local BF = LibStub and LibStub("LibBabble-Faction-3.0", true) and LibStub("LibBabble-Faction-3.0"):GetUnstrictLookupTable()
 		local BS = LibStub and LibStub("LibBabble-SubZone-3.0", true) and LibStub("LibBabble-SubZone-3.0"):GetUnstrictLookupTable()
-
 		if not BF or not BS then
 			print("|cff33ff99Diplomancer|r is not yet compatible with your language. See the download page for more information.")
 		end
 
-		self.championFactions = { }
+		self.championFactions = {}
 		for buff, data in pairs(CF) do
 			self.championFactions[buff] = { data[1], BF[data[2]] }
 		end
 
-		self.championZones = { }
+		self.championZones = {}
 		for level, data in pairs(CZ) do
-			self.championZones[level] = { }
+			self.championZones[level] = {}
 			for zone, info in pairs(data) do
 				self.championZones[level][zone] = info
 			end
@@ -810,9 +809,9 @@ local SF = {
 
 		self.racialFaction = BF[RF[race]]
 
-		self.subzoneFactions = { }
+		self.subzoneFactions = {}
 		for zone, subzones in pairs(SF) do
-			self.subzoneFactions[zone] = { }
+			self.subzoneFactions[zone] = {}
 			for subzone, faction in pairs(subzones) do
 				if faction and BS[subzone] then
 					self.subzoneFactions[zone][BS[subzone]] = BF[faction]
@@ -824,7 +823,7 @@ local SF = {
 			end
 		end
 
-		self.zoneFactions = { }
+		self.zoneFactions = {}
 		for zone, faction in pairs(ZF) do
 			if faction then
 				self.zoneFactions[zone] = BF[faction]
