@@ -425,7 +425,7 @@ self.zoneFactions = {
 -- Shadow Labyrinth
 	[724] = F["Lower City"],
 -- Shadowglen
-	[888] = F["Shadowglen"],
+	[888] = F["Darnassus"],
 -- Shadowmoon Valley
 	[473] = F["Netherwing"],
 -- Shattrath City
@@ -918,13 +918,13 @@ self.subzoneFactions = {
 					elseif faction and faction == "" then
 						SF[zone][subzone] = faction
 					else
-						-- print("|cff33ff99Diplomancer:|r missing subzone", zone, "==>", subzone)
+						-- print("|cff33ff99Diplomancer:|r LBSZ is missing subzone", zone, "==>", subzone)
 					end
 				end
 			end
 			self.subzoneFactions = SF
 		else
-			print("|cff33ff99Diplomancer|r is running without support for subzones because LibBabble-SubZone-3.0 does not yet provide subzone names for your language. See the download page for more information!")
+			print("|cff33ff99Diplomancer|r is running without subzone detection, because the LibBabble-SubZone-3.0 library does not yet provide subzone names for your language. See the download page for more information!")
 		end
 	end
 
