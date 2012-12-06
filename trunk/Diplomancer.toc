@@ -26,7 +26,7 @@
 ## LoadManagers: AddonLoader
 ## X-LoadOn-Always: delayed
 
-## OptionalDependencies: LibAboutPanel, LibBabble-Faction-3.0, LibBabble-SubZone-3.0, PhanxConfigWidgets
+## OptionalDependencies: LibAboutPanel, LibBabble-SubZone-3.0, PhanxConfigWidgets
 ## SavedVariablesPerCharacter: DiplomancerSettings
 
 Libs\LibStub\LibStub.lua
@@ -38,8 +38,7 @@ Libs\PhanxConfig-Header\PhanxConfig-Header.lua
 Libs\PhanxConfig-OptionsPanel\PhanxConfig-OptionsPanel.lua
 Libs\PhanxConfig-ScrollingDropdown\PhanxConfig-ScrollingDropdown.lua
 
-Libs\LibBabble-Faction-3.0\LibBabble-3.0.lua
-Libs\LibBabble-Faction-3.0\LibBabble-Faction-3.0.lua
+Libs\LibBabble-SubZone-3.0\LibBabble-3.0.lua
 Libs\LibBabble-SubZone-3.0\LibBabble-SubZone-3.0.lua
 
 Localization.lua

@@ -10,7 +10,8 @@
 local ADDON_NAME, Diplomancer = ...
 _G.Diplomancer = Diplomancer
 
-local db, onTaxi, tabard, taxiEnded, championFactions, championZones, racialFaction, subzoneFactions, zoneFactions
+local db, onTaxi, tabard, taxiEnded
+local championFactions, championZones, racialFaction, subzoneFactions, zoneFactions
 
 ------------------------------------------------------------------------
 
@@ -26,8 +27,8 @@ end })
 
 ------------------------------------------------------------------------
 
+local DEBUG = false
 function Diplomancer:Debug(text, ...)
-	do return end
 	if text then
 		if text:match("%%[dfqsx%d%.]") then
 			print("|cffff9999Diplomancer:|r", format(text, ...))
@@ -51,10 +52,10 @@ end
 
 function Diplomancer:ADDON_LOADED(_, addon)
 	if addon ~= ADDON_NAME then return end
-	self:Debug("ADDON_LOADED", addon)
+	if DEBUG then self:Debug("ADDON_LOADED", addon) end
 
 	if not DiplomancerSettings then
-		self:Debug("No saved settings found!")
+		if DEBUG then self:Debug("No saved settings found!") end
 		DiplomancerSettings = {}
 	end
 	db = DiplomancerSettings
@@ -72,7 +73,7 @@ end
 ------------------------------------------------------------------------
 
 function Diplomancer:PLAYER_LOGIN()
-	self:Debug("PLAYER_LOGIN")
+	if DEBUG then self:Debug("PLAYER_LOGIN") end
 
 	self:LocalizeData()
 	if not self.localized then return end
@@ -119,30 +120,30 @@ function Diplomancer:Update(event)
 		-- returns true during the PLAYER_CONTROL_GAINED event.
 		taxiEnded = false
 	elseif UnitOnTaxi("player") then
-		self:Debug("On taxi. Skipping update.")
+		if DEBUG then self:Debug("On taxi. Skipping update.") end
 		onTaxi = true
 		return
 	end
 
 	local faction
 	local zone = self:GetCurrentMapAreaID()
-	self:Debug("Update", event, zone)
+	if DEBUG then self:Debug("Update", event, zone) end
 
 	local tabardFaction, tabardLevel = self:GetChampionedFaction()
 	if tabardFaction then
 		local _, instanceType = IsInInstance()
 		if instanceType == "party" then
-			self:Debug("Wearing tabard for:", tabardFaction)
+			if DEBUG then self:Debug("Wearing tabard for:", tabardFaction) end
 			local instances = championZones[tabardLevel]
 			if instances and instances[zone] then
 				-- Championing this faction has a level requirement.
 				if GetInstanceDifficulty() >= instances[zone] then
 					faction = tabardFaction
-					self:Debug("CHAMPION", faction)
+					if DEBUG then self:Debug("CHAMPION", faction) end
 					if db.defaultChampion then
 						db.defaultFaction = faction
 					end
-					if self:SetWatchedFactionByName(faction, db.verbose) then
+					if self:SetWatchedFactionByID(faction, db.verbose) then
 						return
 					end
 				end
@@ -152,11 +153,11 @@ function Diplomancer:Update(event)
 				local minDifficulty = championZones[85][zone] or championZones[80][zone]
 				if not minDifficulty or GetInstanceDifficulty() >= minDifficulty then
 					faction = tabardFaction
-					self:Debug("CHAMPION", faction)
+					if DEBUG then self:Debug("CHAMPION", faction) end
 					if db.defaultChampion then
 						db.defaultFaction = faction
 					end
-					if self:SetWatchedFactionByName(faction, db.verbose) then
+					if self:SetWatchedFactionByID(faction, db.verbose) then
 						return
 					end
 				end
@@ -165,22 +166,22 @@ function Diplomancer:Update(event)
 	end
 
 	local subzone = GetSubZoneText()
-	self:Debug("Checking subzone:", strlen(subzone) > 0 and subzone or "nil")
+	if DEBUG then self:Debug("Checking subzone:", strlen(subzone) > 0 and subzone or "nil") end
 	if subzone then
 		faction = subzoneFactions[zone] and subzoneFactions[zone][subzone]
 		if faction then
-			self:Debug("SUBZONE", faction)
-			if self:SetWatchedFactionByName(faction, db.verbose) then
+			if DEBUG then self:Debug("SUBZONE", faction) end
+			if self:SetWatchedFactionByID(faction, db.verbose) then
 				return
 			end
 		end
 	end
 
-	self:Debug("Checking zone:", zone, GetRealZoneText())
+	if DEBUG then self:Debug("Checking zone:", zone, GetRealZoneText()) end
 	faction = zoneFactions[zone]
 	if faction then
-		self:Debug("ZONE", faction)
-		if self:SetWatchedFactionByName(faction, db.verbose) then
+		if DEBUG then self:Debug("ZONE", faction) end
+		if self:SetWatchedFactionByID(faction, db.verbose) then
 			return
 		end
 	end
@@ -188,17 +189,17 @@ function Diplomancer:Update(event)
 	if tabardFaction and db.defaultChampion then
 		faction = tabardFaction
 		if faction then
-			self:Debug("DEFAULT CHAMPION", faction)
-			if self:SetWatchedFactionByName(faction, db.verbose) then
+			if DEBUG then self:Debug("DEFAULT CHAMPION", faction) end
+			if self:SetWatchedFactionByID(faction, db.verbose) then
 				return
 			end
 		end
 	end
 
 	faction = db.defaultFaction or racialFaction
-	self:Debug(db.defaultFaction and "DEFAULT" or "RACE", faction)
-	if not self:SetWatchedFactionByName(faction, db.verbose) then
-		self:Debug("NONE")
+	if DEBUG then self:Debug(db.defaultFaction and "DEFAULT" or "RACE", faction) end
+	if not self:SetWatchedFactionByID(faction, db.verbose) then
+		if DEBUG then self:Debug("NONE") end
 		SetWatchedFactionIndex(0)
 	end
 end
@@ -211,7 +212,7 @@ Diplomancer.ZONE_CHANGED_NEW_AREA = Diplomancer.Update
 ------------------------------------------------------------------------
 
 function Diplomancer:PLAYER_CONTROL_GAINED()
-	self:Debug("PLAYER_CONTROL_GAINED")
+	if DEBUG then self:Debug("PLAYER_CONTROL_GAINED") end
 	if onTaxi then
 		onTaxi = false
 		taxiEnded = true
@@ -225,9 +226,9 @@ end
 
 function Diplomancer:UNIT_INVENTORY_CHANGED(_, unit)
 	if unit == "player" then
-		self:Debug("UNIT_INVENTORY_CHANGED")
+		if DEBUG then self:Debug("UNIT_INVENTORY_CHANGED") end
 		local new = GetInventoryItemID(unit, INVSLOT_TABARD)
-		self:Debug("Current", new and GetItemInfo(new) or "none", "Previous", tabard and GetItemInfo(tabard) or "none")
+		if DEBUG then self:Debug("Current", new and GetItemInfo(new) or "none", "Previous", tabard and GetItemInfo(tabard) or "none") end
 		if new ~= tabard then
 			tabard = new
 			self:Update()
@@ -237,25 +238,25 @@ end
 
 ------------------------------------------------------------------------
 
-function Diplomancer:SetWatchedFactionByName(name, verbose)
-	if type(name) ~= "string" or name:len() == 0 then return end
-	self:Debug("SetWatchedFactionByName: %s", name)
+function Diplomancer:SetWatchedFactionByID(id, verbose)
+	if type(id) ~= "number" then return end
+	if DEBUG then self:Debug("SetWatchedFactionByID:", id) end
 
 	self:ExpandFactionHeaders()
 
 	for i = 1, GetNumFactions() do
-		local faction, _, standing, _, _, _, _, _, _, _, _, watched = GetFactionInfo(i)
-		--self:Debug("GetFactionInfo", i, faction, standing, watched)
-		if faction == name then
-			self:Debug("Found faction:", faction, standing, watched)
-			if (standing < 8 or not db.ignoreExalted) then
-				if not watched then
+		local name, _, standingID, _, _, _, _, _, _, _, _, isWatched, _, factionID = GetFactionInfo(i)
+		--if DEBUG then self:Debug("GetFactionInfo", i, factionID, name, standingID, isWatched) end
+		if factionID == id then
+			if DEBUG then self:Debug("Found faction:", name, standingID, isWatched) end
+			if (standingID < 8 or not db.ignoreExalted) then
+				if not isWatched then
 					SetWatchedFactionIndex(i)
 					if verbose then
-						self:Print(L["Now watching %s."], faction)
+						self:Print(L["Now watching %s."], name)
 					end
 				end
-				return true, name
+				return name, id
 			else
 				break
 			end
@@ -286,20 +287,19 @@ end
 ------------------------------------------------------------------------
 
 function Diplomancer:GetChampionedFaction()
-	local CF = self.championFactions
-	for i = 1, 40 do
+	for i = 1, 32 do
 		local _, _, _, _, _, _, _, _, _, _, id = UnitBuff("player", i)
 		if not id then
-			return
+			break
 		end
-		local data = CF[id]
+		local data = championFactions[id]
 		if data then
 			local faction, level = data[2], data[1]
-			self:Debug("GetChampionedFaction:", tostring(faction), tostring(level))
+			if DEBUG then self:Debug("GetChampionedFaction:", tostring(faction), tostring(level)) end
 			return faction, level
 		end
 	end
-	self:Debug("GetChampionedFaction:", "none")
+	if DEBUG then self:Debug("GetChampionedFaction:", "none") end
 end
 
 ------------------------------------------------------------------------
@@ -316,7 +316,7 @@ function Diplomancer:ExpandFactionHeaders()
 				factionHeaderState[name] = true
 				ExpandFactionHeader(i)
 				n = GetNumFactions()
-			elseif name == L["Inactive"] then
+			elseif name == FACTION_INACTIVE then
 				if not ReputationFrame:IsShown() then
 					CollapseFactionHeader(i)
 				end
