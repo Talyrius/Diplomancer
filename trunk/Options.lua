@@ -37,13 +37,12 @@ Diplomancer.frame.runOnce = function(self)
 		L["Select a faction to watch when your current location doesn't have an associated faction."])
 	default:SetPoint("TOPLEFT", notes, "BOTTOMLEFT", 0, -8)
 	default:SetWidth(270)
-	default:SetValue(db.defaultFaction or racialFaction)
 	default.OnValueChanged = function(self, value)
 		if value == racialFaction then
 			db.defaultFaction = nil
 			reset:Disable()
 		else
-			db.defaultFaction = factionDisplayNames[value] or value
+			db.defaultFaction = Diplomancer:GetFactionIDFromName(factionDisplayNames[value] or value)
 			reset:Enable()
 		end
 		Diplomancer:Update()
@@ -58,7 +57,7 @@ Diplomancer.frame.runOnce = function(self)
 	reset:SetScript("OnClick", function(self)
 		self:Disable()
 		db.defaultFaction = nil
-		default:SetValue(racialFaction)
+		default:SetValue(Diplomancer:GetFactionNameFromID(racialFaction))
 		Diplomancer:Update()
 	end)
 
@@ -97,7 +96,7 @@ Diplomancer.frame.runOnce = function(self)
 		for i = 1, GetNumFactions() do
 			local name, description, standingID, barMin, barMax, barValue, atWarWith, canToggleAtWar,
 				isHeader, isCollapsed, hasRep, isWatched, isChild, factionID = GetFactionInfo(i)
-			if name == L["Inactive"] then
+			if name == FACTION_INACTIVE then
 				break
 			end
 			if isHeader and isChild then
@@ -105,7 +104,7 @@ Diplomancer.frame.runOnce = function(self)
 			elseif curHeader and (isHeader or not isChild) then
 				curHeader = nil
 			end
-			if (hasRep or not isHeader) and (standing < 8 or not db.ignoreExalted) then
+			if (hasRep or not isHeader) and (standingID < 8 or not db.ignoreExalted) then
 				if factionID and GetFriendshipReputation(factionID) then
 					local display = format("%s: %s", curHeader, name)
 					factionDisplayNames[display] = name
@@ -118,12 +117,9 @@ Diplomancer.frame.runOnce = function(self)
 		Diplomancer:RestoreFactionHeaders()
 		sort(factions)
 
-		default:SetValue(db.defaultFaction or racialFaction)
-		if db.defaultFaction and db.defaultFaction ~= racialFaction then
-			default:Enable()
-		else
-			default:Disable()
-		end
+		local defaultValue = Diplomancer:GetFactionNameFromID(db.defaultFaction or racialFaction)
+		default:SetValue(defaultValue)
+		reset:SetEnabled(db.defaultFaction and db.defaultFaction ~= racialFaction)
 
 		champion:SetValue(db.defaultChampion)
 		exalted:SetValue(db.ignoreExalted)
@@ -139,24 +135,6 @@ SLASH_DIPLOMANCER1 = "/diplomancer"
 SLASH_DIPLOMANCER2 = "/dm"
 
 SlashCmdList.DIPLOMANCER = function(text)
-	if text and strlen(text) > 0 then
-		local cmd, arg = strmatch(strlower(strtrim(text)), "^(%w+)%s*(.*)$")
-		if cmd == "default" then
-			local faction = Diplomancer:GetFactionNameMatch(arg)
-			if faction then
-				DiplomancerSettings.default = faction
-				return Diplomancer:Update()
-			end
-		else
-			local db = DiplomancerSettings
-			for k, v in pairs(db) do
-				if strlower(k) == cmd and type(v) == "boolean" then
-					db[k] = not db[k]
-					return Diplomancer:Update()
-				end
-			end
-		end
-	end
 	InterfaceOptionsFrame_OpenToCategory(Diplomancer.aboutPanel)
 	InterfaceOptionsFrame_OpenToCategory(Diplomancer.frame)
 end

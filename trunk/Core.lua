@@ -60,6 +60,10 @@ function Diplomancer:ADDON_LOADED(_, addon)
 	end
 	db = DiplomancerSettings
 
+	if type(db.defaultFaction) == "string" then
+		db.defaultFaction = self:GetFactionIDFromName(db, defaultFaction)
+	end
+
 	self.frame:UnregisterEvent("ADDON_LOADED")
 	self.ADDON_LOADED = nil
 
@@ -241,9 +245,7 @@ end
 function Diplomancer:SetWatchedFactionByID(id, verbose)
 	if type(id) ~= "number" then return end
 	if DEBUG then self:Debug("SetWatchedFactionByID:", id) end
-
 	self:ExpandFactionHeaders()
-
 	for i = 1, GetNumFactions() do
 		local name, _, standingID, _, _, _, _, _, _, _, _, isWatched, _, factionID = GetFactionInfo(i)
 		--if DEBUG then self:Debug("GetFactionInfo", i, factionID, name, standingID, isWatched) end
@@ -262,26 +264,7 @@ function Diplomancer:SetWatchedFactionByID(id, verbose)
 			end
 		end
 	end
-
 	self:RestoreFactionHeaders()
-end
-
-------------------------------------------------------------------------
-
-function Diplomancer:GetFactionNameMatch(text)
-	if type(text) == "string" and strlen(text) > 0 then
-		text = strlower(text)
-
-		self:ExpandFactionHeaders()
-
-		local faction
-		for i = 1, GetNumFactions() do
-			faction = GetFactionInfo(i)
-			if gsub(strlower(faction), "'", ""):match(text) then
-				return faction
-			end
-		end
-	end
 end
 
 ------------------------------------------------------------------------
@@ -304,35 +287,80 @@ end
 
 ------------------------------------------------------------------------
 
-local FACTION_INACTIVE = FACTION_INACTIVE
-local factionHeaderState = {}
+function Diplomancer:GetFactionIDFromName(search)
+	if DEBUG then self:Debug("GetFactionIDFromName", search) end
+	local result1, result2
+	if not search then
+		return
+	end
+	search = gsub(strlower(tostring(search)), "['%s%-]", "")
+	if strlen(search) < 1 then
+		return
+	end
+
+	self:ExpandFactionHeaders()
+	for i = 1, GetNumFactions() do
+		local name, _, _, _, _, _, _, _, _, _, _, _, _, factionID = GetFactionInfo(i)
+		local text = gsub(strlower(tostring(name)), "['%s%-]", "")
+		if strmatch(text, search) then
+			self:RestoreFactionHeaders()
+			return factionID, name
+		end
+	end
+	self:RestoreFactionHeaders()
+end
+
+function Diplomancer:GetFactionNameFromID(search)
+	if DEBUG then self:Debug("GetFactionNameFromID", search) end
+	if search and type(search) ~= "number" then
+		search = tonumber(search)
+	end
+	if not search then
+		return
+	end
+
+	self:ExpandFactionHeaders()
+	for i = 1, GetNumFactions() do
+		local name, _, _, _, _, _, _, _, _, _, _, _, _, factionID = GetFactionInfo(i)
+		if factionID == search then
+			self:RestoreFactionHeaders()
+			return name, factionID
+		end
+	end
+	self:RestoreFactionHeaders()
+end
+
+------------------------------------------------------------------------
+
+local wasCollapsed = {}
 
 function Diplomancer:ExpandFactionHeaders()
-	local n = GetNumFactions()
-	for i = 1, n do
+	if DEBUG then self:Debug("ExpandFactionHeaders") end
+	for i = GetNumFactions(), 1, -1 do
 		local name, _, _, _, _, _, _, _, isHeader, isCollapsed = GetFactionInfo(i)
 		if isHeader then
-			if isCollapsed and name ~= FACTION_INACTIVE then
-				factionHeaderState[name] = true
-				ExpandFactionHeader(i)
-				n = GetNumFactions()
-			elseif name == FACTION_INACTIVE then
+			if name == FACTION_INACTIVE then
 				if not ReputationFrame:IsShown() then
 					CollapseFactionHeader(i)
 				end
-				break
+			elseif isCollapsed then
+				wasCollapsed[name] = true
+				ExpandFactionHeader(i)
+				i = GetNumFactions()
 			end
 		end
 	end
 end
 
 function Diplomancer:RestoreFactionHeaders()
-	local n = GetNumFactions()
-	for i = 1, n do
+	if DEBUG then self:Debug("RestoreFactionHeaders") end
+	if ReputationFrame:IsShown() then return end
+	for i = GetNumFactions(), 1, -1 do
 		local name, _, _, _, _, _, _, _, isHeader, isCollapsed = GetFactionInfo(i)
-		if isHeader and not isCollapsed and factionHeaderState[name] then
+		if isHeader and not isCollapsed and wasCollapsed[name] then
 			CollapseFactionHeader(i)
-			n = GetNumFactions()
+			i = GetNumFactions()
 		end
 	end
+	wipe(wasCollapsed)
 end
