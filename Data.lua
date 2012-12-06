@@ -13,44 +13,187 @@ function Diplomancer:LocalizeData()
 	if self.localized then return end
 	-- self:Debug("LocalizeData")
 
-	local _, race = UnitRace("player") -- arg2 is "Scourge" for Undead players
-
-	local isHorde = UnitFactionGroup("player") == "Horde"
-	local isAlliance = UnitFactionGroup("player") == "Alliance"
+	local H = UnitFactionGroup("player") == "Horde"
+	local A = UnitFactionGroup("player") == "Alliance"
 
 ------------------------------------------------------------------------
 
-local CF = {
-	[93830]  = { 15, "Bilgewater Cartel" },
-	[93827]  = { 15, "Darkspear Trolls" },
-	[93806]  = { 15, "Darnassus" },
-	[93811]  = { 15, "Exodar" },
-	[93816]  = { 15, "Gilneas" },
-	[93821]  = { 15, "Gnomeregan" },
-	[93806]  = { 15, "Gnomeregan" },
-	[126436] = { 15, "Huojin Pandaren" },
-	[93805]  = { 15, "Ironforge" },
-	[93825]  = { 15, "Orgrimmar" },
-	[93828]  = { 15, "Silvermoon City" },
-	[93795]  = { 15, "Stormwind" },
-	[94463]  = { 15, "Thunder Bluff" },
-	[126434] = { 15, "Tushui Pandaren" },
-	[94462]  = { 15, "Undercity" },
-
-	[57819]  = { 80, "Argent Crusade" },
-	[57821]  = { 80, "Kirin Tor" },
-	[57820]  = { 80, "Knights of the Ebon Blade" },
-	[57822]  = { 80, "The Wyrmrest Accord" },
-
-	[94158]  = { 85, "Dragonmaw Clan" },
-	[93339]  = { 85, "The Earthen Ring" },
-	[93341]  = { 85, "Guardians of Hyjal" },
-	[93337]  = { 85, "Ramkahen" },
-	[93347]  = { 85, "Therazane" },
-	[93368]  = { 85, "Wildhammer Clan" },
+local F = { -- mapping table for sanity
+	["Akama's Trust"] = 1416,
+	["Alliance Vanguard"] = 1037,
+	["Argent Crusade"] = 1106,
+	["Argent Dawn"] = 529,
+	["Ashtongue Deathsworn"] = 1012,
+	["Avengers of Hyjal"] = 1204,
+	["Baradin's Wardens"] = 1177,
+	["Bilgewater Cartel"] = 1133,
+	["Bizmo's Brawlpub"] = 1419,
+	["Bloodsail Buccaneers"] = 87,
+	["Booty Bay"] = 21,
+	["Brawl'gar Arena"] = 1374,
+	["Brood of Nozdormu"] = 910,
+	["Cenarion Circle"] = 609,
+	["Cenarion Expedition"] = 942,
+	["Chee Chee"] = 1277, -- The Tillers
+	["Darkmoon Faire"] = 909,
+	["Darkspear Trolls"] = 530,
+	["Darnassus"] = 69,
+	["Dominance Offensive"] = 1375,
+	["Dragonmaw Clan"] = 1172,
+	["Ella"] = 1275, -- The Tillers
+	["Everlook"] = 577,
+	["Exodar"] = 930,
+	["Explorer's League"] = 1068,
+	["Farmer Fung"] = 1283, -- The Tillers
+	["Fish Fellreed"] = 1282, -- The Tillers
+	["Forest Hozen"] = 1228,
+	["Frenzyheart Tribe"] = 1104,
+	["Frostwolf Clan"] = 729,
+	["Gadgetzan"] = 369,
+	["Gelkis Clan Centaur"] = 92,
+	["Gilneas"] = 1134,
+	["Gina Mudclaw"] = 1281, -- The Tillers
+	["Gnomeregan"] = 54,
+	["Golden Lotus"] = 1269,
+	["Guardians of Hyjal"] = 1158,
+	["Haohan Mudclaw"] = 1279, -- The Tillers
+	["Hellscream's Reach"] = 1178,
+	["Honor Hold"] = 946,
+	["Horde Expedition"] = 1052,
+	["Huojin Pandaren"] = 1352,
+	["Hydraxian Waterlords"] = 749,
+	["Ironforge"] = 47,
+	["Jogu the Drunk"] = 1273, -- The Tillers
+	["Keepers of Time"] = 989,
+	["Kirin Tor"] = 1090,
+	["Knights of the Ebon Blade"] = 1098,
+	["Kurenai"] = 978,
+	["Lower City"] = 1011,
+	["Magram Clan Centaur"] = 93,
+	["Nat Pagle"] = 1358, -- The Tilers
+	["Netherwing"] = 1015,
+	["Nomi"] = 1357,
+	["Ogri'la"] = 1038,
+	["Old Hillpaw"] = 1276,
+	["Operation: Shieldwall"] = 1376,
+	["Order of the Cloud Serpent"] = 1271,
+	["Orgrimmar"] = 76,
+	["Pearlfin Jinyu"] = 1242,
+	["Ramkahen"] = 1173,
+	["Ratchet"] = 470,
+	["Ravenholdt"] = 349,
+	["Sha'tari Skyguard"] = 1031,
+	["Shado-Pan"] = 1270,
+	["Shang Xi's Academy"] = 1216,
+	["Shattered Sun Offensive"] = 1077,
+	["Shen'dralar"] = 809,
+	["Sho"] = 1278, -- The Tillers
+	["Silvermoon City"] = 911,
+	["Silverwing Sentinels"] = 890,
+	["Sporeggar"] = 970,
+	["Stormpike Guard"] = 730,
+	["Stormwind"] = 72,
+	["Syndicate"] = 70,
+	["The Aldor"] = 932,
+	["The Anglers"] = 1302,
+	["The Ashen Verdict"] = 1156,
+	["The August Celestials"] = 1341,
+	["The Black Prince"] = 1359,
+	["The Consortium"] = 933,
+	["The Defilers"] = 510,
+	["The Earthen Ring"] = 1135,
+	["The Frostborn"] = 1126,
+	["The Hand of Vengeance"] = 1067,
+	["The Kalu'ak"] = 1073,
+	["The Klaxxi"] = 1337,
+	["The League of Arathor"] = 509,
+	["The Lorewalkers"] = 1345,
+	["The Mag'har"] = 941,
+	["The Oracles"] = 1105,
+	["The Scale of the Sands"] = 990,
+	["The Scryers"] = 934,
+	["The Sha'tar"] = 935,
+	["The Silver Covenant"] = 1094,
+	["The Sons of Hodir"] = 1119,
+	["The Sunreavers"] = 1124,
+	["The Taunka"] = 1064,
+	["The Tillers"] = 1272,
+	["The Violet Eye"] = 967,
+	["The Wyrmrest Accord"] = 1091,
+	["Therazane"] = 1171,
+	["Thorium Brotherhood"] = 59,
+	["Thrallmar"] = 947,
+	["Thunder Bluff"] = 81,
+	["Timbermaw Hold"] = 576,
+	["Tina Mudclaw"] = 1280,
+	["Tranquillien"] = 922,
+	["Tushui Pandaren"] = 1353,
+	["Undercity"] = 68,
+	["Valiance Expedition"] = 1050,
+	["Warsong Offensive"] = 1085,
+	["Warsong Outriders"] = 889,
+	["Wildhammer Clan"] = 1174,
+	["Wintersaber Trainers"] = 589,
+	["Zandalar Tribe"] = 270,
 }
 
-local CZ = {
+setmetatable(F, { __index = function(F, faction) -- for debugging
+	print("MISSING FACTION:", faction)
+	F[faction] = false
+	return false
+end })
+
+------------------------------------------------------------------------
+
+local _, race = UnitRace("player") -- arg2 is "Scourge" for Undead players
+
+self.racialFaction = race == "BloodElf" and F["Silvermoon City"]
+	or race == "Draenei" and F["Exodar"]
+	or race == "Dwarf" and F["Ironforge"]
+	or race == "Gnome" and F["Gnomeregan Exiles"]
+	or race == "Goblin" and F["Bilgewater Cartel"]
+	or race == "Human" and F["Stormwind City"]
+	or race == "NightElf" and F["Darnassus"]
+	or race == "Orc" and F["Orgrimmar"]
+	or race == "Pandaren" and (H and F["Huojin Pandaren"] or A and F["Tushui Pandaren"] or F["Shang Xi's Academy"])
+	or race == "Tauren" and F["Thunder Bluff"]
+	or race == "Troll" and F["Darkspear Trolls"]
+	or race == "Scourge" and F["Undercity"]
+	or race == "Worgen" and F["Gilneas"]
+
+------------------------------------------------------------------------
+
+self.championFactions = {
+	[93830]  = { 15, F["Bilgewater Cartel"] },
+	[93827]  = { 15, F["Darkspear Trolls"] },
+	[93806]  = { 15, F["Darnassus"] },
+	[93811]  = { 15, F["Exodar"] },
+	[93816]  = { 15, F["Gilneas"] },
+	[93821]  = { 15, F["Gnomeregan"] },
+	[93806]  = { 15, F["Gnomeregan"] },
+	[126436] = { 15, F["Huojin Pandaren"] },
+	[93805]  = { 15, F["Ironforge"] },
+	[93825]  = { 15, F["Orgrimmar"] },
+	[93828]  = { 15, F["Silvermoon City"] },
+	[93795]  = { 15, F["Stormwind"] },
+	[94463]  = { 15, F["Thunder Bluff"] },
+	[126434] = { 15, F["Tushui Pandaren"] },
+	[94462]  = { 15, F["Undercity"] },
+
+	[57819]  = { 80, F["Argent Crusade"] },
+	[57821]  = { 80, F["Kirin Tor"] },
+	[57820]  = { 80, F["Knights of the Ebon Blade"] },
+	[57822]  = { 80, F["The Wyrmrest Accord"] },
+
+	[94158]  = { 85, F["Dragonmaw Clan"] },
+	[93339]  = { 85, F["The Earthen Ring"] },
+	[93341]  = { 85, F["Guardians of Hyjal"] },
+	[93337]  = { 85, F["Ramkahen"] },
+	[93347]  = { 85, F["Therazane"] },
+	[93368]  = { 85, F["Wildhammer Clan"] },
+}
+
+self.championZones = {
 	[70] = {
 		-- This list is necessary to exclude Outland dungeons
 		-- when championing a home city faction.
@@ -126,654 +269,636 @@ local CZ = {
 
 ------------------------------------------------------------------------
 
-local RF = {
-	["BloodElf"] = "Silvermoon City",
-	["Draenei"]  = "Exodar",
-	["Dwarf"]    = "Ironforge",
-	["Gnome"]    = "Gnomeregan Exiles",
-	["Goblin"]   = "Bilgewater Cartel",
-	["Human"]    = "Stormwind City",
-	["NightElf"] = "Darnassus",
-	["Orc"]      = "Orgrimmar",
-	["Pandaren"] = isHorde and "Huojin Pandaren" or isAlliance and "Tushui Pandaren" or "Shang Xi's Academy",
-	["Tauren"]   = "Thunder Bluff",
-	["Troll"]    = "Darkspear Trolls",
-	["Scourge"]  = "Undercity",
-	["Worgen"]   = "Gilneas",
-}
-
-------------------------------------------------------------------------
-
-local ZF = {
+self.zoneFactions = {
 -- Abyssal Depths
-	[614] = "The Earthen Ring",
+	[614] = F["The Earthen Ring"],
 -- Ahn'Qiraj: The Fallen Kingdom
-	[772] = "Brood of Nozdormu",
+	[772] = F["Brood of Nozdormu"],
 -- Alterac Valley
-	[401] = isHorde and "Frostwolf Clan" or isAlliance and "Stormpike Guard",
+	[401] = H and F["Frostwolf Clan"] or A and F["Stormpike Guard"],
 -- Arathi Basin
-	[461] = isHorde and "The Defilers" or isAlliance and "The League of Arathor",
+	[461] = H and F["The Defilers"] or A and F["The League of Arathor"],
 -- Arathi Highlands
-	[16]  = isHorde and "Undercity" or isAlliance and "Stormwind",
+	[16]  = H and F["Undercity"] or A and F["Stormwind"],
 -- Ashenvale
-	[43]  = isHorde and "Warsong Offensive" or isAlliance and "Darnassus",
+	[43]  = H and F["Warsong Offensive"] or A and F["Darnassus"],
 -- Auchenai Crypts
-	[722] = "Lower City",
+	[722] = F["Lower City"],
 -- Azshara
-	[181] = isHorde and "Bilgewater Cartel",
+	[181] = H and F["Bilgewater Cartel"],
 -- Azuremyst Isle
-	[464] = isAlliance and "Exodar",
+	[464] = A and F["Exodar"],
 -- Baradin Hold
-	[752] = isHorde and "Hellscream's Reach" or isAlliance and "Baradin's Wardens",
+	[752] = H and F["Hellscream's Reach"] or A and F["Baradin's Wardens"],
 -- Black Temple
-	[769] = "Ashtongue Deathsworn",
+	[769] = F["Ashtongue Deathsworn"],
 -- Blackrock Depths
-	[704] = "Thorium Brotherhood",
+	[704] = F["Thorium Brotherhood"],
 -- Bloodmyst Isle
-	[476] = isAlliance and "Exodar",
+	[476] = A and F["Exodar"],
 -- Borean Tundra
-	[486] = isHorde and "Warsong Offensive" or isAlliance and "Valiance Expedition",
+	[486] = H and F["Warsong Offensive"] or A and F["Valiance Expedition"],
 -- Camp Narache
-	[890] = isHorde and "Thunder Bluff",
+	[890] = H and F["Thunder Bluff"],
 -- Coldridge Valley
-	[866] = isAlliance and "Irongforge",
+	[866] = A and F["Irongforge"],
 -- Crystalsong Forest
-	[510] = "Kirin Tor",
+	[510] = F["Kirin Tor"],
 -- Dalaran
-	[504] = "Kirin Tor",
+	[504] = F["Kirin Tor"],
 -- Darkmoon Faire
-	[823] = "Darkmoon Faire",
+	[823] = F["Darkmoon Faire"],
 -- Darkshore
-	[42]  = isAlliance and "Darnassus",
+	[42]  = A and F["Darnassus"],
 -- Darnassus
-	[381] = isAlliance and "Darnassus",
+	[381] = A and F["Darnassus"],
 -- Deepholm
-	[640] = "The Earthen Ring",
+	[640] = F["The Earthen Ring"],
 -- Dire Maul
-	[699] = "Shen'dralar",
+	[699] = F["Shen'dralar"],
 -- Deadwind Pass
-	[32]  = "The Violet Eye",
+	[32]  = F["The Violet Eye"],
 -- Deathknell
-	[892] = isHorde and "Undercity",
+	[892] = H and F["Undercity"],
 -- Dragonblight
-	[488] = "The Wyrmrest Accord",
+	[488] = F["The Wyrmrest Accord"],
 -- Dread Wastes
-	[858] = "The Klaxxi",
+	[858] = F["The Klaxxi"],
 -- Dun Morogh
-	[27]  = isAlliance and "Ironforge",
+	[27]  = A and F["Ironforge"],
 -- Durotar
-	[4]   = isHorde and "Orgrimmar",
+	[4]   = H and F["Orgrimmar"],
 -- Eastern Plaguelands
-	[23]  = "Argent Dawn",
+	[23]  = F["Argent Dawn"],
 -- Echo Isles
-	[891] = isHorde and "Darkspear Trolls",
+	[891] = H and F["Darkspear Trolls"],
 -- Elwynn Forest
-	[30]  = isAlliance and "Stormwind",
+	[30]  = A and F["Stormwind"],
 -- Eversong Woods
-	[462] = isHorde and "Silvermoon City",
+	[462] = H and F["Silvermoon City"],
 -- Feralas
-	[121] = isHorde and "Thunder Bluff" or isAlliance and "Darnassus",
+	[121] = H and F["Thunder Bluff"] or A and F["Darnassus"],
 -- Firelands
-	[800] = "Avengers of Hyjal",
+	[800] = F["Avengers of Hyjal"],
 -- Ghostlands
-	[463] = isHorde and "Tranquillien",
+	[463] = H and F["Tranquillien"],
 -- Gilneas
-	["545"] = isAlliance and "Gilneas",
+	["545"] = A and F["Gilneas"],
 -- Gilneas City
-	["611"] = isAlliance and "Gilneas",
+	["611"] = A and F["Gilneas"],
 -- Grizzly Hills
-	[490] = isHorde and "Warsong Offensive" or isAlliance and "Valiance Expedition",
+	[490] = H and F["Warsong Offensive"] or A and F["Valiance Expedition"],
 -- Halls of Reflection
-	[525] = isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
+	[525] = H and F["The Sunreavers"] or A and F["The Silver Covenant"],
 -- Hellfire Peninsula
-	[465] = isHorde and "Thrallmar" or isAlliance and "Honor Hold",
+	[465] = H and F["Thrallmar"] or A and F["Honor Hold"],
 -- Hellfire Ramparts
-	[797] = isHorde and "Thrallmar" or isAlliance and "Honor Hold",
+	[797] = H and F["Thrallmar"] or A and F["Honor Hold"],
 -- Howling Fjord
-	[491] = isHorde and "The Hand of Vengeance" or isAlliance and "Valiance Expedition",
+	[491] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
 -- Hyjal Summit
-	[775] = "The Scale of the Sands",
+	[775] = F["The Scale of the Sands"],
 -- Icecrown
-	[492] = "Knights of the Ebon Blade",
+	[492] = F["Knights of the Ebon Blade"],
 -- Icecrown Citadel
-	[604] = "The Ashen Verdict",
+	[604] = F["The Ashen Verdict"],
 -- Ironforge
-	[341] = isAlliance and "Ironforge",
+	[341] = A and F["Ironforge"],
 -- Isle of Quel'Danas
-	[499] = "Shattered Sun Offensive",
+	[499] = F["Shattered Sun Offensive"],
 -- Karazhan
-	[799] = "The Violet Eye",
+	[799] = F["The Violet Eye"],
 -- Kelp'thar Forest
-	[610] = "The Earthen Ring",
+	[610] = F["The Earthen Ring"],
 -- Kezan
-	[605] = isHorde and "Bilgewater Cartel",
+	[605] = H and F["Bilgewater Cartel"],
 -- Krasarang Wilds
-	[857] = "The Anglers",
+	[857] = F["The Anglers"],
 -- Loch Modan
-	[35]  = isAlliance and "Ironforge",
+	[35]  = A and F["Ironforge"],
 -- Magisters' Terrace
-	[798] = "Shattered Sun Offensive",
+	[798] = F["Shattered Sun Offensive"],
 -- Magtheridon's Lair
-	[779] = isHorde and "Thrallmar" or isAlliance and "Honor Hold",
+	[779] = H and F["Thrallmar"] or A and F["Honor Hold"],
 -- Mana-Tombs
-	[732] = "The Consortium",
+	[732] = F["The Consortium"],
 -- Molten Core
-	[696] = "Hydraxian Waterlords",
+	[696] = F["Hydraxian Waterlords"],
 -- Molten Front
-	[795] = "Guardians of Hyjal",
+	[795] = F["Guardians of Hyjal"],
 -- Moonglade
-	[241] = "Cenarion Circle",
+	[241] = F["Cenarion Circle"],
 -- Mount Hyjal
-	[606] = "Guardians of Hyjal",
+	[606] = F["Guardians of Hyjal"],
 -- Mulgore
-	[9]   = isHorde and "Thunder Bluff",
+	[9]   = H and F["Thunder Bluff"],
 -- Nagrand
-	[477] = isHorde and "The Mag'har" or isAlliance and "Kurenai",
+	[477] = H and F["The Mag'har"] or A and F["Kurenai"],
 -- Netherstorm
-	[479] = "The Consortium",
+	[479] = F["The Consortium"],
 -- New Tinkertown
-	[895] = isAlliance and "Gnomeregan",
+	[895] = A and F["Gnomeregan"],
 -- Northern Barrens
-	[11]  = isHorde and "Orgrimmar" or isAlliance and "Ratchet",
+	[11]  = H and F["Orgrimmar"] or A and F["Ratchet"],
 -- Northshire
-	[864] = isAlliance and "Stormwind",
+	[864] = A and F["Stormwind"],
 -- Old Hillsbrad Foothills
-	[734] = "Keepers of Time",
+	[734] = F["Keepers of Time"],
 -- Orgrimmar
-	[321] = isHorde and "Orgrimmar",
+	[321] = H and F["Orgrimmar"],
 -- Pit of Saron
-	[602] = isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
+	[602] = H and F["The Sunreavers"] or A and F["The Silver Covenant"],
 -- Redridge Mountains
-	[36] = isAlliance and "Stormwind",
+	[36] = A and F["Stormwind"],
 -- Ruins of Gilneas
-	[684] = isAlliance and "Gilneas",
+	[684] = A and F["Gilneas"],
 -- Ruins of Gilneas City
-	[685] = isAlliance and "Gilneas",
+	[685] = A and F["Gilneas"],
 -- Ruins of Ahn'Qiraj
-	[717] = "Cenarion Circle",
+	[717] = F["Cenarion Circle"],
 -- Scholomance
-	[763] = "Argent Dawn",
+	[763] = F["Argent Dawn"],
 -- Serpentshrine Cavern
-	[780] = "Cenarion Expedition",
+	[780] = F["Cenarion Expedition"],
 -- Sethekk Halls
-	[723] = "Lower City",
+	[723] = F["Lower City"],
 -- Shadow Labyrinth
-	[724] = "Lower City",
+	[724] = F["Lower City"],
 -- Shadowglen
-	[888] = "Shadowglen",
+	[888] = F["Shadowglen"],
 -- Shadowmoon Valley
-	[473] = "Netherwing",
+	[473] = F["Netherwing"],
 -- Shattrath City
-	[481] = "The Sha'tar",
+	[481] = F["The Sha'tar"],
 -- Shimmering Expanse
-	[615] = "The Earthen Ring",
+	[615] = F["The Earthen Ring"],
 -- Shrine of Seven Stars
-	[905] = isAlliance and "The August Celestials",
+	[905] = A and F["The August Celestials"],
 -- Shrine of Two Moons
-	[903] = isHorde and "The August Celestials",
+	[903] = H and F["The August Celestials"],
 -- Silithus
-	[261] = "Cenarion Circle",
+	[261] = F["Cenarion Circle"],
 -- Silvermoon City
-	[480] = isHorde and "Silvermoon City",
+	[480] = H and F["Silvermoon City"],
 -- Silverpine Forest
-	[21]  = isHorde and "Undercity",
+	[21]  = H and F["Undercity"],
 -- Southern Barrens
-	[607] = isHorde and "Orgrimmar" or isAlliance and "Stormwind",
+	[607] = H and F["Orgrimmar"] or A and F["Stormwind"],
 -- Stonetalon Mountains
-	[81]  = isHorde and "Orgrimmar" or isAlliance and "Darnassus",
+	[81]  = H and F["Orgrimmar"] or A and F["Darnassus"],
 -- Stormwind City
-	[301] = isAlliance and "Stormwind",
+	[301] = A and F["Stormwind"],
 -- Stratholme
-	[765] = "Argent Dawn",
+	[765] = F["Argent Dawn"],
 -- Sunwell Plateau
-	[789] = "Shattered Sun Offensive",
+	[789] = F["Shattered Sun Offensive"],
 -- Tanaris
-	[161] = "Gadgetzan",
+	[161] = F["Gadgetzan"],
 -- Teldrassil
-	[41]  = isAlliance and "Darnassus",
+	[41]  = A and F["Darnassus"],
 -- Tempest Keep
-	[""] = "The Sha'tar",
+--	[""] = F["The Sha'tar"],
 -- Temple of Ahn'Qiraj
-	[766] = "Brood of Nozdormu",
+	[766] = F["Brood of Nozdormu"],
 -- Terokkar Forest
-	[478] = "Lower City",
+	[478] = F["Lower City"],
 -- The Arcatraz
-	[731] = "The Sha'tar",
+	[731] = F["The Sha'tar"],
 -- The Black Morass
-	[733] = "Keepers of Time",
+	[733] = F["Keepers of Time"],
 -- The Blood Furnace
-	[725] = isHorde and "Thrallmar" or isAlliance and "Honor Hold",
+	[725] = H and F["Thrallmar"] or A and F["Honor Hold"],
 -- The Botanica
-	[729] = "The Sha'tar",
+	[729] = F["The Sha'tar"],
 -- The Exodar
-	[471] = isAlliance and "Exodar",
+	[471] = A and F["Exodar"],
 -- The Eye
-	[782] = "The Sha'tar",
+	[782] = F["The Sha'tar"],
 -- The Forge of Souls
-	[601] = isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
+	[601] = H and F["The Sunreavers"] or A and F["The Silver Covenant"],
 -- The Jade Forest
-	[806] = isHorde and "Forest Hozen" or isAlliance and "Pearlfin Jinyu",
+	[806] = H and F["Forest Hozen"] or A and F["Pearlfin Jinyu"],
 -- The Lost Isles
-	[544] = isHorde and "Bilgewater Cartel",
+	[544] = H and F["Bilgewater Cartel"],
 -- The Maelstrom
-	[737] = "The Earthen Ring", -- TODO: Remove the continent, maybe?
-	[751] = "The Earthen Ring",
+	[737] = F["The Earthen Ring"], -- TODO: Remove the continent, maybe?
+	[751] = F["The Earthen Ring"],
 -- The Mechanar
-	[730] = "The Sha'tar",
+	[730] = F["The Sha'tar"],
 -- The Shattered Halls
-	[710] = isHorde and "Thrallmar" or isAlliance and "Honor Hold",
+	[710] = H and F["Thrallmar"] or A and F["Honor Hold"],
 -- The Slave Pens
-	[728] = "Cenarion Expedition",
+	[728] = F["Cenarion Expedition"],
 -- The Steamvault
-	[727] = "Cenarion Expedition",
+	[727] = F["Cenarion Expedition"],
 -- The Stonecore
-	[768] = "The Earthen Ring",
+	[768] = F["The Earthen Ring"],
 -- The Storm Peaks
-	[495] = "The Sons of Hodir",
+	[495] = F["The Sons of Hodir"],
 -- The Underbog
-	[726] = "Cenarion Expedition",
+	[726] = F["Cenarion Expedition"],
 -- The Wandering Isle
-	[808] = "Shang Xi's Academy",
+	[808] = F["Shang Xi's Academy"],
 -- Thousand Needles
-	[61]  = isHorde and "Bilgewater Cartel" or isAlliance and "Gnomeregan",
+	[61]  = H and F["Bilgewater Cartel"] or A and F["Gnomeregan"],
 -- Thunder Bluff
-	[362] = isHorde and "Thunder Bluff",
+	[362] = H and F["Thunder Bluff"],
 -- Tirisfal Glades
-	[20]  = isHorde and "Undercity",
+	[20]  = H and F["Undercity"],
 -- Tol Barad
-	[708] = isHorde and "Hellscream's Reach" or isAlliance and "Baradin's Wardens",
+	[708] = H and F["Hellscream's Reach"] or A and F["Baradin's Wardens"],
 -- Tol Barad Peninsula
-	[709] = isHorde and "Hellscream's Reach" or isAlliance and "Baradin's Wardens",
+	[709] = H and F["Hellscream's Reach"] or A and F["Baradin's Wardens"],
 -- Townlong Steppes
-	[810] = "Shado-Pan",
+	[810] = F["Shado-Pan"],
 -- Trial of the Crusader
-	[543] = isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
+	[543] = H and F["The Sunreavers"] or A and F["The Silver Covenant"],
 -- Twilight Highlands
-	[700] = isHorde and "Dragonmaw Clan" or isAlliance and "Wildhammer Clan",
+	[700] = H and F["Dragonmaw Clan"] or A and F["Wildhammer Clan"],
 -- Uldum
-	[720] = "Ramkahen",
+	[720] = F["Ramkahen"],
 -- Undercity
-	[382] = isHorde and "Undercity",
+	[382] = H and F["Undercity"],
 -- Vale of Eternal Blossoms
-	[811] = "Golden Lotus",
+	[811] = F["Golden Lotus"],
 -- Valley of the Four Winds
-	[807] = "The Tillers",
+	[807] = F["The Tillers"],
 -- Valley of Trials
-	[889] = isHorde and "Orgrimmar",
+	[889] = H and F["Orgrimmar"],
 -- Warsong Gulch
-	[443] = isHorde and "Warsong Outriders" or isAlliance and "Silverwing Sentinels",
+	[443] = H and F["Warsong Outriders"] or A and F["Silverwing Sentinels"],
 -- Western Plaguelands
-	[22]  = "Argent Crusade",
+	[22]  = F["Argent Crusade"],
 -- Wetlands
-	[40]  = isAlliance and "Ironforge",
+	[40]  = A and F["Ironforge"],
 -- Winterspring
-	[281] = "Everlook",
+	[281] = F["Everlook"],
 -- Zangarmarsh
-	[467] = "Cenarion Expedition",
+	[467] = F["Cenarion Expedition"],
 -- Zul'Drak
-	[496] = "Argent Crusade",
+	[496] = F["Argent Crusade"],
 }
 
 ------------------------------------------------------------------------
 
-local SF = {
+self.subzoneFactions = {
 	-- Blade's Edge Mountains
 	[475] = {
-		["Evergrove"]				= "Cenarion Expedition",
-		["Ruuan Weald"]				= "Cenarion Expedition",
-		["Forge Camp: Terror"]		= "Ogri'la",
-		["Forge Camp: Wrath"]		= "Ogri'la",
-		["Ogri'la"]					= "Ogri'la",
-		["Shartuul's Transporter"]	= "Ogri'la",
-		["Vortex Pinnacle"]			= "Ogri'la",
-		["Vortex Summit"]			= "Ogri'la",
+		["Evergrove"]				= F["Cenarion Expedition"],
+		["Ruuan Weald"]				= F["Cenarion Expedition"],
+		["Forge Camp: Terror"]		= F["Ogri'la"],
+		["Forge Camp: Wrath"]		= F["Ogri'la"],
+		["Ogri'la"]					= F["Ogri'la"],
+		["Shartuul's Transporter"]	= F["Ogri'la"],
+		["Vortex Pinnacle"]			= F["Ogri'la"],
+		["Vortex Summit"]			= F["Ogri'la"],
 	},
 	-- Borean Tundra
 	[486] = {
-		["D.E.H.T.A. Encampment"]	= "Cenarion Expedition",
-		["Amber Ledge"]				= "Kirin Tor",
-		["Transitus Shield"]		= "Kirin Tor",
-		["Kaskala"]					= "The Kalu'ak",
-		["Njord's Breath Bay"]		= "The Kalu'ak",
-		["Unu'pe"]					= "The Kalu'ak",
-		["Taunka'le Village"]		= isHorde and "The Taunka",
+		["D.E.H.T.A. Encampment"]	= F["Cenarion Expedition"],
+		["Amber Ledge"]				= F["Kirin Tor"],
+		["Transitus Shield"]		= F["Kirin Tor"],
+		["Kaskala"]					= F["The Kalu'ak"],
+		["Njord's Breath Bay"]		= F["The Kalu'ak"],
+		["Unu'pe"]					= F["The Kalu'ak"],
+		["Taunka'le Village"]		= H and F["The Taunka"],
 	},
 	-- Crystalsong Forest
 	[510] = {
-		["Sunreaver's Command"]		= isHorde and "The Sunreavers",
-		["Windrunner's Overlook"]	= isAlliance and "The Silver Covenant",
+		["Sunreaver's Command"]		= H and F["The Sunreavers"],
+		["Windrunner's Overlook"]	= A and F["The Silver Covenant"],
 	},
 	-- Dalaran
 	[504] = {
-		["Sunreaver's Sanctuary"]	= isHorde and "The Sunreavers",
-		["The Filthy Animal"]		= isHorde and "The Sunreavers",
-		["The Silver Enclave"]		= isAlliance and "The Silver Covenant",
+		["Sunreaver's Sanctuary"]	= H and F["The Sunreavers"],
+		["The Filthy Animal"]		= H and F["The Sunreavers"],
+		["The Silver Enclave"]		= A and F["The Silver Covenant"],
 	},
 	-- Deepholm
 	[640] = {
-		["Crimson Expanse"]			= "Therazane",
-		["Crumbling Depths"]		= "Therazane",
-		["Fungal Deep"]				= "Therazane",
-		["Halcyon Egress"]			= "Therazane",
-		["Lorthuna's Gate"]			= "Therazane",
-		["Shuddering Spires"]		= "Therazane",
-		["The Pale Roost"]			= "Therazane",
-		["Therazane's Throne"]		= "Therazane",
-		["Twilight Precipice"]		= "Therazane",
-		["Verlok Stand"]			= "Therazane",
+		["Crimson Expanse"]			= F["Therazane"],
+		["Crumbling Depths"]		= F["Therazane"],
+		["Fungal Deep"]				= F["Therazane"],
+		["Halcyon Egress"]			= F["Therazane"],
+		["Lorthuna's Gate"]			= F["Therazane"],
+		["Shuddering Spires"]		= F["Therazane"],
+		["The Pale Roost"]			= F["Therazane"],
+		["Therazane's Throne"]		= F["Therazane"],
+		["Twilight Precipice"]		= F["Therazane"],
+		["Verlok Stand"]			= F["Therazane"],
 	},
 	-- Dragonblight
 	[488] = {
-		["Light's Trust"]			= "Argent Crusade",
-		["Moa'ki Harbor"]			= "The Kalu'ak",
-		["Agmar's Hammer"]			= isHorde and "Warsong Offensive",
-		["Dragon's Fall"]			= isHorde and "Warsong Offensive",
-		["Venomspite"]				= isHorde and "The Hand of Vengeance",
-		["Westwind Refugee Camp"]	= isHorde and "The Taunka",
-		["Stars' Rest"]				= isAlliance and "Valiance Expedition",
-		["Wintergarde Keep"]		= isAlliance and "Valiance Expedition",
+		["Light's Trust"]			= F["Argent Crusade"],
+		["Moa'ki Harbor"]			= F["The Kalu'ak"],
+		["Agmar's Hammer"]			= H and F["Warsong Offensive"],
+		["Dragon's Fall"]			= H and F["Warsong Offensive"],
+		["Venomspite"]				= H and F["The Hand of Vengeance"],
+		["Westwind Refugee Camp"]	= H and F["The Taunka"],
+		["Stars' Rest"]				= A and F["Valiance Expedition"],
+		["Wintergarde Keep"]		= A and F["Valiance Expedition"],
 	},
 	-- Dread Wastes
 	[858] = {
-		["Lonesome Cove"]            = "The Anglers",
-		["Shelf of Mazu"]            = "The Anglers",
-		["Soggy's Gamble"]           = "The Anglers",
-		["Wreck of the Mist-Hopper"] = "The Anglers",
+		["Lonesome Cove"]            = F["The Anglers"],
+		["Shelf of Mazu"]            = F["The Anglers"],
+		["Soggy's Gamble"]           = F["The Anglers"],
+		["Wreck of the Mist-Hopper"] = F["The Anglers"],
 	},
 	-- Durotar
 	[4]  = { -- TODO: update
-		["Sen'jin Village"]			= isHorde and "Darkspear Trolls",
+		["Sen'jin Village"]			= H and F["Darkspear Trolls"],
 	},
 	-- Eastern Plaguelands
 	[23]  = { -- TODO: update
-		["Acherus: The Ebon Hold"]	= "Knights of the Ebon Blade",
+		["Acherus: The Ebon Hold"]	= F["Knights of the Ebon Blade"],
 	},
 	-- Felwood
 	[182] = { -- TODO: update
-		["Deadwood Village"]		= "Timbermaw Hold",
-		["Felpaw Village"]			= "Timbermaw Hold",
-		["Timbermaw Hold"]			= "Timbermaw Hold",
+		["Deadwood Village"]		= F["Timbermaw Hold"],
+		["Felpaw Village"]			= F["Timbermaw Hold"],
+		["Timbermaw Hold"]			= F["Timbermaw Hold"],
 	},
 	-- Grizzly Hills
 	[490] = {
-		["Camp Oneqwah"]			= isHorde and "The Taunka",
+		["Camp Oneqwah"]			= H and F["The Taunka"],
 	},
 	-- Hellfire Peninsula
 	[465] = {
-		["Cenarion Post"]			= "Cenarion Expedition",
-		["Throne of Kil'jaeden"]	= "Shattered Sun Offensive",
-		["Mag'har Grounds"]			= isHorde and "The Mag'har",
-		["Mag'har Post"]			= isHorde and "The Mag'har",
-		["Temple of Telhamat"]		= isAlliance and "Kurenai",
+		["Cenarion Post"]			= F["Cenarion Expedition"],
+		["Throne of Kil'jaeden"]	= F["Shattered Sun Offensive"],
+		["Mag'har Grounds"]			= H and F["The Mag'har"],
+		["Mag'har Post"]			= H and F["The Mag'har"],
+		["Temple of Telhamat"]		= A and F["Kurenai"],
 	},
 	-- Hillsbrad Foothills
 	[24]  = {
-		["Durnholde Keep"]			= "Ravenholdt",
+		["Durnholde Keep"]			= F["Ravenholdt"],
 	},
 	-- Howling Fjord
 	[491] = {
-		["Kamagua"]					  = "The Kalu'ak",
-		["Camp Winterhoof"]			  = isHorde and "The Taunka",
-		["Explorers' League Outpost"] = isAlliance and "Explorers' League",
-		["Steel Gate"]				  = isAlliance and "Explorers' League",
+		["Kamagua"]					  = F["The Kalu'ak"],
+		["Camp Winterhoof"]			  = H and F["The Taunka"],
+		["Explorers' League Outpost"] = A and F["Explorers' League"],
+		["Steel Gate"]				  = A and F["Explorers' League"],
 	},
 	-- Icecrown
 	[492] = {
-		["The Argent Vanguard"]			= "Argent Crusade",
-		["Crusaders' Pinnacle"]			= "Argent Crusade",
-		["Scourgeholme"]				= "Argent Crusade",
-		["The Breach"]					= "Argent Crusade",
-		["The Pit of Fiends"]			= "Argent Crusade",
-		["Valley of Echoes"]			= "Argent Crusade",
-		["Orgrim's Hammer"]				= isHorde and "Warsong Offensive",
-		["The Skybreaker"]				= isAlliance and "Valiance Expedition",
-		["Argent Pavilion"]				= isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
-		["Argent Tournament Grounds"]	= isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
-		["Silver Covenant Pavilion"]	= isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
-		["Sunreaver Pavilion"]			= isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
-		["The Alliance Valiants' Ring"]	= isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
-		["The Argent Valiants' Ring"]	= isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
-		["The Aspirants' Ring"]			= isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
-		["The Horde Valiants' Ring"]	= isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
-		["The Ring of Champions"]		= isHorde and "The Sunreavers" or isAlliance and "The Silver Covenant",
+		["The Argent Vanguard"]			= F["Argent Crusade"],
+		["Crusaders' Pinnacle"]			= F["Argent Crusade"],
+		["Scourgeholme"]				= F["Argent Crusade"],
+		["The Breach"]					= F["Argent Crusade"],
+		["The Pit of Fiends"]			= F["Argent Crusade"],
+		["Valley of Echoes"]			= F["Argent Crusade"],
+		["Orgrim's Hammer"]				= H and F["Warsong Offensive"],
+		["The Skybreaker"]				= A and F["Valiance Expedition"],
+		["Argent Pavilion"]				= H and F["The Sunreavers"] or A and F["The Silver Covenant"],
+		["Argent Tournament Grounds"]	= H and F["The Sunreavers"] or A and F["The Silver Covenant"],
+		["Silver Covenant Pavilion"]	= H and F["The Sunreavers"] or A and F["The Silver Covenant"],
+		["Sunreaver Pavilion"]			= H and F["The Sunreavers"] or A and F["The Silver Covenant"],
+		["The Alliance Valiants' Ring"]	= H and F["The Sunreavers"] or A and F["The Silver Covenant"],
+		["The Argent Valiants' Ring"]	= H and F["The Sunreavers"] or A and F["The Silver Covenant"],
+		["The Aspirants' Ring"]			= H and F["The Sunreavers"] or A and F["The Silver Covenant"],
+		["The Horde Valiants' Ring"]	= H and F["The Sunreavers"] or A and F["The Silver Covenant"],
+		["The Ring of Champions"]		= H and F["The Sunreavers"] or A and F["The Silver Covenant"],
 	},
 	-- Krasarang Wilds
 	[857] = {
-		["Angkhal Pavilion"]		= "The August Celestials",
-		["Cradle of Chi-Ji"]		= "The August Celestials",
-		["Dome Balrissa"]			= "The August Celestials",
-		["Pedestal of Hope"]		= "The August Celestials",
-		["Temple of the Red Crane"]	= "The August Celestials",
-		["Dawnchaser Retreat"]		= isHorde and "Thunder Bluff",
-		["Thunder Cleft"]			= isHorde and "Thunder Bluff",
-		["Sentinel Basecamp"]		= isAlliance and "Darnassus",
-		["Bilgewater Beach"]		= isHorde and "Dominance Offensive" or isAlliance and "Operation: Shieldwall",
-		["Blacksand Spillway"]		= isHorde and "Dominance Offensive" or isAlliance and "Operation: Shieldwall",
-		["Domination Point"]		= isHorde and "Dominance Offensive" or isAlliance and "Operation: Shieldwall",
-		["Lion's Landing"]			= isHorde and "Dominance Offensive" or isAlliance and "Operation: Shieldwall",
-		["Ogregrind's Dig"]			= isHorde and "Dominance Offensive" or isAlliance and "Operation: Shieldwall",
-		["Quickchop's Lumber Farm"]	= isHorde and "Dominance Offensive" or isAlliance and "Operation: Shieldwall",
-		["Ruins of Ogudei"]			= isHorde and "Dominance Offensive" or isAlliance and "Operation: Shieldwall",
-		["Sparkrocket Outpost"]		= isHorde and "Dominance Offensive" or isAlliance and "Operation: Shieldwall",
-		["The Boiling Crustacean"]	= isHorde and "Dominance Offensive" or isAlliance and "Operation: Shieldwall",
-		["The Skyfire"]				= isHorde and "Dominance Offensive" or isAlliance and "Operation: Shieldwall",
-		["The Southern Isles"]		= isHorde and "Dominance Offensive" or isAlliance and "Operation: Shieldwall",
+		["Angkhal Pavilion"]		= F["The August Celestials"],
+		["Cradle of Chi-Ji"]		= F["The August Celestials"],
+		["Dome Balrissa"]			= F["The August Celestials"],
+		["Pedestal of Hope"]		= F["The August Celestials"],
+		["Temple of the Red Crane"]	= F["The August Celestials"],
+		["Dawnchaser Retreat"]		= H and F["Thunder Bluff"],
+		["Thunder Cleft"]			= H and F["Thunder Bluff"],
+		["Sentinel Basecamp"]		= A and F["Darnassus"],
+		["Bilgewater Beach"]		= H and F["Dominance Offensive"] or A and F["Operation: Shieldwall"],
+		["Blacksand Spillway"]		= H and F["Dominance Offensive"] or A and F["Operation: Shieldwall"],
+		["Domination Point"]		= H and F["Dominance Offensive"] or A and F["Operation: Shieldwall"],
+		["Lion's Landing"]			= H and F["Dominance Offensive"] or A and F["Operation: Shieldwall"],
+		["Ogregrind's Dig"]			= H and F["Dominance Offensive"] or A and F["Operation: Shieldwall"],
+		["Quickchop's Lumber Farm"]	= H and F["Dominance Offensive"] or A and F["Operation: Shieldwall"],
+		["Ruins of Ogudei"]			= H and F["Dominance Offensive"] or A and F["Operation: Shieldwall"],
+		["Sparkrocket Outpost"]		= H and F["Dominance Offensive"] or A and F["Operation: Shieldwall"],
+		["The Boiling Crustacean"]	= H and F["Dominance Offensive"] or A and F["Operation: Shieldwall"],
+		["The Skyfire"]				= H and F["Dominance Offensive"] or A and F["Operation: Shieldwall"],
+		["The Southern Isles"]		= H and F["Dominance Offensive"] or A and F["Operation: Shieldwall"],
 		-- Faction ships don't have a subzone name
-		[""]						= isHorde and "Dominance Offensive" or isAlliance and "Operation: Shieldwall",
+		[""]						= H and F["Dominance Offensive"] or A and F["Operation: Shieldwall"],
 	},
 	-- Kun-Lai Summit
 	[809] = {
-		["Gate of the August Celestials"]	= "The August Celestials",
-		["Temple of the White Tiger"]		= "The August Celestials",
-		["Firebough Nook"] 			= "Shado-Pan",
-		["Serpent's Spine"]			= "Shado-Pan",
-		["Shado-Li Basin"]			= "Shado-Pan",
-		["Shado-Pan Fallback"]		= "Shado-Pan",
-		["Shado-Pan Monastery"]		= "Shado-Pan",
-		["The Ox Gate"]				= "Shado-Pan",
-		["Winter's Blossom"]		= "Shado-Pan",
+		["Gate of the August Celestials"]	= F["The August Celestials"],
+		["Temple of the White Tiger"]		= F["The August Celestials"],
+		["Firebough Nook"] 			= F["Shado-Pan"],
+		["Serpent's Spine"]			= F["Shado-Pan"],
+		["Shado-Li Basin"]			= F["Shado-Pan"],
+		["Shado-Pan Fallback"]		= F["Shado-Pan"],
+		["Shado-Pan Monastery"]		= F["Shado-Pan"],
+		["The Ox Gate"]				= F["Shado-Pan"],
+		["Winter's Blossom"]		= F["Shado-Pan"],
 	},
 	-- Nagrand
 	[477] = {
-		["Aeris Landing"]			= "The Consortium",
-		["Oshu'gun"]				= "The Consortium",
-		["Spirit Fields"]			= "The Consortium",
+		["Aeris Landing"]			= F["The Consortium"],
+		["Oshu'gun"]				= F["The Consortium"],
+		["Spirit Fields"]			= F["The Consortium"],
 	},
 	-- Netherstorm
 	[479] = {
-		["Netherwing Ledge"]		= "Netherwing",
-		["Tempest Keep"]			= "The Sha'tar",
+		["Netherwing Ledge"]		= F["Netherwing"],
+		["Tempest Keep"]			= F["The Sha'tar"],
 	},
 	-- Searing Gorge
 	[28]  = {
-		["Thorium Point"]			= "Thorium Brotherhood",
+		["Thorium Point"]			= F["Thorium Brotherhood"],
 	},
 	-- Shadowmoon Valley
 	[473] = {
-		["Altar of Sha'tar"]		= "The Aldor",
-		["Sanctum of the Stars"]	= "The Scryers",
-		["Warden's Cage"]			= "Ashtongue Deathsworn",
+		["Altar of Sha'tar"]		= F["The Aldor"],
+		["Sanctum of the Stars"]	= F["The Scryers"],
+		["Warden's Cage"]			= F["Ashtongue Deathsworn"],
 	},
 	-- Shattrath City
 	[481] = {
-		["Lower City"]				= "Lower City",
-		["Aldor Rise"]				= "The Aldor",
-		["Shrine of Unending Light"]= "The Aldor",
-		["Scryer's Tier"]			= "The Scryers",
-		["The Seer's Library"]		= "The Scryers",
+		["Lower City"]				= F["Lower City"],
+		["Aldor Rise"]				= F["The Aldor"],
+		["Shrine of Unending Light"]= F["The Aldor"],
+		["Scryer's Tier"]			= F["The Scryers"],
+		["The Seer's Library"]		= F["The Scryers"],
 	},
 	-- Sholazar Basin
 	[493] = {
-		["Frenzyheart Hill"]		= "Frenzyheart Tribe",
-		["Kartak's Hold"]			= "Frenzyheart Tribe",
-		["Spearborn Encampment"]	= "Frenzyheart Tribe",
-		["Mistwhisper Refuge"]		= "The Oracles",
-		["Rainspeaker Canopy"]		= "The Oracles",
-		["Sparktouched Haven"]		= "The Oracles",
+		["Frenzyheart Hill"]		= F["Frenzyheart Tribe"],
+		["Kartak's Hold"]			= F["Frenzyheart Tribe"],
+		["Spearborn Encampment"]	= F["Frenzyheart Tribe"],
+		["Mistwhisper Refuge"]		= F["The Oracles"],
+		["Rainspeaker Canopy"]		= F["The Oracles"],
+		["Sparktouched Haven"]		= F["The Oracles"],
 	},
 	-- Southern Barrens
 	[607] = {
-		["Firestone Point"]			= "The Earthen Ring",
-		["Ruins of Taurajo"]		= isHorde and "Thunder Bluff",
-		["Spearhead"]				= isHorde and "Thunder Bluff",
-		["Vendetta Point"]			= isHorde and "Thunder Bluff",
-		["Bael Modan"]				= isHorde and "Thunder Bluff" or isAlliance and "Ironforge",
-		["Bael Modan Excavation"]	= isHorde and "Thunder Bluff" or isAlliance and "Ironforge",
-		["Bael'dun Keep"]			= isHorde and "Thunder Bluff" or isAlliance and "Ironforge",
-		["Frazzlecraz Motherlode"]	= isAlliance and "Ironforge",
-		["Twinbraid's Patrol"]		= isAlliance and "Ironforge",
+		["Firestone Point"]			= F["The Earthen Ring"],
+		["Ruins of Taurajo"]		= H and F["Thunder Bluff"],
+		["Spearhead"]				= H and F["Thunder Bluff"],
+		["Vendetta Point"]			= H and F["Thunder Bluff"],
+		["Bael Modan"]				= H and F["Thunder Bluff"] or A and F["Ironforge"],
+		["Bael Modan Excavation"]	= H and F["Thunder Bluff"] or A and F["Ironforge"],
+		["Bael'dun Keep"]			= H and F["Thunder Bluff"] or A and F["Ironforge"],
+		["Frazzlecraz Motherlode"]	= A and F["Ironforge"],
+		["Twinbraid's Patrol"]		= A and F["Ironforge"],
 	},
 	-- Stranglethorn Vale
 	[689] = { -- TODO: update
-		["Booty Bay"]				= "Booty Bay",
-		["The Salty Sailor Tavern"]	= "Booty Bay",
+		["Booty Bay"]				= F["Booty Bay"],
+		["The Salty Sailor Tavern"]	= F["Booty Bay"],
 	},
 	-- Storm Peaks
 	[495] = {
-		["Camp Tunka'lo"]			= isHorde and "Warsong Offensive",
-		["Frostfloe Deep"]			= isHorde and "Warsong Offensive",
-		["Frosthowl Cavern"]		= isHorde and "Warsong Offensive",
-		["Gimorak's Den"]			= isHorde and "Warsong Offensive",
-		["Grom'arsh Crash-Site"]	= isHorde and "Warsong Offensive",
-		["The Howling Hollow"]		= isHorde and "Warsong Offensive",
-		["Plain of Echoes"]			= isHorde and "Warsong Offensive" or isAlliance and "The Frostborn",
-		["Temple of Life"]			= isHorde and "Warsong Offensive" or isAlliance and "The Frostborn",
-		["Frosthold"]				= isAlliance and "The Frostborn",
-		["Inventor's Library"]		= isAlliance and "The Frostborn",
-		["Loken's Bargain"]			= isAlliance and "The Frostborn",
-		["Mimir's Workshop"]		= isAlliance and "The Frostborn",
-		["Narvir's Cradle"]			= isAlliance and "The Frostborn",
-		["Nidavelir"]				= isAlliance and "The Frostborn",
-		["Temple of Invention"]		= isAlliance and "The Frostborn",
-		["Temple of Order"]			= isAlliance and "The Frostborn",
-		["Temple of Winter"]		= isAlliance and "The Frostborn",
-		["The Foot Steppes"]		= isAlliance and "The Frostborn",
+		["Camp Tunka'lo"]			= H and F["Warsong Offensive"],
+		["Frostfloe Deep"]			= H and F["Warsong Offensive"],
+		["Frosthowl Cavern"]		= H and F["Warsong Offensive"],
+		["Gimorak's Den"]			= H and F["Warsong Offensive"],
+		["Grom'arsh Crash-Site"]	= H and F["Warsong Offensive"],
+		["The Howling Hollow"]		= H and F["Warsong Offensive"],
+		["Plain of Echoes"]			= H and F["Warsong Offensive"] or A and F["The Frostborn"],
+		["Temple of Life"]			= H and F["Warsong Offensive"] or A and F["The Frostborn"],
+		["Frosthold"]				= A and F["The Frostborn"],
+		["Inventor's Library"]		= A and F["The Frostborn"],
+		["Loken's Bargain"]			= A and F["The Frostborn"],
+		["Mimir's Workshop"]		= A and F["The Frostborn"],
+		["Narvir's Cradle"]			= A and F["The Frostborn"],
+		["Nidavelir"]				= A and F["The Frostborn"],
+		["Temple of Invention"]		= A and F["The Frostborn"],
+		["Temple of Order"]			= A and F["The Frostborn"],
+		["Temple of Winter"]		= A and F["The Frostborn"],
+		["The Foot Steppes"]		= A and F["The Frostborn"],
 	},
 	-- Tanaris
 	[161] = { -- TODO: update
-		["Caverns of Time"]			= "Keepers of Time",
+		["Caverns of Time"]			= F["Keepers of Time"],
 	},
 	-- Terokkar Forest
 	[478] = {
-		["Mana Tombs"]				= "The Consortium",
-		["Blackwind Lake"]			= "Sha'tari Skyguard",
-		["Blackwind Landing"]		= "Sha'tari Skyguard",
-		["Blackwind Valley"]		= "Sha'tari Skyguard",
-		["Lake Ere'Noru"]			= "Sha'tari Skyguard",
-		["Lower Veil Shil'ak"]		= "Sha'tari Skyguard",
-		["Skettis"]					= "Sha'tari Skyguard",
-		["Terokk's Rest"]			= "Sha'tari Skyguard",
-		["Upper Veil Shil'ak"]		= "Sha'tari Skyguard",
-		["Veil Ala'rak"]			= "Sha'tari Skyguard",
-		["Veil Harr'ik"]			= "Sha'tari Skyguard",
+		["Mana Tombs"]				= F["The Consortium"],
+		["Blackwind Lake"]			= F["Sha'tari Skyguard"],
+		["Blackwind Landing"]		= F["Sha'tari Skyguard"],
+		["Blackwind Valley"]		= F["Sha'tari Skyguard"],
+		["Lake Ere'Noru"]			= F["Sha'tari Skyguard"],
+		["Lower Veil Shil'ak"]		= F["Sha'tari Skyguard"],
+		["Skettis"]					= F["Sha'tari Skyguard"],
+		["Terokk's Rest"]			= F["Sha'tari Skyguard"],
+		["Upper Veil Shil'ak"]		= F["Sha'tari Skyguard"],
+		["Veil Ala'rak"]			= F["Sha'tari Skyguard"],
+		["Veil Harr'ik"]			= F["Sha'tari Skyguard"],
 	},
 	-- The Jade Forest
 	[806] = {
-		["Fountain of the Everseeing"]	= "The August Celestials",
-		["Jade Temple Grounds"]			= "The August Celestials",
-		["Temple of the Jade Serpent"]	= "The August Celestials",
-		["Terrace of the Twin Dragons"]	= "The August Celestials",
-		["The Heart of Jade"]			= "The August Celestials",
-		["The Scrollkeeper's Sanctum"]	= "The August Celestials",
-		["Mistveil Sea"]				= "Order of the Cloud Serpent",
-		["Oona Kagu"]					= "Order of the Cloud Serpent",
-		["Serpent's Heart"]				= "Order of the Cloud Serpent",
-		["Serpent's Overlook"]			= "Order of the Cloud Serpent",
-		["The Arboretum"]				= "Order of the Cloud Serpent",
-		["The Widow's Wail"]			= "Order of the Cloud Serpent",
-		["Windward Isle"]				= "Order of the Cloud Serpent",
+		["Fountain of the Everseeing"]	= F["The August Celestials"],
+		["Jade Temple Grounds"]			= F["The August Celestials"],
+		["Temple of the Jade Serpent"]	= F["The August Celestials"],
+		["Terrace of the Twin Dragons"]	= F["The August Celestials"],
+		["The Heart of Jade"]			= F["The August Celestials"],
+		["The Scrollkeeper's Sanctum"]	= F["The August Celestials"],
+		["Mistveil Sea"]				= F["Order of the Cloud Serpent"],
+		["Oona Kagu"]					= F["Order of the Cloud Serpent"],
+		["Serpent's Heart"]				= F["Order of the Cloud Serpent"],
+		["Serpent's Overlook"]			= F["Order of the Cloud Serpent"],
+		["The Arboretum"]				= F["Order of the Cloud Serpent"],
+		["The Widow's Wail"]			= F["Order of the Cloud Serpent"],
+		["Windward Isle"]				= F["Order of the Cloud Serpent"],
 	},
 	-- The Veiled Stair
 	[873] = {
-		["Tavern in the Mists"]		= "The Black Prince",
+		["Tavern in the Mists"]		= F["The Black Prince"],
 	},
 	-- Thousand Needles
 	[61]  = {
-		["Arikara's Needle"]		= isHorde and "Thunder Bluff" or isAlliance and "Darnassus",
-		["Darkcloud Pinnacle"]		= isHorde and "Thunder Bluff" or isAlliance and "Darnassus",
-		["Freewind Post"]			= isHorde and "Thunder Bluff" or isAlliance and "Darnassus",
+		["Arikara's Needle"]		= H and F["Thunder Bluff"] or A and F["Darnassus"],
+		["Darkcloud Pinnacle"]		= H and F["Thunder Bluff"] or A and F["Darnassus"],
+		["Freewind Post"]			= H and F["Thunder Bluff"] or A and F["Darnassus"],
 	},
 	-- Tirisfal Glades
 	[20]  = { -- TODO: update
-		["The Bulwark"]				= "Argent Dawn",
+		["The Bulwark"]				= F["Argent Dawn"],
 	},
 	-- Townlong Steppes
 	[810] = {
-		["Niuzao Temple"]			= "The August Celestials",
+		["Niuzao Temple"]			= F["The August Celestials"],
 	},
 	-- Twilight Highlands
 	[700] = {
-		["Iso'rath"]				= "The Earthen Ring",
-		["Ring of the Elements"]	= "The Earthen Ring",
-		["Ruins of Drakgor"]		= "The Earthen Ring",
-		["The Maw of Madness"]		= "The Earthen Ring",
-		["Dragonmaw Pass"]			= isHorde and "Bilgewater Cartel",
-		["The Krazzworks"]			= isHorde and "Bilgewater Cartel",
-		["Highbank"]				= isHorde and "Bilgewater Cartel" or isAlliance and "Stormwind",
-		["Obsidian Forest"]			= isAlliance and "Stormwind",
-		["Victor's Point"]			= isAlliance and "Stormwind",
+		["Iso'rath"]				= F["The Earthen Ring"],
+		["Ring of the Elements"]	= F["The Earthen Ring"],
+		["Ruins of Drakgor"]		= F["The Earthen Ring"],
+		["The Maw of Madness"]		= F["The Earthen Ring"],
+		["Dragonmaw Pass"]			= H and F["Bilgewater Cartel"],
+		["The Krazzworks"]			= H and F["Bilgewater Cartel"],
+		["Highbank"]				= H and F["Bilgewater Cartel"] or A and F["Stormwind"],
+		["Obsidian Forest"]			= A and F["Stormwind"],
+		["Victor's Point"]			= A and F["Stormwind"],
 	},
 	-- Vale of Eternal Blossoms
 	[811] = {
-		["Gate of the Setting Sun"]	= "Shado-Pan",
-		["Serpent's Spine"]			= "Shado-Pan",
-		[""]						= "The August Celestials", -- NEEDS VERIFICATION
-		["Mogu'shan Palace"]		= "The August Celestials",
-		["Seat of Knowledge"]		= "The Lorewalkers",
-		["The Golden Terrace"]		= isHorde and "The August Celestials",
-		["The Summer Terrace"]		= isAlliance and "The August Celestials",
+		["Gate of the Setting Sun"]	= F["Shado-Pan"],
+		["Serpent's Spine"]			= F["Shado-Pan"],
+		[""]						= F["The August Celestials"], -- NEEDS VERIFICATION
+		["Mogu'shan Palace"]		= F["The August Celestials"],
+		["Seat of Knowledge"]		= F["The Lorewalkers"],
+		["The Golden Terrace"]		= H and F["The August Celestials"],
+		["The Summer Terrace"]		= A and F["The August Celestials"],
 	},
 	-- Valley of the Four Winds
 	[807] = {
-		["Serpent's Spine"]			= "Shado-Pan",
+		["Serpent's Spine"]			= F["Shado-Pan"],
 	},
 	-- Western Plaguelands
 	[22]  = { -- TODO: update
-		["Andorhal"]				= isAlliance and "Stormwind" or "Undercity",
-		["Chillwind Camp"]			= isAlliance and "Stormwind",
-		["Sorrow Hill"]				= isAlliance and "Stormwind",
-		["Uther's Tomb"]			= isAlliance and "Stormwind",
+		["Andorhal"]				= A and F["Stormwind"] or F["Undercity"],
+		["Chillwind Camp"]			= A and F["Stormwind"],
+		["Sorrow Hill"]				= A and F["Stormwind"],
+		["Uther's Tomb"]			= A and F["Stormwind"],
 	},
 	-- Wetlands
 	[40]  = { -- TODO: update
-		["Direforge Hill"]			= isAlliance and "Darnassus",
-		["Greenwarden's Grove"]		= isAlliance and "Darnassus",
-		["Menethil Harbor"]			= isAlliance and "Stormwind",
-		["The Green Belt"]			= isAlliance and "Darnassus",
+		["Direforge Hill"]			= A and F["Darnassus"],
+		["Greenwarden's Grove"]		= A and F["Darnassus"],
+		["Menethil Harbor"]			= A and F["Stormwind"],
+		["The Green Belt"]			= A and F["Darnassus"],
 	},
 	-- Winterspring
 	[281] = { -- TODO: update
-		["Frostfire Hot Springs"]	= "Timbermaw Hold",
-		["Timbermaw Hold"]			= "Timbermaw Hold",
-		["Timbermaw Post"]			= "Timbermaw Hold",
-		["Winterfall Village"]		= "Timbermaw Hold",
-		["Frostsaber Rock"]			= isAlliance and "Wintersaber Trainers",
+		["Frostfire Hot Springs"]	= F["Timbermaw Hold"],
+		["Timbermaw Hold"]			= F["Timbermaw Hold"],
+		["Timbermaw Post"]			= F["Timbermaw Hold"],
+		["Winterfall Village"]		= F["Timbermaw Hold"],
+		["Frostsaber Rock"]			= A and F["Wintersaber Trainers"],
 	},
 	-- Zangarmarsh
 	[467] = {
-		["Funggor Cavern"]			= "Sporeggar",
-		["Quagg Ridge"]				= "Sporeggar",
-		["Sporeggar"]				= "Sporeggar",
-		["The Spawning Glen"]		= "Sporeggar",
-		["Swamprat Post"]			= isHorde and "Darkspear Trolls",
-		["Zabra'jin"]				= isHorde and "Darkspear Trolls",
-		["Telredor"]				= isAlliance and "Exodar",
+		["Funggor Cavern"]			= F["Sporeggar"],
+		["Quagg Ridge"]				= F["Sporeggar"],
+		["Sporeggar"]				= F["Sporeggar"],
+		["The Spawning Glen"]		= F["Sporeggar"],
+		["Swamprat Post"]			= H and F["Darkspear Trolls"],
+		["Zabra'jin"]				= H and F["Darkspear Trolls"],
+		["Telredor"]				= A and F["Exodar"],
 	},
 	-- Zul'Drak
 	[496] = {
-		["Ebon Watch"]				= "Knights of the Ebon Blade",
+		["Ebon Watch"]				= F["Knights of the Ebon Blade"],
 	},
 }
 
 ------------------------------------------------------------------------
 
 	-- Remove faction-related false values
-	for zone, faction in pairs(ZF) do
+	for zone, faction in pairs(self.zoneFactions) do
 		if not faction then
-			ZF[zone] = nil
+			self.zoneFactions[zone] = nil
 		end
 	end
-	for zone, t in pairs(SF) do
+	for zone, t in pairs(self.subzoneFactions) do
 		for subzone, faction in pairs(t) do
 			if not faction then
 				t[subzone] = nil
@@ -781,53 +906,25 @@ local SF = {
 		end
 	end
 
-	if GetLocale():match("^en") then
-		self.championFactions = CF
-		self.championZones = CZ
-		self.racialFaction = RF[race]
-		self.subzoneFactions = SF
-		self.zoneFactions = ZF
-	else
-		local BF = LibStub and LibStub("LibBabble-Faction-3.0", true) and LibStub("LibBabble-Faction-3.0"):GetUnstrictLookupTable()
+	if not GetLocale():match("^en") then
 		local BS = LibStub and LibStub("LibBabble-SubZone-3.0", true) and LibStub("LibBabble-SubZone-3.0"):GetUnstrictLookupTable()
-		if not BF or not BS then
-			print("|cff33ff99Diplomancer|r is not yet compatible with your language. See the download page for more information.")
-		end
-
-		self.championFactions = {}
-		for buff, data in pairs(CF) do
-			self.championFactions[buff] = { data[1], BF[data[2]] }
-		end
-
-		self.championZones = {}
-		for level, data in pairs(CZ) do
-			self.championZones[level] = {}
-			for zone, info in pairs(data) do
-				self.championZones[level][zone] = info
-			end
-		end
-
-		self.racialFaction = BF[RF[race]]
-
-		self.subzoneFactions = {}
-		for zone, subzones in pairs(SF) do
-			self.subzoneFactions[zone] = {}
-			for subzone, faction in pairs(subzones) do
-				if faction and BS[subzone] then
-					self.subzoneFactions[zone][BS[subzone]] = BF[faction]
-				elseif faction and faction == "" then
-					self.subzoneFactions[zone][subzone] = BF[faction]
-				else
-					-- print("|cff33ff99Diplomancer:|r missing subzone", zone, "==>", subzone)
+		if BS then
+			local SF = {}
+			for zone, subzones in pairs(self.subzoneFactions) do
+				SF[zone] = {}
+				for subzone, faction in pairs(subzones) do
+					if faction and BS[subzone] then
+						SF[zone][BS[subzone]] = faction
+					elseif faction and faction == "" then
+						SF[zone][subzone] = faction
+					else
+						-- print("|cff33ff99Diplomancer:|r missing subzone", zone, "==>", subzone)
+					end
 				end
 			end
-		end
-
-		self.zoneFactions = {}
-		for zone, faction in pairs(ZF) do
-			if faction then
-				self.zoneFactions[zone] = BF[faction]
-			end
+			self.subzoneFactions = SF
+		else
+			print("|cff33ff99Diplomancer|r is running without support for subzones because LibBabble-SubZone-3.0 does not yet provide subzone names for your language. See the download page for more information!")
 		end
 	end
 

@@ -95,17 +95,18 @@ Diplomancer.frame.runOnce = function(self)
 		Diplomancer:ExpandFactionHeaders()
 		local curHeader
 		for i = 1, GetNumFactions() do
-			local name, _, standing, _, _, _, _, _, isHeader, _, hasRep, _, isChild = GetFactionInfo(i)
+			local name, description, standingID, barMin, barMax, barValue, atWarWith, canToggleAtWar,
+				isHeader, isCollapsed, hasRep, isWatched, isChild, factionID = GetFactionInfo(i)
 			if name == L["Inactive"] then
 				break
 			end
-			if isHeader and hasRep then
+			if isHeader and isChild then
 				curHeader = name
 			elseif curHeader and (isHeader or not isChild) then
 				curHeader = nil
 			end
 			if (hasRep or not isHeader) and (standing < 8 or not db.ignoreExalted) then
-				if curHeader then
+				if factionID and GetFriendshipReputation(factionID) then
 					local display = format("%s: %s", curHeader, name)
 					factionDisplayNames[display] = name
 					tinsert(factions, display)
@@ -118,7 +119,11 @@ Diplomancer.frame.runOnce = function(self)
 		sort(factions)
 
 		default:SetValue(db.defaultFaction or racialFaction)
-		default:SetEnabled(db.defaultFaction and db.defaultFaction ~= racialFaction)
+		if db.defaultFaction and db.defaultFaction ~= racialFaction then
+			default:Enable()
+		else
+			default:Disable()
+		end
 
 		champion:SetValue(db.defaultChampion)
 		exalted:SetValue(db.ignoreExalted)
