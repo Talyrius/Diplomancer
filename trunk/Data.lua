@@ -1,7 +1,7 @@
 --[[--------------------------------------------------------------------
 	Diplomancer
 	Automatically sets your watched faction based on your location.
-	Copyright (c) 2007-2012 Phanx <addons@phanx.net>. All rights reserved.
+	Copyright (c) 2007-2013 Phanx <addons@phanx.net>. All rights reserved.
 	See the accompanying README and LICENSE files for more information.
 	http://www.wowinterface.com/downloads/info9643-Diplomancer.html
 	http://www.curse.com/addons/wow/diplomancer
@@ -548,7 +548,9 @@ self.subzoneFactions = {
 		["Ruuan Weald"]				= F["Cenarion Expedition"],
 		["Forge Camp: Terror"]		= F["Ogri'la"],
 		["Forge Camp: Wrath"]		= F["Ogri'la"],
+		["Obsidia's Perch"]			= F["Ogri'la"],
 		["Ogri'la"]					= F["Ogri'la"],
+		["Rivendark's Perch"]		= F["Ogri'la"],
 		["Shartuul's Transporter"]	= F["Ogri'la"],
 		["Vortex Pinnacle"]			= F["Ogri'la"],
 		["Vortex Summit"]			= F["Ogri'la"],

@@ -1,14 +1,14 @@
 ﻿Diplomancer
-===========
+===============
 
-* Copyright (c) 2007-2012 Phanx <addons@phanx.net>. All rights reserved.
+* Copyright (c) 2007-2013 Phanx <addons@phanx.net>. All rights reserved.
 * See the accompanying LICENSE file for more information.
 * http://www.wowinterface.com/downloads/info9643-Diplomancer.html
 * http://www.curse.com/addons/wow/diplomancer
 
 
 Description
------------
+---------------
 
 Diplomancer proactively changes your watched faction based on your
 current location.
@@ -27,13 +27,13 @@ to watch another faction instead, you can choose your own default.
 
 
 Usage
------
+---------
 
 Type “/dm” for options, or find them in the Interface Options window.
 
 
 Localization
-------------
+----------------
 
 Compatible with English, Deutsch, Español (EU), Español (AL), Français,
 Português, Русский, 한국어, 简体中文, and 繁體中文 game clients.
@@ -41,45 +41,33 @@ Português, Русский, 한국어, 简体中文, and 繁體中文 game clien
 Translated into English, Deutsch, Español, Français, Italiano, Português,
 Русский, 한국어, 简体中文, and 繁體中文.
 
-To add or update translations for Diplomancer, see the Localization tab
-on the CurseForge project page:
-	http://wow.curseforge.com/addons/diplomancer/localization/
+To add or update translations for Diplomancer, see the [CurseForge
+localization page] [1].
 
-To add or update translations for faction or subzone names, see the
-LibBabble-Faction-3.0 and LibBabble-Subzone-3.0 project pages:
-	http://wow.curseforge.com/addons/libbabble-faction-3-0/
-	http://wow.curseforge.com/addons/libbabble-subzone-3-0/
+	[1]: http://wow.curseforge.com/addons/diplomancer/localization/
 
-Diplomancer depends on the faction and subzone names provided by these
-libraries to work in non-English locales, so if either library does not
-yet include translations for your locale, Diplomancer won’t work for
-you yet either.
+To add or update translations for subzone names, see the project page
+for the [LibBabble-Subzone-3.0 library] [2].
 
-These libraries are not loaded while playing in English, so if you only
-play in English and are concerned about disk space, you can safely
-remove them from the Diplomancer/Libs folder. *Do not* remove the other
-libraries, as they are required for the options window.
+	[2]: http://wow.curseforge.com/addons/libbabble-subzone-3-0/
 
 
 Feedback
---------
+------------
 
-Bugs, errors, or other problems:
-	Submit a bug report ticket on either download page.
+To report a bug or suggest a feature, please post a ticket using the
+bug/feature ticket links on either download page.
 
-Feature requests or other suggestions:
-	Submit a feature request ticket system on either download page.
+For general questions or feedback, post a comment on WoWInterface.
 
-General questions or comments:
-	Post a comment on the WoWInterface download page.
-
-If you need to contact me privately for a reason other than those listed
-above, you can send me a private message on either download page, or
-email me at <addons@phanx.net>.
+To contact me privately for some other reason, email <addons@phanx.net>
+or send a PM to Phanx on either download page. Please *do not* use email
+or PMs to ask for help, report bugs, or suggest features; such messages
+will be ignored. Post a public ticket or comment instead!
 
 
 Credits
--------
+-----------
 
 Diplomancer was inpsired by SmartFactionWatch, by Charnow. I liked the
 idea, but not the implementation, and decided to write my own version
