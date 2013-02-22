@@ -12,12 +12,7 @@ local L = Diplomancer.L
 
 ------------------------------------------------------------------------
 
-Diplomancer.frame = LibStub("PhanxConfig-OptionsPanel").CreateOptionsPanel(ADDON_NAME)
-
-Diplomancer.frame:RegisterEvent("ADDON_LOADED")
-Diplomancer.frame:SetScript("OnEvent", function(self, event, ...) return Diplomancer[event] and Diplomancer[event](Diplomancer, event, ...) end)
-
-Diplomancer.frame.runOnce = function(self)
+Diplomancer.OptionsPanel = LibStub("PhanxConfig-OptionsPanel").CreateOptionsPanel(ADDON_NAME, nil, function(self)
 	local db = DiplomancerSettings
 	local racialFaction = Diplomancer.racialFaction
 
@@ -65,8 +60,8 @@ Diplomancer.frame.runOnce = function(self)
 
 	local champion = CreateCheckbox(self, L["Default to championed faction"], L["Use your currently championed faction as your default faction."])
 	champion:SetPoint("TOPLEFT", default, "BOTTOMLEFT", 0, -10)
-	champion.OnValueChanged = function(self, checked)
-		db.defaultChampion = checked
+	champion.OnValueChanged = function(self, value)
+		db.defaultChampion = value
 		Diplomancer:Update()
 	end
 
@@ -74,8 +69,8 @@ Diplomancer.frame.runOnce = function(self)
 
 	local exalted = CreateCheckbox(self, L["Ignore Exalted factions"], L["Don't watch factions with whom you have already attained Exalted reputation."])
 	exalted:SetPoint("TOPLEFT", champion, "BOTTOMLEFT", 0, -8)
-	exalted.OnValueChanged = function(self, checked)
-		db.ignoreExalted = checked
+	exalted.OnValueChanged = function(self, value)
+		db.ignoreExalted = value
 		Diplomancer:Update()
 	end
 
@@ -83,8 +78,8 @@ Diplomancer.frame.runOnce = function(self)
 
 	local announce = CreateCheckbox(self, L["Announce watched faction"], L["Show a message in the chat frame when your watched faction is changed."])
 	announce:SetPoint("TOPLEFT", exalted, "BOTTOMLEFT", 0, -8)
-	announce.OnValueChanged = function(self, checked)
-		db.verbose = checked
+	announce.OnValueChanged = function(self, value)
+		db.verbose = value
 	end
 
 	--------------------------------------------------------------------
@@ -125,9 +120,9 @@ Diplomancer.frame.runOnce = function(self)
 		exalted:SetValue(db.ignoreExalted)
 		announce:SetValue(db.verbose)
 	end
-end
+end)
 
-Diplomancer.aboutPanel = LibStub("LibAboutPanel").new(ADDON_NAME, ADDON_NAME)
+Diplomancer.AboutPanel = LibStub("LibAboutPanel").new(ADDON_NAME, ADDON_NAME)
 
 ------------------------------------------------------------------------
 
@@ -135,6 +130,5 @@ SLASH_DIPLOMANCER1 = "/diplomancer"
 SLASH_DIPLOMANCER2 = "/dm"
 
 SlashCmdList.DIPLOMANCER = function(text)
-	InterfaceOptionsFrame_OpenToCategory(Diplomancer.aboutPanel)
-	InterfaceOptionsFrame_OpenToCategory(Diplomancer.frame)
+	InterfaceOptionsFrame_OpenToCategory(Diplomancer.OptionsPanel)
 end
