@@ -43,7 +43,7 @@ local F = { -- mapping table for sanity
 	["Ella"] = 1275, -- The Tillers
 	["Everlook"] = 577,
 	["Exodar"] = 930,
-	["Explorer's League"] = 1068,
+	["Explorers' League"] = 1068,
 	["Farmer Fung"] = 1283, -- The Tillers
 	["Fish Fellreed"] = 1282, -- The Tillers
 	["Forest Hozen"] = 1228,
@@ -301,7 +301,7 @@ self.zoneFactions = {
 -- Camp Narache
 	[890] = H and F["Thunder Bluff"],
 -- Coldridge Valley
-	[866] = A and F["Irongforge"],
+	[866] = A and F["Ironforge"],
 -- Crystalsong Forest
 	[510] = F["Kirin Tor"],
 -- Dalaran

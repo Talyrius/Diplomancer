@@ -50,6 +50,13 @@ end
 
 ------------------------------------------------------------------------
 
+local EventFrame = CreateFrame("Frame")
+EventFrame:RegisterEvent("ADDON_LOADED")
+EventFrame:SetScript("OnEvent", function(self, event, ...) return Diplomancer[event] and Diplomancer[event](Diplomancer, event, ...) end)
+Diplomancer.EventFrame = EventFrame
+
+------------------------------------------------------------------------
+
 function Diplomancer:ADDON_LOADED(_, addon)
 	if addon ~= ADDON_NAME then return end
 	if DEBUG then self:Debug("ADDON_LOADED", addon) end
@@ -64,13 +71,13 @@ function Diplomancer:ADDON_LOADED(_, addon)
 		db.defaultFaction = self:GetFactionIDFromName(db, defaultFaction)
 	end
 
-	self.frame:UnregisterEvent("ADDON_LOADED")
+	EventFrame:UnregisterEvent("ADDON_LOADED")
 	self.ADDON_LOADED = nil
 
 	if IsLoggedIn() then
 		self:PLAYER_LOGIN()
 	else
-		self.frame:RegisterEvent("PLAYER_LOGIN")
+		EventFrame:RegisterEvent("PLAYER_LOGIN")
 	end
 end
 
@@ -88,14 +95,14 @@ function Diplomancer:PLAYER_LOGIN()
 	subzoneFactions = self.subzoneFactions
 	zoneFactions = self.zoneFactions
 
-	self.frame:RegisterEvent("PLAYER_CONTROL_GAINED")
-	self.frame:RegisterEvent("PLAYER_ENTERING_WORLD")
-	self.frame:RegisterEvent("UNIT_INVENTORY_CHANGED")
-	self.frame:RegisterEvent("ZONE_CHANGED")
-	self.frame:RegisterEvent("ZONE_CHANGED_INDOORS")
-	self.frame:RegisterEvent("ZONE_CHANGED_NEW_AREA")
+	EventFrame:RegisterEvent("PLAYER_CONTROL_GAINED")
+	EventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+	EventFrame:RegisterEvent("UNIT_INVENTORY_CHANGED")
+	EventFrame:RegisterEvent("ZONE_CHANGED")
+	EventFrame:RegisterEvent("ZONE_CHANGED_INDOORS")
+	EventFrame:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 
-	self.frame:UnregisterEvent("PLAYER_LOGIN")
+	EventFrame:UnregisterEvent("PLAYER_LOGIN")
 	self.PLAYER_LOGIN = nil
 
 	if UnitOnTaxi("player") then
