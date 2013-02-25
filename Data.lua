@@ -481,7 +481,6 @@ self.zoneFactions = {
 -- The Lost Isles
 	[544] = H and F["Bilgewater Cartel"],
 -- The Maelstrom
-	[737] = F["The Earthen Ring"], -- TODO: Remove the continent, maybe?
 	[751] = F["The Earthen Ring"],
 -- The Mechanar
 	[730] = F["The Sha'tar"],
@@ -519,6 +518,10 @@ self.zoneFactions = {
 	[720] = F["Ramkahen"],
 -- Undercity
 	[382] = H and F["Undercity"],
+-- Utgarde Keep
+	[523] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+-- Utgarde Pinnacle
+	[524] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
 -- Vale of Eternal Blossoms
 	[811] = F["Golden Lotus"],
 -- Valley of the Four Winds
@@ -548,6 +551,7 @@ self.subzoneFactions = {
 		["Ruuan Weald"]				= F["Cenarion Expedition"],
 		["Forge Camp: Terror"]		= F["Ogri'la"],
 		["Forge Camp: Wrath"]		= F["Ogri'la"],
+		["Furywing's Perch"]		= F["Ogri'la"],
 		["Obsidia's Perch"]			= F["Ogri'la"],
 		["Ogri'la"]					= F["Ogri'la"],
 		["Rivendark's Perch"]		= F["Ogri'la"],
