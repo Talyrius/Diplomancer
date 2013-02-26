@@ -28,8 +28,9 @@ Diplomancer.OptionsPanel = LibStub("PhanxConfig-OptionsPanel").CreateOptionsPane
 
 	local reset
 
-	local default = LibStub("PhanxConfig-ScrollingDropdown").CreateScrollingDropdown(self, L["Default faction"], factions,
-		L["Select a faction to watch when your current location doesn't have an associated faction."])
+	local default = LibStub("PhanxConfig-ScrollingDropdown").CreateScrollingDropdown(self, L["Default faction"],
+		L["Select a faction to watch when your current location doesn't have an associated faction."],
+		factions)
 	default:SetPoint("TOPLEFT", notes, "BOTTOMLEFT", 0, -8)
 	default:SetWidth(270)
 	default.OnValueChanged = function(self, value)
