@@ -16,21 +16,17 @@ Diplomancer.OptionsPanel = LibStub("PhanxConfig-OptionsPanel").CreateOptionsPane
 	local db = DiplomancerSettings
 	local racialFaction = Diplomancer.racialFaction
 
+	local factions, factionDisplayNames = {}, {}
+
 	local CreateCheckbox = LibStub("PhanxConfig-Checkbox").CreateCheckbox
 
 	--------------------------------------------------------------------
 
 	local title, notes = LibStub("PhanxConfig-Header").CreateHeader(self, ADDON_NAME, GetAddOnMetadata(ADDON_NAME, "Notes"))
 
-	--------------------------------------------------------------------
-
-	local factions, factionDisplayNames = {}, {}
-
 	local reset
 
-	local default = LibStub("PhanxConfig-ScrollingDropdown").CreateScrollingDropdown(self, L["Default faction"],
-		L["Select a faction to watch when your current location doesn't have an associated faction."],
-		factions)
+	local default = LibStub("PhanxConfig-ScrollingDropdown").CreateScrollingDropdown(self, L.DefaultFaction, L.DefaultFaction_Desc, factions)
 	default:SetPoint("TOPLEFT", notes, "BOTTOMLEFT", 0, -8)
 	default:SetWidth(270)
 	default.OnValueChanged = function(self, value)
@@ -44,9 +40,7 @@ Diplomancer.OptionsPanel = LibStub("PhanxConfig-OptionsPanel").CreateOptionsPane
 		Diplomancer:Update()
 	end
 
-	--------------------------------------------------------------------
-
-	reset = LibStub("PhanxConfig-Button").CreateButton(self, L["Reset"], L["Reset your default faction preference to your race's faction."])
+	reset = LibStub("PhanxConfig-Button").CreateButton(self, L.Reset, L.Reset_Desc)
 	reset:SetPoint("TOPLEFT", default.button, "TOPRIGHT", 8, 0)
 	reset:SetPoint("BOTTOMLEFT", default.button, "BOTTOMRIGHT", 8, 0)
 	reset:SetWidth(max(16 + reset:GetFontString():GetStringWidth(), 80))
@@ -57,27 +51,21 @@ Diplomancer.OptionsPanel = LibStub("PhanxConfig-OptionsPanel").CreateOptionsPane
 		Diplomancer:Update()
 	end)
 
-	--------------------------------------------------------------------
-
-	local champion = CreateCheckbox(self, L["Default to championed faction"], L["Use your currently championed faction as your default faction."])
+	local champion = CreateCheckbox(self, L.DefaultToChampioned, L.DefaultToChampioned_Desc)
 	champion:SetPoint("TOPLEFT", default, "BOTTOMLEFT", 0, -10)
 	champion.OnValueChanged = function(self, value)
 		db.defaultChampion = value
 		Diplomancer:Update()
 	end
 
-	--------------------------------------------------------------------
-
-	local exalted = CreateCheckbox(self, L["Ignore Exalted factions"], L["Don't watch factions with whom you have already attained Exalted reputation."])
+	local exalted = CreateCheckbox(self, L.IgnoreExalted, L.IgnoreExalted_Desc)
 	exalted:SetPoint("TOPLEFT", champion, "BOTTOMLEFT", 0, -8)
 	exalted.OnValueChanged = function(self, value)
 		db.ignoreExalted = value
 		Diplomancer:Update()
 	end
 
-	--------------------------------------------------------------------
-
-	local announce = CreateCheckbox(self, L["Announce watched faction"], L["Show a message in the chat frame when your watched faction is changed."])
+	local announce = CreateCheckbox(self, L.Announce, L.Anounce_Desc)
 	announce:SetPoint("TOPLEFT", exalted, "BOTTOMLEFT", 0, -8)
 	announce.OnValueChanged = function(self, value)
 		db.verbose = value
@@ -130,6 +118,6 @@ Diplomancer.AboutPanel = LibStub("LibAboutPanel").new(ADDON_NAME, ADDON_NAME)
 SLASH_DIPLOMANCER1 = "/diplomancer"
 SLASH_DIPLOMANCER2 = "/dm"
 
-SlashCmdList.DIPLOMANCER = function(text)
+SlashCmdList.DIPLOMANCER = function()
 	InterfaceOptionsFrame_OpenToCategory(Diplomancer.OptionsPanel)
 end
