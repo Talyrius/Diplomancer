@@ -8,22 +8,12 @@
 ----------------------------------------------------------------------]]
 
 local ADDON_NAME, Diplomancer = ...
-_G.Diplomancer = Diplomancer
+local L = Diplomancer.L
 
 local db, onTaxi, tabard, taxiEnded
 local championFactions, championZones, racialFaction, subzoneFactions, zoneFactions
 
-------------------------------------------------------------------------
-
-if not Diplomancer.L then
-	Diplomancer.L = {}
-end
-
-local L = setmetatable(Diplomancer.L, { __index = function(t, k)
-	local v = tostring(k)
-	rawset(t, k, v)
-	return v
-end })
+_G.Diplomancer = Diplomancer
 
 ------------------------------------------------------------------------
 
@@ -262,7 +252,7 @@ function Diplomancer:SetWatchedFactionByID(id, verbose)
 				if not isWatched then
 					SetWatchedFactionIndex(i)
 					if verbose then
-						self:Print(L["Now watching %s."], name)
+						self:Print(L.NowWatching, name)
 					end
 				end
 				return name, id
