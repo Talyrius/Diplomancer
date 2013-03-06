@@ -141,7 +141,7 @@ local F = { -- mapping table for sanity
 }
 
 setmetatable(F, { __index = function(F, faction) -- for debugging
-	print("MISSING FACTION:", faction)
+	print("MISSING FACTION ID", faction)
 	F[faction] = false
 	return false
 end })
