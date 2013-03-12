@@ -155,7 +155,7 @@ self.racialFaction = race == "BloodElf" and F["Silvermoon City"]
 	or race == "Dwarf" and F["Ironforge"]
 	or race == "Gnome" and F["Gnomeregan Exiles"]
 	or race == "Goblin" and F["Bilgewater Cartel"]
-	or race == "Human" and F["Stormwind City"]
+	or race == "Human" and F["Stormwind"]
 	or race == "NightElf" and F["Darnassus"]
 	or race == "Orc" and F["Orgrimmar"]
 	or race == "Pandaren" and (H and F["Huojin Pandaren"] or A and F["Tushui Pandaren"] or F["Shang Xi's Academy"])
