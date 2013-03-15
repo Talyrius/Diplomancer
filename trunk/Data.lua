@@ -369,6 +369,8 @@ self.zoneFactions = {
 	[341] = A and F["Ironforge"],
 -- Isle of Quel'Danas
 	[499] = F["Shattered Sun Offensive"],
+-- Isle of Thunder
+	[928] = H and F["Sunreaver Onslaught"] or A and F["Kirin Tor Offensive"],
 -- Karazhan
 	[799] = F["The Violet Eye"],
 -- Kelp'thar Forest
