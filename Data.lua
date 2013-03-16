@@ -275,6 +275,8 @@ self.championZones = {
 self.zoneFactions = {
 -- Abyssal Depths
 	[614] = F["The Earthen Ring"],
+-- Ahn'kahet: The Old Kingdom
+	[524] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
 -- Ahn'Qiraj: The Fallen Kingdom
 	[772] = F["Brood of Nozdormu"],
 -- Alterac Valley
@@ -287,6 +289,8 @@ self.zoneFactions = {
 	[43]  = H and F["Warsong Offensive"] or A and F["Darnassus"],
 -- Auchenai Crypts
 	[722] = F["Lower City"],
+-- Azjol-Nerub
+	[524] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
 -- Azshara
 	[181] = H and F["Bilgewater Cartel"],
 -- Azuremyst Isle
@@ -325,6 +329,8 @@ self.zoneFactions = {
 	[892] = H and F["Undercity"],
 -- Dragonblight
 	[488] = F["The Wyrmrest Accord"],
+-- Drak'Tharon Keep
+	[524] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
 -- Dread Wastes
 	[858] = F["The Klaxxi"],
 -- Dun Morogh
@@ -351,8 +357,14 @@ self.zoneFactions = {
 	["611"] = A and F["Gilneas"],
 -- Grizzly Hills
 	[490] = H and F["Warsong Offensive"] or A and F["Valiance Expedition"],
+-- Gundrak
+	[524] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+-- Halls of Lightning
+	[524] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
 -- Halls of Reflection
-	[525] = H and F["The Sunreavers"] or A and F["The Silver Covenant"],
+	[525] = H and F["The Sunreavers"] or A and F["The Silver Covenant"], -- NEEDS CHECK
+-- Halls of Stone
+	[524] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
 -- Hellfire Peninsula
 	[465] = H and F["Thrallmar"] or A and F["Honor Hold"],
 -- Hellfire Ramparts
@@ -412,7 +424,7 @@ self.zoneFactions = {
 -- Orgrimmar
 	[321] = H and F["Orgrimmar"],
 -- Pit of Saron
-	[602] = H and F["The Sunreavers"] or A and F["The Silver Covenant"],
+	[602] = H and F["The Sunreavers"] or A and F["The Silver Covenant"], -- NEEDS CHECK
 -- Redridge Mountains
 	[36] = A and F["Stormwind"],
 -- Ruins of Gilneas
@@ -475,6 +487,10 @@ self.zoneFactions = {
 	[725] = H and F["Thrallmar"] or A and F["Honor Hold"],
 -- The Botanica
 	[729] = F["The Sha'tar"],
+-- The Culling of Stratholme
+	[524] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+-- The Forge of Souls
+	[524] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
 -- The Exodar
 	[471] = A and F["Exodar"],
 -- The Eye
@@ -489,6 +505,10 @@ self.zoneFactions = {
 	[751] = F["The Earthen Ring"],
 -- The Mechanar
 	[730] = F["The Sha'tar"],
+-- The Nexus
+	[524] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+-- The Oculus
+	[524] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
 -- The Shattered Halls
 	[710] = H and F["Thrallmar"] or A and F["Honor Hold"],
 -- The Slave Pens
@@ -501,6 +521,8 @@ self.zoneFactions = {
 	[495] = F["The Sons of Hodir"],
 -- The Underbog
 	[726] = F["Cenarion Expedition"],
+-- The Violet Hold
+	[524] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
 -- The Wandering Isle
 	[808] = F["Shang Xi's Academy"],
 -- Thousand Needles
@@ -515,6 +537,8 @@ self.zoneFactions = {
 	[709] = H and F["Hellscream's Reach"] or A and F["Baradin's Wardens"],
 -- Townlong Steppes
 	[810] = F["Shado-Pan"],
+-- Trial of the Champion
+	[524] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
 -- Trial of the Crusader
 	[543] = H and F["The Sunreavers"] or A and F["The Silver Covenant"],
 -- Twilight Highlands
