@@ -255,6 +255,7 @@ function Diplomancer:SetWatchedFactionByID(id, verbose)
 						self:Print(L.NowWatching, name)
 					end
 				end
+				self:RestoreFactionHeaders()
 				return name, id
 			else
 				break
@@ -267,7 +268,7 @@ end
 ------------------------------------------------------------------------
 
 function Diplomancer:GetChampionedFaction()
-	for i = 1, 32 do
+	for i = 1, 40 do
 		local _, _, _, _, _, _, _, _, _, _, id = UnitBuff("player", i)
 		if not id then
 			break
@@ -333,31 +334,37 @@ local wasCollapsed = {}
 
 function Diplomancer:ExpandFactionHeaders()
 	if DEBUG then self:Debug("ExpandFactionHeaders") end
-	for i = GetNumFactions(), 1, -1 do
+	local i = 1
+	while i <= GetNumFactions() do
 		local name, _, _, _, _, _, _, _, isHeader, isCollapsed = GetFactionInfo(i)
 		if isHeader then
+			wasCollapsed[name] = isCollapsed
 			if name == FACTION_INACTIVE then
-				if not ReputationFrame:IsShown() then
+				if not isCollapsed then
 					CollapseFactionHeader(i)
 				end
+				break
 			elseif isCollapsed then
-				wasCollapsed[name] = true
 				ExpandFactionHeader(i)
-				i = GetNumFactions()
 			end
 		end
+		i = i + 1
 	end
 end
 
 function Diplomancer:RestoreFactionHeaders()
 	if DEBUG then self:Debug("RestoreFactionHeaders") end
-	if ReputationFrame:IsShown() then return end
-	for i = GetNumFactions(), 1, -1 do
+	local i = 1
+	while i <= GetNumFactions() do
 		local name, _, _, _, _, _, _, _, isHeader, isCollapsed = GetFactionInfo(i)
-		if isHeader and not isCollapsed and wasCollapsed[name] then
-			CollapseFactionHeader(i)
-			i = GetNumFactions()
+		if isHeader then
+			if isCollapsed and not wasCollapsed[name] then
+				ExpandFactionHeader(i)
+			elseif wasCollapsed[name] and not isCollapsed then
+				CollapseFactionHeader(i)
+			end
 		end
+		i = i + 1
 	end
 	wipe(wasCollapsed)
 end
