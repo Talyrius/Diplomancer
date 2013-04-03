@@ -141,7 +141,7 @@ local F = { -- mapping table for sanity
 }
 
 setmetatable(F, { __index = function(F, faction) -- for debugging
-	print("MISSING FACTION ID", faction)
+	print("|cffffd000Diplomancer:|r Missing faction ID for", faction)
 	F[faction] = false
 	return false
 end })
@@ -153,7 +153,7 @@ local _, race = UnitRace("player") -- arg2 is "Scourge" for Undead players
 self.racialFaction = race == "BloodElf" and F["Silvermoon City"]
 	or race == "Draenei" and F["Exodar"]
 	or race == "Dwarf" and F["Ironforge"]
-	or race == "Gnome" and F["Gnomeregan Exiles"]
+	or race == "Gnome" and F["Gnomeregan"]
 	or race == "Goblin" and F["Bilgewater Cartel"]
 	or race == "Human" and F["Stormwind"]
 	or race == "NightElf" and F["Darnassus"]
@@ -305,6 +305,8 @@ self.zoneFactions = {
 	[476] = A and F["Exodar"],
 -- Borean Tundra
 	[486] = H and F["Warsong Offensive"] or A and F["Valiance Expedition"],
+-- Brawl'gar Arena
+	[925] = H and F["Brawl'gar Arena"],
 -- Camp Narache
 	[890] = H and F["Thunder Bluff"],
 -- Coldridge Valley
@@ -527,6 +529,8 @@ self.zoneFactions = {
 	[808] = F["Shang Xi's Academy"],
 -- Thousand Needles
 	[61]  = H and F["Bilgewater Cartel"] or A and F["Gnomeregan"],
+-- Throne of Thunder
+	[930] = F["Shado-Pan Assault"],
 -- Thunder Bluff
 	[362] = H and F["Thunder Bluff"],
 -- Tirisfal Glades
@@ -622,6 +626,10 @@ self.subzoneFactions = {
 		["Twilight Precipice"]		= F["Therazane"],
 		["Verlok Stand"]			= F["Therazane"],
 	},
+	-- Deeprun Tram
+	[922] = {
+		["Bizmo's Brawlpub"]        = A and F["Bizmo's Brawlpub"],
+	},
 	-- Dragonblight
 	[488] = {
 		["Light's Trust"]			= F["Argent Crusade"],
@@ -655,7 +663,7 @@ self.subzoneFactions = {
 		["Timbermaw Hold"]			= F["Timbermaw Hold"],
 	},
 	-- Grizzly Hills
-	[490] = {
+	[490] = { -- TODO: add Alliance areas?
 		["Camp Oneqwah"]			= H and F["The Taunka"],
 	},
 	-- Hellfire Peninsula
