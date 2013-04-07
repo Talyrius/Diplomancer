@@ -28,14 +28,15 @@ L.NowWatching = "Now watching %s."
 
 --[[--------------------------------------------------------------------
 	German
-	Last updated 2009-02-07 by paterbrown
+	Last updated 2013-03-16 by CanRanBan
+	Previous contributors: paterbrown
 ----------------------------------------------------------------------]]
 
 if LOCALE == "deDE" then
 	L.Announce = "Schalte Benachrichtigungen ein"
-	L.Announce_Desc = "Zeigt eine Meldung im Chatfenster wenn sich die angezeigte Fraktion ändert."
+	L.Announce_Desc = "Zeigt eine Meldung im Chatfenster, wenn sich die angezeigte Fraktion ändert."
 	L.DefaultFaction = "Standardfraktion"
-	L.DefaultFaction_Desc = "Wähle eine Standardfraktion, welche angezeigt wird wenn dein Aufenthaltsort nicht mit einer Fraktion verknüpft ist."
+	L.DefaultFaction_Desc = "Wähle eine Standardfraktion, welche angezeigt wird, wenn dein Aufenthaltsort nicht mit einer Fraktion verknüpft ist."
 	L.DefaultToChampioned = "Verwenden Tragtenfraktion"
 	L.DefaultToChampioned_Desc = "Verwenden die Tragtenfraktion als deine Standardfraktion."
 	L.IgnoreExalted = "Ignoriere ehrfürchtige Fraktionen"
