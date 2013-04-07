@@ -589,6 +589,7 @@ self.subzoneFactions = {
 		["Ogri'la"]					= F["Ogri'la"],
 		["Rivendark's Perch"]		= F["Ogri'la"],
 		["Shartuul's Transporter"]	= F["Ogri'la"],
+		["Skyguard Outpost"]		= F["Sha'tari Skyguard"],
 		["Vortex Pinnacle"]			= F["Ogri'la"],
 		["Vortex Summit"]			= F["Ogri'la"],
 	},
