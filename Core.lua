@@ -45,6 +45,14 @@ EventFrame:RegisterEvent("ADDON_LOADED")
 EventFrame:SetScript("OnEvent", function(self, event, ...) return Diplomancer[event] and Diplomancer[event](Diplomancer, event, ...) end)
 Diplomancer.EventFrame = EventFrame
 
+local Delay = EventFrame:CreateAnimationGroup()
+Delay:CreateAnimation():SetDuration(0.5)
+Delay:SetScript("OnFinished", function(self, forced)
+	if not forced then
+		Diplomancer:Update("DelayFinished")
+	end
+end)
+
 ------------------------------------------------------------------------
 
 function Diplomancer:ADDON_LOADED(_, addon)
@@ -123,6 +131,12 @@ function Diplomancer:Update(event)
 	elseif UnitOnTaxi("player") then
 		if DEBUG then self:Debug("On taxi. Skipping update.") end
 		onTaxi = true
+		return
+	end
+
+	if WorldMapFrame:IsShown() then
+		-- Don't update while the map is open?
+		waitingForMapToClose = true
 		return
 	end
 
@@ -205,10 +219,15 @@ function Diplomancer:Update(event)
 	end
 end
 
-Diplomancer.PLAYER_ENTERING_WORLD = Diplomancer.Update
-Diplomancer.ZONE_CHANGED = Diplomancer.Update
-Diplomancer.ZONE_CHANGED_INDOORS = Diplomancer.Update
-Diplomancer.ZONE_CHANGED_NEW_AREA = Diplomancer.Update
+local function DelayUpdate()
+	Delay:Stop()
+	Delay:Play()
+end
+
+Diplomancer.PLAYER_ENTERING_WORLD = DelayUpdate
+Diplomancer.ZONE_CHANGED = DelayUpdate
+Diplomancer.ZONE_CHANGED_INDOORS = DelayUpdate
+Diplomancer.ZONE_CHANGED_NEW_AREA = DelayUpdate
 
 ------------------------------------------------------------------------
 
