@@ -36,6 +36,7 @@ local F = { -- mapping table for sanity
 	["Cenarion Expedition"] = 942,
 	["Chee Chee"] = 1277, -- The Tillers
 	["Darkmoon Faire"] = 909,
+	["Darkspear Rebellion"] = 1440,
 	["Darkspear Trolls"] = 530,
 	["Darnassus"] = 69,
 	["Dominance Offensive"] = 1375,
@@ -545,6 +546,8 @@ self.zoneFactions = {
 	[524] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
 -- Trial of the Crusader
 	[543] = H and F["The Sunreavers"] or A and F["The Silver Covenant"],
+-- Troves of the Thunder King [SCENARIO]
+	[6716] = H and F["Sunreaver Onslaught"] or A and F["Kirin Tor Offensive"],
 -- Twilight Highlands
 	[700] = H and F["Dragonmaw Clan"] or A and F["Wildhammer Clan"],
 -- Uldum

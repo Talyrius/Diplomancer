@@ -349,6 +349,7 @@ end
 
 ------------------------------------------------------------------------
 
+local GetNumFactions, GetFactionInfo, ExpandFactionHeader, CollapseFactionHeader = GetNumFactions, GetFactionInfo, ExpandFactionHeader, CollapseFactionHeader
 local wasCollapsed = {}
 
 function Diplomancer:ExpandFactionHeaders()
