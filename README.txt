@@ -17,8 +17,8 @@ It differs from other faction-switching addons in that it changes your
 watched faction as soon as you enter a particular area, instead of
 waiting until you gain reputation with a faction. It includes faction
 associations for all Classic, Burning Crusade, Wrath of the Lich King,
-and Cataclysm content. It also recognizes faction champion tabards
-inside appropriately-leveled dungeons.
+Cataclysm, and Mists of Pandaria content. It also recognizes faction
+champion tabards inside appropriately-leveled dungeons.
 
 While in locations without an associated faction — for example, if
 you’re a troll taking a weekend camping trip in the lovely Redridge

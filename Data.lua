@@ -42,6 +42,7 @@ local F = { -- mapping table for sanity
 	["Dominance Offensive"] = 1375,
 	["Dragonmaw Clan"] = 1172,
 	["Ella"] = 1275, -- The Tillers
+	["Emperor Shaohao"] = 1492,
 	["Everlook"] = 577,
 	["Exodar"] = 930,
 	["Explorers' League"] = 1068,
@@ -534,6 +535,8 @@ self.zoneFactions = {
 	[930] = F["Shado-Pan Assault"],
 -- Thunder Bluff
 	[362] = H and F["Thunder Bluff"],
+-- Timeless Isle
+	[951] = F["Emperor Shaohao"],
 -- Tirisfal Glades
 	[20]  = H and F["Undercity"],
 -- Tol Barad
