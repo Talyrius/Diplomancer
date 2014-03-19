@@ -18,18 +18,16 @@ Diplomancer.OptionsPanel = LibStub("PhanxConfig-OptionsPanel").CreateOptionsPane
 
 	local factions, factionDisplayNames = {}, {}
 
-	local CreateCheckbox = LibStub("PhanxConfig-Checkbox").CreateCheckbox
-
 	--------------------------------------------------------------------
 
-	local title, notes = LibStub("PhanxConfig-Header").CreateHeader(self, ADDON_NAME, GetAddOnMetadata(ADDON_NAME, "Notes"))
+	local title, notes = self:CreateHeaderADDON_NAME, GetAddOnMetadata(ADDON_NAME, "Notes"))
 
 	local reset
 
-	local default = LibStub("PhanxConfig-ScrollingDropdown").CreateScrollingDropdown(self, L.DefaultFaction, L.DefaultFaction_Desc, factions)
+	local default = self:CreateScrollingDropdown(L.DefaultFaction, L.DefaultFaction_Desc, factions)
 	default:SetPoint("TOPLEFT", notes, "BOTTOMLEFT", 0, -8)
 	default:SetWidth(270)
-	default.OnValueChanged = function(self, value)
+	function default:Callback(value)
 		if value == racialFaction then
 			db.defaultFaction = nil
 			reset:Disable()
@@ -40,34 +38,34 @@ Diplomancer.OptionsPanel = LibStub("PhanxConfig-OptionsPanel").CreateOptionsPane
 		Diplomancer:Update()
 	end
 
-	reset = LibStub("PhanxConfig-Button").CreateButton(self, L.Reset, L.Reset_Desc)
+	reset = self:CreateButton(L.Reset, L.Reset_Desc)
 	reset:SetPoint("TOPLEFT", default.button, "TOPRIGHT", 8, 0)
 	reset:SetPoint("BOTTOMLEFT", default.button, "BOTTOMRIGHT", 8, 0)
 	reset:SetWidth(max(16 + reset:GetFontString():GetStringWidth(), 80))
-	reset:SetScript("OnClick", function(self)
+	function reset:Callback()
 		self:Disable()
 		db.defaultFaction = nil
 		default:SetValue(Diplomancer:GetFactionNameFromID(racialFaction))
 		Diplomancer:Update()
-	end)
+	end
 
-	local champion = CreateCheckbox(self, L.DefaultToChampioned, L.DefaultToChampioned_Desc)
+	local champion = self:CreateCheckbox(L.DefaultToChampioned, L.DefaultToChampioned_Desc)
 	champion:SetPoint("TOPLEFT", default, "BOTTOMLEFT", 0, -10)
-	champion.OnValueChanged = function(self, value)
+	function champion:Callback(value)
 		db.defaultChampion = value
 		Diplomancer:Update()
 	end
 
-	local exalted = CreateCheckbox(self, L.IgnoreExalted, L.IgnoreExalted_Desc)
+	local exalted = self:CreateCheckbox(L.IgnoreExalted, L.IgnoreExalted_Desc)
 	exalted:SetPoint("TOPLEFT", champion, "BOTTOMLEFT", 0, -8)
-	exalted.OnValueChanged = function(self, value)
+	function exalted:Callback(value)
 		db.ignoreExalted = value
 		Diplomancer:Update()
 	end
 
-	local announce = CreateCheckbox(self, L.Announce, L.Anounce_Desc)
+	local announce = self:CreateCheckbox(L.Announce, L.Anounce_Desc)
 	announce:SetPoint("TOPLEFT", exalted, "BOTTOMLEFT", 0, -8)
-	announce.OnValueChanged = function(self, value)
+	function announce:Callback(value)
 		db.verbose = value
 	end
 
