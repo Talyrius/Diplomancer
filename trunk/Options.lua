@@ -20,7 +20,7 @@ Diplomancer.OptionsPanel = LibStub("PhanxConfig-OptionsPanel").CreateOptionsPane
 
 	--------------------------------------------------------------------
 
-	local title, notes = self:CreateHeaderADDON_NAME, GetAddOnMetadata(ADDON_NAME, "Notes"))
+	local title, notes = self:CreateHeader(ADDON_NAME, GetAddOnMetadata(ADDON_NAME, "Notes"))
 
 	local reset
 
