@@ -19,7 +19,6 @@ function Diplomancer:LocalizeData()
 ------------------------------------------------------------------------
 
 local F = { -- mapping table for sanity
-	["Akama's Trust"] = 1416,
 	["Alliance Vanguard"] = 1037,
 	["Argent Crusade"] = 1106,
 	["Argent Dawn"] = 529,
