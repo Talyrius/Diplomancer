@@ -1,5 +1,5 @@
-## Interface: 50400
-## Version: 5.4.8.wowi:revision
+## Interface: 60000
+## Version: 6.0.2.wowi:revision
 
 ## Title: Diplomancer
 ## Notes: Automatically watch your current location's faction.
@@ -37,11 +37,8 @@ Libs\PhanxConfig-Header\PhanxConfig-Header.lua
 Libs\PhanxConfig-OptionsPanel\PhanxConfig-OptionsPanel.lua
 Libs\PhanxConfig-ScrollingDropdown\PhanxConfig-ScrollingDropdown.lua
 
-Libs\LibBabble-SubZone-3.0\LibBabble-3.0.lua
-Libs\LibBabble-SubZone-3.0\LibBabble-SubZone-3.0.lua
-
+Libs\LibBabble-SubZone-3.0\lib.xml
 Localization.lua
-
 Data.lua
 
 Core.lua
