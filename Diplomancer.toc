@@ -3,7 +3,7 @@
 
 ## Title: Diplomancer
 ## Notes: Automatically watch your current location's faction.
-## Notes-deDE: Verändert die angezeigte Fraktion basierend auf den aktuellen Standort.
+## Notes-deDE: Verändert die angezeigte Fraktion basierend auf dem aktuellen Standort.
 ## Notes-esES: Sigue automáticamente la facción asociada con tu lugar actual.
 ## Notes-esMX: Sigue automáticamente la facción asociada con tu lugar actual.
 ## Notes-frFR: Surveiller automatiquement la faction associée à votre position actuelle.
