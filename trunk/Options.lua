@@ -24,7 +24,7 @@ Diplomancer.OptionsPanel = LibStub("PhanxConfig-OptionsPanel").CreateOptionsPane
 
 	local reset
 
-	local default = self:CreateScrollingDropdown(L.DefaultFaction, L.DefaultFaction_Desc, factions)
+	local default = self:CreateDropdown(L.DefaultFaction, L.DefaultFaction_Desc, factions)
 	default:SetPoint("TOPLEFT", notes, "BOTTOMLEFT", 0, -8)
 	default:SetWidth(270)
 	function default:Callback(value)
