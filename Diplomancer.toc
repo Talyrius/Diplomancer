@@ -1,5 +1,5 @@
 ## Interface: 60000
-## Version: 6.0.2.wowi:revision
+## Version: 6.0.2.181
 
 ## Title: Diplomancer
 ## Notes: Automatically watch your current location's faction.
@@ -14,17 +14,9 @@
 
 ## Author: Phanx
 ## X-Email: addons@phanx.net
-## X-Credits: Inspired by Charnow's SmartFactionWatch.
 ## X-Copyright: Copyright (c) 2007-2014 Phanx. All rights reserved.
-## X-License: See accompanying LICENSE file for details.
-## X-CompatibleLocales: enUS, deDE, esES, esMX, frFR, ptBR, ruRU, koKR, zhCN, zhTW
-## X-Localizations: enUS, deDE, esES, esMX, frFR, itIT, ptBR, ruRU, koKR, zhCN, zhTW
-## X-Website: http://www.wowinterface.com/downloads/info9643-Diplomancer.html
-## X-Curse-Project-ID: diplomancer
-## X-WoWI-ID: 9643
-
-## LoadManagers: AddonLoader
-## X-LoadOn-Always: delayed
+## X-Credits: Inspired by Charnow's SmartFactionWatch.
+## X-Website: https://github.com/Phanx/Diplomancer
 
 ## OptionalDependencies: LibAboutPanel, LibBabble-SubZone-3.0, PhanxConfigWidgets
 ## SavedVariablesPerCharacter: DiplomancerSettings
