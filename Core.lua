@@ -2,9 +2,9 @@
 	Diplomancer
 	Automatically sets your watched faction based on your location.
 	Copyright (c) 2007-2014 Phanx <addons@phanx.net>. All rights reserved.
-	See the accompanying README and LICENSE files for more information.
 	http://www.wowinterface.com/downloads/info9643-Diplomancer.html
 	http://www.curse.com/addons/wow/diplomancer
+	https://github.com/Phanx/Diplomancer
 ----------------------------------------------------------------------]]
 
 local ADDON_NAME, Diplomancer = ...
@@ -17,13 +17,13 @@ _G.Diplomancer = Diplomancer
 
 ------------------------------------------------------------------------
 
-local DEBUG = false
+local DEBUG = true
 function Diplomancer:Debug(text, ...)
 	if text then
 		if text:match("%%[dfqsx%d%.]") then
-			print("|cffff9999Diplomancer:|r", format(text, ...))
+			(DEBUG_CHAT_FRAME or ChatFrame3):AddMessage("|cffff9999Diplomancer:|r " .. format(text, ...))
 		else
-			print("|cffff9999Diplomancer:|r", text, tostringall(...))
+			(DEBUG_CHAT_FRAME or ChatFrame3):AddMessage("|cffff9999Diplomancer:|r " .. strjoin(" ", text, tostringall(...)))
 		end
 	end
 end
@@ -31,9 +31,9 @@ end
 function Diplomancer:Print(text, ...)
 	if text then
 		if text:match("%%[dfqs%d%.]") then
-			print("|cffffcc00Diplomancer:|r", format(text, ...))
+			DEFAULT_CHAT_FRAME:AddMessage("|cffffcc00Diplomancer:|r " .. format(text, ...))
 		else
-			print("|cffffcc00Diplomancer:|r", text, tostringall(...))
+			DEFAULT_CHAT_FRAME:AddMessage("|cffffcc00Diplomancer:|r " .. strjoin(" ", text, tostringall(...)))
 		end
 	end
 end
@@ -44,14 +44,6 @@ local EventFrame = CreateFrame("Frame")
 EventFrame:RegisterEvent("ADDON_LOADED")
 EventFrame:SetScript("OnEvent", function(self, event, ...) return Diplomancer[event] and Diplomancer[event](Diplomancer, event, ...) end)
 Diplomancer.EventFrame = EventFrame
-
-local Delay = EventFrame:CreateAnimationGroup()
-Delay:CreateAnimation():SetDuration(0.5)
-Delay:SetScript("OnFinished", function(self, forced)
-	if not forced then
-		Diplomancer:Update("DelayFinished")
-	end
-end)
 
 ------------------------------------------------------------------------
 
@@ -219,15 +211,28 @@ function Diplomancer:Update(event)
 	end
 end
 
-local function DelayUpdate()
-	Delay:Stop()
-	Delay:Play()
-end
+------------------------------------------------------------------------
 
-Diplomancer.PLAYER_ENTERING_WORLD = DelayUpdate
-Diplomancer.ZONE_CHANGED = DelayUpdate
-Diplomancer.ZONE_CHANGED_INDOORS = DelayUpdate
-Diplomancer.ZONE_CHANGED_NEW_AREA = DelayUpdate
+do
+	local running
+
+	local function DelayedUpdate()
+		running = nil
+		Diplomancer:Update("DelayedUpdate")
+	end
+
+	local function DelayUpdate()
+		if not running then
+			C_Timer.After(0.5, DelayedUpdate)
+			running = true
+		end
+	end
+
+	Diplomancer.PLAYER_ENTERING_WORLD = DelayUpdate
+	Diplomancer.ZONE_CHANGED = DelayUpdate
+	Diplomancer.ZONE_CHANGED_INDOORS = DelayUpdate
+	Diplomancer.ZONE_CHANGED_NEW_AREA = DelayUpdate
+end
 
 ------------------------------------------------------------------------
 
@@ -258,7 +263,31 @@ end
 
 ------------------------------------------------------------------------
 
+function Diplomancer:PickBestFaction(factions)
+	if DEBUG then
+		local str = ""
+		for id in pairs(factions) do
+			str = str .. " " .. id
+		end
+		self:Debug("PickBestFaction:", str)
+	end
+	local bestStandingID, bestFactionID = -1
+	self:ExpandFactionHeaders()
+	for i = 1, GetNumFactions() do
+		local _, _, standingID, _, _, _, _, _, _, _, _, isWatched, _, factionID = GetFactionInfo(i)
+		if factions[factionID] and standingID > bestStandingID then
+			bestFactionID = factionID
+			bestStandingID = standingID
+		end
+	end
+	self:RestoreFactionHeaders()
+	return bestFactionID
+end
+
 function Diplomancer:SetWatchedFactionByID(id, verbose)
+	if type(id) == "table" then
+		return self:SetWatchedFactionByID(self:PickBestFaction(id))
+	end
 	if type(id) ~= "number" then return end
 	if DEBUG then self:Debug("SetWatchedFactionByID:", id) end
 	self:ExpandFactionHeaders()
