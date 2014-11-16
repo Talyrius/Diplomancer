@@ -308,6 +308,8 @@ self.zoneFactions = {
 	[16]  = H and F["Undercity"] or A and F["Stormwind"],
 -- Ashenvale
 	[43]  = H and F["Warsong Offensive"] or A and F["Darnassus"],
+-- Ashran
+	[6941] = H and F["Vol'jin's Spear"] or A and F["Wrynn's Vanguard"],
 -- Auchenai Crypts
 	[722] = F["Lower City"],
 -- Azjol-Nerub
@@ -488,6 +490,8 @@ self.zoneFactions = {
 	[607] = H and F["Orgrimmar"] or A and F["Stormwind"],
 -- Stonetalon Mountains
 	[81]  = H and F["Orgrimmar"] or A and F["Darnassus"],
+-- Stormshield
+	[7332] = H and F["Vol'jin's Spear"] or A and F["Wrynn's Vanguard"],
 -- Stormwind City
 	[301] = A and F["Stormwind"],
 -- Stratholme
@@ -590,6 +594,8 @@ self.zoneFactions = {
 	[889] = H and F["Orgrimmar"],
 -- Warsong Gulch
 	[443] = H and F["Warsong Outriders"] or A and F["Silverwing Sentinels"],
+-- Warspear
+	[7333] = H and F["Vol'jin's Spear"] or A and F["Wrynn's Vanguard"],
 -- Western Plaguelands
 	[22]  = F["Argent Crusade"],
 -- Wetlands
