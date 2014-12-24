@@ -27,7 +27,7 @@ Diplomancer.OptionsPanel = LibStub("PhanxConfig-OptionsPanel").CreateOptionsPane
 	local default = self:CreateDropdown(L.DefaultFaction, L.DefaultFaction_Desc, factions)
 	default:SetPoint("TOPLEFT", notes, "BOTTOMLEFT", 0, -8)
 	default:SetWidth(270)
-	function default:Callback(value)
+	function default:OnValueChanged(value)
 		if value == racialFaction then
 			db.defaultFaction = nil
 			reset:Disable()
@@ -42,7 +42,7 @@ Diplomancer.OptionsPanel = LibStub("PhanxConfig-OptionsPanel").CreateOptionsPane
 	reset:SetPoint("TOPLEFT", default.button, "TOPRIGHT", 8, 0)
 	reset:SetPoint("BOTTOMLEFT", default.button, "BOTTOMRIGHT", 8, 0)
 	reset:SetWidth(max(16 + reset:GetFontString():GetStringWidth(), 80))
-	function reset:Callback()
+	function reset:OnClicked()
 		self:Disable()
 		db.defaultFaction = nil
 		default:SetValue(Diplomancer:GetFactionNameFromID(racialFaction))
@@ -51,21 +51,21 @@ Diplomancer.OptionsPanel = LibStub("PhanxConfig-OptionsPanel").CreateOptionsPane
 
 	local champion = self:CreateCheckbox(L.DefaultToChampioned, L.DefaultToChampioned_Desc)
 	champion:SetPoint("TOPLEFT", default, "BOTTOMLEFT", 0, -10)
-	function champion:Callback(value)
+	function champion:OnValueChanged(value)
 		db.defaultChampion = value
 		Diplomancer:Update()
 	end
 
 	local exalted = self:CreateCheckbox(L.IgnoreExalted, L.IgnoreExalted_Desc)
 	exalted:SetPoint("TOPLEFT", champion, "BOTTOMLEFT", 0, -8)
-	function exalted:Callback(value)
+	function exalted:OnValueChanged(value)
 		db.ignoreExalted = value
 		Diplomancer:Update()
 	end
 
 	local announce = self:CreateCheckbox(L.Announce, L.Anounce_Desc)
 	announce:SetPoint("TOPLEFT", exalted, "BOTTOMLEFT", 0, -8)
-	function announce:Callback(value)
+	function announce:OnValueChanged(value)
 		db.verbose = value
 	end
 
