@@ -1,5 +1,5 @@
 ## Interface: 60000
-## Version: 6.0.2.181
+## Version: @project-version@
 
 ## Title: Diplomancer
 ## Notes: Automatically watch your current location's faction.
