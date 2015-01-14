@@ -1,7 +1,7 @@
 --[[--------------------------------------------------------------------
 	Diplomancer
 	Automatically sets your watched faction based on your location.
-	Copyright (c) 2007-2014 Phanx <addons@phanx.net>. All rights reserved.
+	Copyright (c) 2007-2015 Phanx <addons@phanx.net>. All rights reserved.
 	http://www.wowinterface.com/downloads/info9643-Diplomancer.html
 	http://www.curse.com/addons/wow/diplomancer
 	https://github.com/Phanx/Diplomancer
@@ -796,6 +796,10 @@ self.subzoneFactions = {
 		["Sanctum of the Stars"]     = F["The Scryers"],
 		["Warden's Cage"]            = F["Ashtongue Deathsworn"],
 	},
+	-- Shadowmoon Valley WOD
+	[947] = A and { -- TODO: Use for whole zone?
+		["Socrethar's Rise"]         = F["Council of Exarchs"],
+	} or nil,
 	-- Shattrath City
 	[481] = {
 		["Lower City"]               = F["Lower City"],
@@ -976,9 +980,13 @@ self.subzoneFactions = {
 		end
 	end
 	for zone, t in pairs(self.subzoneFactions) do
-		for subzone, faction in pairs(t) do
-			if not faction then
-				t[subzone] = nil
+		if type(t) ~= "table" then
+			print("BAD DATA IN SUBZONE FACTIONS:", zone, tostring(t))
+		else
+			for subzone, faction in pairs(t) do
+				if not faction then
+					t[subzone] = nil
+				end
 			end
 		end
 	end
