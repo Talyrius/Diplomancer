@@ -374,6 +374,8 @@ self.zoneFactions = {
 	[121] = H and F["Thunder Bluff"] or A and F["Darnassus"],
 -- Firelands
 	[800] = F["Avengers of Hyjal"],
+-- Frostfire Ridge
+	[941] = H and F["Frostwolf Orcs"],
 -- Ghostlands
 	[463] = H and F["Tranquillien"],
 -- Gilneas
@@ -434,7 +436,9 @@ self.zoneFactions = {
 	[606] = F["Guardians of Hyjal"],
 -- Mulgore
 	[9]   = H and F["Thunder Bluff"],
--- Nagrand
+-- Nagrand (Draenor)
+	[950] = F["Steamwheedle Preservation Society"],
+-- Nagrand (Outland)
 	[477] = H and F["The Mag'har"] or A and F["Kurenai"],
 -- Netherstorm
 	[479] = F["The Consortium"],
@@ -468,7 +472,9 @@ self.zoneFactions = {
 	[724] = F["Lower City"],
 -- Shadowglen
 	[888] = F["Darnassus"],
--- Shadowmoon Valley
+-- Shadowmoon Valley (Draenor)
+	[947] = A and F["Council of Exarchs"],
+-- Shadowmoon Valley (Outland)
 	[473] = F["Netherwing"],
 -- Shattrath City
 	[481] = F["The Sha'tar"],
@@ -488,6 +494,8 @@ self.zoneFactions = {
 	[21]  = H and F["Undercity"],
 -- Southern Barrens
 	[607] = H and F["Orgrimmar"] or A and F["Stormwind"],
+-- Spires of Arak
+	[948] = F["Arakkoa Outcasts"],
 -- Stonetalon Mountains
 	[81]  = H and F["Orgrimmar"] or A and F["Darnassus"],
 -- Stormshield
@@ -498,6 +506,8 @@ self.zoneFactions = {
 	[765] = F["Argent Dawn"],
 -- Sunwell Plateau
 	[789] = F["Shattered Sun Offensive"],
+-- Talador
+	[946] = H and F["Frostwolf Orcs"] or A and F["Council of Exarchs"],
 -- Tanaris
 	[161] = F["Gadgetzan"],
 -- Teldrassil
@@ -696,6 +706,12 @@ self.subzoneFactions = {
 		["Felpaw Village"]            = F["Timbermaw Hold"],
 		["Timbermaw Hold"]            = F["Timbermaw Hold"],
 	},
+	-- Gorgrond
+	[949] = {
+		["Broken Horn Village"]       = H and F["Laughing Skull Orcs"],
+		["Deadmeat's House of Meat"]  = H and F["Laughing Skull Orcs"],
+		["Everbloom Wilds"]           = H and F["Laughing Skull Orcs"],
+	},
 	-- Grizzly Hills
 	[490] = { -- TODO: add Alliance areas?
 		["Camp Oneqwah"]             = H and F["The Taunka"],
@@ -829,6 +845,10 @@ self.subzoneFactions = {
 		["Frazzlecraz Motherlode"]  = A and F["Ironforge"],
 		["Twinbraid's Patrol"]      = A and F["Ironforge"],
 	},
+	-- Spires of Arak
+	[948] = {
+		["Pillars of Fate"]         = A and F["Council of Exarchs"],
+	},
 	-- Stranglethorn Vale
 	[689] = { -- TODO: update
 		["Booty Bay"]               = F["Booty Bay"],
@@ -854,6 +874,34 @@ self.subzoneFactions = {
 		["Temple of Order"]         = A and F["The Frostborn"],
 		["Temple of Winter"]        = A and F["The Frostborn"],
 		["The Foot Steppes"]        = A and F["The Frostborn"],
+	},
+	-- Talador
+	[946] = {
+		["Terokkar Refuge"]                = F["Arakkoa Outcasts"],
+		["Veil Shadar"]                    = F["Arakkoa Outcasts"],
+		-- Bladefury Hold
+		["Bladefury's Command"]            = A and F["Sha'tari Defense"],
+		["The Path of Glory"]              = A and F["Sha'tari Defense"],
+		-- Shattrath City
+		["Arch of Sha'tar"]                = A and F["Sha'tari Defense"],
+		["Beacon of Sha'tar"]              = A and F["Sha'tari Defense"],
+		["Caverns of Time"]                = A and F["Sha'tari Defense"],
+		["Garden of K'ure"]                = A and F["Sha'tari Defense"],
+		["Runeworkers of Shattrath"]       = A and F["Sha'tari Defense"],
+		["Sha'tar Way Station"]            = A and F["Sha'tari Defense"],
+		["Sha'tari Anchorage"]             = A and F["Sha'tari Defense"],
+		["Sha'tari Market District"]       = A and F["Sha'tari Defense"],
+		["Sha'tari Skymesa"]               = A and F["Sha'tari Defense"],
+		["Shattrath City Center"]          = A and F["Sha'tari Defense"],
+		["Shattrath City"]                 = A and F["Sha'tari Defense"],
+		["Shattrath Commons"]              = A and F["Sha'tari Defense"],
+		["Shattrath Overlook"]             = A and F["Sha'tari Defense"],
+		["Shattrath Port Authority"]       = A and F["Sha'tari Defense"],
+		["Shattrath Residential District"] = A and F["Sha'tari Defense"],
+		["Skymesa Great Hall"]             = A and F["Sha'tari Defense"],
+		["Skymesa Palisade"]               = A and F["Sha'tari Defense"],
+		["Skymesa Ritual Chamber"]         = A and F["Sha'tari Defense"],
+		["Spire of Light"]                 = A and F["Sha'tari Defense"],
 	},
 	-- Tanaris
 	[161] = { -- TODO: update
