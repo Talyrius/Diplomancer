@@ -17,7 +17,7 @@ _G.Diplomancer = Diplomancer
 
 ------------------------------------------------------------------------
 
-local DEBUG = true
+local DEBUG = false
 function Diplomancer:Debug(text, ...)
 	if text then
 		if text:match("%%[dfqsx%d%.]") then
