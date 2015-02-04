@@ -1,3 +1,7 @@
+### Version 6.0.3.43 (2015 Feb 4)
+
+* Added faction data for Draenor zones (thanks yet again Talyrius!)
+
 ### Version 6.0.2.181 (2014 Oct 16)
 
 * Updated for WoW 6.0

@@ -15,7 +15,7 @@
 ## Author: Phanx
 ## X-Email: addons@phanx.net
 ## X-Copyright: Copyright (c) 2007-2015 Phanx. All rights reserved.
-## X-Credits: Inspired by Charnow's SmartFactionWatch.
+## X-Credits: Charnow (inspiration), Talyirus (data updates)
 ## X-Website: https://github.com/Phanx/Diplomancer
 
 ## OptionalDependencies: LibAboutPanel, LibBabble-SubZone-3.0, PhanxConfigWidgets
