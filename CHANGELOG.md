@@ -1,3 +1,7 @@
+### Version 6.0.3.44 (2015 Feb 5)
+
+* Fixed the faction preference reset button
+
 ### Version 6.0.3.43 (2015 Feb 4)
 
 * Added faction data for Draenor zones (thanks yet again Talyrius!)
