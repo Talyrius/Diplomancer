@@ -8,11 +8,11 @@
 ----------------------------------------------------------------------]]
 
 local ADDON_NAME, Diplomancer = ...
-local L = Diplomancer.L
 
 ------------------------------------------------------------------------
 
 Diplomancer.OptionsPanel = LibStub("PhanxConfig-OptionsPanel").CreateOptionsPanel(ADDON_NAME, nil, function(self)
+	local L = Diplomancer.L
 	local db = DiplomancerSettings
 	local racialFaction = Diplomancer.racialFaction
 
@@ -20,7 +20,7 @@ Diplomancer.OptionsPanel = LibStub("PhanxConfig-OptionsPanel").CreateOptionsPane
 
 	--------------------------------------------------------------------
 
-	local title, notes = self:CreateHeader(ADDON_NAME, GetAddOnMetadata(ADDON_NAME, "Notes"))
+	local title, notes = self:CreateHeader(ADDON_NAME, true)
 
 	local reset
 
@@ -42,10 +42,11 @@ Diplomancer.OptionsPanel = LibStub("PhanxConfig-OptionsPanel").CreateOptionsPane
 	reset:SetPoint("TOPLEFT", default.button, "TOPRIGHT", 8, 0)
 	reset:SetPoint("BOTTOMLEFT", default.button, "BOTTOMRIGHT", 8, 0)
 	reset:SetWidth(max(16 + reset:GetFontString():GetStringWidth(), 80))
-	function reset:OnClicked()
+	function reset:OnClick()
 		self:Disable()
 		db.defaultFaction = nil
-		default:SetValue(Diplomancer:GetFactionNameFromID(racialFaction))
+		local defaultName = 
+		default:SetValue((Diplomancer:GetFactionNameFromID(racialFaction)))
 		Diplomancer:Update()
 	end
 
@@ -108,8 +109,6 @@ Diplomancer.OptionsPanel = LibStub("PhanxConfig-OptionsPanel").CreateOptionsPane
 		announce:SetValue(db.verbose)
 	end
 end)
-
-Diplomancer.AboutPanel = LibStub("LibAboutPanel").new(ADDON_NAME, ADDON_NAME)
 
 ------------------------------------------------------------------------
 
