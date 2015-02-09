@@ -321,7 +321,7 @@ self.zoneFactions = {
 -- Baradin Hold
 	[752] = H and F["Hellscream's Reach"] or A and F["Baradin's Wardens"],
 -- Black Temple
-	[769] = F["Ashtongue Deathsworn"],
+	[796] = F["Ashtongue Deathsworn"],
 -- Blackrock Depths
 	[704] = F["Thorium Brotherhood"],
 -- Bloodmyst Isle
