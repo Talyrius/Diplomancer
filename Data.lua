@@ -711,6 +711,7 @@ self.subzoneFactions = {
 		["Broken Horn Village"]       = H and F["Laughing Skull Orcs"],
 		["Deadmeat's House of Meat"]  = H and F["Laughing Skull Orcs"],
 		["Everbloom Wilds"]           = H and F["Laughing Skull Orcs"],
+		["The Pit"]                   = H and F["Laughing Skull Orcs"],
 	},
 	-- Grizzly Hills
 	[490] = { -- TODO: add Alliance areas?
