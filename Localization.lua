@@ -68,7 +68,6 @@ L.DefaultToChampioned_Desc = "Utilizar tu facción abanderada como tu facción p
 L.IgnoreExalted = "Ignorar facciones Exaltados"
 L.IgnoreExalted_Desc = "No seguir las facciones con las que ya ha alcanzado el nivel de Exaltado."
 L.NowWatching = "Ahora siguiendo %s."
-L.Reset = "Restablecer"
 L.Reset_Desc = "Restablecer tu facción predeterminado al facción de tu raza."
 
 return end
@@ -88,7 +87,6 @@ L.DefaultToChampioned_Desc = "Utilizar tu facción abanderada como tu facción p
 L.IgnoreExalted = "Ignorar facciones Exaltados"
 L.IgnoreExalted_Desc = "No seguir las facciones con las que ya ha alcanzado el nivel de Exaltado."
 L.NowWatching = "Ahora siguiendo %s."
-L.Reset = "Restablecer"
 L.Reset_Desc = "Restablecer tu facción predeterminado al facción de tu raza."
 
 return end
@@ -108,7 +106,6 @@ L.DefaultToChampioned_Desc = "Utiliser la faction actuellement défendue en tant
 L.IgnoreExalted = "Ignorer les factions Exalté"
 L.IgnoreExalted_Desc = "Ne pas surveiller les factions avec lesquelles vous êtes déjà Exalté."
 L.NowWatching = "Surveiller à présent %s."
-L.Reset = "RàZ"
 L.Reset_Desc = "Réinitialiser votre faction par défaut à la faction de votre race."
 
 return end
@@ -128,7 +125,6 @@ L.DefaultToChampioned_Desc = "Usa la tua fazione attualmente sponsorizzato la su
 L.IgnoreExalted = "Ignora fazioni Osannato"
 L.IgnoreExalted_Desc = "Non seguire le fazioni con cui avete raggiunto la reputazione Osannato."
 L.NowWatching = "Ora seguendo %s."
-L.Reset = "Reimposta"
 L.Reset_Desc = "Reimposta la tua preferenza fazione predefinito per la fazione di tua razza."
 
 return end
@@ -148,7 +144,6 @@ L.DefaultToChampioned_Desc = "Usar sua facção atualmente patrocinada como sua 
 L.IgnoreExalted = "Ignorar facções Exaltado"
 L.IgnoreExalted_Desc = "Não siga as facções com quem você já alcançaram reputação Exaltado."
 L.NowWatching = "Agora seguintes %s."
-L.Reset = "Restabelecer"
 L.Reset_Desc = "Restabeleça a sua preferência de facção padrão para a sua facção raça."
 
 return end
@@ -168,7 +163,6 @@ L.DefaultToChampioned_Desc = "Следуйте за выполнением ва�
 L.IgnoreExalted = "Нет Превознесение фракций"
 L.IgnoreExalted_Desc = "Не следить за выполнением фракциями, с которыми вы уже достигли Превознесение стоя."
 L.NowWatching = "Теперь следующие за выполнением %s."
-L.Reset = "Сброс"
 L.Reset_Desc = "Сброс стандартных фракции в фракцию вашей расы."
 
 return end
