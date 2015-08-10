@@ -1,6 +1,11 @@
+### Version 6.2.0.46 (2015 Jul 11)
+
+* Updated for WoW 6.2
+* Added faction data for Tanaan Jungle
+
 ### Version 6.1.0.45 (2015 Feb 26)
 
-* Updated for WoW 5.4
+* Updated for WoW 6.1
 * Added missing faction data for Gorgrond
 
 ### Version 6.0.3.44 (2015 Feb 5)

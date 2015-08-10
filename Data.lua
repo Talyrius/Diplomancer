@@ -66,6 +66,7 @@ local F = { -- mapping table for sanity
 	["Gnomeregan"] = 54,
 	["Golden Lotus"] = 1269,
 	["Guardians of Hyjal"] = 1158,
+	["Hand of the Prophet"] = 1847,
 	["Haohan Mudclaw"] = 1279, -- The Tillers
 	["Hellscream's Reach"] = 1178,
 	["Honor Hold"] = 946,
@@ -89,6 +90,7 @@ local F = { -- mapping table for sanity
 	["Ogri'la"] = 1038,
 	["Old Hillpaw"] = 1276,
 	["Operation: Shieldwall"] = 1376,
+	["Order of the Awakened"] = 1849,
 	["Order of the Cloud Serpent"] = 1271,
 	["Orgrimmar"] = 76,
 	["Pearlfin Jinyu"] = 1242,
@@ -130,6 +132,7 @@ local F = { -- mapping table for sanity
 	["The Lorewalkers"] = 1345,
 	["The Mag'har"] = 941,
 	["The Oracles"] = 1105,
+	["The Saberstalkers"] = 1850,
 	["The Scale of the Sands"] = 990,
 	["The Scryers"] = 934,
 	["The Sha'tar"] = 935,
@@ -152,6 +155,7 @@ local F = { -- mapping table for sanity
 	["Undercity"] = 68,
 	["Valiance Expedition"] = 1050,
 	["Vivianne"] = 1739, -- Barracks Bodyguards
+	["Vol'jin's Headhunters"] = 1848,
 	["Vol'jin's Spear"] = 1681,
 	["Warsong Offensive"] = 1085,
 	["Warsong Outriders"] = 889,
@@ -508,6 +512,8 @@ self.zoneFactions = {
 	[789] = F["Shattered Sun Offensive"],
 -- Talador
 	[946] = H and F["Frostwolf Orcs"] or A and F["Council of Exarchs"],
+-- Tanaan Jungle
+	[945] = H and F["Vol'jin's Headhunters"] or A and F["Hand of the Prophet"],
 -- Tanaris
 	[161] = F["Gadgetzan"],
 -- Teldrassil
@@ -813,10 +819,6 @@ self.subzoneFactions = {
 		["Sanctum of the Stars"]     = F["The Scryers"],
 		["Warden's Cage"]            = F["Ashtongue Deathsworn"],
 	},
-	-- Shadowmoon Valley WOD
-	[947] = A and { -- TODO: Use for whole zone?
-		["Socrethar's Rise"]         = F["Council of Exarchs"],
-	} or nil,
 	-- Shattrath City
 	[481] = {
 		["Lower City"]               = F["Lower City"],
@@ -903,6 +905,13 @@ self.subzoneFactions = {
 		["Skymesa Palisade"]               = A and F["Sha'tari Defense"],
 		["Skymesa Ritual Chamber"]         = A and F["Sha'tari Defense"],
 		["Spire of Light"]                 = A and F["Sha'tari Defense"],
+	},
+	-- Tanaan Jungle
+	[945] = {
+		["Aktar's Post"]              = F["Arakkoa Outcasts"],
+		["Fang'rila"]                 = F["The Saberstalkers"],
+		["Blackfang Challenge Arena"] = F["The Saberstalkers"],
+		["Rangari Refuge"]            = H and F["Laughing Skull Orcs"] or A and F["Sha'tari Defense"],
 	},
 	-- Tanaris
 	[161] = { -- TODO: update
