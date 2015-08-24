@@ -128,7 +128,6 @@ function Diplomancer:Update(event)
 
 	if WorldMapFrame:IsShown() then
 		-- Don't update while the map is open?
-		waitingForMapToClose = true
 		return
 	end
 
