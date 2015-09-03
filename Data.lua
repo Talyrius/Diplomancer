@@ -198,7 +198,6 @@ self.championFactions = {
 	[93811]  = { 15, F["Exodar"] },
 	[93816]  = { 15, F["Gilneas"] },
 	[93821]  = { 15, F["Gnomeregan"] },
-	[93806]  = { 15, F["Gnomeregan"] },
 	[126436] = { 15, F["Huojin Pandaren"] },
 	[93805]  = { 15, F["Ironforge"] },
 	[93825]  = { 15, F["Orgrimmar"] },
