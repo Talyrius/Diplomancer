@@ -315,6 +315,8 @@ self.zoneFactions = {
 	[6941] = H and F["Vol'jin's Spear"] or A and F["Wrynn's Vanguard"],
 -- Auchenai Crypts
 	[722] = F["Lower City"],
+-- Auchindoun
+	[984] = H and F["Laughing Skull Orcs"] or A and F["Sha'tari Defense"],
 -- Azjol-Nerub
 	[524] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
 -- Azshara
@@ -327,6 +329,8 @@ self.zoneFactions = {
 	[796] = F["Ashtongue Deathsworn"],
 -- Blackrock Depths
 	[704] = F["Thorium Brotherhood"],
+-- Bloodmaul Slag Mines
+	[964] = F["Steamwheedle Preservation Society"],
 -- Bloodmyst Isle
 	[476] = A and F["Exodar"],
 -- Borean Tundra
@@ -385,6 +389,8 @@ self.zoneFactions = {
 	["545"] = A and F["Gilneas"],
 -- Gilneas City
 	["611"] = A and F["Gilneas"],
+-- Grimrail Depot
+	[993] = H and F["Frostwolf Orcs"] or A and F["Council of Exarchs"],
 -- Grizzly Hills
 	[490] = H and F["Warsong Offensive"] or A and F["Valiance Expedition"],
 -- Gundrak
@@ -407,6 +413,8 @@ self.zoneFactions = {
 	[492] = F["Knights of the Ebon Blade"],
 -- Icecrown Citadel
 	[604] = F["The Ashen Verdict"],
+-- Iron Docks
+	[987] = H and F["Frostwolf Orcs"] or A and F["Council of Exarchs"],
 -- Ironforge
 	[341] = A and F["Ironforge"],
 -- Isle of Quel'Danas
@@ -475,6 +483,8 @@ self.zoneFactions = {
 	[724] = F["Lower City"],
 -- Shadowglen
 	[888] = F["Darnassus"],
+-- Shadowmoon Burial Grounds
+	[969] = H and F["Frostwolf Orcs"] or A and F["Council of Exarchs"],
 -- Shadowmoon Valley (Draenor)
 	[947] = A and F["Council of Exarchs"],
 -- Shadowmoon Valley (Outland)
@@ -495,6 +505,8 @@ self.zoneFactions = {
 	[480] = H and F["Silvermoon City"],
 -- Silverpine Forest
 	[21]  = H and F["Undercity"],
+-- Skyreach
+	[989] = F["Arakkoa Outcasts"],
 -- Southern Barrens
 	[607] = H and F["Orgrimmar"] or A and F["Stormwind"],
 -- Spires of Arak
@@ -535,6 +547,8 @@ self.zoneFactions = {
 	[524] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
 -- The Forge of Souls
 	[524] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+-- The Everbloom
+	[1008] = H and F["Laughing Skull Orcs"] or A and F["Sha'tari Defense"],
 -- The Exodar
 	[471] = A and F["Exodar"],
 -- The Eye
@@ -597,6 +611,8 @@ self.zoneFactions = {
 	[720] = F["Ramkahen"],
 -- Undercity
 	[382] = H and F["Undercity"],
+-- Upper Blackrock Spire
+	[995] = F["Steamwheedle Preservation Society"],
 -- Utgarde Keep
 	[523] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
 -- Utgarde Pinnacle
