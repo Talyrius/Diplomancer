@@ -10,7 +10,7 @@
 local ADDON_NAME, Diplomancer = ...
 local L = Diplomancer.L
 
-local db, onTaxi, tabard, taxiEnded
+local db, onTaxi, tabard
 local championFactions, championZones, racialFaction, subzoneFactions, zoneFactions
 
 _G.Diplomancer = Diplomancer
@@ -85,7 +85,7 @@ function Diplomancer:PLAYER_LOGIN()
 	subzoneFactions = self.subzoneFactions
 	zoneFactions = self.zoneFactions
 
-	EventFrame:RegisterEvent("PLAYER_CONTROL_GAINED")
+	EventFrame:RegisterEvent("ACTIONBAR_UPDATE_USABLE")
 	EventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
 	EventFrame:RegisterEvent("UNIT_INVENTORY_CHANGED")
 	EventFrame:RegisterEvent("ZONE_CHANGED")
@@ -116,13 +116,8 @@ function Diplomancer:GetCurrentMapAreaID()
 end
 
 function Diplomancer:Update(event)
-	if taxiEnded then
-		-- This is a hack to work around the fact that UnitOnTaxi still
-		-- returns true during the PLAYER_CONTROL_GAINED event.
-		taxiEnded = false
-	elseif UnitOnTaxi("player") then
+	if onTaxi then
 		if DEBUG then self:Debug("On taxi. Skipping update.") end
-		onTaxi = true
 		return
 	end
 
@@ -235,11 +230,12 @@ end
 
 ------------------------------------------------------------------------
 
-function Diplomancer:PLAYER_CONTROL_GAINED()
-	if DEBUG then self:Debug("PLAYER_CONTROL_GAINED") end
-	if onTaxi then
-		onTaxi = false
-		taxiEnded = true
+function Diplomancer:ACTIONBAR_UPDATE_USABLE()
+	local nowTaxi = UnitOnTaxi("player")
+	if nowTaxi == onTaxi then return end
+	if DEBUG then self:Debug("ACTIONBAR_UPDATE_USABLE", onTaxi, "=>", nowTaxi) end
+	onTaxi = nowTaxi
+	if not onTaxi then
 		self:Update()
 	end
 end
