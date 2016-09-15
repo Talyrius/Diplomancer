@@ -1,7 +1,7 @@
 --[[--------------------------------------------------------------------
 	Diplomancer
 	Automatically sets your watched faction based on your location.
-	Copyright (c) 2007-2015 Phanx <addons@phanx.net>. All rights reserved.
+	Copyright (c) 2007-2016 Phanx <addons@phanx.net>. All rights reserved.
 	http://www.wowinterface.com/downloads/info9643-Diplomancer.html
 	http://www.curse.com/addons/wow/diplomancer
 	https://github.com/Phanx/Diplomancer
@@ -45,7 +45,7 @@ Diplomancer.OptionsPanel = LibStub("PhanxConfig-OptionsPanel").CreateOptionsPane
 	function reset:OnClick()
 		self:Disable()
 		db.defaultFaction = nil
-		local defaultName = 
+		local defaultName =
 		default:SetValue((Diplomancer:GetFactionNameFromID(racialFaction)))
 		Diplomancer:Update()
 	end
