@@ -45,7 +45,6 @@ Diplomancer.OptionsPanel = LibStub("PhanxConfig-OptionsPanel").CreateOptionsPane
 	function reset:OnClick()
 		self:Disable()
 		db.defaultFaction = nil
-		local defaultName =
 		default:SetValue((Diplomancer:GetFactionNameFromID(racialFaction)))
 		Diplomancer:Update()
 	end

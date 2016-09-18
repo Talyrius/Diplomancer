@@ -10,5 +10,5 @@
 **RU** — Автоматически следить за выполнением фракция связана с вашего текущего местоположения.  
 **KO** — 현재 위치의 진영을 자동으로 감시합니다.
 
-* [Download from Curse](http://www.curse.com/addons/wow/diplomancer)
-* [Download from WoWInterface](http://www.wowinterface.com/downloads/info9643-Diplomancer.html)
+* [Download from Curse](https://mods.curse.com/addons/wow/diplomancer)
+* [Download from WoWInterface](https://www.wowinterface.com/downloads/info9643-Diplomancer.html)
