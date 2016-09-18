@@ -1,3 +1,8 @@
+### Version 7.0.3.0 (2016 Sep 18)
+
+* Updated for WoW 7.0
+* Added faction data for Legion zones (thanks Talyrius, as usual)
+
 ### Version 6.2.0.46 (2015 Jul 11)
 
 * Updated for WoW 6.2
