@@ -169,6 +169,12 @@ local F = { -- mapping table for sanity
 	["Wintersaber Trainers"] = 589,
 	["Wrynn's Vanguard"] = 1682,
 	["Zandalar Tribe"] = 270,
+	["Highmountain Tribe"] = 1828,
+	["Dreamweavers"] = 1883,
+	["Court of Farondis"] = 1900,
+	["Valarjar"] = 1948,
+	["The Nightfallen"] = 1859,
+	["The Wardens"] = 1894,
 }
 
 setmetatable(F, { __index = function(F, faction) -- for debugging
@@ -686,6 +692,18 @@ self.zoneFactions = {
 	[467] = F["Cenarion Expedition"],
 -- Zul'Drak
 	[496] = F["Argent Crusade"],
+-- Azsuna
+	[1015] = F["Court of Farondis"],
+-- Legion Dalaran
+	[1014] = F["Kirin Tor"],
+-- Highmountain
+	[1024] = F["Highmountain Tribe"],
+-- Stormheim
+	[1017] = F["Valarjar"],
+-- Suramar
+	[1033] = F["The Nightfallen"],
+-- Val'sharah
+	[1018] = F["Dreamweavers"],
 }
 
 ------------------------------------------------------------------------
@@ -1198,6 +1216,12 @@ self.subzoneFactions = {
 	[496] = {
 		["Ebon Watch"]               = F["Knights of the Ebon Blade"],
 	},
+	-- Azsuna
+	[1015] = {
+		["Wardens' Redoubt"]         = F["The Wardens"],
+		["Watchers' Aerie"]          = F["The Wardens"],
+		["Isle of the Watchers"]     = F["The Wardens"],
+	}
 }
 
 ------------------------------------------------------------------------
