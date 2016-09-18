@@ -17,6 +17,8 @@
 ## X-Copyright: Copyright (c) 2007-2016 Phanx. All rights reserved.
 ## X-Credits: Charnow (inspiration), Talyirus (data updates)
 ## X-Website: https://github.com/Phanx/Diplomancer
+## X-Curse-Project-ID: diplomancer
+## X-WoWI-ID: 9643
 
 ## OptionalDependencies: LibBabble-SubZone-3.0, PhanxConfigWidgets
 ## SavedVariablesPerCharacter: DiplomancerSettings
