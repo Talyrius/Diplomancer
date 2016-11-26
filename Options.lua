@@ -87,7 +87,7 @@ Diplomancer.OptionsPanel = LibStub("PhanxConfig-OptionsPanel").CreateOptionsPane
 				curHeader = nil
 			end
 			if (hasRep or not isHeader) and (standingID < 8 or not db.ignoreExalted) then
-				if factionID and GetFriendshipReputation(factionID) then
+				if curHeader and factionID and GetFriendshipReputation(factionID) then
 					local display = format("%s: %s", curHeader, name)
 					factionDisplayNames[display] = name
 					tinsert(factions, display)
