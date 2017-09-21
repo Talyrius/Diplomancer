@@ -20,25 +20,34 @@ function Diplomancer:LocalizeData()
 
 local F = { -- mapping table for sanity
 	["Aeda Brightdawn"] = 1740, -- Barracks Bodyguards
+	["Akule Riverhorn"] = 2099, -- Fisherfriends
 	["Alliance Vanguard"] = 1037,
 	["Arakkoa Outcasts"] = 1515,
 	["Argent Crusade"] = 1106,
 	["Argent Dawn"] = 529,
+	["Argussian Reach"] = 2170,
+	["Armies of Legionfall"] = 2045,
+	["Army of the Light"] = 2165,
 	["Ashtongue Deathsworn"] = 1012,
 	["Avengers of Hyjal"] = 1204,
 	["Baradin's Wardens"] = 1177,
 	["Barracks Bodyguards"] = 1735,
 	["Bilgewater Cartel"] = 1133,
 	["Bizmo's Brawlpub (Season 1)"] = 1419,
-	["Bizmo's Brawlpub"] = 1691,
+	["Bizmo's Brawlpub (Season 2)"] = 1691,
+	["Bizmo's Brawlpub"] = 2011,
 	["Bloodsail Buccaneers"] = 87,
 	["Booty Bay"] = 21,
 	["Brawl'gar Arena (Season 1)"] = 1374,
-	["Brawl'gar Arena"] = 1690,
+	["Brawl'gar Arena (Season 2)"] = 1690,
+	["Brawl'gar Arena"] = 2010,
 	["Brood of Nozdormu"] = 910,
 	["Cenarion Circle"] = 609,
 	["Cenarion Expedition"] = 942,
 	["Chee Chee"] = 1277, -- The Tillers
+	["Chromie"] = 2135,
+	["Conjurer Margoss"] = 1975,
+	["Corbyn"] = 2100, -- Fisherfriends
 	["Council of Exarchs"] = 1731,
 	["Court of Farondis"] = 1900,
 	["Darkmoon Faire"] = 909,
@@ -76,8 +85,11 @@ local F = { -- mapping table for sanity
 	["Horde Expedition"] = 1052,
 	["Huojin Pandaren"] = 1352,
 	["Hydraxian Waterlords"] = 749,
+	["Ilyssia of the Waters"] = 2097, -- Fisherfriends
+	["Impus"] = 2102, -- Fisherfriends
 	["Ironforge"] = 47,
 	["Jogu the Drunk"] = 1273, -- The Tillers
+	["Keeper Raynae"] = 2098, -- Fisherfriends
 	["Keepers of Time"] = 989,
 	["Kirin Tor Offensive"] = 1387,
 	["Kirin Tor"] = 1090,
@@ -100,6 +112,7 @@ local F = { -- mapping table for sanity
 	["Ramkahen"] = 1173,
 	["Ratchet"] = 470,
 	["Ravenholdt"] = 349,
+	["Sha'leth"] = 2101, -- Fisherfriends
 	["Sha'tari Defense"] = 1710,
 	["Sha'tari Skyguard"] = 1031,
 	["Shado-Pan Assault"] = 1435,
@@ -118,6 +131,7 @@ local F = { -- mapping table for sanity
 	["Stormwind"] = 72,
 	["Sunreaver Onslaught"] = 1388,
 	["Syndicate"] = 70,
+	["Talon's Vengeance"] = 2018,
 	["Talonpriest Ishaal"] = 1737, -- Barracks Bodyguards
 	["The Aldor"] = 932,
 	["The Anglers"] = 1302,
@@ -307,13 +321,16 @@ self.championZones = {
 	},
 	[110] = {
 		[1081] =  1, -- Black Rook Hold
+		[1146] =  2, -- Cathedral of Eternal Night
 		[1087] = 23, -- Court of Stars
 		[1067] =  1, -- Darkheart Thicket
 		[1046] =  1, -- Eye of Azshara
 		[1041] =  1, -- Halls of Valor
 		[1042] =  1, -- Maw of Souls
 		[1065] =  1, -- Neltharion's Lair
+		[1115] =  2, -- Return to Karazhan
 		[1079] = 23, -- The Arcway
+		[1178] =  2, -- The Seat of the Triumvirate
 		[1045] =  1, -- Vault of the Wardens
 		[1066] =  1, -- Violet Hold
 	},
@@ -330,6 +347,8 @@ self.zoneFactions = {
 	[772] = F["Brood of Nozdormu"],
 -- Alterac Valley
 	[401] = H and F["Frostwolf Clan"] or A and F["Stormpike Guard"],
+-- Antoran Wastes
+	[1171] = F["Army of the Light"],
 -- Arathi Basin
 	[461] = H and F["The Defilers"] or A and F["The League of Arathor"],
 -- Arathi Highlands
@@ -364,6 +383,8 @@ self.zoneFactions = {
 	[486] = H and F["Warsong Offensive"] or A and F["Valiance Expedition"],
 -- Brawl'gar Arena
 	[925] = H and F["Brawl'gar Arena"],
+-- Broken Shore
+	[1021] = F["Armies of Legionfall"],
 -- Camp Narache
 	[890] = H and F["Thunder Bluff"],
 -- Coldridge Valley
@@ -420,6 +441,20 @@ self.zoneFactions = {
 	["545"] = A and F["Gilneas"],
 -- Gilneas City
 	["611"] = A and F["Gilneas"],
+-- Gloaming Reef [SCENARIO (Quest: Fish Frenzy)]
+	[1084] = F["Nat Pagle"],
+-- Greater Invasion Point: Inquisitor Meto
+	[1199] = F["Army of the Light"],
+-- Greater Invasion Point: Matron Folnuna
+	[1198] = F["Army of the Light"],
+-- Greater Invasion Point: Mistress Alluradel
+	[1197] = F["Army of the Light"],
+-- Greater Invasion Point: Occularus
+	[1201] = F["Army of the Light"],
+-- Greater Invasion Point: Pit Lord Vilemus
+	[1196] = F["Army of the Light"],
+-- Greater Invasion Point: Sotanathor
+	[1200] = F["Army of the Light"],
 -- Grimrail Depot
 	[993] = H and F["Frostwolf Orcs"] or A and F["Council of Exarchs"],
 -- Grizzly Hills
@@ -450,6 +485,18 @@ self.zoneFactions = {
 	[492] = F["Knights of the Ebon Blade"],
 -- Icecrown Citadel
 	[604] = F["The Ashen Verdict"],
+-- Invasion Point: Aurinor
+	[1190] = F["Army of the Light"],
+-- Invasion Point: Bonich
+	[1191] = F["Army of the Light"],
+-- Invasion Point: Cen'gar
+	[1192] = F["Army of the Light"],
+-- Invasion Point: Naigtal
+	[1193] = F["Army of the Light"],
+-- Invasion Point: Sangua
+	[1194] = F["Army of the Light"],
+-- Invasion Point: Val
+	[1195] = F["Army of the Light"],
 -- Iron Docks
 	[987] = H and F["Frostwolf Orcs"] or A and F["Council of Exarchs"],
 -- Ironforge
@@ -466,8 +513,12 @@ self.zoneFactions = {
 	[605] = H and F["Bilgewater Cartel"],
 -- Krasarang Wilds
 	[857] = F["The Anglers"],
+-- Krokuun
+	[1135] = F["Army of the Light"],
 -- Loch Modan
 	[35]  = A and F["Ironforge"],
+-- Mac'Aree
+	[1170] = F["Argussian Reach"],
 -- Magisters' Terrace
 	[798] = F["Shattered Sun Offensive"],
 -- Magtheridon's Lair
@@ -586,6 +637,8 @@ self.zoneFactions = {
 	[729] = F["The Sha'tar"],
 -- The Culling of Stratholme
 	[524] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+-- The Deaths of Chromie
+	[1177] = F["Chromie"],
 -- The Dreamgrove
 	[1077] = F["Cenarion Circle"],
 -- The Forge of Souls
@@ -598,14 +651,14 @@ self.zoneFactions = {
 	[782] = F["The Sha'tar"],
 -- The Forge of Souls
 	[601] = H and F["The Sunreavers"] or A and F["The Silver Covenant"],
+-- The Heart of Azeroth
+	[1057] = F["The Earthen Ring"],
 -- The Jade Forest
 	[806] = H and F["Forest Hozen"] or A and F["Pearlfin Jinyu"],
 -- The Lost Isles
 	[544] = H and F["Bilgewater Cartel"],
 -- The Maelstrom
 	[737] = F["The Earthen Ring"],
--- The Maelstrom (The Heart of Azeroth)
-	[1057] = F["The Earthen Ring"],
 -- The Mechanar
 	[730] = F["The Sha'tar"],
 -- The Nexus
@@ -630,6 +683,8 @@ self.zoneFactions = {
 	[808] = F["Shang Xi's Academy"],
 -- Thousand Needles
 	[61]  = H and F["Bilgewater Cartel"] or A and F["Gnomeregan"],
+-- Throne of the Four Winds [SCENARIO (Quest: Gathering of the Storms)]
+	[1148] = F["The Earthen Ring"],
 -- Throne of Thunder
 	[930] = F["Shado-Pan Assault"],
 -- Thunder Bluff
@@ -739,6 +794,7 @@ self.subzoneFactions = {
 	[1014] = {
 		["A Hero's Welcome"]          = H and F["The Sunreavers"] or A and F["The Silver Covenant"],
 		["Greyfang Enclave"]          = H and F["Undercity"] or A and F["Gilneas"],
+		["Margoss's Retreat"]         = F["Conjurer Margoss"],
 		["The Beer Garden"]           = H and F["The Sunreavers"] or A and F["The Silver Covenant"],
 		["The Filthy Animal"]         = H and F["The Sunreavers"] or A and F["The Silver Covenant"],
 		["Windrunner's Sanctuary"]    = H and F["Undercity"] or A and F["Gilneas"],
@@ -870,6 +926,7 @@ self.subzoneFactions = {
 	[1024] = {
 		["Cordana's Apex"]            = H and F["Undercity"] or A and F["Gilneas"],
 		["Nightwatcher's Perch"]      = H and F["Undercity"] or A and F["Gilneas"],
+		["Sylvan Falls"]              = F["Talon's Vengeance"],
 	},
 	-- Hillsbrad Foothills
 	[24]  = {
@@ -936,6 +993,11 @@ self.subzoneFactions = {
 		-- Faction ships don't have a subzone name
 		[""]                         = H and F["Dominance Offensive"] or A and F["Operation: Shieldwall"],
 	},
+	-- Krokuun
+	[1135] = {
+		["Krokul Hovel"]     = F["Argussian Reach"],
+		["Petrified Forest"] = F["Argussian Reach"],
+	},
 	-- Kun-Lai Summit
 	[809] = {
 		["Gate of the August Celestials"] = F["The August Celestials"],
@@ -947,6 +1009,10 @@ self.subzoneFactions = {
 		["Shado-Pan Monastery"]      = F["Shado-Pan"],
 		["The Ox Gate"]              = F["Shado-Pan"],
 		["Winter's Blossom"]         = F["Shado-Pan"],
+	},
+	-- Mac'Aree
+	[1170] = {
+		["The Vindicaar"] = F["Army of the Light"],
 	},
 	-- Nagrand
 	[477] = {
@@ -1040,6 +1106,7 @@ self.subzoneFactions = {
 		["Lorna's Watch"]           = H and F["Undercity"] or A and F["Gilneas"],
 		["Ranger's Foothold"]       = H and F["Undercity"] or A and F["Gilneas"],
 		["Skyfire Triage Camp"]     = H and F["Undercity"] or A and F["Gilneas"],
+		["The King's Fang"]         = H and F["Undercity"] or A and F["Gilneas"],
 		["The Oblivion"]            = H and F["Undercity"] or A and F["Gilneas"],
 		["Weeping Bluffs"]          = H and F["Undercity"] or A and F["Gilneas"],
 		["Whisperwind's Citadel"]   = H and F["Undercity"] or A and F["Gilneas"],
