@@ -1,15 +1,18 @@
---[[--------------------------------------------------------------------
-	Diplomancer
-	Automatically sets your watched faction based on your location.
-	Copyright (c) 2007-2016 Phanx <addons@phanx.net>. All rights reserved.
-	http://www.wowinterface.com/downloads/info9643-Diplomancer.html
-	http://www.curse.com/addons/wow/diplomancer
-	https://github.com/Phanx/Diplomancer
-----------------------------------------------------------------------]]
+--[[--------------------------------------------------------------------------------------------------------------------
+	Diplomancer — Changes your watched faction reputation based on your current location.
+	Copyright © 2007-2018 Phanx <addons@phanx.net>, Talyrius <contact@talyrius.net>. All rights reserved.
+	See the accompanying LICENSE file for more information.
+
+	Authorized distributions:
+		https://github.com/Talyrius/Diplomancer
+		https://wow.curseforge.com/projects/diplomancer
+		https://www.curseforge.com/wow/addons/diplomancer
+		https://www.wowinterface.com/downloads/info9643-Diplomancer.html
+--]]--------------------------------------------------------------------------------------------------------------------
 
 local ADDON_NAME, Diplomancer = ...
 
-------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
 
 Diplomancer.OptionsPanel = LibStub("PhanxConfig-OptionsPanel").CreateOptionsPanel(ADDON_NAME, nil, function(self)
 	local L = Diplomancer.L
@@ -18,7 +21,7 @@ Diplomancer.OptionsPanel = LibStub("PhanxConfig-OptionsPanel").CreateOptionsPane
 
 	local factions, factionDisplayNames = {}, {}
 
-	--------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
 
 	local title, notes = self:CreateHeader(ADDON_NAME, true)
 
@@ -69,7 +72,7 @@ Diplomancer.OptionsPanel = LibStub("PhanxConfig-OptionsPanel").CreateOptionsPane
 		db.verbose = value
 	end
 
-	--------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
 
 	self.refresh = function()
 		wipe(factions)
@@ -109,7 +112,7 @@ Diplomancer.OptionsPanel = LibStub("PhanxConfig-OptionsPanel").CreateOptionsPane
 	end
 end)
 
-------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
 
 SLASH_DIPLOMANCER1 = "/diplomancer"
 SLASH_DIPLOMANCER2 = "/dm"

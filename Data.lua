@@ -1,11 +1,14 @@
---[[--------------------------------------------------------------------
-	Diplomancer
-	Automatically sets your watched faction based on your location.
-	Copyright (c) 2007-2016 Phanx <addons@phanx.net>. All rights reserved.
-	https://github.com/Phanx/Diplomancer
-	https://mods.curse.com/addons/wow/diplomancer
-	https://www.wowinterface.com/downloads/info9643-Diplomancer.html
-----------------------------------------------------------------------]]
+--[[--------------------------------------------------------------------------------------------------------------------
+	Diplomancer — Changes your watched faction reputation based on your current location.
+	Copyright © 2007-2018 Phanx <addons@phanx.net>, Talyrius <contact@talyrius.net>. All rights reserved.
+	See the accompanying LICENSE file for more information.
+
+	Authorized distributions:
+		https://github.com/Talyrius/Diplomancer
+		https://wow.curseforge.com/projects/diplomancer
+		https://www.curseforge.com/wow/addons/diplomancer
+		https://www.wowinterface.com/downloads/info9643-Diplomancer.html
+--]]--------------------------------------------------------------------------------------------------------------------
 
 local _, Diplomancer = ...
 
@@ -16,7 +19,7 @@ function Diplomancer:LocalizeData()
 	local H = UnitFactionGroup("player") == "Horde"
 	local A = UnitFactionGroup("player") == "Alliance"
 
-------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
 
 local F = { -- mapping table for sanity
 	["Aeda Brightdawn"] = 1740, -- Barracks Bodyguards
@@ -191,7 +194,7 @@ setmetatable(F, { __index = function(F, faction) -- for debugging
 	return false
 end })
 
-------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
 
 local _, race = UnitRace("player") -- arg2 is "Scourge" for Undead players
 
@@ -209,7 +212,7 @@ self.racialFaction = race == "BloodElf" and F["Silvermoon City"]
 	or race == "Scourge" and F["Undercity"]
 	or race == "Worgen" and F["Gilneas"]
 
-------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
 
 self.championFactions = {
 	[93830]  = { 15, F["Bilgewater Cartel"] },
@@ -336,7 +339,7 @@ self.championZones = {
 	},
 }
 
-------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
 
 self.zoneFactions = {
 -- Abyssal Depths
@@ -743,7 +746,7 @@ self.zoneFactions = {
 	[496] = F["Argent Crusade"],
 }
 
-------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
 
 self.subzoneFactions = {
 	-- Arathi Highlands
@@ -1267,7 +1270,7 @@ self.subzoneFactions = {
 	},
 }
 
-------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
 
 	-- Remove faction-related false values
 	for zone, faction in pairs(self.zoneFactions) do

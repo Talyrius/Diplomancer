@@ -1,0 +1,15 @@
+[submodule "PhanxConfig-Button"]
+  path = Libs/PhanxConfig-Button
+  url  = https://github.com/phanx-wow/PhanxConfig-Button
+[submodule "PhanxConfig-Checkbox"]
+  path = Libs/PhanxConfig-Checkbox
+  url  = https://github.com/phanx-wow/PhanxConfig-Checkbox
+[submodule "PhanxConfig-Dropdown"]
+  path = Libs/PhanxConfig-Dropdown
+  url  = https://github.com/phanx-wow/PhanxConfig-Dropdown
+[submodule "PhanxConfig-Header"]
+  path = Libs/PhanxConfig-Header
+  url  = https://github.com/phanx-wow/PhanxConfig-Header
+[submodule "PhanxConfig-OptionsPanel"]
+  path = Libs/PhanxConfig-OptionsPanel
+  url  = https://github.com/phanx-wow/PhanxConfig-OptionsPanel

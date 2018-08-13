@@ -1,11 +1,14 @@
---[[--------------------------------------------------------------------
-	Diplomancer
-	Automatically sets your watched faction based on your location.
-	Copyright (c) 2007-2016 Phanx <addons@phanx.net>. All rights reserved.
-	https://github.com/Phanx/Diplomancer
-	https://mods.curse.com/addons/wow/diplomancer
-	https://www.wowinterface.com/downloads/info9643-Diplomancer.html
-----------------------------------------------------------------------]]
+--[[--------------------------------------------------------------------------------------------------------------------
+	Diplomancer — Changes your watched faction reputation based on your current location.
+	Copyright © 2007-2018 Phanx <addons@phanx.net>, Talyrius <contact@talyrius.net>. All rights reserved.
+	See the accompanying LICENSE file for more information.
+
+	Authorized distributions:
+		https://github.com/Talyrius/Diplomancer
+		https://wow.curseforge.com/projects/diplomancer
+		https://www.curseforge.com/wow/addons/diplomancer
+		https://www.wowinterface.com/downloads/info9643-Diplomancer.html
+--]]--------------------------------------------------------------------------------------------------------------------
 
 local ADDON_NAME, Diplomancer = ...
 local L = Diplomancer.L
@@ -15,7 +18,7 @@ local championFactions, championZones, racialFaction, subzoneFactions, zoneFacti
 
 _G.Diplomancer = Diplomancer
 
-------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
 
 local DEBUG = false
 function Diplomancer:Debug(text, ...)
@@ -38,14 +41,14 @@ function Diplomancer:Print(text, ...)
 	end
 end
 
-------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
 
 local EventFrame = CreateFrame("Frame")
 EventFrame:RegisterEvent("ADDON_LOADED")
 EventFrame:SetScript("OnEvent", function(self, event, ...) return Diplomancer[event] and Diplomancer[event](Diplomancer, event, ...) end)
 Diplomancer.EventFrame = EventFrame
 
-------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
 
 function Diplomancer:ADDON_LOADED(_, addon)
 	if addon ~= ADDON_NAME then return end
@@ -71,7 +74,7 @@ function Diplomancer:ADDON_LOADED(_, addon)
 	end
 end
 
-------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
 
 function Diplomancer:PLAYER_LOGIN()
 	if DEBUG then self:Debug("PLAYER_LOGIN") end
@@ -102,7 +105,7 @@ function Diplomancer:PLAYER_LOGIN()
 	end
 end
 
-------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
 
 function Diplomancer:GetCurrentMapAreaID()
 	if WorldMapFrame:IsShown() then
@@ -205,7 +208,7 @@ function Diplomancer:Update(event)
 	end
 end
 
-------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
 
 do
 	local running
@@ -228,7 +231,7 @@ do
 	Diplomancer.ZONE_CHANGED_NEW_AREA = DelayUpdate
 end
 
-------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
 
 function Diplomancer:ACTIONBAR_UPDATE_USABLE()
 	local nowTaxi = UnitOnTaxi("player")
@@ -240,7 +243,7 @@ function Diplomancer:ACTIONBAR_UPDATE_USABLE()
 	end
 end
 
-------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
 
 -- local INVSLOT_TABARD = GetInventorySlotInfo("TabardSlot")
 
@@ -256,7 +259,7 @@ function Diplomancer:UNIT_INVENTORY_CHANGED(_, unit)
 	end
 end
 
-------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
 
 function Diplomancer:PickBestFaction(factions)
 	if DEBUG then
@@ -308,7 +311,7 @@ function Diplomancer:SetWatchedFactionByID(id, verbose)
 	self:RestoreFactionHeaders()
 end
 
-------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
 
 function Diplomancer:GetChampionedFaction()
 	for i = 1, 40 do
@@ -326,7 +329,7 @@ function Diplomancer:GetChampionedFaction()
 	if DEBUG then self:Debug("GetChampionedFaction:", "none") end
 end
 
-------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
 
 function Diplomancer:GetFactionIDFromName(search)
 	if DEBUG then self:Debug("GetFactionIDFromName", search) end
@@ -371,7 +374,7 @@ function Diplomancer:GetFactionNameFromID(search)
 	self:RestoreFactionHeaders()
 end
 
-------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
 
 local GetNumFactions, GetFactionInfo, ExpandFactionHeader, CollapseFactionHeader = GetNumFactions, GetFactionInfo, ExpandFactionHeader, CollapseFactionHeader
 local wasCollapsed = {}

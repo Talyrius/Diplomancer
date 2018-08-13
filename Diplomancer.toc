@@ -1,8 +1,7 @@
-## Version: @project-version@
 ## Interface: 70300
 
 ## Title: Diplomancer
-## Notes: Automatically watch your current location's faction.
+## Notes: Changes your watched faction reputation based on your current location.
 ## Notes-deDE: Verändert die angezeigte Fraktion basierend auf dem aktuellen Standort.
 ## Notes-esES: Sigue automáticamente la facción asociada con tu lugar actual.
 ## Notes-esMX: Sigue automáticamente la facción asociada con tu lugar actual.
@@ -12,27 +11,42 @@
 ## Notes-ruRU: Автоматически следить за выполнением фракция связана с вашего текущего местоположения.
 ## Notes-koKR: 현재 위치의 진영을 자동으로 감시합니다.
 
-## Author: Phanx
-## X-Email: addons@phanx.net
-## X-Copyright: Copyright (c) 2007-2016 Phanx. All rights reserved.
-## X-Credits: Charnow (inspiration), Talyirus (data updates)
-## X-Website: https://github.com/Phanx/Diplomancer
-## X-Curse-Project-ID: diplomancer
+## Author: Talyrius, Phanx (former)
+## Version: @project-version@
+## X-Revision: @project-abbreviated-hash@
+## X-Date: @project-date-iso@
+## X-Copyright: Copyright © 2007-2018 Phanx, Talyrius.
+## X-License: All rights reserved.
+## X-Credits: Charnow (inspiration)
+## X-Email: contact@talyrius.net
+## X-Website: https://github.com/Talyrius/Diplomancer
+## X-Feedback: https://www.wowinterface.com/downloads/info9643-Diplomancer.html#comments
+## X-Localizations: enUS, deDE, esES, esMX, frFR, itIT, ptBR, ruRU, koKR, zhCN, zhTW
+## X-Category: Achievements, Roleplay, Quests & Leveling
+## X-Icon: Interface\Icons\Achievement_Reputation_08
+## X-Curse-Project-ID: 8046
 ## X-WoWI-ID: 9643
 
-## OptionalDependencies: LibBabble-SubZone-3.0, PhanxConfigWidgets
 ## SavedVariablesPerCharacter: DiplomancerSettings
+## OptionalDependencies: LibStub, LibBabble-SubZone-3.0
+## LoadManagers: AddonLoader
+## X-LoadOn-Always: delayed
 
+#@no-lib-strip@
 Libs\LibStub\LibStub.lua
+Libs\LibBabble-SubZone-3.0\lib.xml
+#@end-no-lib-strip@
 Libs\PhanxConfig-Button\PhanxConfig-Button.lua
 Libs\PhanxConfig-Checkbox\PhanxConfig-Checkbox.lua
 Libs\PhanxConfig-Dropdown\PhanxConfig-Dropdown.lua
 Libs\PhanxConfig-Header\PhanxConfig-Header.lua
 Libs\PhanxConfig-OptionsPanel\PhanxConfig-OptionsPanel.lua
 
-Libs\LibBabble-SubZone-3.0\lib.xml
 Localization.lua
 Data.lua
-
 Core.lua
 Options.lua
+
+#@debug@
+## Version: DEV
+#@end-debug@
