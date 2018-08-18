@@ -107,15 +107,13 @@ end
 
 ------------------------------------------------------------------------------------------------------------------------
 
-function Diplomancer:GetCurrentMapAreaID()
-	if WorldMapFrame:IsShown() then
-		local viewing = GetCurrentMapAreaID()
-		SetMapToCurrentZone()
-		local current = GetCurrentMapAreaID()
-		SetMapByID(viewing)
-		return current
+function Diplomancer:GetBestMapForPlayer()
+	local mapID = C_Map.GetBestMapForUnit("player")
+	local mapInfo = mapID and C_Map.GetMapInfo(mapID)
+	if mapInfo and mapInfo.mapType == Enum.UIMapType.Micro then
+		mapID = mapInfo.parentMapID
 	end
-	return GetCurrentMapAreaID()
+	return mapID
 end
 
 function Diplomancer:Update(event)
@@ -124,13 +122,8 @@ function Diplomancer:Update(event)
 		return
 	end
 
-	if WorldMapFrame:IsShown() then
-		-- Don't update while the map is open?
-		return
-	end
-
 	local faction
-	local zone = self:GetCurrentMapAreaID()
+	local zone = self:GetBestMapForPlayer()
 	if DEBUG then self:Debug("Update", event, zone) end
 
 	local tabardFaction, tabardLevel = self:GetChampionedFaction()

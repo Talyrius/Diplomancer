@@ -343,428 +343,617 @@ self.championZones = {
 
 self.zoneFactions = {
 -- Abyssal Depths
-	[614] = F["The Earthen Ring"],
+	[204] = F["The Earthen Ring"],
 -- Ahn'kahet: The Old Kingdom
-	[524] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+	[132] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+-- Ahn'Qiraj
+	[319] = F["Brood of Nozdormu"],
+	[320] = F["Brood of Nozdormu"],
+	[321] = F["Brood of Nozdormu"],
 -- Ahn'Qiraj: The Fallen Kingdom
-	[772] = F["Brood of Nozdormu"],
+	[327] = F["Brood of Nozdormu"],
 -- Alterac Valley
-	[401] = H and F["Frostwolf Clan"] or A and F["Stormpike Guard"],
+	[91] = H and F["Frostwolf Clan"] or A and F["Stormpike Guard"],
 -- Antoran Wastes
-	[1171] = F["Army of the Light"],
+	[885] = F["Army of the Light"],
 -- Arathi Basin
-	[461] = H and F["The Defilers"] or A and F["The League of Arathor"],
+	[93]  = H and F["The Defilers"] or A and F["The League of Arathor"],
+	[837] = H and F["The Defilers"] or A and F["The League of Arathor"],
+	[844] = H and F["The Defilers"] or A and F["The League of Arathor"],
 -- Arathi Highlands
-	[16]  = H and F["Orgrimmar"] or A and F["Stormwind"],
+	[14]  = H and F["Orgrimmar"] or A and F["Stormwind"],
+	[906] = H and F["Orgrimmar"] or A and F["Stormwind"],
+	[943] = H and F["Orgrimmar"] or A and F["Stormwind"],
 -- Ashenvale
-	[43]  = H and F["Warsong Offensive"] or A and F["Darnassus"],
+	[63]  = H and F["Warsong Offensive"] or A and F["Darnassus"],
 -- Ashran
-	[6941] = H and F["Vol'jin's Spear"] or A and F["Wrynn's Vanguard"],
+	[588] = H and F["Vol'jin's Spear"] or A and F["Wrynn's Vanguard"],
 -- Auchenai Crypts
-	[722] = F["Lower City"],
+	[256] = F["Lower City"],
+	[257] = F["Lower City"],
 -- Auchindoun
-	[984] = H and F["Laughing Skull Orcs"] or A and F["Sha'tari Defense"],
+	[593] = H and F["Laughing Skull Orcs"] or A and F["Sha'tari Defense"],
 -- Azjol-Nerub
-	[524] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+	[157] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+	[158] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+	[159] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
 -- Azshara
-	[181] = H and F["Bilgewater Cartel"],
+	[76] = H and F["Bilgewater Cartel"],
+	[697] = H and F["Bilgewater Cartel"],
 -- Azsuna
-	[1015] = F["Court of Farondis"],
+	[630] = F["Court of Farondis"],
+	[867] = F["Court of Farondis"],
 -- Azuremyst Isle
-	[464] = A and F["Exodar"],
+	[97]  = A and F["Exodar"],
+	[776] = A and F["Exodar"],
+	[891] = A and F["Exodar"],
+	[892] = A and F["Exodar"],
+	[893] = A and F["Exodar"],
+	[894] = A and F["Exodar"],
 -- Baradin Hold
-	[752] = H and F["Hellscream's Reach"] or A and F["Baradin's Wardens"],
+	[282] = H and F["Hellscream's Reach"] or A and F["Baradin's Wardens"],
 -- Black Temple
-	[796] = F["Ashtongue Deathsworn"],
+	[339] = F["Ashtongue Deathsworn"],
+	[340] = F["Ashtongue Deathsworn"],
+	[341] = F["Ashtongue Deathsworn"],
+	[342] = F["Ashtongue Deathsworn"],
+	[343] = F["Ashtongue Deathsworn"],
+	[344] = F["Ashtongue Deathsworn"],
+	[345] = F["Ashtongue Deathsworn"],
+	[346] = F["Ashtongue Deathsworn"],
+	[490] = F["Ashtongue Deathsworn"],
+	[491] = F["Ashtongue Deathsworn"],
+	[492] = F["Ashtongue Deathsworn"],
+	[493] = F["Ashtongue Deathsworn"],
+	[494] = F["Ashtongue Deathsworn"],
+	[495] = F["Ashtongue Deathsworn"],
+	[496] = F["Ashtongue Deathsworn"],
+	[497] = F["Ashtongue Deathsworn"],
+	[759] = F["Ashtongue Deathsworn"],
 -- Blackrock Depths
-	[704] = F["Thorium Brotherhood"],
+	[242] = F["Thorium Brotherhood"],
+	[243] = F["Thorium Brotherhood"],
 -- Bloodmaul Slag Mines
-	[964] = F["Steamwheedle Preservation Society"],
+	[573] = F["Steamwheedle Preservation Society"],
 -- Bloodmyst Isle
-	[476] = A and F["Exodar"],
+	[106] = A and F["Exodar"],
 -- Borean Tundra
-	[486] = H and F["Warsong Offensive"] or A and F["Valiance Expedition"],
+	[114] = H and F["Warsong Offensive"] or A and F["Valiance Expedition"],
 -- Brawl'gar Arena
-	[925] = H and F["Brawl'gar Arena"],
+	[503] = H and F["Brawl'gar Arena"],
 -- Broken Shore
-	[1021] = F["Armies of Legionfall"],
+	[646] = F["Armies of Legionfall"],
+	[676] = F["Armies of Legionfall"],
 -- Camp Narache
-	[890] = H and F["Thunder Bluff"],
+	[462] = H and F["Thunder Bluff"],
 -- Coldridge Valley
-	[866] = A and F["Ironforge"],
+	[427] = A and F["Ironforge"],
+	[834] = A and F["Ironforge"],
 -- Crystalsong Forest
-	[510] = F["Kirin Tor"],
+	[127] = F["Kirin Tor"],
 -- Dalaran (Broken Isles)
-	[1014] = F["Kirin Tor"],
+	[625] = F["Kirin Tor"],
+	[626] = F["Kirin Tor"],
+	[627] = F["Kirin Tor"],
+	[628] = F["Kirin Tor"],
+	[629] = F["Kirin Tor"],
+-- Dalaran (Eastern Kingdoms) [SCENARIO (Quest: In the Blink of an Eye)]
+	[501] = F["Kirin Tor"],
+	[502] = F["Kirin Tor"],
 -- Dalaran (Northrend)
-	[504] = F["Kirin Tor"],
--- Darkmoon Faire
-	[823] = F["Darkmoon Faire"],
+	[125] = F["Kirin Tor"],
+	[126] = F["Kirin Tor"],
+-- Darkmoon Island
+	[407] = F["Darkmoon Faire"],
+	[408] = F["Darkmoon Faire"],
 -- Darkshore
-	[42]  = A and F["Darnassus"],
+	[62]  = A and F["Darnassus"],
 -- Darnassus
-	[381] = A and F["Darnassus"],
+	[89] = A and F["Darnassus"],
 -- Deepholm
-	[640] = F["The Earthen Ring"],
+	[207] = F["The Earthen Ring"],
 -- Dire Maul
-	[699] = F["Shen'dralar"],
+	[234] = F["Shen'dralar"],
+	[235] = F["Shen'dralar"],
+	[236] = F["Shen'dralar"],
+	[237] = F["Shen'dralar"],
+	[238] = F["Shen'dralar"],
+	[239] = F["Shen'dralar"],
+	[240] = F["Shen'dralar"],
 -- Deadwind Pass
-	[32]  = F["The Violet Eye"],
+	[42]  = F["The Violet Eye"],
 -- Deathknell
-	[892] = H and F["Undercity"],
+	[465] = H and F["Undercity"],
 -- Dragonblight
-	[488] = F["The Wyrmrest Accord"],
+	[115] = F["The Wyrmrest Accord"],
 -- Drak'Tharon Keep
-	[524] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+	[160] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+	[161] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
 -- Dread Wastes
-	[858] = F["The Klaxxi"],
+	[422] = F["The Klaxxi"],
 -- Dun Morogh
 	[27]  = A and F["Ironforge"],
+	[523]  = A and F["Ironforge"],
 -- Durotar
-	[4]   = H and F["Orgrimmar"],
+	[1]   = H and F["Orgrimmar"],
 -- Eastern Plaguelands
 	[23]  = F["Argent Dawn"],
 -- Echo Isles
-	[891] = H and F["Darkspear Trolls"],
+	[463] = H and F["Darkspear Trolls"],
 -- Elwynn Forest
-	[30]  = A and F["Stormwind"],
+	[37]  = A and F["Stormwind"],
 -- Eversong Woods
-	[462] = H and F["Silvermoon City"],
+	[94] = H and F["Silvermoon City"],
 -- Eye of Azshara
-	[1096] = F["The Wardens"],
+	[713] = F["The Wardens"],
+	[790] = F["The Wardens"],
 -- Feralas
-	[121] = H and F["Thunder Bluff"] or A and F["Darnassus"],
+	[69] = H and F["Thunder Bluff"] or A and F["Darnassus"],
 -- Firelands
-	[800] = F["Avengers of Hyjal"],
+	[367] = F["Avengers of Hyjal"],
+	[368] = F["Avengers of Hyjal"],
+	[369] = F["Avengers of Hyjal"],
+	[738] = F["Avengers of Hyjal"],
 -- Frostfire Ridge
-	[941] = H and F["Frostwolf Orcs"],
+	[525] = H and F["Frostwolf Orcs"],
 -- Ghostlands
-	[463] = H and F["Tranquillien"],
+	[95] = H and F["Tranquillien"],
 -- Gilneas
-	["545"] = A and F["Gilneas"],
+	[179] = A and F["Gilneas"],
 -- Gilneas City
-	["611"] = A and F["Gilneas"],
+	[202] = A and F["Gilneas"],
+-- Gilneas Island
+	[938] = A and F["Gilneas"],
 -- Gloaming Reef [SCENARIO (Quest: Fish Frenzy)]
-	[1084] = F["Nat Pagle"],
+	[758] = F["Nat Pagle"],
 -- Greater Invasion Point: Inquisitor Meto
-	[1199] = F["Army of the Light"],
+	[930] = F["Army of the Light"],
 -- Greater Invasion Point: Matron Folnuna
-	[1198] = F["Army of the Light"],
+	[929] = F["Army of the Light"],
 -- Greater Invasion Point: Mistress Alluradel
-	[1197] = F["Army of the Light"],
+	[928] = F["Army of the Light"],
 -- Greater Invasion Point: Occularus
-	[1201] = F["Army of the Light"],
+	[932] = F["Army of the Light"],
 -- Greater Invasion Point: Pit Lord Vilemus
-	[1196] = F["Army of the Light"],
+	[927] = F["Army of the Light"],
 -- Greater Invasion Point: Sotanathor
-	[1200] = F["Army of the Light"],
+	[931] = F["Army of the Light"],
 -- Grimrail Depot
-	[993] = H and F["Frostwolf Orcs"] or A and F["Council of Exarchs"],
+	[606] = H and F["Frostwolf Orcs"] or A and F["Council of Exarchs"],
+	[607] = H and F["Frostwolf Orcs"] or A and F["Council of Exarchs"],
+	[608] = H and F["Frostwolf Orcs"] or A and F["Council of Exarchs"],
+	[609] = H and F["Frostwolf Orcs"] or A and F["Council of Exarchs"],
 -- Grizzly Hills
-	[490] = H and F["Warsong Offensive"] or A and F["Valiance Expedition"],
+	[116] = H and F["Warsong Offensive"] or A and F["Valiance Expedition"],
 -- Gundrak
-	[524] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+	[153] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+	[154] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
 -- Hall of the Guardian
-	[1068] = F["Kirin Tor"],
+	[734] = F["Kirin Tor"],
+	[735] = F["Kirin Tor"],
 -- Halls of Lightning
-	[524] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+	[138] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+	[139] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
 -- Halls of Reflection
-	[525] = H and F["The Sunreavers"] or A and F["The Silver Covenant"], -- NEEDS CHECK
+	[185] = H and F["The Sunreavers"] or A and F["The Silver Covenant"],
 -- Halls of Stone
-	[524] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+	[140] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
 -- Hellfire Peninsula
-	[465] = H and F["Thrallmar"] or A and F["Honor Hold"],
+	[100] = H and F["Thrallmar"] or A and F["Honor Hold"],
 -- Hellfire Ramparts
-	[797] = H and F["Thrallmar"] or A and F["Honor Hold"],
+	[347] = H and F["Thrallmar"] or A and F["Honor Hold"],
 -- Highmountain
-	[1024] = F["Highmountain Tribe"],
+	[650] = F["Highmountain Tribe"],
+	[869] = F["Highmountain Tribe"],
+	[870] = F["Highmountain Tribe"],
 -- Hillsbrad Foothills
-	[24] = H and F["Undercity"],
+	[25] = H and F["Undercity"] or A and F["Stormwind"],
+-- Hillsbrad Foothills (Southshore vs. Tarren Mill)
+	[623] = H and F["Undercity"] or A and F["Stormwind"],
 -- Howling Fjord
-	[491] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+	[117] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
 -- Hyjal Summit
-	[775] = F["The Scale of the Sands"],
+	[329] = F["The Scale of the Sands"],
 -- Icecrown
-	[492] = F["Knights of the Ebon Blade"],
+	[118] = F["Knights of the Ebon Blade"],
 -- Icecrown Citadel
-	[604] = F["The Ashen Verdict"],
+	[186] = F["The Ashen Verdict"],
+	[187] = F["The Ashen Verdict"],
+	[188] = F["The Ashen Verdict"],
+	[189] = F["The Ashen Verdict"],
+	[190] = F["The Ashen Verdict"],
+	[191] = F["The Ashen Verdict"],
+	[192] = F["The Ashen Verdict"],
+	[193] = F["The Ashen Verdict"],
+	[698] = F["The Ashen Verdict"],
+	[699] = F["The Ashen Verdict"],
+	[700] = F["The Ashen Verdict"],
+	[701] = F["The Ashen Verdict"],
 -- Invasion Point: Aurinor
-	[1190] = F["Army of the Light"],
+	[921] = F["Army of the Light"],
 -- Invasion Point: Bonich
-	[1191] = F["Army of the Light"],
+	[922] = F["Army of the Light"],
 -- Invasion Point: Cen'gar
-	[1192] = F["Army of the Light"],
+	[923] = F["Army of the Light"],
 -- Invasion Point: Naigtal
-	[1193] = F["Army of the Light"],
+	[924] = F["Army of the Light"],
 -- Invasion Point: Sangua
-	[1194] = F["Army of the Light"],
+	[925] = F["Army of the Light"],
 -- Invasion Point: Val
-	[1195] = F["Army of the Light"],
+	[926] = F["Army of the Light"],
 -- Iron Docks
-	[987] = H and F["Frostwolf Orcs"] or A and F["Council of Exarchs"],
+	[595] = H and F["Frostwolf Orcs"] or A and F["Council of Exarchs"],
 -- Ironforge
-	[341] = A and F["Ironforge"],
+	[87] = A and F["Ironforge"],
 -- Isle of Quel'Danas
-	[499] = F["Shattered Sun Offensive"],
+	[122] = F["Shattered Sun Offensive"],
 -- Isle of Thunder
-	[928] = H and F["Sunreaver Onslaught"] or A and F["Kirin Tor Offensive"],
+	[504] = H and F["Sunreaver Onslaught"] or A and F["Kirin Tor Offensive"],
+	[516] = H and F["Sunreaver Onslaught"] or A and F["Kirin Tor Offensive"],
 -- Karazhan
-	[799] = F["The Violet Eye"],
+	[350] = F["The Violet Eye"],
+	[351] = F["The Violet Eye"],
+	[352] = F["The Violet Eye"],
+	[353] = F["The Violet Eye"],
+	[354] = F["The Violet Eye"],
+	[355] = F["The Violet Eye"],
+	[356] = F["The Violet Eye"],
+	[357] = F["The Violet Eye"],
+	[358] = F["The Violet Eye"],
+	[359] = F["The Violet Eye"],
+	[360] = F["The Violet Eye"],
+	[361] = F["The Violet Eye"],
+	[362] = F["The Violet Eye"],
+	[363] = F["The Violet Eye"],
+	[364] = F["The Violet Eye"],
+	[365] = F["The Violet Eye"],
+	[366] = F["The Violet Eye"],
+	[794] = F["The Violet Eye"],
+	[795] = F["The Violet Eye"],
+	[796] = F["The Violet Eye"],
+	[797] = F["The Violet Eye"],
+	[809] = F["The Violet Eye"],
+	[810] = F["The Violet Eye"],
+	[811] = F["The Violet Eye"],
+	[812] = F["The Violet Eye"],
+	[813] = F["The Violet Eye"],
+	[814] = F["The Violet Eye"],
+	[815] = F["The Violet Eye"],
+	[816] = F["The Violet Eye"],
+	[817] = F["The Violet Eye"],
+	[818] = F["The Violet Eye"],
+	[819] = F["The Violet Eye"],
+	[820] = F["The Violet Eye"],
+	[821] = F["The Violet Eye"],
+	[822] = F["The Violet Eye"],
 -- Kelp'thar Forest
-	[610] = F["The Earthen Ring"],
+	[201] = F["The Earthen Ring"],
 -- Kezan
-	[605] = H and F["Bilgewater Cartel"],
+	[194] = H and F["Bilgewater Cartel"],
 -- Krasarang Wilds
-	[857] = F["The Anglers"],
+	[418] = F["The Anglers"],
+	[486] = F["The Anglers"],
+	[498] = F["The Anglers"],
 -- Krokuun
-	[1135] = F["Army of the Light"],
+	[830] = F["Army of the Light"],
 -- Loch Modan
-	[35]  = A and F["Ironforge"],
+	[48]  = A and F["Ironforge"],
 -- Mac'Aree
-	[1170] = F["Argussian Reach"],
+	[882] = F["Argussian Reach"],
 -- Magisters' Terrace
-	[798] = F["Shattered Sun Offensive"],
+	[348] = F["Shattered Sun Offensive"],
+	[349] = F["Shattered Sun Offensive"],
 -- Magtheridon's Lair
-	[779] = H and F["Thrallmar"] or A and F["Honor Hold"],
+	[331] = H and F["Thrallmar"] or A and F["Honor Hold"],
 -- Mana-Tombs
-	[732] = F["The Consortium"],
+	[272] = F["The Consortium"],
 -- Molten Core
-	[696] = F["Hydraxian Waterlords"],
+	[232] = F["Hydraxian Waterlords"],
 -- Molten Front
-	[795] = F["Guardians of Hyjal"],
+	[338] = F["Guardians of Hyjal"],
 -- Moonglade
-	[241] = F["Cenarion Circle"],
+	[80] = F["Cenarion Circle"],
 -- Mount Hyjal
-	[606] = F["Guardians of Hyjal"],
+	[198] = F["Guardians of Hyjal"],
 -- Mulgore
-	[9]   = H and F["Thunder Bluff"],
+	[7]   = H and F["Thunder Bluff"],
 -- Nagrand (Draenor)
-	[950] = F["Steamwheedle Preservation Society"],
+	[550] = F["Steamwheedle Preservation Society"],
 -- Nagrand (Outland)
-	[477] = H and F["The Mag'har"] or A and F["Kurenai"],
+	[107] = H and F["The Mag'har"] or A and F["Kurenai"],
 -- Netherstorm
-	[479] = F["The Consortium"],
+	[109] = F["The Consortium"],
 -- New Tinkertown
-	[895] = A and F["Gnomeregan"],
+	[469] = A and F["Gnomeregan"],
 -- Northern Barrens
-	[11]  = H and F["Orgrimmar"] or A and F["Ratchet"],
+	[10]  = H and F["Orgrimmar"] or A and F["Ratchet"],
 -- Northshire
-	[864] = A and F["Stormwind"],
+	[425] = A and F["Stormwind"],
 -- Old Hillsbrad Foothills
-	[734] = F["Keepers of Time"],
+	[274] = F["Keepers of Time"],
 -- Orgrimmar
-	[321] = H and F["Orgrimmar"],
+	[85] = H and F["Orgrimmar"],
+	[86] = H and F["Orgrimmar"],
 -- Pit of Saron
-	[602] = H and F["The Sunreavers"] or A and F["The Silver Covenant"], -- NEEDS CHECK
+	[184] = H and F["The Sunreavers"] or A and F["The Silver Covenant"],
+	[823] = H and F["The Sunreavers"] or A and F["The Silver Covenant"],
 -- Redridge Mountains
-	[36] = A and F["Stormwind"],
--- Ruins of Gilneas
-	[684] = H and F["Undercity"] or A and F["Gilneas"],
--- Ruins of Gilneas City
-	[685] = H and F["Undercity"] or A and F["Gilneas"],
+	[49] = A and F["Stormwind"],
 -- Ruins of Ahn'Qiraj
-	[717] = F["Cenarion Circle"],
+	[247] = F["Cenarion Circle"],
+-- Ruins of Gilneas
+	[217] = H and F["Undercity"] or A and F["Gilneas"],
+-- Ruins of Gilneas City
+	[218] = H and F["Undercity"] or A and F["Gilneas"],
 -- Scholomance
-	[763] = F["Argent Dawn"],
+	[476] = F["Argent Dawn"],
+	[477] = F["Argent Dawn"],
+	[478] = F["Argent Dawn"],
+	[479] = F["Argent Dawn"],
+-- ScholomanceOLD
+	[306] = F["Argent Dawn"],
+	[307] = F["Argent Dawn"],
+	[308] = F["Argent Dawn"],
+	[309] = F["Argent Dawn"],
 -- Serpentshrine Cavern
-	[780] = F["Cenarion Expedition"],
+	[332] = F["Cenarion Expedition"],
 -- Sethekk Halls
-	[723] = F["Lower City"],
+	[258] = F["Lower City"],
+	[259] = F["Lower City"],
 -- Shadow Labyrinth
-	[724] = F["Lower City"],
+	[260] = F["Lower City"],
 -- Shadowglen
-	[888] = F["Darnassus"],
+	[460] = F["Darnassus"],
 -- Shadowmoon Burial Grounds
-	[969] = H and F["Frostwolf Orcs"] or A and F["Council of Exarchs"],
+	[574] = H and F["Frostwolf Orcs"] or A and F["Council of Exarchs"],
+	[575] = H and F["Frostwolf Orcs"] or A and F["Council of Exarchs"],
+	[576] = H and F["Frostwolf Orcs"] or A and F["Council of Exarchs"],
 -- Shadowmoon Valley (Draenor)
-	[947] = A and F["Council of Exarchs"],
+	[539] = A and F["Council of Exarchs"],
 -- Shadowmoon Valley (Outland)
-	[473] = F["Netherwing"],
--- Shattrath City
-	[481] = F["The Sha'tar"],
+	[104] = F["Netherwing"],
+-- Shattrath City (Draenor)
+	[594] = H and F["Frostwolf Orcs"] or A and F["Council of Exarchs"],
+-- Shattrath City (Outland)
+	[111] = F["The Sha'tar"],
 -- Shimmering Expanse
-	[615] = F["The Earthen Ring"],
+	[205] = F["The Earthen Ring"],
 -- Sholazar Basin
-	[493] = { [F["Frenzyheart Tribe"]] = true, [F["The Oracles"]] = true },
--- Shrine of Seven Stars
-	[905] = A and F["The August Celestials"],
--- Shrine of Two Moons
-	[903] = H and F["The August Celestials"],
+	[119] = { [F["Frenzyheart Tribe"]] = true, [F["The Oracles"]] = true },
 -- Silithus
-	[261] = F["Cenarion Circle"],
+	[81] = F["Cenarion Circle"],
 -- Silvermoon City
-	[480] = H and F["Silvermoon City"],
+	[110] = H and F["Silvermoon City"],
 -- Silverpine Forest
 	[21]  = H and F["Undercity"] or A and F["Gilneas"],
 -- Skyreach
-	[989] = F["Arakkoa Outcasts"],
+	[601] = F["Arakkoa Outcasts"],
+	[602] = F["Arakkoa Outcasts"],
 -- Southern Barrens
-	[607] = H and F["Orgrimmar"] or A and F["Stormwind"],
+	[199] = H and F["Orgrimmar"] or A and F["Stormwind"],
 -- Spires of Arak
-	[948] = F["Arakkoa Outcasts"],
+	[542] = F["Arakkoa Outcasts"],
 -- Stonetalon Mountains
-	[81]  = H and F["Orgrimmar"] or A and F["Darnassus"],
+	[65]  = H and F["Orgrimmar"] or A and F["Darnassus"],
 -- Stormheim
-	[1017] = F["Valarjar"],
+	[634] = F["Valarjar"],
+	[696] = F["Valarjar"],
+	[865] = F["Valarjar"],
+	[866] = F["Valarjar"],
 -- Stormshield
-	[7332] = H and F["Vol'jin's Spear"] or A and F["Wrynn's Vanguard"],
+	[622] = H and F["Vol'jin's Spear"] or A and F["Wrynn's Vanguard"],
 -- Stormwind City
-	[301] = A and F["Stormwind"],
+	[84] = A and F["Stormwind"],
 -- Stratholme
-	[765] = F["Argent Dawn"],
+	[317] = F["Argent Dawn"],
+	[318] = F["Argent Dawn"],
+	[827] = F["Argent Dawn"],
 -- Sunwell Plateau
-	[789] = F["Shattered Sun Offensive"],
+	[335] = F["Shattered Sun Offensive"],
+	[336] = F["Shattered Sun Offensive"],
 -- Suramar
-	[1033] = F["The Nightfallen"],
+	[680] = F["The Nightfallen"],
 -- Talador
-	[946] = H and F["Frostwolf Orcs"] or A and F["Council of Exarchs"],
+	[535] = H and F["Frostwolf Orcs"] or A and F["Council of Exarchs"],
 -- Tanaan Jungle
-	[945] = H and F["Vol'jin's Headhunters"] or A and F["Hand of the Prophet"],
+	[534] = H and F["Vol'jin's Headhunters"] or A and F["Hand of the Prophet"],
+	[577] = H and F["Vol'jin's Headhunters"] or A and F["Hand of the Prophet"],
 -- Tanaris
-	[161] = F["Gadgetzan"],
+	[71] = F["Gadgetzan"],
 -- Teldrassil
-	[41]  = A and F["Darnassus"],
+	[57]  = A and F["Darnassus"],
 -- Tempest Keep
---	[""] = F["The Sha'tar"],
--- Temple of Ahn'Qiraj
-	[766] = F["Brood of Nozdormu"],
+	[334] = F["The Sha'tar"],
 -- Terokkar Forest
-	[478] = F["Lower City"],
+	[108] = F["Lower City"],
 -- The Arcatraz
-	[731] = F["The Sha'tar"],
+	[269] = F["The Sha'tar"],
+	[270] = F["The Sha'tar"],
+	[271] = F["The Sha'tar"],
 -- The Black Morass
-	[733] = F["Keepers of Time"],
+	[273] = F["Keepers of Time"],
 -- The Blood Furnace
-	[725] = H and F["Thrallmar"] or A and F["Honor Hold"],
+	[261] = H and F["Thrallmar"] or A and F["Honor Hold"],
 -- The Botanica
-	[729] = F["The Sha'tar"],
+	[266] = F["The Sha'tar"],
 -- The Culling of Stratholme
-	[524] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+	[130] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+	[131] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
 -- The Deaths of Chromie
-	[1177] = F["Chromie"],
+	[897] = F["Chromie"],
+	[898] = F["Chromie"],
+	[899] = F["Chromie"],
+	[900] = F["Chromie"],
+	[901] = F["Chromie"],
+	[902] = F["Chromie"],
 -- The Dreamgrove
-	[1077] = F["Cenarion Circle"],
+	[747] = F["Cenarion Circle"],
 -- The Forge of Souls
-	[524] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+	[183] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
 -- The Everbloom
-	[1008] = H and F["Laughing Skull Orcs"] or A and F["Sha'tari Defense"],
+	[620] = H and F["Laughing Skull Orcs"] or A and F["Sha'tari Defense"],
+	[621] = H and F["Laughing Skull Orcs"] or A and F["Sha'tari Defense"],
 -- The Exodar
-	[471] = A and F["Exodar"],
--- The Eye
-	[782] = F["The Sha'tar"],
+	[103] = A and F["Exodar"],
+	[775] = A and F["Exodar"],
 -- The Forge of Souls
-	[601] = H and F["The Sunreavers"] or A and F["The Silver Covenant"],
--- The Heart of Azeroth
-	[1057] = F["The Earthen Ring"],
+	[183] = H and F["The Sunreavers"] or A and F["The Silver Covenant"],
 -- The Jade Forest
-	[806] = H and F["Forest Hozen"] or A and F["Pearlfin Jinyu"],
+	[371] = H and F["Forest Hozen"] or A and F["Pearlfin Jinyu"],
+	[448] = H and F["Forest Hozen"] or A and F["Pearlfin Jinyu"],
 -- The Lost Isles
-	[544] = H and F["Bilgewater Cartel"],
+	[174] = H and F["Bilgewater Cartel"],
 -- The Maelstrom
-	[737] = F["The Earthen Ring"],
+	[276] = F["The Earthen Ring"],
+	[725] = F["The Earthen Ring"],
+	[839] = F["The Earthen Ring"],
+-- The Maelstrom (The Heart of Azeroth)
+	[726] = F["The Earthen Ring"],
 -- The Mechanar
-	[730] = F["The Sha'tar"],
+	[267] = F["The Sha'tar"],
+	[268] = F["The Sha'tar"],
 -- The Nexus
-	[524] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+	[129] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+	[370] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
 -- The Oculus
-	[524] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+	[142] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+	[143] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+	[144] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+	[145] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+	[146] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+	[799] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+	[800] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+	[801] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+	[802] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+	[803] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
 -- The Shattered Halls
-	[710] = H and F["Thrallmar"] or A and F["Honor Hold"],
+	[246] = H and F["Thrallmar"] or A and F["Honor Hold"],
 -- The Slave Pens
-	[728] = F["Cenarion Expedition"],
+	[265] = F["Cenarion Expedition"],
 -- The Steamvault
-	[727] = F["Cenarion Expedition"],
+	[263] = F["Cenarion Expedition"],
+	[264] = F["Cenarion Expedition"],
 -- The Stonecore
-	[768] = F["The Earthen Ring"],
+	[324] = F["The Earthen Ring"],
 -- The Storm Peaks
-	[495] = F["The Sons of Hodir"],
+	[120] = F["The Sons of Hodir"],
 -- The Underbog
-	[726] = F["Cenarion Expedition"],
--- The Violet Hold
-	[524] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+	[262] = F["Cenarion Expedition"],
+-- The Violet Hold (Broken Isles)
+	[723] = F["Kirin Tor"],
+-- The Violet Hold (Northrend)
+	[168] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
 -- The Wandering Isle
-	[808] = F["Shang Xi's Academy"],
+	[378] = F["Shang Xi's Academy"],
+	[709] = F["Shang Xi's Academy"],
 -- Thousand Needles
-	[61]  = H and F["Bilgewater Cartel"] or A and F["Gnomeregan"],
+	[64]  = H and F["Bilgewater Cartel"] or A and F["Gnomeregan"],
 -- Throne of the Four Winds [SCENARIO (Quest: Gathering of the Storms)]
-	[1148] = F["The Earthen Ring"],
+	[857] = F["The Earthen Ring"],
 -- Throne of Thunder
-	[930] = F["Shado-Pan Assault"],
+	[508] = F["Shado-Pan Assault"],
+	[509] = F["Shado-Pan Assault"],
+	[510] = F["Shado-Pan Assault"],
+	[511] = F["Shado-Pan Assault"],
+	[512] = F["Shado-Pan Assault"],
+	[513] = F["Shado-Pan Assault"],
+	[514] = F["Shado-Pan Assault"],
+	[515] = F["Shado-Pan Assault"],
 -- Thunder Bluff
-	[362] = H and F["Thunder Bluff"],
+	[88] = H and F["Thunder Bluff"],
+-- Thunder King's Citadel [SCENARIO (Quest: Treasures of the Thunder King)]
+	[518] = H and F["Sunreaver Onslaught"] or A and F["Kirin Tor Offensive"],
 -- Thunder Totem
-	[1080] = F["Highmountain Tribe"],
+	[750] = F["Highmountain Tribe"],
 -- Timeless Isle
-	[951] = F["Emperor Shaohao"],
+	[554] = F["Emperor Shaohao"],
 -- Tirisfal Glades
-	[20]  = H and F["Undercity"],
+	[18]  = H and F["Undercity"],
 -- Tol Barad
-	[708] = H and F["Hellscream's Reach"] or A and F["Baradin's Wardens"],
+	[244] = H and F["Hellscream's Reach"] or A and F["Baradin's Wardens"],
+	[773] = H and F["Hellscream's Reach"] or A and F["Baradin's Wardens"],
+	[774] = H and F["Hellscream's Reach"] or A and F["Baradin's Wardens"],
 -- Tol Barad Peninsula
-	[709] = H and F["Hellscream's Reach"] or A and F["Baradin's Wardens"],
+	[245] = H and F["Hellscream's Reach"] or A and F["Baradin's Wardens"],
 -- Townlong Steppes
-	[810] = F["Shado-Pan"],
+	[388] = F["Shado-Pan"],
 -- Trial of the Champion
-	[524] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+	[171] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
 -- Trial of the Crusader
-	[543] = H and F["The Sunreavers"] or A and F["The Silver Covenant"],
--- Troves of the Thunder King [SCENARIO]
-	[6716] = H and F["Sunreaver Onslaught"] or A and F["Kirin Tor Offensive"],
+	[172] = H and F["The Sunreavers"] or A and F["The Silver Covenant"],
+	[173] = H and F["The Sunreavers"] or A and F["The Silver Covenant"],
 -- Twilight Highlands
-	[700] = H and F["Dragonmaw Clan"] or A and F["Wildhammer Clan"],
+	[241] = H and F["Dragonmaw Clan"] or A and F["Wildhammer Clan"],
 -- Uldum
-	[720] = F["Ramkahen"],
+	[249] = F["Ramkahen"],
 -- Undercity
-	[382] = H and F["Undercity"],
+	[90] = H and F["Undercity"],
 -- Upper Blackrock Spire
-	[995] = F["Steamwheedle Preservation Society"],
+	[616] = F["Steamwheedle Preservation Society"],
+	[617] = F["Steamwheedle Preservation Society"],
+	[618] = F["Steamwheedle Preservation Society"],
 -- Utgarde Keep
-	[523] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+	[133] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+	[134] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+	[135] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
 -- Utgarde Pinnacle
-	[524] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+	[136] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
+	[137] = H and F["The Hand of Vengeance"] or A and F["Valiance Expedition"],
 -- Val'sharah
-	[1018] = F["Dreamweavers"],
+	[641] = F["Dreamweavers"],
+	[868] = F["Dreamweavers"],
 -- Vale of Eternal Blossoms
-	[811] = F["Golden Lotus"],
+	[390] = F["Golden Lotus"],
+	[520] = F["Golden Lotus"],
+	[521] = F["Golden Lotus"],
 -- Valley of the Four Winds
-	[807] = F["The Tillers"],
+	[376] = F["The Tillers"],
 -- Valley of Trials
-	[889] = H and F["Orgrimmar"],
+	[461] = H and F["Orgrimmar"],
 -- Warsong Gulch
-	[443] = H and F["Warsong Outriders"] or A and F["Silverwing Sentinels"],
+	[92] = H and F["Warsong Outriders"] or A and F["Silverwing Sentinels"],
+	[859] = H and F["Warsong Outriders"] or A and F["Silverwing Sentinels"],
 -- Warspear
-	[7333] = H and F["Vol'jin's Spear"] or A and F["Wrynn's Vanguard"],
+	[624] = H and F["Vol'jin's Spear"] or A and F["Wrynn's Vanguard"],
+-- Well of Eternity
+	[398]  = A and F["Darnassus"],
 -- Western Plaguelands
 	[22]  = F["Argent Crusade"],
 -- Wetlands
-	[40]  = A and F["Ironforge"],
+	[56]  = A and F["Ironforge"],
 -- Winterspring
-	[281] = F["Everlook"],
+	[83] = F["Everlook"],
 -- Zangarmarsh
-	[467] = F["Cenarion Expedition"],
+	[102] = F["Cenarion Expedition"],
 -- Zul'Drak
-	[496] = F["Argent Crusade"],
+	[121] = F["Argent Crusade"],
+-- Zul'Gurub
+	[233] = F["Zandalar Tribe"],
+	[337] = F["Zandalar Tribe"],
 }
 
 ------------------------------------------------------------------------------------------------------------------------
 
 self.subzoneFactions = {
 	-- Arathi Highlands
-	[16] = {
+	[14] = {
 		["Faldir's Cove"]             = F["Booty Bay"],
 		["Galen's Fall"]              = F["Undercity"],
 		["Northfold Manor"]           = F["Ravenholdt"],
 		["Stromgarde Keep"]           = F["Ravenholdt"],
 		["The Drowned Reef"]          = F["Booty Bay"],
 	},
+	[906] = function(self) self.subzoneFactions[906] = self.subzoneFactions[14] end,
+	[943] = function(self) self.subzoneFactions[943] = self.subzoneFactions[14] end,
 	-- Azsuna
-	[1015] = {
+	[630] = {
 		["Isle of the Watchers"]      = F["The Wardens"],
 		["Wardens' Redoubt"]          = F["The Wardens"],
 		["Watchers' Aerie"]           = F["The Wardens"],
 	},
+	[867] = function(self) self.subzoneFactions[867] = self.subzoneFactions[630] end,
 	-- Blade's Edge Mountains
-	[475] = {
+	[105] = {
 		["Evergrove"]                 = F["Cenarion Expedition"],
 		["Ruuan Weald"]               = F["Cenarion Expedition"],
 		["Forge Camp: Terror"]        = F["Ogri'la"],
@@ -779,7 +968,7 @@ self.subzoneFactions = {
 		["Vortex Summit"]             = F["Ogri'la"],
 	},
 	-- Borean Tundra
-	[486] = {
+	[114] = {
 		["D.E.H.T.A. Encampment"]     = F["Cenarion Expedition"],
 		["Amber Ledge"]               = F["Kirin Tor"],
 		["Transitus Shield"]          = F["Kirin Tor"],
@@ -789,12 +978,12 @@ self.subzoneFactions = {
 		["Taunka'le Village"]         = H and F["The Taunka"],
 	},
 	-- Crystalsong Forest
-	[510] = {
+	[127] = {
 		["Sunreaver's Command"]       = H and F["The Sunreavers"] or A and F["The Silver Covenant"],
 		["Windrunner's Overlook"]     = H and F["The Sunreavers"] or A and F["The Silver Covenant"],
 	},
 	-- Dalaran (Broken Isles)
-	[1014] = {
+	[625] = {
 		["A Hero's Welcome"]          = H and F["The Sunreavers"] or A and F["The Silver Covenant"],
 		["Greyfang Enclave"]          = H and F["Undercity"] or A and F["Gilneas"],
 		["Margoss's Retreat"]         = F["Conjurer Margoss"],
@@ -802,63 +991,27 @@ self.subzoneFactions = {
 		["The Filthy Animal"]         = H and F["The Sunreavers"] or A and F["The Silver Covenant"],
 		["Windrunner's Sanctuary"]    = H and F["Undercity"] or A and F["Gilneas"],
 	},
+	[626] = function(self) self.subzoneFactions[626] = self.subzoneFactions[625] end,
+	[627] = function(self) self.subzoneFactions[627] = self.subzoneFactions[625] end,
+	[628] = function(self) self.subzoneFactions[628] = self.subzoneFactions[625] end,
+	[629] = function(self) self.subzoneFactions[629] = self.subzoneFactions[625] end,
 	-- Dalaran (Northrend)
-	[504] = {
+	[125] = {
 		["A Hero's Welcome"]          = H and F["The Sunreavers"] or A and F["The Silver Covenant"],
 		["Sunreaver's Sanctuary"]     = H and F["The Sunreavers"] or A and F["The Silver Covenant"],
 		["The Beer Garden"]           = H and F["The Sunreavers"] or A and F["The Silver Covenant"],
 		["The Filthy Animal"]         = H and F["The Sunreavers"] or A and F["The Silver Covenant"],
 		["The Silver Enclave"]        = H and F["The Sunreavers"] or A and F["The Silver Covenant"],
 	},
+	[126] = function(self) self.subzoneFactions[126] = self.subzoneFactions[125] end,
+	-- Dalaran (Eastern Kingdoms) [SCENARIO (Quest: In the Blink of an Eye)]
+	[501] = function(self) self.subzoneFactions[501] = self.subzoneFactions[125] end,
+	[502] = function(self) self.subzoneFactions[502] = self.subzoneFactions[125] end,
 	-- Deadwind Pass
-	[32] = { -- Quest: In the Blink of an Eye
-		["A Hero's Welcome"]           = H and F["The Sunreavers"] or A and F["The Silver Covenant"],
-		["Antonidas Memorial"]         = F["Kirin Tor"],
-		["Archmage Vargoth's Retreat"] = F["Kirin Tor"],
-		["Barbershop"]                 = F["Kirin Tor"],
-		["Cartier & Co. Fine Jewelry"] = F["Kirin Tor"],
-		["Chamber of the Guardian"]    = F["Kirin Tor"],
-		["Curiosities & Moore"]        = F["Kirin Tor"],
-		["Dalaran Merchant's Bank"]    = F["Kirin Tor"],
-		["Dalaran Visitor Center"]     = F["Kirin Tor"],
-		["Dalaran"]                    = F["Kirin Tor"],
-		["First to Your Aid"]          = F["Kirin Tor"],
-		["Forge of Fate"]              = F["Kirin Tor"],
-		["Glorious Goods"]             = F["Kirin Tor"],
-		["Krasus' Landing"]            = F["Kirin Tor"],
-		["Langrom's Leather & Links"]  = F["Kirin Tor"],
-		["Legendary Leathers"]         = F["Kirin Tor"],
-		["Like Clockwork"]             = F["Kirin Tor"],
-		["Magical Menagerie"]          = F["Kirin Tor"],
-		["Magus Commerce Exchange"]    = F["Kirin Tor"],
-		["One More Glass"]             = F["Kirin Tor"],
-		["Photonic Playground"]        = F["Kirin Tor"],
-		["Simply Enchanting"]          = F["Kirin Tor"],
-		["Spire of the Guardian"]      = F["Kirin Tor"],
-		["Sunreaver's Sanctuary"]      = H and F["The Sunreavers"] or A and F["The Silver Covenant"],
-		["Talismanic Textiles"]        = F["Kirin Tor"],
-		["Tanks for Everything"]       = F["Kirin Tor"],
-		["The Agronomical Apothecary"] = F["Kirin Tor"],
-		["The Arsenal Absolute"]       = F["Kirin Tor"],
-		["The Bank of Dalaran"]        = F["Kirin Tor"],
-		["The Beer Garden"]            = H and F["The Sunreavers"] or A and F["The Silver Covenant"],
-		["The Eventide"]               = F["Kirin Tor"],
-		["The Filthy Animal"]          = H and F["The Sunreavers"] or A and F["The Silver Covenant"],
-		["The Hunter's Reach"]         = F["Kirin Tor"],
-		["The Legerdemain Lounge"]     = F["Kirin Tor"],
-		["The Militant Mystic"]        = F["Kirin Tor"],
-		["The Purple Parlor"]          = F["Kirin Tor"],
-		["The Scribe's Sacellum"]      = F["Kirin Tor"],
-		["The Silver Enclave"]         = H and F["The Sunreavers"] or A and F["The Silver Covenant"],
-		["The Threads of Fate"]        = F["Kirin Tor"],
-		["The Violet Citadel"]         = F["Kirin Tor"],
-		["The Violet Gate"]            = F["Kirin Tor"],
-		["The Violet Hold"]            = F["Kirin Tor"],
-		["The Wonderworks"]            = F["Kirin Tor"],
-		["Things of the Past"]         = F["Kirin Tor"],
+	[42] = { -- TODO: update
 	},
 	-- Deepholm
-	[640] = {
+	[207] = {
 		["Crimson Expanse"]           = F["Therazane"],
 		["Crumbling Depths"]          = F["Therazane"],
 		["Fungal Deep"]               = F["Therazane"],
@@ -871,11 +1024,15 @@ self.subzoneFactions = {
 		["Verlok Stand"]              = F["Therazane"],
 	},
 	-- Deeprun Tram
-	[922] = {
+	[499] = {
 		["Bizmo's Brawlpub"]          = A and F["Bizmo's Brawlpub"],
 	},
+	[500] = function(self) self.subzoneFactions[500] = self.subzoneFactions[499] end,
+	-- Desolace
+	[66] = { -- TODO: update
+	},
 	-- Dragonblight
-	[488] = {
+	[115] = {
 		["Light's Trust"]             = F["Argent Crusade"],
 		["Moa'ki Harbor"]             = F["The Kalu'ak"],
 		["Agmar's Hammer"]            = H and F["Warsong Offensive"],
@@ -886,14 +1043,14 @@ self.subzoneFactions = {
 		["Wintergarde Keep"]          = A and F["Valiance Expedition"],
 	},
 	-- Dread Wastes
-	[858] = {
+	[422] = {
 		["Lonesome Cove"]             = F["The Anglers"],
 		["Shelf of Mazu"]             = F["The Anglers"],
 		["Soggy's Gamble"]            = F["The Anglers"],
 		["Wreck of the Mist-Hopper"]  = F["The Anglers"],
 	},
 	-- Durotar
-	[4]  = { -- TODO: update
+	[1]  = { -- TODO: update
 		["Sen'jin Village"]           = H and F["Darkspear Trolls"],
 	},
 	-- Eastern Plaguelands
@@ -901,24 +1058,24 @@ self.subzoneFactions = {
 		["Acherus: The Ebon Hold"]    = F["Knights of the Ebon Blade"],
 	},
 	-- Felwood
-	[182] = { -- TODO: update
+	[77] = { -- TODO: update
 		["Deadwood Village"]          = F["Timbermaw Hold"],
 		["Felpaw Village"]            = F["Timbermaw Hold"],
 		["Timbermaw Hold"]            = F["Timbermaw Hold"],
 	},
 	-- Gorgrond
-	[949] = {
+	[543] = {
 		["Broken Horn Village"]       = H and F["Laughing Skull Orcs"],
 		["Deadmeat's House of Meat"]  = H and F["Laughing Skull Orcs"],
 		["Everbloom Wilds"]           = H and F["Laughing Skull Orcs"],
 		["The Pit"]                   = H and F["Laughing Skull Orcs"],
 	},
 	-- Grizzly Hills
-	[490] = { -- TODO: add Alliance areas?
+	[116] = { -- TODO: add Alliance areas?
 		["Camp Oneqwah"]             = H and F["The Taunka"],
 	},
 	-- Hellfire Peninsula
-	[465] = {
+	[100] = {
 		["Cenarion Post"]             = F["Cenarion Expedition"],
 		["Throne of Kil'jaeden"]      = F["Shattered Sun Offensive"],
 		["Mag'har Grounds"]           = H and F["The Mag'har"],
@@ -926,13 +1083,15 @@ self.subzoneFactions = {
 		["Temple of Telhamat"]        = A and F["Kurenai"],
 	},
 	-- Highmountain
-	[1024] = {
+	[650] = {
 		["Cordana's Apex"]            = H and F["Undercity"] or A and F["Gilneas"],
 		["Nightwatcher's Perch"]      = H and F["Undercity"] or A and F["Gilneas"],
 		["Sylvan Falls"]              = F["Talon's Vengeance"],
 	},
+	[869] = function(self) self.subzoneFactions[869] = self.subzoneFactions[650] end,
+	[870] = function(self) self.subzoneFactions[870] = self.subzoneFactions[650] end,
 	-- Hillsbrad Foothills
-	[24]  = {
+	[25]  = {
 		["Alterac Mountains"]         = H and F["Frostwolf Clan"] or A and F["Stormpike Guard"],
 		["Alterac Valley"]            = H and F["Frostwolf Clan"] or A and F["Stormpike Guard"],
 		["Azurelode Mine"]            = A and F["Stormwind"],
@@ -945,15 +1104,17 @@ self.subzoneFactions = {
 		["Strahnbrad"]                = F["Ravenholdt"],
 		["The Headland"]              = H and F["Frostwolf Clan"] or A and F["Stormpike Guard"],
 	},
+	-- Hillsbrad Foothills (Southshore vs. Tarren Mill)
+	[623] = function(self) self.subzoneFactions[623] = self.subzoneFactions[25] end,
 	-- Howling Fjord
-	[491] = {
+	[117] = {
 		["Kamagua"]					      = F["The Kalu'ak"],
 		["Camp Winterhoof"]			   = H and F["The Taunka"],
 		["Explorers' League Outpost"] = A and F["Explorers' League"],
 		["Steel Gate"]				      = A and F["Explorers' League"],
 	},
 	-- Icecrown
-	[492] = {
+	[118] = {
 		["The Argent Vanguard"]         = F["Argent Crusade"],
 		["Crusaders' Pinnacle"]         = F["Argent Crusade"],
 		["Scourgeholme"]                = F["Argent Crusade"],
@@ -973,7 +1134,7 @@ self.subzoneFactions = {
 		["The Ring of Champions"]       = H and F["The Sunreavers"] or A and F["The Silver Covenant"],
 	},
 	-- Krasarang Wilds
-	[857] = {
+	[418] = {
 		["Angkhal Pavilion"]         = F["The August Celestials"],
 		["Cradle of Chi-Ji"]         = F["The August Celestials"],
 		["Dome Balrissa"]            = F["The August Celestials"],
@@ -986,7 +1147,7 @@ self.subzoneFactions = {
 		["Blacksand Spillway"]       = H and F["Dominance Offensive"] or A and F["Operation: Shieldwall"],
 		["Domination Point"]         = H and F["Dominance Offensive"] or A and F["Operation: Shieldwall"],
 		["Lion's Landing"]           = H and F["Dominance Offensive"] or A and F["Operation: Shieldwall"],
-		["Ogregrind's Dig"]          = H and F["Dominance Offensive"] or A and F["Operation: Shieldwall"],
+		["Oregrind's Dig"]           = H and F["Dominance Offensive"] or A and F["Operation: Shieldwall"],
 		["Quickchop's Lumber Farm"]  = H and F["Dominance Offensive"] or A and F["Operation: Shieldwall"],
 		["Ruins of Ogudei"]          = H and F["Dominance Offensive"] or A and F["Operation: Shieldwall"],
 		["Sparkrocket Outpost"]      = H and F["Dominance Offensive"] or A and F["Operation: Shieldwall"],
@@ -996,13 +1157,15 @@ self.subzoneFactions = {
 		-- Faction ships don't have a subzone name
 		[""]                         = H and F["Dominance Offensive"] or A and F["Operation: Shieldwall"],
 	},
+	[486] = function(self) self.subzoneFactions[486] = self.subzoneFactions[418] end,
+	[498] = function(self) self.subzoneFactions[498] = self.subzoneFactions[418] end,
 	-- Krokuun
-	[1135] = {
+	[830] = {
 		["Krokul Hovel"]     = F["Argussian Reach"],
 		["Petrified Forest"] = F["Argussian Reach"],
 	},
 	-- Kun-Lai Summit
-	[809] = {
+	[379] = {
 		["Gate of the August Celestials"] = F["The August Celestials"],
 		["Temple of the White Tiger"]     = F["The August Celestials"],
 		["Firebough Nook"]           = F["Shado-Pan"],
@@ -1014,32 +1177,32 @@ self.subzoneFactions = {
 		["Winter's Blossom"]         = F["Shado-Pan"],
 	},
 	-- Mac'Aree
-	[1170] = {
+	[882] = {
 		["The Vindicaar"] = F["Army of the Light"],
 	},
-	-- Nagrand
-	[477] = {
+	-- Nagrand (Outland)
+	[107] = {
 		["Aeris Landing"]            = F["The Consortium"],
 		["Oshu'gun"]                 = F["The Consortium"],
 		["Spirit Fields"]            = F["The Consortium"],
 	},
 	-- Netherstorm
-	[479] = {
+	[109] = {
 		["Netherwing Ledge"]         = F["Netherwing"],
 		["Tempest Keep"]             = F["The Sha'tar"],
 	},
 	-- Searing Gorge
-	[28]  = {
+	[32]  = {
 		["Thorium Point"]            = F["Thorium Brotherhood"],
 	},
-	-- Shadowmoon Valley
-	[473] = {
+	-- Shadowmoon Valley (Outland)
+	[104] = {
 		["Altar of Sha'tar"]         = F["The Aldor"],
 		["Sanctum of the Stars"]     = F["The Scryers"],
 		["Warden's Cage"]            = F["Ashtongue Deathsworn"],
 	},
-	-- Shattrath City
-	[481] = {
+	-- Shattrath City (Outland)
+	[111] = {
 		["Lower City"]               = F["Lower City"],
 		["Aldor Rise"]               = F["The Aldor"],
 		["Shrine of Unending Light"] = F["The Aldor"],
@@ -1047,7 +1210,7 @@ self.subzoneFactions = {
 		["The Seer's Library"]       = F["The Scryers"],
 	},
 	-- Sholazar Basin
-	[493] = {
+	[119] = {
 		["Frenzyheart Hill"]        = F["Frenzyheart Tribe"],
 		["Kartak's Hold"]           = F["Frenzyheart Tribe"],
 		["Spearborn Encampment"]    = F["Frenzyheart Tribe"],
@@ -1056,7 +1219,7 @@ self.subzoneFactions = {
 		["Sparktouched Haven"]      = F["The Oracles"],
 	},
 	-- Southern Barrens
-	[607] = {
+	[199] = {
 		["Firestone Point"]         = F["The Earthen Ring"],
 		["Ruins of Taurajo"]        = H and F["Thunder Bluff"],
 		["Spearhead"]               = H and F["Thunder Bluff"],
@@ -1068,16 +1231,16 @@ self.subzoneFactions = {
 		["Twinbraid's Patrol"]      = A and F["Ironforge"],
 	},
 	-- Spires of Arak
-	[948] = {
+	[542] = {
 		["Pillars of Fate"]         = A and F["Council of Exarchs"],
 	},
 	-- Stranglethorn Vale
-	[689] = { -- TODO: update
+	[224] = { -- TODO: update
 		["Booty Bay"]               = F["Booty Bay"],
 		["The Salty Sailor Tavern"] = F["Booty Bay"],
 	},
 	-- Storm Peaks
-	[495] = {
+	[120] = {
 		["Camp Tunka'lo"]           = H and F["Warsong Offensive"],
 		["Frostfloe Deep"]          = H and F["Warsong Offensive"],
 		["Frosthowl Cavern"]        = H and F["Warsong Offensive"],
@@ -1098,7 +1261,7 @@ self.subzoneFactions = {
 		["The Foot Steppes"]        = A and F["The Frostborn"],
 	},
 	-- Stormheim
-	[1017] = {
+	[634] = {
 		["Blackhawk's Bulwark"]     = H and F["Undercity"] or A and F["Gilneas"],
 		["Cove of Nashal"]          = H and F["Undercity"] or A and F["Gilneas"],
 		["Cullen's Post"]           = H and F["Undercity"] or A and F["Gilneas"],
@@ -1114,8 +1277,11 @@ self.subzoneFactions = {
 		["Weeping Bluffs"]          = H and F["Undercity"] or A and F["Gilneas"],
 		["Whisperwind's Citadel"]   = H and F["Undercity"] or A and F["Gilneas"],
 	},
+	[696] = function(self) self.subzoneFactions[696] = self.subzoneFactions[634] end,
+	[865] = function(self) self.subzoneFactions[865] = self.subzoneFactions[634] end,
+	[866] = function(self) self.subzoneFactions[866] = self.subzoneFactions[634] end,
 	-- Talador
-	[946] = {
+	[535] = {
 		["Terokkar Refuge"]                = F["Arakkoa Outcasts"],
 		["Veil Shadar"]                    = F["Arakkoa Outcasts"],
 		-- Bladefury Hold
@@ -1143,18 +1309,19 @@ self.subzoneFactions = {
 		["Spire of Light"]                 = A and F["Sha'tari Defense"],
 	},
 	-- Tanaan Jungle
-	[945] = {
+	[534] = {
 		["Aktar's Post"]              = F["Arakkoa Outcasts"],
 		["Fang'rila"]                 = F["The Saberstalkers"],
 		["Blackfang Challenge Arena"] = F["The Saberstalkers"],
 		["Rangari Refuge"]            = H and F["Laughing Skull Orcs"] or A and F["Sha'tari Defense"],
 	},
+	[577] = function(self) self.subzoneFactions[577] = self.subzoneFactions[534] end,
 	-- Tanaris
-	[161] = { -- TODO: update
+	[71] = { -- TODO: update
 		["Caverns of Time"]         = F["Keepers of Time"],
 	},
 	-- Terokkar Forest
-	[478] = {
+	[108] = {
 		["Mana Tombs"]              = F["The Consortium"],
 		["Blackwind Lake"]          = F["Sha'tari Skyguard"],
 		["Blackwind Landing"]       = F["Sha'tari Skyguard"],
@@ -1168,7 +1335,7 @@ self.subzoneFactions = {
 		["Veil Harr'ik"]            = F["Sha'tari Skyguard"],
 	},
 	-- The Jade Forest
-	[806] = {
+	[371] = {
 		["Fountain of the Everseeing"]  = F["The August Celestials"],
 		["Jade Temple Grounds"]         = F["The August Celestials"],
 		["Temple of the Jade Serpent"]  = F["The August Celestials"],
@@ -1183,26 +1350,27 @@ self.subzoneFactions = {
 		["The Widow's Wail"]            = F["Order of the Cloud Serpent"],
 		["Windward Isle"]               = F["Order of the Cloud Serpent"],
 	},
+	[448] = function(self) self.subzoneFactions[448] = self.subzoneFactions[371] end,
 	-- The Veiled Stair
-	[873] = {
+	[433] = {
 		["Tavern in the Mists"]      = F["The Black Prince"],
 	},
 	-- Thousand Needles
-	[61]  = {
+	[64]  = {
 		["Arikara's Needle"]         = H and F["Thunder Bluff"] or A and F["Darnassus"],
 		["Darkcloud Pinnacle"]       = H and F["Thunder Bluff"] or A and F["Darnassus"],
 		["Freewind Post"]            = H and F["Thunder Bluff"] or A and F["Darnassus"],
 	},
 	-- Tirisfal Glades
-	[20]  = { -- TODO: update
+	[18]  = { -- TODO: update
 		["The Bulwark"]              = F["Argent Dawn"],
 	},
 	-- Townlong Steppes
-	[810] = {
+	[388] = {
 		["Niuzao Temple"]            = F["The August Celestials"],
 	},
 	-- Twilight Highlands
-	[700] = {
+	[241] = {
 		["Iso'rath"]                 = F["The Earthen Ring"],
 		["Ring of the Elements"]     = F["The Earthen Ring"],
 		["Ruins of Drakgor"]         = F["The Earthen Ring"],
@@ -1214,22 +1382,45 @@ self.subzoneFactions = {
 		["Victor's Point"]           = A and F["Stormwind"],
 	},
 	-- Val'sharah
-	[1018] = {
+	[641] = {
 		["Darkfollow's Spire"]       = H and F["Undercity"] or A and F["Gilneas"],
 		["Starstalker's Point"]      = H and F["Undercity"] or A and F["Gilneas"],
 	},
+	[868] = function(self) self.subzoneFactions[868] = self.subzoneFactions[641] end,
 	-- Vale of Eternal Blossoms
-	[811] = {
+	[390] = {
+		[""]                         = F["The August Celestials"],
 		["Gate of the Setting Sun"]  = F["Shado-Pan"],
-		["Serpent's Spine"]          = F["Shado-Pan"],
-		[""]                         = F["The August Celestials"], -- NEEDS VERIFICATION
 		["Mogu'shan Palace"]         = F["The August Celestials"],
 		["Seat of Knowledge"]        = F["The Lorewalkers"],
-		["The Golden Terrace"]       = H and F["The August Celestials"],
-		["The Summer Terrace"]       = A and F["The August Celestials"],
+		["Serpent's Spine"]          = F["Shado-Pan"],
+		-- Shrine of Seven Stars
+		["Chamber of Enlightenment"]  = F["The August Celestials"],
+		["Chamber of Reflection"]     = F["The August Celestials"],
+		["Ethereal Corridor"]         = F["The August Celestials"],
+		["Path of Serenity"]          = F["The August Celestials"],
+		["The Celestial Vault"]       = F["The August Celestials"],
+		["The Emperor's Step"]        = F["The August Celestials"],
+		["The Golden Lantern"]        = F["The August Celestials"],
+		["The Imperial Exchange"]     = F["The August Celestials"],
+		["The Star's Bazaar"]         = F["The August Celestials"],
+		["The Summer Terrace"]        = F["The August Celestials"],
+		-- Shrine of Two Moons
+		["Chamber of Masters"]        = F["The August Celestials"],
+		["Chamber of Wisdom"]         = F["The August Celestials"],
+		["Hall of Secrets"]           = F["The August Celestials"],
+		["Hall of Tranquility"]       = F["The August Celestials"],
+		["Hall of the Crescent Moon"] = F["The August Celestials"],
+		["Summer's Rest"]             = F["The August Celestials"],
+		["The Golden Terrace"]        = F["The August Celestials"],
+		["The Imperial Mercantile"]   = F["The August Celestials"],
+		["The Jade Vaults"]           = F["The August Celestials"],
+		["The Keggary"]               = F["The August Celestials"],
 	},
+	[520] = function(self) self.subzoneFactions[520] = self.subzoneFactions[390] end,
+	[521] = function(self) self.subzoneFactions[521] = self.subzoneFactions[390] end,
 	-- Valley of the Four Winds
-	[807] = {
+	[376] = {
 		["Serpent's Spine"]          = F["Shado-Pan"],
 	},
 	-- Western Plaguelands
@@ -1240,14 +1431,14 @@ self.subzoneFactions = {
 		["Uther's Tomb"]             = A and F["Stormwind"],
 	},
 	-- Wetlands
-	[40]  = { -- TODO: update
+	[56]  = { -- TODO: update
 		["Direforge Hill"]           = A and F["Darnassus"],
 		["Greenwarden's Grove"]      = A and F["Darnassus"],
 		["Menethil Harbor"]          = A and F["Stormwind"],
 		["The Green Belt"]           = A and F["Darnassus"],
 	},
 	-- Winterspring
-	[281] = { -- TODO: update
+	[83] = { -- TODO: update
 		["Frostfire Hot Springs"]    = F["Timbermaw Hold"],
 		["Timbermaw Hold"]           = F["Timbermaw Hold"],
 		["Timbermaw Post"]           = F["Timbermaw Hold"],
@@ -1255,7 +1446,7 @@ self.subzoneFactions = {
 		["Frostsaber Rock"]          = A and F["Wintersaber Trainers"],
 	},
 	-- Zangarmarsh
-	[467] = {
+	[102] = {
 		["Funggor Cavern"]           = F["Sporeggar"],
 		["Quagg Ridge"]              = F["Sporeggar"],
 		["Sporeggar"]                = F["Sporeggar"],
@@ -1265,7 +1456,7 @@ self.subzoneFactions = {
 		["Telredor"]                 = A and F["Exodar"],
 	},
 	-- Zul'Drak
-	[496] = {
+	[121] = {
 		["Ebon Watch"]               = F["Knights of the Ebon Blade"],
 	},
 }
@@ -1276,6 +1467,11 @@ self.subzoneFactions = {
 	for zone, faction in pairs(self.zoneFactions) do
 		if not faction then
 			self.zoneFactions[zone] = nil
+		end
+	end
+	for zone, f in pairs(self.subzoneFactions) do
+		if type(f) == "function" then
+			self.subzoneFactions[zone](self)
 		end
 	end
 	for zone, t in pairs(self.subzoneFactions) do
