@@ -1,4 +1,4 @@
-## Interface: 70300
+## Interface: 80000
 
 ## Title: Diplomancer
 ## Notes: Changes your watched faction reputation based on your current location.
