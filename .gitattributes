@@ -4,7 +4,7 @@
 *.txt   text
 
 # World of Warcraft UI
-*.lua   text      whitespace=-tab-in-indent,indent-with-non-tab
+*.lua   text
 *.xml   text
 *.toc   text
 *.blp   binary
