@@ -32,10 +32,8 @@
 ## LoadManagers: AddonLoader
 ## X-LoadOn-Always: delayed
 
-#@no-lib-strip@
 Libs\LibStub\LibStub.lua
 Libs\LibBabble-SubZone-3.0\lib.xml
-#@end-no-lib-strip@
 Libs\PhanxConfig-Button\PhanxConfig-Button.lua
 Libs\PhanxConfig-Checkbox\PhanxConfig-Checkbox.lua
 Libs\PhanxConfig-Dropdown\PhanxConfig-Dropdown.lua

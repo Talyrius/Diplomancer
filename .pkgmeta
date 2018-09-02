@@ -1,16 +1,18 @@
 package-as: Diplomancer
-enable-nolib-creation: yes
+enable-nolib-creation: no
 
 manual-changelog:
   filename: CHANGELOG.md
   markup-type: markdown
 
 externals:
-  Libs/LibStub:
-    url: https://repos.wowace.com/wow/libstub
-    tag: 1.0
-  Libs/LibBabble-SubZone-3.0:
-    url: https://repos.wowace.com/wow/libbabble-subzone-3-0
+  Libs/LibStub: https://repos.wowace.com/wow/libstub/tags/1.0
+  Libs/LibBabble-SubZone-3.0: https://repos.wowace.com/wow/libbabble-subzone-3-0/trunk
+  Libs/PhanxConfig-Button: https://github.com/phanx-wow/PhanxConfig-Button
+  Libs/PhanxConfig-Checkbox: https://github.com/phanx-wow/PhanxConfig-Checkbox
+  Libs/PhanxConfig-Dropdown: https://github.com/phanx-wow/PhanxConfig-Dropdown
+  Libs/PhanxConfig-Header: https://github.com/phanx-wow/PhanxConfig-Header
+  Libs/PhanxConfig-OptionsPanel: https://github.com/phanx-wow/PhanxConfig-OptionsPanel
 
 ignore:
   - CHANGELOG.md
