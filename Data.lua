@@ -189,7 +189,7 @@ function Diplomancer:LocalizeData()
   }
 
   setmetatable(F, { __index = function(F, faction) -- for debugging
-    print("|cffffd000Diplomancer:|r Missing faction ID for", faction)
+    Diplomancer:Print(format("|cFFE06C75Error|r: Missing faction ID for |cFF98C379%q|r.", faction))
     F[faction] = false
     return false
   end })
@@ -1572,7 +1572,7 @@ function Diplomancer:LocalizeData()
   end
   for zone, t in pairs(self.subzoneFactions) do
     if type(t) ~= "table" then
-      print("BAD DATA IN SUBZONE FACTIONS:", zone, tostring(t))
+      self:Print(format("|cFFE06C75Error|r: Bad |cFFABB2BFsubzoneFactions|r data for |cFFD19A66%d|r (|cFF98C379%q|r).", zone, tostring(t)))
     else
       for subzone, faction in pairs(t) do
         if not faction then
@@ -1594,13 +1594,13 @@ function Diplomancer:LocalizeData()
           elseif faction and faction == "" then
             SF[zone][subzone] = faction
           else
-            -- print("|cff33ff99Diplomancer:|r LBSZ is missing subzone", zone, "==>", subzone)
+            self:Debug("LBSZ is missing subzone", zone, "->", subzone)
           end
         end
       end
       self.subzoneFactions = SF
     else
-      print("|cff33ff99Diplomancer|r is running without subzone detection, because the LibBabble-SubZone-3.0 library does not yet provide subzone names for your language. See the download page for more information!")
+      self:Print("|cFFE06C75Warning|r: You're currently running without subzone detection, because the |cFFABB2BFLibBabble-SubZone-3.0|r library does not yet provide subzone names for your language. See the download page for more information!")
     end
   end
 

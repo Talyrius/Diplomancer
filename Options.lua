@@ -117,6 +117,66 @@ end)
 SLASH_DIPLOMANCER1 = "/diplomancer"
 SLASH_DIPLOMANCER2 = "/dm"
 
-SlashCmdList.DIPLOMANCER = function()
-  InterfaceOptionsFrame_OpenToCategory(Diplomancer.OptionsPanel)
+SlashCmdList.DIPLOMANCER = function(cmd)
+  cmd = strtrim(strlower(cmd or ""))
+
+  if cmd == "" then
+    InterfaceOptionsFrame_OpenToCategory(Diplomancer.OptionsPanel)
+  elseif cmd == "debug" then
+    Diplomancer.DEBUG = not Diplomancer.DEBUG
+    Diplomancer:Print(format("Debugging %s on |cFFABB2BF%s|r.", Diplomancer.DEBUG and "|cFF98C379activated|r" or "|cFFE06C75deactivated|r", DEBUG_CHAT_FRAME and "DEBUG_CHAT_FRAME" or "ChatFrame3"))
+  else
+    Diplomancer:Print("Valid commands: |cFF98C379\"debug\"|r.")
+  end
+end
+
+SLASH_WHERE_AM_I1 = "/whereami"
+SLASH_WHERE_AM_I2 = "/wai"
+
+SlashCmdList.WHERE_AM_I = function(cmd)
+  cmd = strtrim(strlower(cmd or ""))
+
+  local function printZoneNames()
+    local mapID = C_Map.GetBestMapForUnit("player")
+    local mapName = mapID and C_Map.GetMapInfo(mapID).name
+    if mapName ~= GetRealZoneText() then
+      Diplomancer:Print(format("Your current zone: |cFF98C379%q|r", GetRealZoneText()))
+    end
+    Diplomancer:Print(format("Your current subzone: |cFF98C379%q|r", GetSubZoneText()))
+  end
+
+  local descText, mapID, mapType
+  if cmd == "subzone" then
+    printZoneNames()
+    return
+  elseif cmd == "displayed" then
+    descText = "Map API information for your displayed map location:"
+    mapID = WorldMapFrame:GetMapID()
+  elseif cmd == "parent" then
+    descText = "Map API information for your current location's |cFFD19A66parentMapID|r:"
+    mapID = C_Map.GetMapInfo(C_Map.GetBestMapForUnit("player")).parentMapID
+  elseif type(tonumber(cmd)) == "number" then
+    descText = "Map API information for the requested |cFFD19A66mapID|r:"
+    mapID = tonumber(cmd)
+  elseif cmd == "" then
+    descText = "Map API information for your current location:"
+    mapID = C_Map.GetBestMapForUnit("player")
+
+    printZoneNames()
+  else
+    Diplomancer:Print("Valid commands: |cFF98C379\"subzone\"|r, |cFF98C379\"displayed\"|r, |cFF98C379\"parent\"|r, |cFFC678DDor |cFFD19A66mapID|r.")
+    return
+  end
+
+  local mapArtID = mapID and C_Map.GetMapArtID(mapID)
+  local mapInfo = mapID and C_Map.GetMapInfo(mapID)
+  if mapInfo then
+    for k, v in pairs(Enum.UIMapType) do
+      if v == mapInfo.mapType then
+        mapType = k
+      end
+    end
+  end
+
+  Diplomancer:Print(format("%s\n|cFFABB2BFname|r: |cFF98C379%q\n|cFFABB2BFmapType|r: |cFFD19A66%d |cFFC678DDor |cFF98C379%q\n|cFFABB2BFmapArtID|r: |cFFD19A66%d\n|cFFABB2BFmapID|r: |cFFD19A66%d\n|cFFABB2BFparentMapID|r: |cFFD19A66%d|r", descText, mapInfo.name, mapInfo.mapType, mapType, mapArtID, mapID, mapInfo.parentMapID))
 end

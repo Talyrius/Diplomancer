@@ -20,13 +20,13 @@ _G.Diplomancer = Diplomancer
 
 ------------------------------------------------------------------------------------------------------------------------
 
-local DEBUG = false
+-- Debugging is toggled on/off via "/diplomancer debug".
 function Diplomancer:Debug(text, ...)
-  if text then
+  if self.DEBUG and text then
     if text:match("%%[dfqsx%d%.]") then
-      (DEBUG_CHAT_FRAME or ChatFrame3):AddMessage("|cffff9999Diplomancer:|r " .. format(text, ...))
+      (DEBUG_CHAT_FRAME or ChatFrame3):AddMessage("|cFF8ADCFFDiplomancer|cFF3D819B[|cFFE06C75Debug|cFF3D819B]|r: " .. format(text, ...))
     else
-      (DEBUG_CHAT_FRAME or ChatFrame3):AddMessage("|cffff9999Diplomancer:|r " .. strjoin(" ", text, tostringall(...)))
+      (DEBUG_CHAT_FRAME or ChatFrame3):AddMessage("|cFF8ADCFFDiplomancer|cFF3D819B[|cFFE06C75Debug|cFF3D819B]|r: " .. strjoin(" ", text, tostringall(...)))
     end
   end
 end
@@ -34,9 +34,9 @@ end
 function Diplomancer:Print(text, ...)
   if text then
     if text:match("%%[dfqs%d%.]") then
-      DEFAULT_CHAT_FRAME:AddMessage("|cffffcc00Diplomancer:|r " .. format(text, ...))
+      DEFAULT_CHAT_FRAME:AddMessage("|cFF8ADCFFDiplomancer|r: " .. format(text, ...))
     else
-      DEFAULT_CHAT_FRAME:AddMessage("|cffffcc00Diplomancer:|r " .. strjoin(" ", text, tostringall(...)))
+      DEFAULT_CHAT_FRAME:AddMessage("|cFF8ADCFFDiplomancer|r: " .. strjoin(" ", text, tostringall(...)))
     end
   end
 end
@@ -45,17 +45,19 @@ end
 
 local EventFrame = CreateFrame("Frame")
 EventFrame:RegisterEvent("ADDON_LOADED")
-EventFrame:SetScript("OnEvent", function(self, event, ...) return Diplomancer[event] and Diplomancer[event](Diplomancer, event, ...) end)
+EventFrame:SetScript("OnEvent", function(self, event, ...)
+  return Diplomancer[event] and Diplomancer[event](Diplomancer, event, ...)
+end)
 Diplomancer.EventFrame = EventFrame
 
 ------------------------------------------------------------------------------------------------------------------------
 
-function Diplomancer:ADDON_LOADED(_, addon)
+function Diplomancer:ADDON_LOADED(event, addon)
   if addon ~= ADDON_NAME then return end
-  if DEBUG then self:Debug("ADDON_LOADED", addon) end
+  self:Debug("ADDON_LOADED", addon)
 
   if not DiplomancerSettings then
-    if DEBUG then self:Debug("No saved settings found!") end
+    self:Debug("No saved settings found!")
     DiplomancerSettings = {}
   end
   db = DiplomancerSettings
@@ -68,7 +70,7 @@ function Diplomancer:ADDON_LOADED(_, addon)
   self.ADDON_LOADED = nil
 
   if IsLoggedIn() then
-    self:PLAYER_LOGIN()
+    self:PLAYER_LOGIN(event)
   else
     EventFrame:RegisterEvent("PLAYER_LOGIN")
   end
@@ -76,8 +78,8 @@ end
 
 ------------------------------------------------------------------------------------------------------------------------
 
-function Diplomancer:PLAYER_LOGIN()
-  if DEBUG then self:Debug("PLAYER_LOGIN") end
+function Diplomancer:PLAYER_LOGIN(event)
+  self:Debug("PLAYER_LOGIN")
 
   self:LocalizeData()
   if not self.localized then return end
@@ -101,7 +103,7 @@ function Diplomancer:PLAYER_LOGIN()
   if UnitOnTaxi("player") then
     onTaxi = true
   else
-    self:Update()
+    self:Update(event)
   end
 end
 
@@ -118,25 +120,25 @@ end
 
 function Diplomancer:Update(event)
   if onTaxi then
-    if DEBUG then self:Debug("On taxi. Skipping update.") end
+    self:Debug("On taxi. Skipping update.")
     return
   end
 
   local faction
   local zone = self:GetBestMapForPlayer()
-  if DEBUG then self:Debug("Update", event, zone) end
+  self:Debug("Update", event, zone)
 
   local tabardFaction, tabardLevel = self:GetChampionedFaction()
   if tabardFaction then
     local _, instanceType = IsInInstance()
     if instanceType == "party" then
-      if DEBUG then self:Debug("Wearing tabard for:", tabardFaction) end
+      self:Debug("Wearing tabard for:", tabardFaction)
       local instances = championZones[tabardLevel]
       if instances and instances[zone] then
         -- Championing this faction has a level requirement.
         if GetDungeonDifficultyID() >= instances[zone] then
           faction = tabardFaction
-          if DEBUG then self:Debug("CHAMPION", faction) end
+          self:Debug("CHAMPION", faction)
           if db.defaultChampion then
             db.defaultFaction = faction
           end
@@ -150,7 +152,7 @@ function Diplomancer:Update(event)
         local minDifficulty = championZones[85][zone] or championZones[80][zone]
         if not minDifficulty or GetDungeonDifficultyID() >= minDifficulty then
           faction = tabardFaction
-          if DEBUG then self:Debug("CHAMPION", faction) end
+          self:Debug("CHAMPION", faction)
           if db.defaultChampion then
             db.defaultFaction = faction
           end
@@ -163,21 +165,21 @@ function Diplomancer:Update(event)
   end
 
   local subzone = GetSubZoneText()
-  if DEBUG then self:Debug("Checking subzone:", strlen(subzone) > 0 and subzone or "nil") end
+  self:Debug("Checking subzone:", subzone)
   if subzone then
     faction = subzoneFactions[zone] and subzoneFactions[zone][subzone]
     if faction then
-      if DEBUG then self:Debug("SUBZONE", faction) end
+      self:Debug("SUBZONE", faction)
       if self:SetWatchedFactionByID(faction, db.verbose) then
         return
       end
     end
   end
 
-  if DEBUG then self:Debug("Checking zone:", zone, GetRealZoneText()) end
   faction = zoneFactions[zone]
+  self:Debug("Checking zone:", zone, zone and C_Map.GetMapInfo(zone).name)
   if faction then
-    if DEBUG then self:Debug("ZONE", faction) end
+    self:Debug("ZONE", faction)
     if self:SetWatchedFactionByID(faction, db.verbose) then
       return
     end
@@ -186,7 +188,7 @@ function Diplomancer:Update(event)
   if tabardFaction and db.defaultChampion then
     faction = tabardFaction
     if faction then
-      if DEBUG then self:Debug("DEFAULT CHAMPION", faction) end
+      self:Debug("DEFAULT CHAMPION", faction)
       if self:SetWatchedFactionByID(faction, db.verbose) then
         return
       end
@@ -194,9 +196,9 @@ function Diplomancer:Update(event)
   end
 
   faction = db.defaultFaction or racialFaction
-  if DEBUG then self:Debug(db.defaultFaction and "DEFAULT" or "RACE", faction) end
+  self:Debug(db.defaultFaction and "DEFAULT" or "RACE", faction)
   if not self:SetWatchedFactionByID(faction, db.verbose) then
-    if DEBUG then self:Debug("NONE") end
+    self:Debug("NONE")
     SetWatchedFactionIndex(0)
   end
 end
@@ -226,13 +228,13 @@ end
 
 ------------------------------------------------------------------------------------------------------------------------
 
-function Diplomancer:ACTIONBAR_UPDATE_USABLE()
+function Diplomancer:ACTIONBAR_UPDATE_USABLE(event)
   local nowTaxi = UnitOnTaxi("player")
   if nowTaxi == onTaxi then return end
-  if DEBUG then self:Debug("ACTIONBAR_UPDATE_USABLE", onTaxi, "=>", nowTaxi) end
+  self:Debug("ACTIONBAR_UPDATE_USABLE", onTaxi, "->", nowTaxi)
   onTaxi = nowTaxi
   if not onTaxi then
-    self:Update()
+    self:Update(event)
   end
 end
 
@@ -240,14 +242,14 @@ end
 
 -- local INVSLOT_TABARD = GetInventorySlotInfo("TabardSlot")
 
-function Diplomancer:UNIT_INVENTORY_CHANGED(_, unit)
+function Diplomancer:UNIT_INVENTORY_CHANGED(event, unit)
   if unit == "player" then
-    if DEBUG then self:Debug("UNIT_INVENTORY_CHANGED") end
     local new = GetInventoryItemID(unit, INVSLOT_TABARD)
-    if DEBUG then self:Debug("Current", new and GetItemInfo(new) or "none", "Previous", tabard and GetItemInfo(tabard) or "none") end
+    if not (new or tabard) then return end
+    self:Debug("UNIT_INVENTORY_CHANGED\nCurrent:", new and GetItemInfo(new) or "none", "\nPrevious:", tabard and GetItemInfo(tabard) or "none")
     if new ~= tabard then
       tabard = new
-      self:Update()
+      self:Update(event)
     end
   end
 end
@@ -255,7 +257,7 @@ end
 ------------------------------------------------------------------------------------------------------------------------
 
 function Diplomancer:PickBestFaction(factions)
-  if DEBUG then
+  if self.DEBUG then
     local str = ""
     for id in pairs(factions) do
       str = str .. " " .. id
@@ -280,13 +282,13 @@ function Diplomancer:SetWatchedFactionByID(id, verbose)
     return self:SetWatchedFactionByID(self:PickBestFaction(id))
   end
   if type(id) ~= "number" then return end
-  if DEBUG then self:Debug("SetWatchedFactionByID:", id) end
+  self:Debug("SetWatchedFactionByID:", id)
   self:ExpandFactionHeaders()
   for i = 1, GetNumFactions() do
     local name, _, standingID, _, _, _, _, _, _, _, _, isWatched, _, factionID = GetFactionInfo(i)
-    --if DEBUG then self:Debug("GetFactionInfo", i, factionID, name, standingID, isWatched) end
+    --self:Debug("GetFactionInfo", i, factionID, name, standingID, isWatched)
     if factionID == id then
-      if DEBUG then self:Debug("Found faction:", name, standingID, isWatched) end
+      self:Debug("Found faction:", name, standingID, isWatched)
       if (standingID < 8 or not db.ignoreExalted) then
         if not isWatched then
           SetWatchedFactionIndex(i)
@@ -315,17 +317,17 @@ function Diplomancer:GetChampionedFaction()
     local data = championFactions[id]
     if data then
       local faction, level = data[2], data[1]
-      if DEBUG then self:Debug("GetChampionedFaction:", tostring(faction), tostring(level)) end
+      self:Debug("GetChampionedFaction:", tostring(faction), tostring(level))
       return faction, level
     end
   end
-  if DEBUG then self:Debug("GetChampionedFaction:", "none") end
+  self:Debug("GetChampionedFaction:", "none")
 end
 
 ------------------------------------------------------------------------------------------------------------------------
 
 function Diplomancer:GetFactionIDFromName(search)
-  if DEBUG then self:Debug("GetFactionIDFromName", search) end
+  self:Debug("GetFactionIDFromName", search)
   local result1, result2
   if not search then
     return
@@ -348,7 +350,7 @@ function Diplomancer:GetFactionIDFromName(search)
 end
 
 function Diplomancer:GetFactionNameFromID(search)
-  if DEBUG then self:Debug("GetFactionNameFromID", search) end
+  self:Debug("GetFactionNameFromID", search)
   if search and type(search) ~= "number" then
     search = tonumber(search)
   end
@@ -373,7 +375,7 @@ local GetNumFactions, GetFactionInfo, ExpandFactionHeader, CollapseFactionHeader
 local wasCollapsed = {}
 
 function Diplomancer:ExpandFactionHeaders()
-  if DEBUG then self:Debug("ExpandFactionHeaders") end
+  self:Debug("ExpandFactionHeaders")
   local i = 1
   while i <= GetNumFactions() do
     local name, _, _, _, _, _, _, _, isHeader, isCollapsed = GetFactionInfo(i)
@@ -393,7 +395,7 @@ function Diplomancer:ExpandFactionHeaders()
 end
 
 function Diplomancer:RestoreFactionHeaders()
-  if DEBUG then self:Debug("RestoreFactionHeaders") end
+  self:Debug("RestoreFactionHeaders")
   local i = 1
   while i <= GetNumFactions() do
     local name, _, _, _, _, _, _, _, isHeader, isCollapsed = GetFactionInfo(i)
