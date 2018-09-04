@@ -91,6 +91,7 @@ function Diplomancer:PLAYER_LOGIN(event)
   zoneFactions = self.zoneFactions
 
   EventFrame:RegisterEvent("ACTIONBAR_UPDATE_USABLE")
+  EventFrame:RegisterEvent("CHAT_MSG_SYSTEM")
   EventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
   EventFrame:RegisterEvent("UNIT_INVENTORY_CHANGED")
   EventFrame:RegisterEvent("ZONE_CHANGED")
@@ -207,24 +208,21 @@ end
 
 do
   local running
-
-  local function DelayedUpdate()
-    running = nil
-    Diplomancer:Update("DelayedUpdate")
-  end
-
-  local function DelayUpdate()
+  function Diplomancer:DelayedUpdate(event, duration)
     if not running then
-      C_Timer.After(0.5, DelayedUpdate)
+      C_Timer.After(duration or 0.5, function()
+        running = nil
+        self:Update(event)
+      end)
       running = true
     end
   end
-
-  Diplomancer.PLAYER_ENTERING_WORLD = DelayUpdate
-  Diplomancer.ZONE_CHANGED = DelayUpdate
-  Diplomancer.ZONE_CHANGED_INDOORS = DelayUpdate
-  Diplomancer.ZONE_CHANGED_NEW_AREA = DelayUpdate
 end
+
+Diplomancer.PLAYER_ENTERING_WORLD = Diplomancer.DelayedUpdate
+Diplomancer.ZONE_CHANGED = Diplomancer.DelayedUpdate
+Diplomancer.ZONE_CHANGED_INDOORS = Diplomancer.DelayedUpdate
+Diplomancer.ZONE_CHANGED_NEW_AREA = Diplomancer.DelayedUpdate
 
 ------------------------------------------------------------------------------------------------------------------------
 
@@ -240,7 +238,14 @@ end
 
 ------------------------------------------------------------------------------------------------------------------------
 
--- local INVSLOT_TABARD = GetInventorySlotInfo("TabardSlot")
+function Diplomancer:CHAT_MSG_SYSTEM(event, msg)
+  local pattern = gsub(FACTION_STANDING_CHANGED, "%%s", ".+")
+  if msg:match(pattern) then
+    self:DelayedUpdate(event)
+  end
+end
+
+------------------------------------------------------------------------------------------------------------------------
 
 function Diplomancer:UNIT_INVENTORY_CHANGED(event, unit)
   if unit == "player" then
