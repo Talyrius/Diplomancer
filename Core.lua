@@ -166,7 +166,7 @@ function Diplomancer:Update(event)
     end
   end
 
-  local subzone = GetSubZoneText()
+  local subzone = GetSubZoneText() == "" and GetRealZoneText() or GetSubZoneText()
   self:Debug("Checking subzone:", subzone)
   if subzone then
     faction = subzoneFactions[zone] and subzoneFactions[zone][subzone]
