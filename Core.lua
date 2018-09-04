@@ -101,6 +101,7 @@ function Diplomancer:PLAYER_LOGIN(event)
   EventFrame:UnregisterEvent("PLAYER_LOGIN")
   self.PLAYER_LOGIN = nil
 
+  tabard = GetInventoryItemID("player", INVSLOT_TABARD)
   if UnitOnTaxi("player") then
     onTaxi = true
   else
@@ -315,7 +316,7 @@ end
 
 function Diplomancer:GetChampionedFaction()
   for i = 1, 40 do
-    local _, _, _, _, _, _, _, _, _, _, id = UnitBuff("player", i)
+    local _, _, _, _, _, _, _, _, _, id = UnitBuff("player", i)
     if not id then
       break
     end
